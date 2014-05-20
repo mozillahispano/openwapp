@@ -1,0 +1,371 @@
+/* ----------------------------------
+* Input areas
+* ---------------------------------- */
+form.default input[type="text"],
+form.default input[type="password"],
+form.default input[type="email"],
+form.default input[type="tel"],
+form.default input[type="search"],
+form.default input[type="url"],
+form.default input[type="number"],
+form.default textarea {
+  -moz-box-sizing: border-box;
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  resize: none;
+  padding: 0.4rem 0.8rem;
+  font: 1.8rem/4rem "MozTT", Sans-serif;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.3rem;
+  box-shadow: none; /* override the box-shadow from the system (performance issue) */
+  background: #fff url(/images/shared/input_areas/ui/shadow.png) repeat-x left top;
+  @include respond-to(peak) {
+    background-image: url(/images/shared/input_areas/ui/shadow2x.png);
+  }
+  height: 4rem;
+}
+
+form.default select {
+  display: inline-block;
+  overflow: hidden;
+  resize: none;
+  padding: 0.4rem 0.8rem;
+  -moz-box-sizing: border-box;
+  font: 1.8rem/4rem "MozTT", Sans-serif;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.3rem;
+  box-shadow: none;
+  background: #fff url(/images/shared/input_areas/ui/shadow.png) repeat-x left top;
+  @include respond-to(peak) {
+    background-image: url(/images/shared/input_areas/ui/shadow2x.png);
+  }
+  position: relative;
+  height: 4rem;
+  -moz-appearance: textfield;
+}
+
+form.default textarea {
+  height: 10rem;
+  max-height: 10rem;
+  line-height: 2rem;
+  margin: 0;
+}
+
+/* fix for required inputs with wrong or empty value e.g. [type=email] */
+form.default input:invalid,
+form.default textarea:invalid {
+  // border: 0.1rem solid #820000;
+  // color: #b90000;
+}
+
+form.default input::-moz-placeholder,
+form.default textarea::-moz-placeholder {
+  color: #858585;
+  opacity: 1;
+}
+
+form.default input:-moz-placeholder,
+form.default textarea:-moz-placeholder {
+  color: #858585;
+  opacity: 1;
+}
+
+form.default p {
+  position: relative;
+  margin: 0;
+}
+
+form.default p + p {
+  margin-top: 1rem;
+}
+
+form.default p input + button[type="reset"],
+form.default p textarea + button[type="reset"] {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 3rem;
+  height: 4rem;
+  padding: 0;
+  border: none;
+  font-size: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: transparent url(/images/shared/input_areas/icons/clear.png) no-repeat 50% 50% / 1.7rem auto;
+}
+
+/* To avoid colission with BB butons */
+form.default li input + button[type="reset"]:after,
+form.default li textarea + button[type="reset"]:after {
+  background: none;
+}
+
+form.default p input + button[type="reset"],
+form.default p textarea + button[type="reset"] {
+  top: 0;
+  margin: 0;
+}
+
+form.default textarea {
+  padding: 1.2rem;
+}
+
+form.default p input:focus {
+  // padding-right: 3rem;
+}
+
+form.default p input:focus + button[type="reset"],
+form.default p textarea:focus + button[type="reset"] {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Fieldset */
+form.default fieldset {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.3rem;
+  border: 0.1rem solid rgba(0,0,0,.2);
+  font: 1.8rem/1em "MozTT", Sans-serif;
+  background: #fff url(/images/shared/input_areas/ui/shadow.png) repeat-x left top;
+  @include respond-to(peak) {
+    background-image: url(/images/shared/input_areas/ui/shadow2x.png);
+  }
+}
+
+form.default fieldset  + fieldset {
+  margin-top: 1.5rem;
+}
+
+form.default fieldset legend {
+  -moz-box-sizing: border-box;
+  position: absolute;
+  width: 9.5rem;
+  height: 100%;
+  padding: 0 0.5rem 0 1.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #333;
+  line-height: 4rem;
+  text-transform: uppercase;
+}
+
+form.default fieldset legend.action {
+  background: url(/images/shared/input_areas/icons/arrow.png) no-repeat 100% 100% / 1.2rem;
+  @include respond-to(peak) {
+    background-image: url(/images/shared/input_areas/icons/arrow2x.png);
+  }
+}
+
+form.default fieldset legend:active {
+  background-color: #008caa;
+  text-shadow: 0.1rem 0.1rem 0 rgba(255,255,255,.3);
+}
+
+form.default fieldset section input[type="text"],
+form.default fieldset section input[type="password"],
+form.default fieldset section input[type="email"],
+form.default fieldset section input[type="tel"],
+form.default fieldset section input[type="search"],
+form.default fieldset section input[type="number"],
+form.default fieldset section textarea {
+  height: 4rem;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+form.default fieldset section {
+  display: block;
+  border-left: 0.1rem solid #ddd;
+  border-radius: 0 0.3rem 0.3rem 0;
+  overflow: hidden;
+  margin-left: 9.5rem;
+}
+
+form.default fieldset section p {
+  margin: 0;
+  border-bottom: 0.1rem solid #ddd;
+}
+
+form.default fieldset section p:last-child {
+  border-bottom: none;
+}
+
+/* Tidy (search/submit) */
+form.default[role="search"] {
+  position: relative;
+  height: 3.9rem;
+  background-image: linear-gradient(to bottom, #ebebeb, #fafafa);
+  border-bottom: 0.1rem solid #bdbdbd;
+}
+
+section[role="region"] > header:first-child + form.default[role="search"] {
+  /* increase height when underneath a header because of header's shadow */
+  padding-top: 0.3rem;
+  border-bottom: 0.1rem solid #c8c8c8;
+}
+
+form.default[role="search"].bottom:after {
+  content: "";
+  position: absolute;
+  top: -0.3rem;
+  right: 0;
+  left: 0;
+  height: 0.3rem;
+  background: url(/images/shared/input_areas/ui/shadow-invert.png) repeat-x 0 100%;
+  @include respond-to(peak) {
+    background-image: url(/images/shared/input_areas/ui/shadow-invert2x.png);
+  }
+}
+
+section[role="region"] > header:first-child + form.default[role="search"]:after{
+  background: none;
+}
+
+form.default[role="search"] p {
+  -moz-box-sizing: border-box;
+  padding: 0.3rem 1.2rem;
+  overflow: hidden;
+}
+
+form.default[role="search"].full p {
+  padding: 0.3rem 1rem;
+}
+
+form.default[role="search"] p input,
+form.default[role="search"] p textarea {
+  height: 3rem;
+  border: 0.1rem solid #c1c1c1;
+  background: #fff url(/images/shared/input_areas/ui/shadow-search.png) repeat-x;
+  @include respond-to(peak) {
+    background-image: url(/images/shared/input_areas/ui/shadow-search2x.png);
+  }
+  font-size: 1.8rem;
+}
+
+form.default[role="search"] p input:focus {
+  // padding: 0 2rem 0 0;
+}
+
+form.default[role="search"] p input:invalid,
+form.default[role="search"] p textarea:invalid {
+  border: none;
+}
+
+form.default[role="search"] button.icon {
+  float: left;
+  height: 3.7rem;
+  width: 3rem;
+  border: none;
+  font-size: 0;
+  background: url(/images/shared/input_areas/ui/separator.png) no-repeat 100% 50%,
+              url(/images/shared/input_areas/ui/background.png) repeat-x 0 100%;
+  background-size: auto 100%;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+form.default[role="search"] button.icon:before {
+  content: "";
+  position: absolute;
+  width: 3rem;
+  height: 3.7rem;
+  background: transparent center no-repeat;
+  top: 0;
+  left: 0;
+}
+
+form.default[role="search"] p button[type="reset"] {
+  right: 0;
+}
+
+form.default[role="search"] button[type="submit"] {
+  float: right;
+  min-width: 6rem;
+  height: 3.8rem;
+  padding: 0 1rem;
+  border: none;
+  color: #333;
+  font: 500 1.8rem/3.2rem "MozTT", Sans-serif;
+  background: url(/images/shared/input_areas/ui/separator.png) no-repeat 0 50%,
+              url(/images/shared/input_areas/ui/active.png) repeat-x 0 100%;
+  background-size: auto 100%;
+  border-radius: 0;
+  width: auto;
+  border-radius: 0;
+  margin: 0;
+}
+
+form.default[role="search"] button[type="submit"] + p > textarea {
+  height: 3rem;
+  line-height: 2rem;
+  font-size: 1.8rem;
+}
+
+form.default[role="search"] button[type="submit"] + p button {
+  height: 3.7rem;
+}
+
+form.default[role="search"].full button[type="submit"] {
+  display: none;
+}
+
+form.default[role="search"] button.icon:active,
+form.default[role="search"] button[type="submit"]:active {
+  background: #008caa;
+  text-shadow: 0.1rem 0.1rem 0 rgba(255,255,255,.3);
+}
+
+form.default[role="search"] button[type="submit"][disabled] {
+  color: #adadad;
+  background: url(/images/shared/input_areas/ui/separator.png) no-repeat 0 50%,
+              url(/images/shared/input_areas/ui/background.png) repeat-x 0 100%;
+}
+
+form.default p button[type="reset"]:focus,
+form.default p button[type="reset"]::-moz-focus-inner {
+  border: none;
+  outline: none;
+}
+
+/******************************************************************************
+ * Right-to-Left layout
+ */
+
+html[dir="rtl"] form.default p input:valid,
+html[dir="rtl"] form.default p input:valid:focus {
+  // padding: 0 1.2rem 0 3rem;
+}
+
+html[dir="rtl"] form.default p input + button[type="reset"],
+html[dir="rtl"] form.default p textarea + button[type="reset"] {
+  right: auto;
+  left: 0;
+}
+
+html[dir="rtl"] form.default fieldset legend.action:after {
+  margin: 0 0.5rem 0 0;
+}
+
+html[dir="rtl"] form.default fieldset legend {
+  padding: 0 1.5rem 0 0.5rem;
+}
+
+html[dir="rtl"] form.default[role="search"] p input {
+  padding: 0;
+}
+
+html[dir="rtl"] form.default[role="search"] p input:focus {
+  // padding: 0 0 0 2rem;
+}
+
+html[dir="rtl"] form.default[role="search"] button[type="submit"] + p > button {
+  left: 0;
+}

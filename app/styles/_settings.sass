@@ -1,0 +1,38 @@
+.page
+  &.settings
+    #settings
+      left: 0%
+    .tos-page
+      left: 100%
+    .privacy-page
+      left: 100%
+  &.tos
+    #settings
+      left: -100%
+  &.privacy
+    #settings
+      left: -100%
+
+#settings
+  background: #1e1e20
+  +register-page
+
+#settings div.page-wrapper
+  background: none
+
+#settings > header:first-child
+  +dark-bg-header
+
+#settings > footer
+  +dark-footer
+
+#settings h2
+  +dark-highlight-row
+  text-indent: 3rem
+
+#settings li
+  +dark-row
+  line-height: 4.4rem
+  a
+    +list-button
+    padding-left: 0.7rem

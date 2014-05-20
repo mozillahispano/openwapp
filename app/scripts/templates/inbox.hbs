@@ -1,0 +1,79 @@
+<section id="inbox" role="region">
+  <header>
+    <a href="#profile">
+      <span id="profile-button" class="icon icon-menu">profile</span>
+    </a>
+    <menu type="toolbar">
+      <a id="add-contact" href="#"><span class="icon icon-compose">
+      compose</span></a>
+      <a id="new-group" href="#new-group"><span class="icon icon-group">
+      new group</span></a>
+    </menu>
+    <h1>{{translate 'inbox'}}</h1>
+  </header>
+
+  <div class="page-wrapper">
+    <aside class="legend">
+      <span id="presence" class="{{status}}">{{statusTxt}}</span>
+    </aside>
+
+    {{! TODO: Pending design for this message }}
+    <div id="no-conversations" class="empty-info">
+      <p>{{translate 'noConversation'}}</p>
+      <p>{{translate 'selectContacts'}}</p>
+    </div><!-- no conversations -->
+
+    <section class="conversation-list" id="conversations">
+      <ul>
+      </ul>
+    </section>
+
+{{!
+        DON'T REMOVE THIS CODE YET, it will be useful when rendering
+        other types of messages (picture, location)
+
+        <li class="unread"><a href="#conversation">
+        <aside class="avatar offline">
+          <img src="/images/unknown_avatar.png" width="50" height="50"
+           alt="Avatar">
+        </aside>
+        <dl>
+          <dt class="name">Name</dt>
+          <dd class="name">Lara Croft</dd>
+          <dt class="event">Last event</dt>
+          <dd class="event location">Pirámide chunga</dd>
+        </dl>
+      </a></li>
+ }}
+
+{{!
+        DON'T REMOVE THIS CODE YET, it will be useful when rendering
+        other types of messages (picture, location)
+
+       <li class="read"><a href="#conversation">
+        <aside class="avatar online">
+          <img src="/images/unknown_avatar.png" width="50" height="50"
+           alt="Avatar">
+        </aside>
+        <dl>
+          <dt class="name">Name</dt>
+          <dd class="name">Rodrigo Díaz de Vivar el Cid Campeador</dd>
+          <dt class="event">Last event</dt>
+          <dd class="event picture">Fotillo</dd>
+        </dl>
+      </a></li>
+      <li class="read"><a href="#conversation">
+        <aside class="avatar online">
+          <img src="/images/unknown_avatar.png" width="50" height="50"
+           alt="Avatar">
+        </aside>
+        <dl>
+          <dt class="name">Name</dt>
+          <dd class="name">Neo</dd>
+          <dt class="event">Last event</dt>
+          <dd class="event text">Remember to take the red pill</dd>
+        </dl>
+      </a></li>
+ }}
+  </div><!-- page wrapper -->
+</section><!-- inbox -->

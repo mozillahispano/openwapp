@@ -1,0 +1,15 @@
+#compose-image
+  text-align: center
+  .loading
+    margin-left: 10rem
+  .page-wrapper
+    max-height: -moz-calc(100% - #{$conversation-footer-height + $header-height})
+    max-height: -webkit-calc(100% - #{$conversation-footer-height + $header-height})
+    .viewer
+      text-align: center
+      padding: 0.9rem 1.9rem 0 1.9rem
+  form#conversation-compose-image
+    display: block
+    & input[type=text]
+      width: -moz-calc(100% - 1.3rem)
+      width: -webkit-calc(100% - 1.3rem)

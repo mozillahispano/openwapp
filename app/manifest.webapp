@@ -1,0 +1,81 @@
+{
+  "name": "OpenWapp",
+  "description": "OpenWapp is an open, free and unofficial app for bringing WhatsApp's communication services to your Firefox OS device. We are a open source project relying on the community to support and improve this software.",
+  "launch_path": "/index.html",
+  "icons": {
+    "30": "/icons/30/openwapp.png",
+    "60": "/icons/60/openwapp.png",
+    "128": "/icons/128/openwapp.png"
+  },
+  "developer": {
+    "name": "OpenWapp Team"
+  },
+  "csp": "default-src *; script-src 'self'; object-src 'none'; style-src 'self'",
+  "type": "privileged",
+  "locales": {
+    "es": {
+      "description": "OpenWapp es una aplicación gratuita, no oficial y abierta para llevar los servicios de comunicación de WhatsApp a tu dispositivo Firefox OS. Somos un proyecto de software libre que confía en la comunidad para mantener y mejorar el software."
+    },
+    "pt-br": {
+      "description": "OpenWapp é uma aplicação aberta, livre e não-oficial para levar os serviços de comunicação do WhatsApp para o seu dispositivo Firefox OS. Somos um projeto de código aberto baseando-se na comunidade para apoiar este programa e melhorar."
+    }
+  },
+  "default_locale": "en",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "messages": [
+    { "alarm": "/index.html" }
+  ],
+  "permissions": {
+    "alarms": {
+      "description": "Required to periodically receive available messages"
+    },
+    "contacts": {
+      "description": "Required to synchronize your contacts",
+      "access": "readwrite"
+    },
+    "desktop-notification": {
+      "description": "Show notifications to the user"
+    },
+    "geolocation": {
+      "description": "Device geolocation"
+    },
+    "device-storage:sdcard": {
+      "description": "Keep device specific information",
+      "access": "readwrite"
+    },
+    "device-storage:pictures": {
+      "description": "Send and save pictures",
+      "access": "readwrite"
+    },
+    "device-storage:music": {
+      "description": "Send and save audio",
+      "access": "readwrite"
+    },
+    "device-storage:videos": {
+      "description": "Send and save videos",
+      "access": "readwrite"
+    },
+    "storage": {
+      "description": "Local database access"
+    },
+    "audio-channel-normal": {
+      "description": "Play UI sounds"
+    },
+    "audio-channel-content": {
+      "description": "Play music and video"
+    },
+    "audio-channel-notification": {
+      "description": "Play message and notification sounds"
+    },
+    "tcp-socket": {
+      "description": "Enable raw sockets to communicate with the server"
+    },
+    "mobilenetwork": {
+      "description": "To detect mobile carrier and regional information."
+    },
+    "systemXHR": {
+      "description": "Allow XHR requests without CORS restrictions"
+    }
+  }
+}

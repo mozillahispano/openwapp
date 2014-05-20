@@ -1,0 +1,25 @@
+<form role="dialog" data-type="confirm" class="locationScreen">
+    <section>
+      <h1>{{translate 'retrievingLocation'}}</h1>
+      <p class="center">
+        <progress></progress>     
+      </p>
+      <p class="hide">{{translate 'loadLocationError'}}</p>
+    </section>
+    <menu>
+      <button>{{translate 'cancelButton'}}</button>
+    </menu>
+</form>
+<section id="location-sender" role="region">
+  <header>
+    <a href="#conversation/{{conversationId}}"><span class="icon icon-back">Back</span></a>
+    <menu type="toolbar"><button>{{translate 'sendButton'}}</button></menu>
+    <h1>{{translate 'sendLocation'}}</h1>
+  </header>
+
+  <div class="page-wrapper">
+    <div class="viewer">
+      <img src=""></img>
+    </div>
+  </div><!-- page wrapper -->
+</section><!-- conversation -->

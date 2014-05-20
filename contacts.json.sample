@@ -1,0 +1,67 @@
+[
+  {
+    "givenName": [
+      "Dark"
+    ],
+    "familyName": [
+      "Vador"
+    ],
+    "tel": [
+      {
+        "value": "34612345678"
+      }
+    ]
+  },
+  {
+    "givenName": [
+      "Lionel"
+    ],
+    "familyName": [
+      "Messi"
+    ],
+    "tel": [
+      {
+        "value": "34613245677"
+      }
+    ]
+  },
+  {
+    "givenName": [
+      "Angus"
+    ],
+    "familyName": [
+      "McGyver"
+    ],
+    "tel": [
+      {
+        "value": "34612345676"
+      }
+    ]
+  },
+  {
+    "givenName": [
+      "Xavi"
+    ],
+    "familyName": [
+      "Hernandez"
+    ],
+    "tel": [
+      {
+        "value": "3461234566"
+      }
+    ]
+  },
+  {
+    "givenName": [
+      "Mickael"
+    ],
+    "familyName": [
+      "Fernandez"
+    ],
+    "tel": [
+      {
+        "value": "34677777777"
+      }
+    ]
+  }
+]

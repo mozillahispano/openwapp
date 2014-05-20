@@ -1,0 +1,93 @@
+@mixin inbox-header
+  +common-row
+  font-size: 1.4rem
+  line-height: 2.5rem
+  padding-left: 0.7rem
+
+#inbox .page-wrapper
+  min-height: -moz-calc(100% - #{$header-height})
+  min-height: -webkit-calc(100% - #{$header-height})
+  background: #fff
+
+#inbox .legend
+  +inbox-header
+  background: #f2f2f2
+  text-transform: capitalize
+
+#inbox section.conversation-list
+  h1
+    +inbox-header
+    background: #fafafa
+
+@mixin message-icon($name)
+  &:before
+    content: ""
+    display: inline-block
+    width: 1.4rem
+    height: 1.4rem
+    background: url(/images/icon_14px_#{$name}_unread2x.png) 0 0 no-repeat
+    +background-size(1.4rem 1.4rem)
+    margin-right: 0.5rem
+  &.read:before
+    background-image: url(/images/icon_14px_#{$name}_read2x.png)
+
+#inbox li
+  +common-row
+  +contact(6rem)
+  &.unread
+    background-color: #e6e6e6
+    font-weight: bold
+  p
+    font-size: 1.5rem
+    line-height: 1.5rem
+    text-align: right
+  a
+    padding: 0.7rem 1.3rem 0.7rem 0.7rem
+    &:active
+      background-color: #cbf1fa
+      aside:before
+        background-image: url(/images/frame_contact_active.png)
+    &.group
+      background-repeat: no-repeat
+      background-image: url(/images/shared/headers/images/icons/group.png)
+      background-position: center right 1rem
+      @include respond-to(peak)
+        background-image: url(/images/shared/headers/icon/group2x.png)
+  aside
+    margin-right: 0.5rem
+    &:before
+      background-image: url(/images/frame_contact_read.png)
+  dl
+    width: -moz-calc(100% - 8rem) // 100% - (5 + 2)rem
+    width: -webkit-calc(100% - 8rem) // 100% - (5 + 2)rem
+  dd
+    &.name
+      font-size: 1.7rem
+      line-height: 2rem
+    &.event
+      font-size: 1.4rem
+      line-height: 3rem
+      padding-top: 0.5rem
+      color: #646464
+      max-height: 3rem
+      padding-right: 3rem
+    &.text
+      +message-icon(message)
+    &.image, &.video, &.audio
+      +message-icon(image)
+    &.location
+      +message-icon(place)
+    &.notification
+      +message-icon(notification)
+
+#inbox .empty-info
+  font-size: 1.7rem
+  line-height: 2rem
+  padding: 2rem
+  text-align: center
+  color: #3d3d3d
+  p
+    margin-top: 1rem
+    &:first-child
+      margin-top: 0
+      font-weight: bold

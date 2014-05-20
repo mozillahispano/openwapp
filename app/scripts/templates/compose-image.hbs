@@ -1,0 +1,24 @@
+<section id="compose-image" role="region">
+  <header>
+    <a href="#conversation/{{conversationId}}"><span class="icon icon-back">Back</span></a>
+    <menu type="toolbar">
+      <button class="submit">{{translate 'sendButton'}}</button>
+    </menu>
+    <h1>{{conversationTitle}}</h1>
+  </header>
+
+  <div class="page-wrapper">
+    <p role="status" class="loading">
+      <progress class="small"></progress>
+      <span>{{translate 'loading'}}</span>
+    </p>
+    <div class="viewer" style="display:none"></div>
+  </div><!-- page wrapper -->
+  <!--<footer>
+    <form id="conversation-compose-image">
+      {{! buttons have a type=submit by default }}
+      <input type="text" id="image-caption"
+      placeholder="{{translate 'composeImageCaptionPlaceholder'}}">
+    </form>
+  </footer>-->
+</section><!-- compose-image -->

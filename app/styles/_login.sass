@@ -1,0 +1,36 @@
+.page
+  &.init
+    .register-page
+      left: 0%
+    .tos-page
+      left: 100%
+    .privacy-page
+      left: 100%
+    .register-confirmation-page
+      left: 100%
+  &.confirmation
+    .register-page
+      left: -100%
+    .tos-page
+      left: 100%
+    .privacy-page
+      left: 100%
+    .register-confirmation-page
+      left: 0%
+
+#login-page, #tos-page, #confirm-phone-page
+  +register-page
+
+#login-page input[type=submit], #confirm-phone-page input[type=submit]
+  margin-top: 0.8rem
+
+#login-page section.main p
+  margin-top: 0.5rem
+  label
+    margin-left: 0
+
+#confirm-phone-page button
+  +secondary-action-button
+  padding-top: 0
+  margin-top: 1.8rem
+

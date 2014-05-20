@@ -1,0 +1,20 @@
+<li class="{{messageOwnerClass from.msisdn}} location {{status}}">
+  <span class="content">
+    <a href="#viewer/location/{{conversationId}}/{{_id}}">
+      <img src="">
+    </a>
+    {{locationText}}
+  </span>
+
+  <time>{{formattedMessageDate meta.date}}</time>
+  {{#ifIsUnsent status }}
+    {{! not traslated because it will be replaced with a picture }}
+    <button class="resend"><span>Resend</span></button>
+  {{/ifIsUnsent}}
+  {{#ifIsSent status}}
+    <span class="sent">✔</span>
+  {{/ifIsSent}}
+  {{#ifIsReceived status }}
+    <span class="delivered">✔✔</span>
+  {{/ifIsReceived}}
+</li>

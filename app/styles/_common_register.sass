@@ -1,0 +1,119 @@
+@mixin action-button
+  +box-sizing(border-box)
+  +background-image(linear-gradient(bottom, #df351b 0%, #f56b1b 100%))
+  width: 100%
+  color: #ffffff
+  border: 0.1rem solid #c1331e
+  padding: 0.8rem
+  border-radius: 0.2rem
+  font-size: 1.7rem
+  &:disabled
+    background: #d7d6d6
+    border-color: #c7c7c7
+    color: #aaa
+  &:active:not(:disabled)
+    background: #c1331d
+    border-color: #c1331e
+
+@mixin secondary-action-button
+  +action-button
+  +background-image(linear-gradient(bottom, #cacaca 0%, #fff 100%))
+  color: #333
+  border-color: #a6a6a6
+  &:active:not(:disabled)
+    border-color: #a6a6a6
+    background: #969696
+
+@mixin register-page
+  position: absolute
+  transition: left .4s ease
+  width: 100%
+  font-family: 'MozTT', sans-serif
+  div.page-wrapper
+    background: #e6e6e6
+  input[type=submit], input[type=button]
+    +action-button
+    width: 100%
+  input, select, legend
+    font-size: 1.9rem
+    vertical-align: bottom
+  select
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+    width: 7.5rem
+    border-right: none
+    text-align: center
+    padding-top: 0.7rem
+    padding-left: 0.4rem
+  select + input
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+    max-width: -moz-calc(100% - 8rem)
+    max-width: -webkit-calc(100% - 8rem)
+  fieldset
+    position: relative
+    width: 100%
+    border: none
+    legend
+      border: 0.1rem solid #CCCCCC
+      border-right: none
+      border-top-left-radius: 3px
+      border-bottom-left-radius: 3px
+      padding: 0
+      width: 30%
+      height: 4rem
+      float: left
+      position: relative
+      text-transform: none
+    input
+      width: 70%
+      position: relative
+  a
+    color: #4599e1
+    text-decoration: none
+  section.intro, section.main
+    text-align: center
+    padding: 1rem 2.5rem
+    p
+      margin-top: 1rem
+      &:first-child
+        margin-top: 0
+  section.intro
+    +box-sizing(border-box)
+    font-size: 1.7rem
+    line-height: 2.25rem
+    color: #555555
+    background: #f2f2f2
+    border-bottom: 0.1rem solid #fff
+    min-height: 9rem
+  section.main
+    padding-top: 2rem
+    color: #858585
+    font-size: 1.4rem
+    line-height: 1.75rem
+    p
+      margin-top: 1rem
+      line-height: 2rem
+      &.call-to-action
+        font-size: 1.4rem
+        color: #3d3d3d
+        margin-top: 1.75rem
+        display: table
+        label
+          float: left
+          display: table-cell
+          & + span
+            width: -moz-calc(100% - 5rem)
+            padding-top: 1.1rem // TODO: fix this and get proper valign
+            text-align: left
+            min-height: 5rem
+            display: table-cell
+            vertical-align: bottom
+            float: right
+  .spinner
+    display: none
+    progress
+      margin-top: 1rem
+  .hidden
+    position: absolute
+    text-indent: -10000px

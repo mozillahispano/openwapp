@@ -1,0 +1,16 @@
+<span data-id="{{id}}" data-phone="{{phone}}">
+  <aside class="avatar">
+  </aside>
+  <dl>
+    <dt class="name">Name</dt>
+    <dd class="name">{{displayName}}</dd>
+    <dt class="subject">Subject</dt>
+    <dd class="subject">{{subject}}</dd>
+    <dt class="state">State</dt>
+    <dd class="state">{{state}}</dd>
+  </dl>
+</span>
+{{#if showControls}}
+<button type="button" class="remove-participant">
+{{translate 'removeParticipant'}}</button>
+{{/if}}

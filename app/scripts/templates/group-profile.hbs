@@ -1,0 +1,47 @@
+<section role="region" id="profile">
+  <header>
+    <button class="close"><span class="icon icon-close">close</span></button>
+    <menu type="toolbar">
+      <button class="done" {{#if isEditMode}}data-update{{/if}}>
+        {{translate 'doneButton'}}
+      </button>
+    </menu>
+    <h1>
+      {{#if isEditMode}}
+        {{translate 'groupProfile'}}
+      {{else}}
+        {{translate 'newGroup'}}
+      {{/if}}
+    </h1>
+  </header>
+
+  <div class="page-wrapper">
+    <section class="main">
+      <form id="screen-name-form" class="default">
+        <p>
+          <img id="profile-picture" type="text" src="/images/unknown_avatar.png"
+          alt="{{translate 'groupPictureDescription'}}"/>
+        </p>
+        <p>{{translate 'groupPictureDescription'}}</p>
+        <p>
+          <input type="text" max="25"
+          name="subject" placeholder="{{translate 'subjectPlaceHolder'}}"
+          required value="{{subject}}">
+          </input>
+        </p>
+        <p>{{translate 'subjectDescription'}}</p>
+        {{#if showControls}}
+        <button type="button" class="add-participant">
+        {{translate 'addParticipant'}}</button>
+        {{/if}}
+        <ul class="participants">
+        </ul>
+        {{#if isEditMode}}
+          <button class="danger leave">
+            {{translate 'leaveGroup'}}
+          </button>
+        {{/if}}
+      </form>
+    </section>
+  </div>
+</section>

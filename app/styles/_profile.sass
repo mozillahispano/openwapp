@@ -1,0 +1,54 @@
+#profile
+  +register-page
+  img
+    max-width: 20rem
+    max-height: 15rem
+    width: auto
+    height: auto
+  fieldset legend
+    width: 100%
+  #revision
+    text-align: center
+    text-transform: none
+
+#profile button.leave,
+#profile button.add-participant
+  margin-top: 1.5rem
+
+#profile .participants li
+  +contacts-row
+  +contact(6rem)
+  dl
+    width: calc(100% - 5rem)
+    text-align: left
+
+#profile .details
+  padding: 1rem
+
+  button
+    background-image: none
+    background-color: #f2f2f2
+    text-align: left
+    font-weight: bold
+
+  button:active
+    background-color: #b2f2ff
+    color: white
+
+  button.icon
+    background-repeat: no-repeat
+    background-position: right
+
+  button.icon-call
+    background-image: url(/images/call.png)
+
+  button.icon-message
+    background-image: url(/images/sms.png)
+
+  button.dial
+    width: calc(100% - 5rem)
+
+  button.send-sms
+    float: right
+    width: 4rem
+    background-position: center

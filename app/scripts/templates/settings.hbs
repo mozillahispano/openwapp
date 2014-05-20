@@ -1,0 +1,48 @@
+<section id="settings" role="region">
+  <header>
+      <a href="#inbox"><span class="icon icon-back"></span></a>
+      <h1>{{translate 'settings'}}</h1>
+  </header>
+  <div class="page-wrapper">
+    <h2>{{translate 'settingsGeneral'}}</h2>
+    <nav><ul>
+      <li><a href="#tos-page" data-bypass id="showToS">{{translate 'terms'}}</a></li>
+      <li><a href="#privacy" data-bypass id="showPrivacy">
+        {{translate 'privacyPolicy'}}</a></li>
+      <li><a href="#" id="unregister">{{translate 'logout'}}</a></li>
+    </ul></nav>
+    <h2>{{translate 'settingsAbout'}}</h2>
+     <nav><ul>
+      <li>
+        <span >{{translate 'settingsVersion'}} </span>
+        <span id="appVersion">{{version}}</span>
+      </li>
+    </ul></nav>
+  </div><!-- page wrapper -->
+</section>
+
+<section role="region" id="tos-page" class="tos-page">
+  <header>
+    <button class="btn-back">
+      <span class="icon icon-back"></span>
+    </button>
+    <h1>{{translate 'terms'}}</h1>
+  </header>
+  <div class="page-wrapper">
+    <section class="main" id="tos-body"></section>
+  </div>
+</section>
+
+
+<section role="region" id="privacy-page"
+ class="privacy-page">
+  <header>
+    <button class="btn-back">
+      <span class="icon icon-back"></span>
+    </button>
+    <h1>{{translate 'privacyPolicy'}}</h1>
+  </header>
+  <div class="page-wrapper">
+    <section class="main" id="privacy-body"></section>
+  </div>
+</section>

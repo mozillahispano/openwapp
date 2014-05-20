@@ -1,0 +1,24 @@
+<li class="{{messageOwnerClass from.msisdn}} image {{status}}">
+  <span class="author">{{author}}</span>
+  <span class="content">{{translate type}}<br/>{{content.caption}}</span>
+  <aside>
+    <a
+      {{#ifNotIsMine from.msisdn}}
+        class="received"
+      {{/ifNotIsMine}}>
+      {{! img class can be landscape or portrait }}
+      <img class="" src="{{contents.thumbSrc}}">
+    </a>
+  </aside>
+  <time>{{formattedMessageDate meta.date}}</time>
+  {{#ifIsUnsent status }}
+    {{! not traslated because it will be replaced with a picture }}
+    <button class="resend"><span>Resend</span></button>
+  {{/ifIsUnsent}}
+  {{#ifIsSent status}}
+    <span class="sent">✔</span>
+  {{/ifIsSent}}
+  {{#ifIsReceived status }}
+    <span class="delivered">✔✔</span>
+  {{/ifIsReceived}}
+</li>

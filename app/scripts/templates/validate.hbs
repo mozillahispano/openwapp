@@ -1,0 +1,41 @@
+<section role="region" id="validate-page"
+ class="validate-page register-flow-page">
+  <header>
+    <h1>{{translate 'registerOpenWapp'}}</h1>
+  </header>
+
+  <div class="page-wrapper">
+    <section class="intro">
+        <p>
+          {{translate 'validateCode'}}
+           </br>
+          {{phoneNumber}}
+        </p>
+        <div class="spinner">
+          <p>{{translate 'validateCodeProgress'}}</p>
+          <progress></progress>
+        </div>
+    </section><!-- intro -->
+
+    <section class="main">
+      <form id="validate-form" class="default">
+        <p>
+          <input type="number"
+           name="validation-code-1" placeholder="{{translate 'codePlaceholder'}}" maxlength="3"></input>
+           -
+          <input type="number"
+           name="validation-code-2" placeholder="{{translate 'codePlaceholder'}}" maxlength="3"></input>
+        </p>
+        <p>
+          <input type="submit" value="{{translate 'nextButton'}}" disabled>
+        </p>
+        <p>
+          <button>{{translate 'reEnterPhone'}}</button>
+        </p>
+        <!--<p>
+          <button id="call-me">{{translate 'validateCodeCall'}}</button>
+        </p>-->
+      </form>
+    </section><!-- main -->
+  </div>
+</section><!-- validate page -->

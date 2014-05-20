@@ -1,0 +1,15 @@
+<footer>
+  <form id="conversation-compose">
+    {{! buttons have a type=submit by default }}
+    <button type="button" class="back">Back</button>
+    <input type="text" id="message-text-input">
+    <button id="insert-emoji" type="button">Emoji</button>
+    <input type="submit" value="{{translate 'sendButton'}}"
+     data-l10n-id="conversation-send-button">
+  </form>
+  <nav><ul>
+    <li><button class="text">Message</button></li>
+    <li><button class="image">Image</button></li>
+    <li><button class="location">Location</button></li>
+  </ul></nav>
+</footer>

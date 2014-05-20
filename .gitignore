@@ -1,0 +1,14 @@
+node_modules
+dist
+.tmp
+.sass-cache
+app/components
+Gemfile.lock
+.openwapp.sublime-project
+.openwapp.sublime-workspace
+.DS_Store
+grunt.local.json
+contacts.json
+test/cov
+app/scripts/templates.js
+app/styles/main.css

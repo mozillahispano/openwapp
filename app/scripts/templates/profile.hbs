@@ -1,0 +1,53 @@
+<section role="region" id="profile">
+  <header>
+    <button class="close"><span class="icon icon-close">close</span></button>
+    <menu type="toolbar"><button class="done">{{translate 'doneButton'}}
+    </button></menu>
+    <h1>{{translate 'profile'}}</h1>
+  </header>
+
+  <div class="page-wrapper">
+    <p class="hidden">
+      <select>
+        <option value="1">{{translate 'eachMinute'}}</option>
+        <option value="5">{{translate 'each5Minutes'}}</option>
+        <option value="10">{{translate 'each10Minutes'}}</option>
+        <option value="20">{{translate 'each20Minutes'}}</option>
+        <option value="30">{{translate 'each30Minutes'}}</option>
+        <option value="60">{{translate 'eachHour'}}</option>
+        <option value="0">{{translate 'disabled'}}</option>
+      </select>
+    </p>
+    <section class="main">
+      <form id="screen-name-form" class="default">
+        <p>
+          <img id="profile-picture" type="text" src="/images/unknown_avatar.png"
+          alt="Avatar"/>
+        </p>
+        <p>{{translate 'pictureDescription'}}</p>
+        <p>
+          <input type="text"
+          name="screen-name" placeholder="{{translate 'screenNamePlaceHolder'}}"
+          maxlength="30" required value="{{screenName}}">
+          </input>
+        </p>
+        <p>{{translate 'screenNameDescription'}}</p>
+        <p>
+          <input type="text"
+          name="status" placeholder="{{translate 'statusPlaceHolder'}}" required
+          value="{{status}}">
+          </input>
+        </p>
+        <p>{{translate 'statusDescription'}}</p>
+        <p>
+          <fieldset>
+            <legend class="action">{{translate 'wakeUpTime'}}</legend>
+          </fieldset>
+        </p>
+        <p>{{translate 'wakeUpDescription'}}</p>
+      </form>
+      <hr />
+      <p id="revision">rev: {{currentCommit}}</p>
+    </section>
+  </div>
+</section>

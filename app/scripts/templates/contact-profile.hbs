@@ -1,0 +1,31 @@
+<section role="region" id="profile">
+  <header>
+    <button class="close"><span class="icon icon-close">close</span></button>
+    <h1>{{displayName}}</h1>
+  </header>
+
+  <div class="page-wrapper">
+    <section class="main">
+      <p>
+        <img id="profile-picture" type="text" src="/images/unknown_avatar.png"
+        />
+      </p>
+      <p>{{state}}</p>
+    </section>
+    <section class="details">
+      <div class="item-media pull-right">
+        <button class="send-sms icon icon-message" data-phone="{{phone}}">
+        </button>
+      </div>
+      <div class="item-body-exp">
+        <button class="dial icon icon-call" data-phone="{{phone}}">
+          <div>
+            <b>
+              +{{phone}}
+            </b>
+          </div>
+        </button>
+      </div>
+    </section>
+  </div>
+</section>

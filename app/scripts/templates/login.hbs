@@ -1,0 +1,76 @@
+<section role="region" id="login-page"
+ class="register-page register-flow-page">
+  <header>
+    <h1>{{translate 'registerOpenWapp'}}</h1>
+  </header>
+
+  <div class="page-wrapper">
+    <section class="intro">
+      <p>{{translate 'welcomeMessage1'}}</p>
+      <p>{{translate 'welcomeMessage2'}}</p>
+      <p>{{translate 'insertMobileNumber'}}</p>
+      <p>{{countryDetectionMessage}}</p>
+      <p class="tos">
+        <a href="http://git.ovz.ca/openwapp/openwapp/raw/master/TERMS.txt"
+        target="_blank">{{translate 'termsOfUse'}}</a>
+      </p>
+    </section><!-- intro -->
+
+    <section class="main">
+      <form id="register" class="default">
+        <p>
+          <fieldset>
+            <legend class="action">{{translate 'country'}}</legend>
+            <input type="tel" name="msisdn"
+            placeholder="{{translate 'yourNumberPlaceHolder'}}" required>
+          </fieldset>
+        </p>
+
+        <p class="hidden">
+          <select>
+            <option value="" selected="selected">{{translate 'country'}}</option>
+          </select>
+        </p>
+        <p>
+          <input type="submit" value="{{translate 'nextButton'}}">
+        </p>
+      </form>
+    </section><!-- main -->
+  </div><!-- page wrapper -->
+</section><!-- login -->
+
+<section role="region" id="confirm-phone-page"
+ class="register-confirmation-page register-flow-page">
+  <header>
+    <h1>{{translate 'registerOpenWapp'}}</h1>
+  </header>
+  <div class="page-wrapper">
+    <section class="intro">
+      <p>{{translate 'smsValMessage'}}</p>
+      <div class="spinner">
+        <p>{{translate 'sendingValCode'}}</p>
+        <progress></progress>
+      </div><!-- spinner -->
+    </section><!-- intro -->
+    <section class="main">
+      <form id="register-conf" class="default">
+        <p>
+
+          <fieldset>
+            <legend class="action">{{translate 'country'}}</legend>
+            <input type="tel" name="msisdn"
+            placeholder="{{translate 'yourNumberPlaceHolder'}}" required>
+          </fieldset>
+        </p>
+        <p>{{translate 'loginEditIncorrect'}}</p>
+        <p class="call-to-action">{{translate 'loginNumberOk'}}</p>
+        <p>
+          <input type="submit" value="{{translate 'acceptButton'}}">
+        </p>
+        <p>
+          <button>{{translate 'goToValidateButton'}}</button>
+        </p>
+      </form>
+    </section><!-- main -->
+  </div><!-- page wrapper -->
+</section>

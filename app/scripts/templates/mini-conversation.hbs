@@ -1,0 +1,15 @@
+<li class="{{#if isRead}}read{{else}}unread{{/if}}" id="inbox-conv-{{id}}">
+  <a href="#" class="{{#if isGroup}}group{{/if}}">
+    <aside class="avatar">
+    </aside>
+    <dl>
+      <dt class="name">Name</dt>
+      <dd class="name">{{title}}</dd>
+      <dt class="event">Last event</dt>
+      <dd
+      class="event {{lastMessageType}} {{#if isRead}}read{{else}}unread{{/if}}">
+      {{lastMessage}}</dd>
+    </dl>
+    <p><time>{{formattedMessageDate date}}</time></p>
+</a>
+</li>

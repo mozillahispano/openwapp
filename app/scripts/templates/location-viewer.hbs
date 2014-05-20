@@ -1,0 +1,16 @@
+<section id="image-viewer" role="region">
+  <header>
+    <a href="#conversation/{{conversationId}}/{{scrollTop}}"><span class="icon icon-back">Back</span></a>
+    <h1>{{headerText}}</h1>
+  </header>
+
+  <div class="page-wrapper">
+    <p role="status" class="loading">
+      <progress class="small"></progress>
+      <span>{{translate 'loading'}}</span>
+    </p>
+    <div class="viewer" style="display:none">
+      <p>{{contents.caption}}</p>
+    </div>
+  </div><!-- page wrapper -->
+</section><!-- conversation -->

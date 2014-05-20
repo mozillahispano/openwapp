@@ -1,0 +1,135 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Mocha Spec Runner</title>
+    <link rel="stylesheet" href="lib/mocha/mocha.css">
+    <link rel="stylesheet" href="lib/JSCovReporter/reporter.css">
+</head>
+<body>
+    <div id="mocha" style="margin-right: 250px"></div>
+    <div id="menu"></div>
+    <div id="coverage"></div>
+
+    <!-- Use this if your view needs to render on the DOM -->
+    <div id="testplaceholder" style="display:none"></div>
+
+    <script src="lib/mocha/mocha.js"></script>
+    <script src="lib/chai.js"></script>
+    <script src="lib/sinon.js"></script>
+
+    <script src="lib/JSCovReporter/reporter.js"></script>
+
+    <script src="components/requirejs/require.js"></script>
+
+    <script>
+    window.coverage = window.localStorage.getItem('coverage') === 'true';
+
+    var insertButton = function () {
+      var buttonText = window.coverage ? 'Disable coverage' : 'Enable coverage';
+
+      var btn = document.createElement('p');
+      btn.innerHTML = '<button>' + buttonText + '</button>';
+      btn.className = 'toggle';
+
+      document.getElementById('menu').insertBefore(
+        btn, document.getElementById('menu').firstChild
+      );
+
+      document.querySelector('#menu p button').onclick = function (evt) {
+        window.localStorage.setItem('coverage', !window.coverage);
+        document.location.reload(true);
+      };
+    };
+    </script>
+
+    <script>
+    mocha.setup({
+      ui:'bdd',
+      globals: [
+        '_',            // Underscore
+        '$',            // Zepto.js
+        'Zepto',        // Zepto.js
+        'Backbone',     // Backbone.js
+        'Handlebars',   // Handlebars
+        'errorProps',   // Handlebars
+        'mockWindow',   // Only used for tests
+        'sip',          // Used by OTT-Comms-RTC
+        'RTC',          // Used by OTT-Comms-RTC
+        'log',          // Used by OTT-Comms-RTC
+        'PHONE_NUMBER_META_DATA', // Used by libphonenumber
+        'PhoneNumber',            // Used by libphonenumber
+        'asyncStorage',  // Used by async-storage.js
+        'alert'          // for window.alert
+      ]
+    });
+
+    var expect = chai.expect;
+    </script>
+
+    <!-- tests initialization -->
+    <script src="spec/main.js"></script>
+
+    <!-- include spec files here... -->
+    <script>
+    require([
+      'spec/router.js',
+      'spec/storage/auth.js',
+      'spec/storage/dbmanager_fake.js',
+      'spec/storage/dbmanager.js',
+      'spec/collections/contacts.js',
+      'spec/collections/history.js',
+      'spec/collections/messages.js',
+      'spec/collections/countries.js',
+      'spec/models/auth.js',
+      'spec/models/rtc.js',
+      'spec/models/geoposition.js',
+      'spec/models/message.js',
+      'spec/models/conversation.js',
+      'spec/models/history-fetcher.js',
+      'spec/models/contact.js',
+      'spec/models/history-fetcher.js',
+      'spec/utils/phonenumber.js',
+      'spec/utils/jajahstorage.js',
+      'spec/utils/thumbnail.js',
+      'spec/utils/notifications.js',
+      'spec/views/index.js',
+      'spec/views/login.js',
+      'spec/views/validate.js',
+      'spec/views/contacts.js',
+      'spec/views/contact.js',
+      'spec/views/inbox.js',
+      'spec/views/mini-conversation.js',
+      'spec/views/conversation.js',
+      'spec/views/text-message.js',
+      'spec/views/image-message.js',
+      'spec/views/location-message.js',
+      'spec/views/compose-message.js',
+      'spec/views/compose-location.js',
+      'spec/views/settings.js',
+      'spec/views/image-viewer.js',
+      'spec/templates/helpers.js',
+      'spec/utils/language.js',
+      'spec/views/location-viewer.js',
+      'spec/utils/sdmanager.js',
+      'spec/views/migration.js',
+      'spec/views/compose-image.js'
+    ], function () {
+        mocha.run(function () {
+          var coverage = {};
+          // Add code coverage when the tests have finished
+          if (window.coverage && typeof window.__$coverObject !== 'undefined') {
+            // Filter coverage results to not include vendor libraries
+            for (var i in window.__$coverObject) {
+              if (i.indexOf('app/scripts/vendor') !== 0) {
+                coverage[i] = window.__$coverObject[i];
+              }
+            }
+            var reporter = new JSCovReporter({ coverObject: coverage });
+          }
+          insertButton();
+        });
+    });
+    </script>
+</body>
+</html>

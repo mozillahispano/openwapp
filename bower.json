@@ -1,0 +1,14 @@
+{
+  "name": "webapp",
+  "version": "0.0.0",
+  "dependencies": {
+    "requirejs": "~2.1.5",
+    "underscore": "~1.4.4",
+    "zepto": "~1.0.0",
+    "backbone": "~1.0.0",
+    "handlebars.js": "1.0.0",
+    "PhoneNumber.js": "~0.5.0",
+    "emoji": "~0.2.1"
+  },
+  "devDependencies": {}
+}

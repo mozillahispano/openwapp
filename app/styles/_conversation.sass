@@ -1,0 +1,339 @@
+$conversation-footer-height: 5rem
+$conversation-typing-height: 0.6rem
+
+#conversation
+  background: #ebebeb url(/images/divider_line2x.png) center top repeat-y
+  +background-size(1.2rem 1rem)
+  position: relative
+  header menu
+    visibility: hidden
+  &.group header menu
+    visibility: visible
+  &:not(.group) h2.participants
+    visibility: hidden
+
+#conversation > header.connection-status
+  position: absolute
+  top: $header-height
+  width: 100%
+  z-index: 90
+
+#conversation > header.connection-status .hide
+  display: none
+
+#conversation > div.page-wrapper
+  position: relative
+  max-height: -moz-calc(100% - #{$conversation-footer-height + $header-height})
+  max-height: -webkit-calc(100% - #{$conversation-footer-height + $header-height})
+
+#conversation ul.messages
+  // extra bottom padding to make space for the
+  // absolute positioned time in last balloon
+  padding: 0.7rem 0.7rem 2.5rem 0.7rem
+  // idle & active indicator
+  &:after
+    content: ""
+    display: block
+    margin-top: 1rem
+    width: 2.8rem
+    height: 0.6rem
+    content: '•••'
+    font-size: 22px
+    font-weight: bolder
+    color: #979ca3
+    letter-spacing: 3px
+    opacity: 0
+    transition: opacity 0.2 ease
+    margin-left: 0.7rem
+  &.active:after
+    opacity: 1
+
+#conversation .participants
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+#conversation .progressContainer
+  position: absolute
+  z-index: 1
+  text-align: center
+  width: 100%
+  display: none
+  background: black
+  top: 8.5rem
+  span
+    color: white
+    font-size: 1.2rem
+    margin-right: 1rem
+  progress.pack-activity
+    width: 60%
+    display: table-cell
+    vertical-align: middle
+    height: 0.5rem
+
+#conversation div.typing
+  display: none
+
+#conversation ul.messages li.notification
+  span.content
+    font-size: 1.2rem
+    word-wrap: break-word
+    white-space: pre-wrap
+    text-align: center
+    color: #333
+    background: #DDD
+    border: 0.1rem solid #000
+    &:after
+      background: none
+
+#conversation ul.messages li
+  +clearfix
+  position: relative
+  margin-top: 1rem
+  &:first-child
+    margin-top: 2.7rem
+  span.author
+    visibility: hidden
+  span.content
+    +border-radius(0.5rem)
+    word-wrap: break-word
+    position: relative
+    display: block
+    background: #fff
+    border: 0.1rem solid #00bff3
+    +respond-to(peak)
+      border-width: 0.15rem
+    padding: 0.7rem
+    color: #3d3d3d
+    font-size: 1.9rem
+    &.placeholder
+      color: #aaa
+    &:after
+      content: ''
+      position: absolute
+      bottom: -1rem
+      left: 50%
+      margin-left: -1.2rem
+      width: 2.4rem
+      height: 1rem
+      background: url(/images/blue_speech_arrow.png) top left no-repeat
+      +background-size(2.4rem 1.05rem) // 0.5 rem more to avoid bg glitch
+  time, span.status
+    display: block
+    width: 50%
+    font-size: 1.4rem
+    color: #555
+    text-transform: capitalize
+  time
+    float: right
+    text-align: right
+  span.status
+    float: left
+    text-align: left
+  aside
+    position: absolute
+    top: 0.7rem
+    right: 0.7rem
+    width: 5rem
+    height: 5rem
+    padding: 0.2rem
+    background: #fff
+    border: 0.1rem solid #e3e3e3
+    margin-left: 2rem
+    a
+      display: block
+      width: 100%
+      height: 100%
+      overflow: hidden
+      position: relative
+    img
+      top: 0
+      left: 0
+      &.landscape
+        margin-left: -50%
+      &.portrait
+        margin-top: -50%
+  &.me
+    padding-left: 5rem
+    span.status
+      text-align: left
+      float: left
+    span.content
+      border-color: #ffa518
+      &:after
+        background-image: url(/images/orange_speech_arrow.png)
+    time
+      float: right
+      text-align: right
+    &.unsent
+      span.status, time
+        color: #f00
+      span.content
+        border-color: #cd1c1c
+        &:after
+          background-image: url(/images/red_speech_bar2x.png)
+  &.other
+    padding-right: 5rem
+    span.status
+      display: none
+    aside
+      margin-right: 5rem
+  &.image
+    span.content
+      padding-right: 7.7rem // 2.7 + 5 rem
+      min-height: 5.4rem // 5 + 0.4 rem
+    aside
+      overflow: hidden
+    aside a
+      background: #000
+      font-size: 0px
+      line-height: 5rem
+      text-align: center
+      position: relative
+    img
+      display: inline-block
+      vertical-align: middle
+  &.location
+    text-align: center
+    a
+      display: block
+      padding-bottom: 0.7rem
+    img
+      border: 0.1rem solid #e3e3e3
+      padding: 0.2rem
+  .resend
+    +box-sizing(border-box)
+    position: absolute
+    -moz-appearance: none
+    border: none
+    background: url(/images/refresh-icon2x.png) center center no-repeat
+    +background-size(2.8rem 2.4rem)
+    top: 0.7rem
+    left: 0
+    width: 2.8rem
+    height: 2.4rem
+    line-height: 2.4rem
+    outline: none
+    span
+      display: none
+  .delivered
+    +box-sizing(border-box)
+    position: absolute
+    top: 1rem
+    left: 0
+    width: 4.5rem
+    text-align: right
+    color: #979ca3
+    font-size: 1.9rem
+    font-weight: bold
+  .sent
+    +box-sizing(border-box)
+    position: absolute
+    top: 1rem
+    left: 0
+    width: 4.5rem
+    text-align: right
+    color: #979ca3
+    font-size: 1.9rem
+    font-weight: bold
+  &.other .resend
+    display: none
+
+#conversation.group ul.messages li.other
+  span.author
+    visibility: visible
+  aside
+    top: 3rem
+
+@mixin conversation-button($image-name)
+  +appearance(none)
+  border: none
+  text-indent: -999rem
+  padding: 0
+  display: block
+  width: 4.5rem
+  height: 4.5rem
+  background: url(/images/btn_#{$image-name}_button_normal2x.png) top left no-repeat
+  +background-size(100% 100%)
+  &:active
+    background-image: url(/images/btn_#{$image-name}_button_pressed2x.png)
+
+#conversation > footer
+  +box-sizing(border-box)
+  padding: 0rem
+  nav
+    height: $conversation-footer-height
+    padding: 0
+  ul
+    font-size: 0
+    text-align: center
+  li
+    display: inline-block
+    margin-left: 2rem
+    &:first-child
+      margin-left: 0rem
+  button.text
+    +conversation-button(message)
+  button.image
+    +conversation-button(photo)
+  button.location
+    +conversation-button(pin)
+  form
+    +box-sizing(border-box)
+    display: none
+    height: $conversation-footer-height
+  &.typing
+    nav
+      display: none
+    form
+      display: block
+
+form#conversation-compose,
+form#conversation-compose-image
+  +box-shadow(0 -0.2rem 0.1rem rgba(0, 0, 0, 0.15))
+  background: #ebebeb
+  padding: 0.7rem
+  font-size: 0
+
+form#conversation-compose input[type=text],
+form#conversation-compose-image input[type=text]
+  +border-radius(0.5rem)
+  font-size: 1.7rem
+  background: #fff
+  border: 0.1rem solid #c4c4c4
+  color: #3d3d3d
+  padding: 0.5rem
+  display: inline-block
+  width: -moz-calc(100% - 11.6rem) // 100% - (8.6 + 3) rem
+  width: -webkit-calc(100% - 11.6rem) // 100% - (8.6 + 3) rem
+  margin-right: 0.7rem
+
+form#conversation-compose input[type=text]
+  width: calc(100% - 15.6rem)
+
+form#conversation-compose input[type=submit]
+  +appearance(none)
+  +border-radius(0.5rem)
+  border: none
+  width: 6rem
+  padding: 0.5rem 0rem
+  background: #363636
+  font-size: 1.7rem
+  color: #fff
+  &:active
+    background: rgb(0, 173, 225) // TODO: to hex
+
+// TODO: refactor commom button code
+form#conversation-compose button.back
+  +appearance(none)
+  padding: 0
+  border: none
+  background: url(/images/control_button.png) center center no-repeat
+  +background-size(3rem 0.8rem)
+  text-indent: -999rem
+  width: 3rem
+  height: 100%
+  display: inline-block
+  margin-right: 0.7rem
+  &:active
+    background-image: url(/images/control_button_active.png)

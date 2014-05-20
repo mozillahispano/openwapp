@@ -1,0 +1,26 @@
+.page
+  &.validate
+    .screenname-page
+      left: 100%
+    .validate-page
+      left: 0%
+  &.screenname
+    .screenname-page
+      left: 0%
+    .validate-page
+      left: -100%
+
+#validate-page input[type=number]
+  width: 9rem
+  text-align: center
+
+#validate-page input[type=submit]
+  margin-top: 0.6rem
+
+#validate-page button
+  +secondary-action-button
+  padding-top: 0
+  margin-top: 1.8rem
+
+#validate-page
+  +register-page
