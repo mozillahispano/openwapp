@@ -1,1 +1,102 @@
-TBD
+SUMMARY
+=======
+We recommend that before using OpenWapp you take a few seconds to read this brief summary:
+
+* **What is OpenWapp?**: OpenWapp is a mobile messaging app that allows users to use their WhatsApp accounts in Firefox OS devices.
+
+* **OpenWapp is work in progress**: To the maximum extent permitted by law, we cannot promise that OpenWapp app is free of inaccuracies, errors, bugs or interruptions. We can't promise that the service is always reliable, accurate, complete or otherwise valid. The OpenWapp Service is provided "AS IS", without no warranty, express or implied, of any kind with respect to OpenWapp for use for a particular purpose, except those which cannot be waived. You use OpenWapp at your sole risk, then you should be committed to using it correctly.
+
+* **International Restrictions**: OpenWapp might not work in every country. We're sorry.
+
+ACCEPTANCE OF THE TERMS
+=======================
+By registering yourself on OpenWapp and/or using it in any way, it is considered that you have read, understood and accepted the terms and conditions contained in these terms of use (hereinafter the "Terms”).
+
+By using OpenWapp you guarantee that you are of age, according to the provisions in your country of residence, and you have the legal and judicial capacity to accept the following Terms and undertake to use and access OpenWapp in accordance with them. If you are underage, you should have your parents' or guardian's consent to access OpenWapp.
+
+DISCLAIMER
+==========
+This software is not supported or endorsed in any way by the service providers it interoperates with. It neither tries to mimic or replace any software originally conceived by those services' owners.
+
+In the same manner, any third party's trademark or intellectual property that may appear in this software must be understood as a strictly illustrative reference to the service provider it represents, and will never be used in any way that may lead to confusion, so no abuse is intended.
+
+* WhatsApp and the WhatsApp logo are registered trademarks of WhatsApp Inc.
+* Firefox OS, Firefox and Mozilla are registered trademarks of the Mozilla Foundation.
+
+According to Sec. 103(f) of the DMCA and Article 6 of the 1991 EU Computer Programs Directive, any technological measures circumvention that might be carried out for the creation of this software is totally legitimate as its purpose is "enabling interoperability of an independently created computer program with other programs" and "indispensable to obtain the necessary information to achieve the interoperability of an independently created program with other programs [...] to make it possible to connect all components of a computer system, including those of different manufacturers, so that they can work together". The public release of information acquired by those means is also permitted "solely for the purpose of enabling interoperability of an independently created computer program with other programs".
+
+LICENSE
+=======
+All the code is Licensed under the Apache License, Version 2.0 (the "License");
+
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+USE OF OpenWapp
+===============
+In order to download OpenWapp you'll need a compatible device and a mobile connection with an operator that allows access to the mobile internet network. OpenWapp is not available for all operating systems, therefore, you should keep in mind that, depending on the device you use, some OpenWapp functionalities may not run.
+
+We have no obligation to make available any Updates. However, from time to time, we may need to perform maintenance on, incorporating or upgrade OpenWapp, the Service or some features of it may be interrupted or limited, without any responsibility. Some of these Updates, may be necessary to continue using the Service, therefore, we may require you to download and install them automatically from time to time. If the Updates require changes in your device's software and you wish to continue using OpenWapp you should make these changes at your own cost and under your sole responsibility. Any new added functionality or Update shall be subject to these Terms. If you do not agree with any these Updates, you may terminate your relationship with us or simply stop using OpenWapp and/or uninstall the application.
+
+YOUR OBLIGATIONS
+================
+You must use the Service in line with the local laws where you are using them. In some countries there are restrictions on the use of the Service.
+
+You acknowledge and agree that:
+ * We are not responsible for any messages, declarations, opinions, comments and any other type of content (hereinafter the "Content") which are published, copied or made by Users on the Service or you may access to through your use of the Service, the author of the content will be solely responsible for any Content. We don't identify, or endorse any Content, which the Users publish, reproduce or make on or through the Service.
+ * By using the Service you may be exposed to Content that you may find offensive or contrary to good morals. Please, use the Service responsibly, undertaking not to recommend to other users movies which they may consider offensive or contrary to good moral, unless you have the express consent of the User.
+ * Subject to the applicable law, we don't guarantee that other users assume the confidentiality and privacy of your Content.
+
+In connection with your Content you represent and warrant that you:
+ * Own or have the necessary licenses, rights, consents and permissions to use and authorize us to use all copyrights, trademarks, trade secrets, patents and any other intellectual property rights in any Content.
+ * Have the written consent, release, and/or permission of each and every identifiable individual person in the Content to use the name and/or likeness of each and every such individual in the Content, in the manner contemplated by these Terms.
+
+You shall be establishing the necessary measures for maintaining the confidentiality of your OpenWapp account.
+
+You shall make use of OpenWapp Service and any Content that you publish or have access to through OpenWapp with diligence and in accordance with law, morality, and good morals, generally accepted, and public order. Specifically, you shall not:
+
+ * Reproduce, copy, distribute, allow the access or use text, photos, pictures, music, sounds, images, or any other content from any third party, by any means of public communication, transform or modify this content, without specific permission from the owner or legally allowed to. Such third party content may be protected by intellectual property rights and the owners of the intellectual property rights in such content may object to its use. You must not use any Third Party Content without first obtaining the permission of the owner of the intellectual property rights in such content.
+ * Reproduce or publish through the Website or the Service, any Content that are libellous  damaging, abusive, insulting, or questionable for any reason, or that can be considered racist, offensive, harmful to a minor or an infringement of any intellectual property rights or a trade secret of a third party, or would otherwise violate the rights of any third party or give rise to civil or criminal liability. Furthermore, you may not publish Content that contain falsehoods or misrepresentations  solicit funds or services, contain advertising or promotional materials, chain letters or any other form of solicitation, impersonate others or include viruses or any other programs designed to impair the functionality of any device.
+ * Use the Service to send advertising or commercial communications.
+ * Take any action that imposes or may impose an unreasonable or disproportionately large load on OpenWapp infrastructure.
+ * Delete or manipulate the "copyright" and other identifying data of their owner's property rights, incorporated to OpenWapp  as well as, the technical protection devices, the fingerprints or any other information mechanisms that may contain OpenWapp.
+ * Use manual or automated software, devices or other processes to "crawl" or "spider" any page of the Service
+ * Display, republish, repurpose, sell, trade, or in any way exploit the Service or Website content, include in the database, modify, adapt, appropriate, create derivative works or adaptations of, publicly display, decipher, decompile, disassemble, transfer, reverse engineer or otherwise attempt to derive any source code or underlying ideas or algorithms of any part of the Service, or assign or transfer the Intellectual and Industrial Property, information, software or products, in whole or in part, without our prior written consent.
+•   Impersonate the identity of another user or adopt a fake identity with the purpose of deceit or fraud;
+•   Or, in general, perform any action contrary to law, morality and generally accepted good morals or public order.
+.
+OpenWapp is for your individual use. You shall no resell or commercialize the Service to any third party.
+
+In relation with the foregoing, we reserve the right to, in accordance with applicable laws, (i) satisfy any law, regulation, legal process or governmental request, (ii) enforce these Terms, including investigation of possible violations hereof (iii) detect, prevent, or otherwise address fraud, security or technical issues, (iv) respond to user support requests or (v) protect the rights, property or safety of the Service, their users and the public.
+
+COSTS
+=====
+Download of OpenWapp is free. However, using the Service may require the use of some of the data allowance available on the data package to which you have subscribed with your mobile network operator. Out-of-country usage of the Service, may lead to significantly higher costs than regular usage. You should consult your operator regarding roaming rates or any other applicable charges levied by your mobile network operator.
+
+TERMINATION OF YOUR USE OF THE SERVICE
+======================================
+You may terminate your relationship with us at any time and without recourse to the courts by ceasing to use the Service.
+
+We may terminate our relationship with you or may terminate or suspend your use of OpenWapp at any time and without recourse to the courts
+ * If you are in breach of these Terms.
+ * If we reasonable suspect that you are using OpenWapp fraudulently or using it to break the law or infringe third party rights.
+ * If we decide to cease offering OpenWapp
+ * Immediately, if required due to legal requests or court order or by an entitled third party.
+
+Upon termination of your relationship with us for any of the previously cited reasons:
+ * All licenses and rights granted under these Terms shall immediately terminate,
+ * you will immediately cease any and all use of the Service and the Website and
+ * you will immediately remove OpenWapp from your device or devices.
+
+WAIVER OF WARRANTIES, LIMITATION OF RESPONSIBILITIES AND COMPENSATION.
+======================================================================
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, OpenWapp ARE PROVIDED "AS IS" AND USED AT YOUR SOLE RISK, WITHOUT NO WARRANTIES WHATSOEVER; WE DO NOT MAKE ANY WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, WITH RESPECT TO OpenWapp OR THE WEBSITE, INCLUDING WITHOUT LIMITATION, WARRANTIES OF QUALITY, PERFORMANCE, NON- INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR USE FOR A PARTICULAR PURPOSE. WE FURTHER DO NOT REPRESENT OR WARRANT THAT THE SERVICE WILL ALWAYS BE AVAILABLE, ACCESIBLE, UNINTERRUPTED, ACCURATE, COMPLETE AND ERROR-FREE, NOR THAT WARRANT ANY CONNECTION TO OR TRANSMISION FROM INTERNET.
+
+NOTWITHSTANDING THE AFOREMENTIONED, WE MAKE OUR BEST EFFORT TO, WHERE APPROPRIATE, AVOID, CORRECT OR UPDATE THEM.
+
+HOW TO CONTACT US
+=================
+
+You can contact us at the following address: **openwapp@gmail.com**
+
+YOU EXPRESSLY ACKNOWLEDGE THAT YOU HAVE READ AND AGREE WITH THESE TERMS AND CONDITIONS AND UNDERTAKING TO FULFILL THEM.
+------
