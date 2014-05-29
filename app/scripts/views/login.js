@@ -141,7 +141,7 @@ define([
 
     goToValidate: function (evt) {
       evt.preventDefault();
-      var international = this._getInternational();
+      var international = this._getInternational('#confirm-phone-page');
       if (!international) {
         return;
       }
@@ -155,9 +155,10 @@ define([
       );
     },
 
-    _getInternational: function () {
+    _getInternational: function (pageId) {
+      pageId = pageId || '#login-page';
       var country = this.$el.find('select').val();
-      var number = this.$el.find('input[name=msisdn]').val();
+      var number = this.$el.find(pageId + ' input[name=msisdn]').val();
       return this.checkPhoneNumber(number, country);
     },
 
@@ -165,7 +166,7 @@ define([
       var _this = this;
       evt.preventDefault();
 
-      var international = this._getInternational();
+      var international = this._getInternational('#confirm-phone-page');
       if (!international) {
         return;
       }
