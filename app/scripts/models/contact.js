@@ -214,17 +214,6 @@ define([
 
       return name;
     }
-  }, {
-    fromActivity: function (activityContact) {
-      var number = PhoneNumber.parse(activityContact.number);
-      var msisdn = number.full;
-      var contact = new Contact({
-        id: msisdn,
-        displayName: activityContact.name[0] || '',
-        phone: msisdn
-      });
-      return contact;
-    }
   });
 
   return Contact;

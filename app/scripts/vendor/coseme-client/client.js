@@ -704,9 +704,6 @@
         },
 
         getContactsState: function(numbers, callback) {
-          numbers = numbers.map(function addInternationalPrefix(number) {
-            return '00' + number;
-          });
 
           CoSeMe.contacts.clearContacts();
           CoSeMe.contacts.addContacts(numbers);

@@ -1,7 +1,8 @@
 define([
   'global',
-  'models/contact'
-], function (global, Contact) {
+  'models/contact',
+  'utils/phonenumber'
+], function (global, Contact, PhoneNumber) {
   'use strict';
 
   function pickContact(callback) {
@@ -15,17 +16,34 @@ define([
     pick.onsuccess = function () {
       if (!this.result) { return callback(null, null); }
 
-      var contact = Contact.fromActivity(this.result);
-      var phone = contact.get('phone');
+      var activityContact = this.result;
+      var phone = activityContact.number;
       global.client.getContactsState([phone],
         function (err, details) {
+
+          var contact = new Contact({
+            'displayName': activityContact.name[0] || '',
+          });
+
           if (err) {
             console.warn('The contact ' + phone + ' can not be confirmed.');
-            contact.set('confirmed', false);
+            var parsed = PhoneNumber.parse(phone);
+            var msisdn = parsed ? parsed.full : phone;
+            contact.set({
+              'id': msisdn,
+              'confirmed': false,
+              'phone': msisdn
+            });
             return callback('contact-not-confirmed', contact);
           }
 
-          contact.set({'confirmed': !!details[0].w, 'state': details[0].s});
+          contact.set({
+            'id': details[0].n,
+            'confirmed': !!details[0].w,
+            'state': details[0].s,
+            'phone': details[0].n
+          });
+
           callback(null, contact);
         }
       );

@@ -207,7 +207,7 @@ define([
           _this._loadGroups();
         });
 
-        list.forEach(function (id, index) {
+        list.forEach(function (id) {
           console.log('[history] About to load conversation ', id);
           ConversationModel.loadFromStorage(id, sync);
         });
