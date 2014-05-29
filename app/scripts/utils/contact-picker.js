@@ -18,7 +18,7 @@ define([
 
       var activityContact = this.result;
       var phone = activityContact.number;
-      global.client.getContactsState([phone],
+      global.client.confirmContacts([phone],
         function (err, details) {
 
           var contact = new Contact({

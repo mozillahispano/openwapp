@@ -23,6 +23,7 @@
   var _authSuccessCallback = null;
   var _authErrorCallback = null;
   var _contactPictureRequests = {};
+  var _contactStatusRequests = {};
   var _contactPictureIdRequests = {};
   var _groupCreateRequests = {};
   var _groupParticipantRequests = {};
@@ -149,6 +150,7 @@
       }
 
       // Contact status
+      signals.registerListener('contacts_gotStatus', onStatusesReceived);
       signals.registerListener('contact_gotProfilePicture', onPictureReceived);
       signals.registerListener('group_gotPicture', onPictureReceived);
       signals.registerListener(
@@ -156,6 +158,17 @@
       signals.registerListener('presence_updated', onPresenceUpdated);
       signals.registerListener('profile_setPictureError', onSetPicture);
       signals.registerListener('profile_setPictureSuccess', onSetPicture);
+
+      function defaultHandler(id) {
+        console.warn('No handler for response message:', id);
+      }
+
+      function onStatusesReceived(id, statuses) {
+        var callback = _contactStatusRequests[id] ||
+                       defaultHandler.bind(undefined, id);
+        delete _contactStatusRequests[id];
+        callback(null, statuses);
+      }
 
       function onPictureReceived(fromJID, pictureId, picture) {
         var callback = _contactPictureRequests[fromJID];
@@ -703,7 +716,7 @@
           photoReader.readAsArrayBuffer(photoSet.photo);
         },
 
-        getContactsState: function(numbers, callback) {
+        confirmContacts: function(numbers, callback) {
 
           CoSeMe.contacts.clearContacts();
           CoSeMe.contacts.addContacts(numbers);
@@ -720,6 +733,20 @@
           function onError(err) {
             callback(err);
           }
+        },
+
+        getContactsState: function(numbers, callback) {
+          var jids = numbers.map(this.getJID.bind(this));
+          var id = methods.call('contacts_getStatus', [jids]);
+          _contactStatusRequests[id] = function (err, statusMap) {
+            var phoneMap = {};
+            for (var jid in statusMap) {
+              if (statusMap.hasOwnProperty(jid)) {
+                phoneMap[jid.split('@')[0]] = statusMap[jid];
+              }
+            }
+            callback(null, phoneMap);
+          };
         },
 
         subscribe: function (msisdn) {
