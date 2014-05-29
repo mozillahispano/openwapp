@@ -15,9 +15,14 @@ define([
     template: templates.validate,
 
     render: function () {
+      var internationalNumber;
       var fullNumber = this.options.countryCode + this.options.phoneNumber;
       this.$el.removeClass().addClass('page validate');
-      var internationalNumber = PhoneNumber.format(fullNumber);
+      try {
+        internationalNumber = PhoneNumber.format(fullNumber);
+      } catch (e) {
+        internationalNumber = fullNumber;
+      }
       this.$el.html(this.template({ phoneNumber: internationalNumber }));
     },
 
