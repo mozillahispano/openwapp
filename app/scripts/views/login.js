@@ -28,7 +28,7 @@ define([
 
     events: {
       'submit #register':         'gotoConfirmation',
-      'submit #register-conf':    'validate',
+      'submit #register-conf':    'register',
       'click button':             'goToValidate',
       'click .btn-back':          'back',
       'change select':            'setCountryPrefix',
@@ -126,59 +126,52 @@ define([
 
     gotoConfirmation: function (evt) {
       evt.preventDefault();
-      var country = $(evt.target).find('select').val();
-      var number = $(evt.target).find('input[name=msisdn]').val();
+      var countryCode = $(evt.target).find('select').val();
+      var phoneParts = this._getPhoneParts();
 
-      var international = this.checkPhoneNumber(number, country);
-      if (!international) {
+      var isValid = this._checkPhoneNumber(phoneParts, countryCode);
+      if (!isValid) {
         return;
       }
 
       var $confirmationForm = this.$el.find('#register-conf');
-      $confirmationForm.find('input[name=msisdn]').val(number);
+      $confirmationForm.find('input[name=msisdn]').val(phoneParts.number);
       this.next('confirmation');
     },
 
     goToValidate: function (evt) {
       evt.preventDefault();
-      var international = this._getInternational('#confirm-phone-page');
-      if (!international) {
-        return;
-      }
 
-      var countryCode = this.getCountryCode(international);
-      var phoneNumber = international.national;
-
+      var phoneParts = this._getPhoneParts('#confirm-phone-page');
       global.router.navigate(
-        'validate/' + phoneNumber + '/' + countryCode,
+        'validate/' + phoneParts.number + '/' + phoneParts.prefix,
         { trigger: true }
       );
     },
 
-    _getInternational: function (pageId) {
+    _getPhoneParts: function (pageId) {
       pageId = pageId || '#login-page';
-      var country = this.$el.find('select').val();
+      var code = this.$el.find('select').val();
+      var country = this.countryTables.findWhere({ code: code });
+      var prefix = country.get('prefix').substr(1);
       var number = this.$el.find(pageId + ' input[name=msisdn]').val();
-      return this.checkPhoneNumber(number, country);
+      return { prefix: prefix, number: number, complete: prefix + number };
     },
 
-    validate: function (evt) {
+    register: function (evt) {
       var _this = this;
       evt.preventDefault();
-
-      var international = this._getInternational('#confirm-phone-page');
-      if (!international) {
-        return;
-      }
 
       this.$el.find('section.intro > p').hide();
       this.toggleSpinner();
 
-      var countryCode = this.getCountryCode(international);
-      var phoneNumber = international.national;
+      var phoneParts = this._getPhoneParts('#confirm-phone-page');
+      var countryCode = phoneParts.prefix;
+      var phoneNumber = phoneParts.number;
 
       // TODO: Get locale from the i18n object (or from the phone number)
       localStorage.removeItem('isPinSent');
+      phoneNumber = phoneNumber.replace(/[^\d]/g, '');
       global.auth.register(countryCode, phoneNumber, 'es-ES',
         function (err, details) {
           _this.toggleSpinner();
@@ -201,33 +194,34 @@ define([
           }
         }
       );
-
     },
 
-    getCountryCode: function (international) {
-      var prefixLength =
-        international.full.length - international.national.length;
-      return international.full.substr(0, prefixLength);
-    },
-
-    checkPhoneNumber: function (number, country) {
+    _checkPhoneNumber: function (parts, country) {
       if (!country) {
         window.alert(global.localisation[global.language].selectCountryAlert);
         return;
       }
 
-      var international = PhoneNumber.parse(number, country);
+      var international = PhoneNumber.parse(parts.complete, country);
 
       // show error if cannot parse number or parsed country is different.
       // PhoneNumber always change the country to uppercase, so
       // we should also for this check to work
       country = country.toUpperCase();
       if (!international || country !== international.region) {
-        window.alert(global.localisation[global.language]
-          .movilNumberValidationAlert);
-        return;
+        var countrySelect = this.$el.find('select')[0];
+        var countryName =
+          countrySelect.options[countrySelect.selectedIndex].textContent;
+        var message =
+          global.localisation[global.language].movilNumberValidationAlert;
+        var interpolate = global.l10nUtils.interpolate;
+        return window.confirm(interpolate(message, {
+          country: countryName,
+          number: parts.number,
+          prefix: parts.prefix
+        }));
       }
-      return international;
+      return true;
     },
 
     next: function (nextPage) {

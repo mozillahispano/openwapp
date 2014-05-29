@@ -24,8 +24,9 @@ define([], function () {
       oldAppAlert: 'Esta versión no está soportada. Por favor, actualícela ' +
       'en el Firefox Marketplace para disfrutar de la nueva funcionalidad.',
       selectCountryAlert: 'Por favor, seleccione un país.',
-      movilNumberValidationAlert: 'El número de móvil no es válido.\n' +
-      'Por favor, compruébelo y vuelva a intentarlo.',
+      movilNumberValidationAlert: 'El número de móvil:\n' +
+      '+{{prefix}} {{number}}\nno parece un número de {{country}} válido.\n ' +
+      '¿Quieres seguir de todas formas?',
       registerErrorObjectAlert: 'Se ha producido un error al registrar su ' +
       'número de móvil.\n Por favor, compruebe su conectividad.',
       registerError429Alert: 'Se ha producido un error al registrar su ' +
@@ -193,8 +194,9 @@ define([], function () {
       oldAppAlert: 'This version is not supported. Please update it ' +
       'from the Firefox Marketplace to enjoy new functionality.',
       selectCountryAlert: 'Please select a country.',
-      movilNumberValidationAlert: 'Your phone number is not valid.\n' +
-      'Please check it and try again.',
+      movilNumberValidationAlert: 'The mobile number:\n' +
+      '+{{prefix}} {{number}}\ndoes not seem a valid number from ' +
+      '{{country}}.\nDo you want to continue in any case?',
       registerErrorObjectAlert: 'There was an error registering ' +
       'your number.\n Please check your connectivity settings.',
       registerError429Alert: 'There was an error registering your number.\n' +
@@ -364,8 +366,9 @@ define([], function () {
       oldAppAlert: 'Esta versão não está suportada. Favor atualizar ' +
       'no Firefox Marketplace para aproveitar a nova funcionalidade.',
       selectCountryAlert: 'Por favor, selecione um país.',
-      movilNumberValidationAlert: 'O número de telefone não é válido.\n' +
-      'Por favor, verifique e tente novamente.',
+      movilNumberValidationAlert: 'O número de celular:\n' +
+      '+{{prefix}} {{number}}\nnão parece um número válido de {{country}}.\n ' +
+      'De qualquer forma, você quer continuar?',
       registerErrorObjectAlert: 'Houve um erro ao cadastrar' +
       'seu número.\n Por favor, verifique sua conexão.',
       registerError429Alert: 'Houve um erro ao cadastrar ' +
@@ -534,8 +537,9 @@ define([], function () {
       oldAppAlert: 'Esta versão não está suportada. Favor atualizar ' +
       'no Firefox Marketplace para aproveitar a nova funcionalidade.',
       selectCountryAlert: 'Por favor, selecione um país.',
-      movilNumberValidationAlert: 'O número de telefone não é válido.\n' +
-      'Por favor, verifique e tente novamente.',
+      movilNumberValidationAlert: 'O número de celular:\n' +
+      '+{{prefix}} {{number}}\nnão parece um número válido de {{country}}.\n ' +
+      'De qualquer forma, você quer continuar?',
       registerErrorObjectAlert: 'Houve um erro ao cadastrar' +
       'seu número.\n Por favor, verifique sua conexão.',
       registerError429Alert: 'Houve um erro ao cadastrar ' +

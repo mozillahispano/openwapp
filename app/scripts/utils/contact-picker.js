@@ -22,7 +22,7 @@ define([
         function (err, details) {
 
           var contact = new Contact({
-            'displayName': activityContact.name[0] || '',
+            'displayName': activityContact.name[0] || ''
           });
 
           if (err) {
