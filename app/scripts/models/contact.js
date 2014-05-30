@@ -139,9 +139,11 @@ define([
     updateState: function (callback) {
       var phones = [this.get('phone')];
       var _this = this;
-      global.client.getContactsState(phones, function (err, details) {
+      global.client.getContactsState(phones, function (err, statusMap) {
         if (err) { return callback(err); }
-        _this.set('state', details[0].s);
+        statusMap = statusMap || {};
+        var state = statusMap[_this.get('phone')] || '';
+        _this.set('state', state);
         callback(null, _this.get('state'));
       });
     },
