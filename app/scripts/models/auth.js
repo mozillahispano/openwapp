@@ -2,8 +2,9 @@ define([
   'backbone',
   'global',
   'storage/auth',
-  'utils/connectivity'
-], function (Backbone, global, authStorage, connectivity) {
+  'utils/connectivity',
+  'utils/phonenumber'
+], function (Backbone, global, authStorage, connectivity, PhoneNumber) {
   'use strict';
 
   var Auth = Backbone.Model.extend({
@@ -44,7 +45,12 @@ define([
             _this.set('status', profile.status || null);
             _this.set('screenName', profile.screenName || null);
           }
-          if (msisdn) { _this.set('msisdn', msisdn); }
+          if (msisdn) {
+            // TODO: Here there is a race condition we should avoid.
+            // This should be recovered before allowing adding participants.
+            PhoneNumber.setBaseNumber(msisdn);
+            _this.set('msisdn', msisdn);
+          }
           if (userId && password) {
             _this._tryToLogin(userId, password, msisdn);
           } else {

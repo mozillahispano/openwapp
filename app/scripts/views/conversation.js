@@ -158,21 +158,24 @@ define([
 
           var names = [];
           phoneList.forEach(function (phone, index) {
-            var result = global.contacts.findAndCreateContact(phone);
-            var contact = result.contact;
-            if (result.isNew) {
-              //Make the sync in different times
-              var wait = 300 * index + 200;
-              setTimeout(function () {
-                contact.syncAllAndSave();
-                contact.once('synchronized:webcontacts', function () {
+            global.contacts.findOrCreate(phone, undefined,
+              function (err, result) {
+                var contact = result.contact;
+                if (result.isNew) {
+                  //Make the sync in different times
+                  var wait = 300 * index + 200;
+                  setTimeout(function () {
+                    contact.syncAllAndSave();
+                    contact.once('synchronized:webcontacts', function () {
+                      names.push(contact.get('displayName'));
+                    });
+                  }, wait);
+                }
+                else {
                   names.push(contact.get('displayName'));
-                });
-              }, wait);
-            }
-            else {
-              names.push(contact.get('displayName'));
-            }
+                }
+              }
+            );
           });
 
           // Let's fill with participants once we have some loaded

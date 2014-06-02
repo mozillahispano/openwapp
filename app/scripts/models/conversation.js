@@ -34,12 +34,16 @@ define([
       this.listenTo(this.get('messages'), 'reset', this.updateLastMessage);
       this.listenTo(this.get('messages'), 'add', this.updateLastMessage);
       this.listenTo(this.get('messages'), 'add', this._onAddMessage);
+      this.on('change:contact', function (model, newContact) {
+        var previousContact = this.previous('contact');
+        if (previousContact) {
+          this.stopListening(previousContact);
+        }
 
-      var contact = this._lookupContact();
-      if (!contact) {
-        // try it again later
-        this.listenTo(global.contacts, 'add', this._lookupContact);
-      }
+        this.listenTo(newContact, 'change', this._onContactChanged);
+        this._onContactChanged(newContact);
+      });
+      this.on('change', this.saveToStorage);
 
       this.set('isGroup', this.get('id').indexOf('-') >= 0);
     },
@@ -71,28 +75,6 @@ define([
       }
     },
 
-    saveToStorage: function (callback) {
-      var key = this.getStorageKey();
-      var _this = this;
-      AsyncStorage.setItem(key, this._serialize(), function () {
-        console.log('Saved conversation', key,
-          _this.get('date').toLocaleString());
-        _this.trigger('conversation:save', _this);
-        if (callback) { callback(); }
-      });
-    },
-
-    removeFromStorage: function (callback) {
-      var key = this.getStorageKey();
-      var _this = this;
-      AsyncStorage.removeItem(key, function () {
-        console.log('Removed conversation', key,
-          _this.get('date').toLocaleString());
-        _this.trigger('conversation:remove', _this);
-        if (callback) { callback(); }
-      });
-    },
-
     loadMessagesFromStorage: function (callback) {
       var _this = this;
       var messages = [];
@@ -118,16 +100,6 @@ define([
           /* jshint es5:false */
         }
       });
-    },
-
-    getStorageKey: function () {
-      return 'conv:' + this.get('id');
-    },
-
-    _serialize: function () {
-      var attr = _.clone(this.attributes);
-      delete attr.messages;
-      return attr;
     },
 
     _onAddMessage: function (message) {
@@ -185,39 +157,14 @@ define([
       }
     },
 
-    _lookupContact: function () {
-      var contact = global.contacts.findWhere({phone: this.get('id')});
-      if (contact) {
-        // set the initial conversation name
-        this._onContactChanged(contact);
-        // listen for changes
-        this.listenTo(contact, 'change', this._onContactChanged);
-        this.stopListening(global.contacts, 'add', this._lookupContact);
-      }
-      return contact;
+    saveToStorage: function () {
+      global.historyCollection.saveToStorage(this);
     },
 
     updateParticipantList: function () {
       this.trigger('dirty:participants');
     }
 
-  }, {
-    // static methods and vars
-    loadFromStorage: function (id, callback) {
-      var key = 'conv:' + id;
-      AsyncStorage.getItem(key, function (value) {
-        console.log('[conversation] Loading conversation', key,
-          (value ? 'OK' : 'FAILED'));
-
-        if (!value) {
-          callback(null);
-        } else {
-          var c = global.historyCollection.findAndCreateConversation(id);
-          c.set(value);
-          callback(c);
-        }
-      });
-    }
   });
 
   return Conversation;

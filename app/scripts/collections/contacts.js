@@ -4,56 +4,22 @@ define([
   'underscore',
   'models/contact',
   'zeptojs',
-  'utils/phonenumber',
-  'storage/dbmanager',
-  'storage/auth'
-], function (Backbone, global, _, Contact, $, PhoneNumber, DbManager,
-  authStorage) {
+  'storage/dbmanager'
+], function (Backbone, global, _, Contact, $, DbManager) {
   'use strict';
 
   var Contacts = Backbone.Collection.extend({
+
     model: Contact,
 
     comparator: 'displayName',
 
     initialize: function () {
-      this.sentContactNumbers = [];
-      this.registeredToListenContacts = false;
-      this.userMsisdn = null;
-      this._getUserMsisdn();
-    },
+      this.listenTo(global.rtc,
+        'availability:available', this._updateAvailability);
 
-    _getUserMsisdn: function () {
-      var _this = this;
-      if (global.auth.get('msisdn')) {
-        _this.userMsisdn = global.auth.get('msisdn');
-        _this._initContacts();
-      } else {
-        authStorage.load(function (userId, password, msisdn) {
-          if (msisdn) {
-            _this.userMsisdn = msisdn;
-            _this._initContacts();
-          }
-          else {
-            console.log('Error cannot retreive user msisdn, ' +
-                        'probably first user connection');
-            // Wait for msisdn change
-            _this.listenTo(global.auth, 'change:msisdn', function () {
-              _this.userMsisdn = global.auth.get('msisdn');
-              _this._initContacts();
-            });
-          }
-        });
-      }
-    },
-
-    _initContacts: function () {
-      PhoneNumber.setBaseNumber(this.userMsisdn);
-      this._fetchContactsFromStorage();
-      this.listenTo(global.rtc, 'availability:available',
-        this._updateAvailability);
-      this.listenTo(global.rtc, 'availability:unavailable',
-        this._updateAvailability);
+      this.listenTo(global.rtc,
+        'availability:unavailable', this._updateAvailability);
     },
 
     _updateAvailability: function (from, content) {
@@ -63,80 +29,56 @@ define([
       }
     },
 
-    /**
-     * Current contacts are the sum of contacts into the OpenWapp storage of
-     * contacts and those from recent conversations.
-     */
-    _fetchContactsFromStorage: function () {
+    findOrCreate: function (phone, displayName, callback) {
       var _this = this;
-      DbManager.read({
-        loadWithCursor: true,
-        store: DbManager.dbContactsStore,
-        sortedBy: 'displayName',
-        callback: function (err, cursor) {
-          console.log('[contacts] Fetching users from storage.');
-
-          if (cursor) {
-            _this.addNewContact(cursor.value);
-            /* jshint es5:true */
-            cursor.continue();
-            /* jshint es5:false */
-          }
-          else if (global.historyCollection.finishedLoading) {
-            _this._fetchContactsFromRecentConversations();
-          }
-          else {
-            global.historyCollection.once('history:loaded',
-              _this._fetchContactsFromRecentConversations.bind(_this));
-          }
-        }
-      });
-    },
-
-    // TODO: Consider listening for new additions to the history collection
-    // to add the owner to the contact list automatically.
-    _fetchContactsFromRecentConversations: function () {
-      console.log('[contacts] Fetching from recent conversations.');
-
-      var msisdn,
-          conversations = global.historyCollection.models;
-
-      for (var i = 0, l = conversations.length; i < l; i++) {
-        msisdn = conversations[i].get('id');
-        if (!this.findWhere({ id: msisdn })) {
-          console.log('[contacts] Adding not found contact', msisdn,
-                      'from a recent conversation');
-          this.addNewContact({ id: msisdn, phone: msisdn });
-        }
-      }
-
-      this.isLoaded = true;
-      this.trigger('complete', this.models);
-    },
-
-    findAndCreateContact: function (phone, displayName) {
-      var contact = global.contacts.findWhere({phone: phone});
       var isNew = false;
+      var contact = global.contacts.findWhere({phone: phone});
+
+      // The contact is not cached
       if (!contact) {
-        isNew = true;
-        contact = this.addNewContact({
-          id: phone,
-          phone: phone,
-          displayName: displayName || '+' + phone,
-          subject: displayName
+
+        this._loadFromStorage(phone, function (err, contact) {
+
+          // The contacts is not persisted yet
+          if (!contact) {
+            isNew = true;
+            contact = _this.add({
+              id: phone,
+              phone: phone,
+              displayName: displayName || '+' + phone,
+              subject: displayName
+            }).get(phone);
+            _this.saveToStorage(contact);
+          }
+
+          callback(null, {
+            isNew: isNew,
+            contact: contact
+          });
         });
       }
-      return {
-        contact: contact,
-        isNew: isNew
-      };
+      else {
+        callback(null, {
+          isNew: isNew,
+          contact: contact
+        });
+      }
     },
 
-    addNewContact: function (contactProperties) {
-      var contact = new Contact(contactProperties);
-      this.add(contact);
-      contact.saveToStorage();
-      return contact;
+    _loadFromStorage: function (phone, callback) {
+      var _this = this;
+      DbManager.read({
+        store: DbManager.dbContactsStore,
+        value: phone,
+        callback: function (err, items) {
+          console.log('[contacts] Loading contact', phone, 'from storage.');
+          var contact = items && items[0] || null;
+          if (contact) {
+            contact = _this.add(contact).get(phone);
+          }
+          callback(err, contact);
+        }
+      });
     },
 
     saveToStorage: function (contact) {
@@ -189,8 +131,12 @@ define([
         return global.auth.get('screenName');
       }
 
-      var contact = global.contacts.findAndCreateContact(phone).contact;
-      return contact.get('displayName');
+      var contact = this.get(phone);
+      if (contact) {
+        return contact.get('displayName');
+      }
+
+      return '+' + phone;
     }
   });
 

@@ -6,13 +6,13 @@ define([
   'models/conversation',
   'models/message',
   'utils/phonenumber'
-], function (Backbone, global, _, AsyncStorage, ConversationModel, MessageModel,
+], function (Backbone, global, _, AsyncStorage, Conversation, MessageModel,
   PhoneNumber) {
   'use strict';
 
   return Backbone.Collection.extend({
 
-    model: ConversationModel,
+    model: Conversation,
 
     initialize: function () {
       this.listenTo(global.rtc, 'message:text', this._onTextReceived);
@@ -131,9 +131,9 @@ define([
 
     _onParticipantNotification: function (from, meta, content) {
       content = content; // shut jslint up
-      var convInstance =
-        this.findAndCreateConversation(from.msisdn);
-      convInstance.updateParticipantList();
+      this.findOrCreate(from.msisdn, null, function (err, result) {
+        result.conversation.updateParticipantList();
+      });
     },
 
     _onPictureNotification: function (from, meta, content) {
@@ -143,28 +143,29 @@ define([
     },
 
     _addIncomingMessage: function (message) {
-      // lookup (or create) ConversationModel
+      // lookup (or create) Conversation
       var from = message.get('from');
-      var convInstance =
-        this.findAndCreateConversation(from.msisdn);
-      var contact = global.contacts.findAndCreateContact(from.msisdn).contact;
+      this.findOrCreate(from.msisdn, null, function (err, result) {
+        var conversation = result.conversation;
+        var contact = conversation.get('contact');
 
-      if (from.displayName) {
-        if (!contact.get('displayName')) {
-          contact.set('displayName', from.displayName);
+        if (from.displayName) {
+          if (!contact.get('displayName')) {
+            contact.set('displayName', from.displayName);
+          }
+          if (!contact.get('isGroup')) {
+            conversation.set('title', contact.get('displayName'));
+          }
         }
-        if (!contact.get('isGroup')) {
-          convInstance.set('title', contact.get('displayName'));
-        }
-      }
 
-      var isRead = (!!global.router.currentView &&
-                    global.router.currentView.model === convInstance);
-      convInstance.set({
-        isOnline: false,
-        isRead: isRead
+        var isRead = (!!global.router.currentView &&
+                      global.router.currentView.model === conversation);
+        conversation.set({
+          isOnline: false,
+          isRead: isRead
+        });
+        conversation.get('messages').add(message);
       });
-      convInstance.get('messages').add(message);
     },
 
     saveConversationList: function (callback) {
@@ -173,7 +174,7 @@ define([
       });
       var _this = this;
       AsyncStorage.setItem('conversations', list, function () {
-        console.log('Saved conversation list');
+        console.log('[history] Saved conversation list');
         _this.trigger('history:save');
         if (callback) { callback(); }
       });
@@ -190,152 +191,233 @@ define([
       }
 
       if (this.finishedLoading) { // Only load on first use
+        console.log('[history] All conversations are already loaded.');
         return;
       }
+
+      console.log('[history] Loading conversations...');
 
       var _this = this;
       AsyncStorage.getItem('conversations', function (list) {
         if (!list || !list.length) {
           _this.finishedLoading = true;
           _this.trigger('history:loaded');
-          return _this._loadGroups();
+          return _this._syncGroups();
         }
 
         var sync = waitFor(list.length, function () {
           _this.finishedLoading = true;
           _this.trigger('history:loaded');
-          _this._loadGroups();
+          _this._syncGroups();
         });
 
         list.forEach(function (id) {
-          console.log('[history] About to load conversation ', id);
-          ConversationModel.loadFromStorage(id, sync);
+          _this._loadFromStorage(id, sync);
         });
       });
     },
 
-    _loadGroups: function () {
+    _loadFromStorage: function (id, callback) {
+      var key = 'conv:' + id;
+      var _this = this;
+      console.log('[history] Loading conversation:', id);
+      AsyncStorage.getItem(key, function (conversation) {
+        if (conversation) {
+          console.log('[history] Conversation:', id, 'loaded!');
+          conversation = _this.add(conversation).get(id);
+          global.contacts.findOrCreate(conversation.get('id'), null,
+            function (err, result) {
+              conversation.set('contact', result.contact);
+              callback(null, conversation);
+            }
+          );
+        }
+        else {
+          console.log('[history] Conversation:', id, 'not found.');
+          callback(null, null);
+        }
+      });
+    },
+
+    _syncGroups: function () {
 
       // Stall until logged
       if (!global.client.isOnline) {
-        this.listenToOnce(global.auth, 'login:success', this._loadGroups);
+        console.log('[history] Load groups stalled until login.');
+        this.listenToOnce(global.auth, 'login:success', this._syncGroups);
         return;
       }
 
-      // Stall until contacts are loaded
-      if (!global.contacts.isLoaded) {
-        this.listenToOnce(global.contacts, 'complete', this._loadGroups);
-        return;
-      }
+      console.log('[history] Syncing groups...');
 
       var _this = this;
       global.client.getGroups(function (err, groups) {
+        groups = groups || [];
+        var groupsLength = groups.length;
 
-        // Process each contact, chaining a callback calling itself
-        // when either the contact is synchronized or a timeout passes.
-        function syncPicturelessGroupsInSerie() {
-
-          var picturelessGroup, timeout = null;
-
-          function nextOne() {
-            clearTimeout(timeout);
-            setTimeout(syncPicturelessGroupsInSerie, 1000);
-          }
-
-          if (picturelessGroups.length) {
-            picturelessGroup = picturelessGroups.pop();
-            picturelessGroup.syncWithServer();
-            picturelessGroup.once('synchronized:server', nextOne);
-            timeout = setTimeout(function () {
-              picturelessGroup.off('synchronized:server', nextOne);
-              nextOne();
-            }, 1000);
-          }
+        function syncGroup(group, callback) {
+          _this.findOrCreate(group.gid,
+            { noSaveList: true },
+            function (err, result) {
+              if (result.isNew) {
+                var conversation = result.conversation;
+                setTimeout(function () {
+                  conversation.get('contact').set('subject', group.subject);
+                });
+                _this._fetchPicture(conversation);
+              }
+              callback();
+            }
+          );
         }
 
-        function processGroups(list, offset) {
-          var start = Date.now(),
-              tooMuchTime,
-              MAX_LOOP_TIME = 17;
-          var result, conversation, group;
-          for (var i = offset, l = list.length; i < l && !tooMuchTime; i++) {
-            group = list[i];
-            result = global.contacts
-              .findAndCreateContact(group.gid, group.subject);
-
-            if (result.isNew || !result.contact.get('photo')) {
-              picturelessGroups.push(result.contact);
-            }
-
-            conversation =
-              global.historyCollection
-                .findAndCreateConversation(group.gid, { noSaveList: true });
-            conversation.saveToStorage();
-
-            tooMuchTime = Date.now() - start >= MAX_LOOP_TIME;
-          }
-          if (i < l) {
-            setTimeout(processGroups, 0, list, i);
+        function processGroups(offset) {
+          var index = offset;
+          if (index === groupsLength) {
+            _this.saveConversationList();
+            _this.trigger('history:synced');
           }
           else {
-            global.historyCollection.saveConversationList();
-            _this.trigger('history:groups');
-            syncPicturelessGroupsInSerie();
+            /* jshint validthis: true */
+            syncGroup(groups[index], processGroups.bind(this, index + 1));
           }
         }
 
-        groups = groups || [];
-        var picturelessGroups = [];
         if (err) { console.error('Error retreiving groups.'); }
-        processGroups(groups, 0);
+        processGroups(0);
       });
     },
 
-    /* Look up a conversation in the history. If it's not there, create one
-      and add it to the history.
-    */
-    findAndCreateConversation: function (identifier, options) {
-      options = options || {};
-      var noSaveList = options.noSaveList || false;
-      var c = this.findWhere({id : identifier});
-      if (c) {
-        return c;
+    _fetchPicture: function (conversation) {
+      var _this = this;
+
+      function _realFetch() {
+        var task;
+        if (_this._pictureQueue.length > 0) {
+          task = _this._pictureQueue.shift();
+          task(_realFetch);
+        }
       }
 
-      c = new ConversationModel({
-        id : identifier,
-        title: this._getConversationTitle(identifier)
+      this._pictureQueue = this._pictureQueue || [];
+      this._pictureQueue.push(function fetchTask(next) {
+        conversation.get('contact').updatePhoto(next);
       });
-      this.listenTo(c.get('messages'), 'add', this._purgeOldMessages);
-      this.add(c);
-      // TODO: See inbox. Look for 'updateInbox'
-      if (this._addConversation) {
-        this._addConversation(c);
+
+      if (this._pictureQueue.length === 1) {
+        _realFetch();
       }
-      if (!noSaveList) { this.saveConversationList(); }
-      return c;
+
+    },
+
+    findOrCreate: function (id, options, callback) {
+      options = options || {};
+      var noSaveList = options.noSaveList || false;
+      var conversationSubject = options.subject || null;
+
+      var _this = this;
+      var isNew = false;
+      var conversation = this.findWhere({id : id});
+
+      // The conversation is not cached
+      if (!conversation) {
+
+        this._loadFromStorage(id, function (err, conversation) {
+
+          // TODO: I don't like this here. It should be a separated method
+          // called when loading a contact from storage or when created in
+          // this method.
+          function postLoad(conversation) {
+            _this.listenTo(
+              conversation.get('messages'), 'add', _this.purgeOldMessages);
+
+            if (!noSaveList) {
+              _this.saveConversationList();
+            }
+          }
+
+          // The conversation is not persisted yet
+          if (!conversation) {
+            isNew = true;
+
+            // Asssociate the proper contact
+            global.contacts.findOrCreate(id, null,
+              function (err, result) {
+                conversation = _this.add({
+                  id: id,
+                  title: conversationSubject || _this._getConversationTitle(id)
+                }).get(id);
+                conversation.set('contact', result.contact);
+                _this.saveToStorage(conversation);
+                postLoad(conversation);
+                callback(null, {
+                  isNew: isNew,
+                  conversation: conversation
+                });
+              }
+            );
+          }
+          else {
+            postLoad(conversation);
+            callback(null, {
+              isNew: isNew,
+              conversation: conversation
+            });
+          }
+
+        });
+      }
+      else {
+        callback(null, {
+          isNew: isNew,
+          conversation: conversation
+        });
+      }
+    },
+
+    saveToStorage: function (conversation) {
+      var key = this._getStorageKey(conversation);
+      console.log('[history] Saving conversation', key);
+      AsyncStorage.setItem(key, this._serialize(conversation));
+    },
+
+    _getStorageKey: function (conversation) {
+      return 'conv:' + conversation.get('id');
+    },
+
+    _serialize: function (conversation) {
+      var attr = _.clone(conversation.attributes);
+      delete attr.messages;
+      delete attr.contact;
+      return attr;
     },
 
     removeConversation: function (identifier) {
-      var c = this.findWhere({id : identifier});
-      var messages = c ? c.get('messages') : [];
+      var conversation = this.findWhere({id : identifier});
+      var contact = conversation.get('contact');
+
+      var messages = conversation ? conversation.get('messages') : [];
       messages.forEach(function (message) {
         messages.remove(message);
       });
 
       // Remove from history collection
-      this.remove(c);
+      this.remove(conversation);
 
       // Remove the conversation from the AsyncStorage
-      c.removeFromStorage();
+      this.removeFromStorage(conversation);
 
       // Remove from contacts only if it is a group
-      var contact = global.contacts.findWhere({id: identifier});
       if (contact && contact.get('isGroup')) {
         global.contacts.removeFromStorage(contact);
         global.contacts.remove(contact);
       }
       this.saveConversationList();
+    },
+
+    removeFromStorage: function (conversation) {
+      var key = this._getStorageKey(conversation);
+      AsyncStorage.removeItem(key);
     },
 
     _purgeOldMessages: function () {
