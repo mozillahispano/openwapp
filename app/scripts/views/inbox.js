@@ -48,6 +48,24 @@ define([
 
         global.auth.checkCredentials();
       }
+      this._contactListBuffer = document.createDocumentFragment();
+    },
+
+    _checkCentinelVisibility: function () {
+      var view = this.$el.find('.page-wrapper')[0];
+      var viewTop = view.offsetTop + view.scrollTop;
+      var viewBottom = viewTop + view.clientHeight;
+      var centinelTop = this._centinel.offsetTop;
+      var centinelBottom = centinelTop + this._centinel.offsetHeight;
+      var isVisible = viewTop < centinelBottom && centinelBottom <= viewBottom;
+      if (!this._centinelWasVisible && isVisible) {
+        this.trigger('centinel:appeared');
+      }
+      else if (this._centinelWasVisible && !isVisible) {
+        this.trigger('centinel:dissapeared');
+      }
+      this._centinelWasVisible = isVisible;
+      return isVisible;
     },
 
     _goToValidate: function () {
@@ -73,12 +91,10 @@ define([
       });
     },
 
-    // The sections for Today, Yesterday, Before are all initially
-    // hidden. If a conversation exists in a section it is visible.
     _populate: function () {
       this._clearMiniConversations();
       this.model.sort();
-      var conversations = global.historyCollection.models;
+      var conversations = this.model.models;
       var section = this.$el.find('#conversations').first();
       var list = section.find('ul').first();
       if (conversations.length !== 0) {
@@ -87,44 +103,53 @@ define([
       }
 
       for (var i = 0; i < conversations.length; i++) {
-        this.listenTo(
-          conversations[i],
-          'message:added',
-          this._onMessagePromoteConversation
-        );
         var mc = new MiniConversationView({
           el: $('<li>'),
           model: conversations[i]
         });
-
         mc.render();
+
+        this.listenTo(
+          conversations[i],
+          'message:added',
+          this._onMessagePromoteConversation.bind(this, mc)
+        );
+
         list.append(mc.$el);
         this.miniConversationViews.push(mc);
       }
     },
 
     _addConversation: function (c) {
-      this.listenTo(
-        c,
-        'message:added',
-        this._onMessagePromoteConversation
-      );
       var mc = new MiniConversationView({
         el: $('<li>'),
         model: c
       });
       mc.render();
-      var list = this.$el.find('#conversations ul').first();
-      list.prepend(mc.$el);
-      this.miniConversationViews.splice(0, 0, mc);
+
+      this.listenTo(
+        c,
+        'message:added',
+        this._onMessagePromoteConversation.bind(this, mc)
+      );
+
+      this.miniConversationViews.push(mc);
       this.$el.find('#no-conversations').hide();
+
+      this._contactListBuffer.appendChild(mc.el);
+      if (this._checkCentinelVisibility()) {
+        this._consumeBuffer();
+      }
     },
 
-    _onMessagePromoteConversation: function (message) {
+    _consumeBuffer: function () {
       var list = this.$el.find('#conversations ul').first();
-      var mcElement =
-        this.$el.find('#inbox-conv-' + message.get('conversationId'));
-      list.prepend(mcElement);
+      list.append(this._contactListBuffer);
+    },
+
+    _onMessagePromoteConversation: function (miniConversation) {
+      var list = this.$el.find('#conversations ul').first();
+      list.prepend(miniConversation.el);
     },
 
     _renderStatus: function () {
@@ -155,20 +180,19 @@ define([
 
       this.$inboxContainer = this.$el.find('section.drawer').first();
 
+      this._centinel = this.$el.find('#contacts-centinel')[0];
+      this.$el.find('.page-wrapper')[0]
+        .addEventListener('scroll', this._checkCentinelVisibility.bind(this));
+      this.on('centinel:appeared', this._consumeBuffer);
+
       if (this.model.finishedLoading) {
         this._populate();
-        // TODO: This makes no sense. For some reason, when receiving a
-        // message from an unknown contact, the render() function is not called
-        // as a consequence of the 'add' event so here we are injecting the
-        // render method directly to allow the history to force inbox update.
-        // Far from a definitive solution but enought by now.
-        this.model._addConversation = this._addConversation.bind(this);
-        return;
+        this.listenTo(this.model, 'add', this._addConversation);
       }
       else {
         this.listenToOnce(this.model, 'history:loaded', function () {
           this._populate();
-          this.model._addConversation = this._addConversation.bind(this);
+          this.listenTo(this.model, 'add', this._addConversation);
         });
         this.model.loadConversations();
       }
@@ -202,9 +226,13 @@ define([
     },
 
     _addPickedContact: function (contact) {
-      global.historyCollection.findAndCreateConversation(contact.id);
-      global.contacts.add(contact);
-      global.router.navigate('conversation/' + contact.id, { trigger: true });
+      global.historyCollection.findOrCreate(contact.id, null,
+        function (err, result) {
+          var conversation = result.conversation;
+          global.router.navigate(
+              'conversation/' + conversation.get('id'), { trigger: true });
+        }
+      );
     },
 
     _tellAFriend: function (number) {

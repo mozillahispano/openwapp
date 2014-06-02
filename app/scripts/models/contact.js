@@ -54,7 +54,9 @@ define([
       this.set('isGroup', this.get('id') && this.get('id').indexOf('-') >= 0);
       this.set('admin',
           this.get('isGroup') && (this.get('id').split('-')[0]));
-      this.on('change:_photo', this.saveToStorage);
+      this.on('change', function () {
+        setTimeout(this.saveToStorage.bind(this));
+      });
     },
 
     syncAllAndSave: function () {

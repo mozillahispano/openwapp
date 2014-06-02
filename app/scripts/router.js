@@ -128,34 +128,51 @@ define([
     },
 
     conversation: function (identifier, scrollTop) {
-      console.log('Creating conversation ' + identifier);
+      console.log('[router] Going to conversation:', identifier);
       // here we can cache/reuse views if needed
-      var c = global.historyCollection.findAndCreateConversation(identifier);
-      c.loadMessagesFromStorage();
-      c.set('isRead', true);
-      c.saveToStorage();
-      var cView = new ConversationView({model: c, scrollTop: scrollTop});
-      this.show(cView);
+      var _this = this;
+      global.historyCollection.findOrCreate(identifier, null,
+        function (err, result) {
+          var conversation = result.conversation;
+          conversation.loadMessagesFromStorage();
+          conversation.set('isRead', true);
+          conversation.saveToStorage();
+          var cView = new ConversationView({
+            model: conversation,
+            scrollTop: scrollTop
+          });
+          _this.show(cView);
+        }
+      );
     },
 
     sendLocation: function (conversationId) {
-      var c = global.historyCollection.findAndCreateConversation(
-        conversationId);
-      this.show(new ComposeLocationView({conversation: c}));
+      var _this = this;
+      global.historyCollection.findOrCreate(conversationId, null,
+        function (err, result) {
+          var conversation = result.conversation;
+          _this.show(new ComposeLocationView({conversation: conversation}));
+        }
+      );
     },
 
     _viewer: function (conversationId, messageId, scroll, ViewClass) {
-      var c = global.historyCollection.findAndCreateConversation(
-        conversationId);
-      var message = c.get('messages').find(function (x) {
-        return x.get('_id') === parseInt(messageId, 10);
-      });
+      var _this = this;
+      global.historyCollection.findOrCreate(conversationId, null,
+        function (err, result) {
+          var conversation = result.conversation;
 
-      this.show(new ViewClass({
-        model: message,
-        conversation: c,
-        scrollTop: scroll
-      }));
+          var message = conversation.get('messages').find(function (x) {
+            return x.get('_id') === parseInt(messageId, 10);
+          });
+
+          _this.show(new ViewClass({
+            model: message,
+            conversation: conversation,
+            scrollTop: scroll
+          }));
+        }
+      );
     },
 
     locationViewer: function (conversationId, messageId, scroll) {
@@ -163,11 +180,16 @@ define([
     },
 
     sendImage: function (conversationId) {
-      console.log('router sendImage');
-      var c = global.historyCollection.findAndCreateConversation(
-        conversationId);
-      var message = new Message();
-      this.show(new ComposeImageView({conversation: c, model: message}));
+      var _this = this;
+      global.historyCollection.findOrCreate(conversationId, null,
+        function (err, result) {
+          var message = new Message();
+          _this.show(new ComposeImageView({
+            conversation: result.conversation,
+            model: message
+          }));
+        }
+      );
     },
 
     show: function (view) {

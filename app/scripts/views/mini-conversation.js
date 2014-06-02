@@ -23,7 +23,6 @@ define([
     initialize: function () {
       this.contactPhotoURL = null;
       this.listenTo(this.model, 'change', this._refreshRender);
-      this.listenTo(global.contacts, 'add', this._updateConversation);
       var messages = this.model.get('messages');
       if (messages) {
         this.listenTo(messages, 'add', this._refreshRender);
@@ -51,9 +50,7 @@ define([
       var newElement = this.template(json);
       this.setElement(newElement);
 
-      // TODO: Maybe contact-photo should be generalized as thread-photo to
-      // include groups.
-      var contact = this._getConversationContact(this.model.get('id'));
+      var contact = this.model.get('contact');
       if (contact) {
         this.contactPhoto = new ContactPhoto({ model: contact });
         this.$el.find('.avatar').append(this.contactPhoto.render().el);
@@ -69,16 +66,6 @@ define([
         this.render();
         oldElement.replaceWith(this.$el);
       }
-    },
-
-    _updateConversation: function () {
-      if (this._getConversationContact(this.model.get('id'))) {
-        this._refreshRender();
-      }
-    },
-
-    _getConversationContact: function (msisdn) {
-      return global.contacts.findWhere({ phone: msisdn });
     },
 
     _openConversation: function (event) {

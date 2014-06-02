@@ -290,24 +290,29 @@ define([
       participants.forEach(function (participant, index) {
         if (global.auth.isMe(participant)) { return; }
 
-        var result =
-          global.contacts.findAndCreateContact(participant);
-        var con = result.contact;
-        _this._addParticipant(result.contact);
+        global.contacts.findOrCreate(participant, null,
+          function (err, result) {
+            var contact = result.contact;
+            _this._addParticipant(contact);
 
-        //Make the sync in different times
-        var wait = 300 * index + 200;
-        setTimeout(function () {
-          con.syncAllAndSave();
-        }, wait);
+            // Make the sync in different times
+            var wait = 300 * index + 200;
+            setTimeout(function () {
+              contact.syncAllAndSave();
+            }, wait);
+          }
+        );
+
       });
     },
 
     _addParticipant: function (contact) {
       this.$el
         .find('ul.participants')
-        .append(new ContactView({ model: contact,
-            showControls: this.showControls }).render().el);
+        .append(new ContactView({
+          model: contact,
+          showControls: this.showControls
+        }).render().el);
     },
 
     _closeProfile: function (evt) {
