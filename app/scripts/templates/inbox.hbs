@@ -18,7 +18,7 @@
     </aside>
 
     {{! TODO: Pending design for this message }}
-    <div id="no-conversations" class="empty-info">
+    <div id="no-conversations" class="empty-info" hidden>
       <p>{{translate 'noConversation'}}</p>
       <p>{{translate 'selectContacts'}}</p>
     </div><!-- no conversations -->
@@ -27,7 +27,8 @@
       <ul>
       </ul>
       <div id='contacts-centinel'>
-        <p>Centinela</p>
+        <p>{{translate 'loadingConversations'}}</p>
+        <progress></progress>
       </div>
     </section>
 

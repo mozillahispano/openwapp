@@ -275,6 +275,7 @@ define([
           var index = offset;
           if (index === groupsLength) {
             _this.saveConversationList();
+            _this.finishedSyncing = true;
             _this.trigger('history:synced');
           }
           else {
