@@ -27,6 +27,7 @@ define([
     initialize: function () {
       this.picture = this.model.get('photo');
       this.thumb = this.model.get('thumb');
+      this.updateProfileDataFromServer();
     },
 
     render: function () {
@@ -60,6 +61,33 @@ define([
       button.prop('disabled', name.length < 3);
     },
 
+    updateProfileDataFromServer: function () {
+      var _this = this;
+
+      global.auth.getProfilePicture(function (error, picture) {
+        if (error || !picture) {
+          return;
+        }
+        _this.generatePicture(picture, function (err, resizedPic) {
+          if (err) { return; }
+          _this.picture = resizedPic;
+          _this._replacePhoto(resizedPic);
+        });
+
+        _this.generateThumbnail(picture, function (err, thumb) {
+          if (err) { return; }
+          _this.thumb = thumb;
+        });
+      });
+
+      global.auth.getProfileStatus(function (error, status) {
+        if (error || !status) {
+          return;
+        }
+        _this.$el.find('#input-status').attr('value', status);
+      });
+    },
+
     updateProfileData: function (evt) {
       evt.preventDefault();
 
@@ -83,24 +111,31 @@ define([
       var _this = this;
       requestPicture.onsuccess = function () {
         var picture = requestPicture.result.blob;
-        Thumbnail.setMaxSize(_this.PICTURE_MAX_SIZE);
-        Thumbnail.generate(picture, function (err, picture) {
+        _this.generatePicture(picture, function (err, resizedPic) {
           if (err) { return; }
-          _this.picture = picture;
-          _this._replacePhoto(picture);
+          _this.picture = resizedPic;
+          _this._replacePhoto(resizedPic);
+        });
 
-          // Generate thumb
-          Thumbnail.setMaxSize(_this.THUMB_MAX_SIZE);
-          Thumbnail.generate(picture, function (err, thumb) {
-            if (err) { return; }
-            _this.thumb = thumb;
-          }, { asBlob: true });
-        }, { asBlob: true });
+        _this.generateThumbnail(picture, function (err, thumb) {
+          if (err) { return; }
+          _this.thumb = thumb;
+        });
       };
 
       requestPicture.onerror = function () {
         console.error('Impossible to get profile\'s picture.');
       };
+    },
+
+    generatePicture: function (picture, callback) {
+      Thumbnail.setMaxSize(this.PICTURE_MAX_SIZE);
+      Thumbnail.generate(picture, callback, { asBlob: true });
+    },
+
+    generateThumbnail: function (picture, callback) {
+      Thumbnail.setMaxSize(this.THUMB_MAX_SIZE);
+      Thumbnail.generate(picture, callback, { asBlob: true });
     },
 
     showSelect: function () {
@@ -121,7 +156,7 @@ define([
     _replacePhoto: function (newPictureBlob) {
       this.clear();
       if (newPictureBlob instanceof window.Blob) {
-        this.$el.find('img')
+        this.$el.find('#profile-picture')
           .attr('src', window.URL.createObjectURL(newPictureBlob));
       }
     },

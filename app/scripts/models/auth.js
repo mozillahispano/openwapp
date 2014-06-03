@@ -176,6 +176,42 @@ define([
       );
     },
 
+    _onceLogged: function (callback) {
+      if (!callback) { return; }
+      if (global.client.isOnline) {
+        callback.call(this);
+      } else {
+        this.once('login:success', callback.call(this));
+        this.checkCredentials();
+      }
+    },
+
+    getProfilePicture: function (callback) {
+      this._onceLogged(function () {
+        global.client.getContactPicture(this.get('msisdn'),
+          function (error, pictureId, picture) {
+            if (error) {
+              callback(error);
+              return;
+            }
+            callback(null, picture);
+          });
+      });
+    },
+
+    getProfileStatus: function (callback) {
+      this._onceLogged(function () {
+        global.client.getContactsState([this.get('msisdn')],
+          function (error, phoneMap) {
+            if (error) {
+              callback(error);
+              return;
+            }
+            callback(null, phoneMap && phoneMap[this.get('msisdn')]);
+          }.bind(this));
+      });
+    },
+
     updateProfileData: function (screenName, status, photo, thumb) {
       this.set({
         screenName: screenName,
@@ -189,7 +225,7 @@ define([
         this._sendProfileData();
       }
       else {
-        this.on('login:success', this._sendProfileData);
+        this.once('login:success', this._sendProfileData);
       }
     },
 
