@@ -289,24 +289,27 @@ define([
       });
     },
 
+    _pictureQueue: [],
+
     _fetchPicture: function (conversation) {
       var _this = this;
 
-      function _realFetch() {
-        var task;
+      function _nextFetch() {
         if (_this._pictureQueue.length > 0) {
-          task = _this._pictureQueue.shift();
-          task(_realFetch);
+          var task = _this._pictureQueue[0];
+          task(function _onFinished() {
+            _this._pictureQueue.shift();
+            _nextFetch();
+          });
         }
       }
 
-      this._pictureQueue = this._pictureQueue || [];
       this._pictureQueue.push(function fetchTask(next) {
         conversation.get('contact').updatePhoto(next);
       });
 
       if (this._pictureQueue.length === 1) {
-        _realFetch();
+        _nextFetch();
       }
 
     },
