@@ -120,6 +120,10 @@ define([
         _this.set('status', 'offline');
       });
 
+      this.listenTo(this.client, 'connecting', function () {
+        _this.set('status', 'connecting');
+      });
+
       // TODO: Remember, this is a generic message, it was triggered when
       // receiving any kind of message. We should distinguish by cases
       // or make client to always trigger a message providing from, type and

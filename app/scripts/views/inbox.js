@@ -98,7 +98,6 @@ define([
       var section = this.$el.find('#conversations').first();
       var list = section.find('ul').first();
       if (conversations.length !== 0) {
-        this.$el.find('#no-conversations').hide();
         section.show();
       }
 
@@ -195,6 +194,18 @@ define([
           this.listenTo(this.model, 'add', this._addConversation);
         });
         this.model.loadConversations();
+      }
+
+      if (this.model.finishedSyncing) {
+        this.$el.find('#contacts-centinel').hide();
+      }
+      else {
+        this.listenToOnce(this.model, 'history:synced', function () {
+          this.$el.find('#contacts-centinel').hide();
+          if (this.model.models.length === 0) {
+            this.$el.find('#no-conversations').show();
+          }
+        });
       }
     },
 

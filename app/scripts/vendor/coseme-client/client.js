@@ -147,6 +147,7 @@
           _authErrorCallback(reason);
         }
         _authErrorCallback = null;
+        fire('disconnected');
       }
 
       // Contact status
@@ -577,6 +578,7 @@
           }
 
           authenticating = true;
+          fire('connecting');
           _authSuccessCallback = onSuccess;
           _authErrorCallback = onError;
           methods.call('auth_login', [userId, password]);
