@@ -24,7 +24,8 @@ define([
     model: HistoryCollection,
 
     events: {
-      'click #add-contact': '_pickContact'
+      'click #add-contact': '_pickContact',
+      'contextmenu #conversations ul': '_showContextMenu'
     },
 
     initialize: function () {
@@ -49,6 +50,39 @@ define([
         global.auth.checkCredentials();
       }
       this._contactListBuffer = document.createDocumentFragment();
+    },
+
+    _showContextMenu: function (evt) {
+      if (evt) { evt.preventDefault(); }
+
+      var interpolate = global.l10nUtils.interpolate;
+      var l10n = global.localisation[global.language];
+
+      var listitem = $(evt.target).closest('li')[0];
+      var conversationId = listitem.dataset.conversationId;
+      var title = listitem.dataset.conversationName;
+      var isGroup = listitem.dataset.isGroup || false;
+
+      var stringId, message;
+      if (isGroup) {
+        stringId = 'removeGroupConversation';
+        message = interpolate(l10n[stringId], {
+          groupTitle: title
+        });
+      } else {
+        stringId = 'remove1to1Conversation';
+        message = interpolate(l10n[stringId], {
+          who: title
+        });
+      }
+
+      if (window.confirm(message)) {
+        if (isGroup) {
+          global.client.leaveGroup(conversationId);
+        }
+        global.historyCollection.removeConversation(conversationId);
+        listitem.parentNode.removeChild(listitem);
+      }
     },
 
     _checkCentinelVisibility: function () {
