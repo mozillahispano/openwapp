@@ -181,7 +181,7 @@ define([
       if (global.client.isOnline) {
         callback.call(this);
       } else {
-        this.once('login:success', callback.call(this));
+        this.once('login:success', callback.bind(this));
         this.checkCredentials();
       }
     },
