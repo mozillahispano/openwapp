@@ -43,6 +43,9 @@ define([], function () {
       noConversation: 'No hay conversaciones.',
       selectContacts: 'Escoja contactos de la lista de contactos de OpenWapp ' +
       'para comenzar a chatear.',
+      removeGroupConversation: '¿Quiere abandonar el grupo {{groupTitle}} y ' +
+      'eliminar la conversación?',
+      remove1to1Conversation: '¿Quiere eliminar la conversación con {{who}}?',
       today: 'Hoy',
       yesterday: 'Ayer',
       before: 'Anterior',
@@ -214,6 +217,10 @@ define([], function () {
       noConversation: 'No conversations.',
       selectContacts: 'Pick a contact in the OpenWapp contact list to ' +
       'start chatting.',
+      removeGroupConversation: 'Do you want to leave the group {{groupTitle}}' +
+      ' and delete the conversation?',
+      remove1to1Conversation: 'Do you want to delete the conversation ' +
+      ' with {{who}}?',
       today: 'Today',
       yesterday: 'Yesterday',
       before: 'Older',
@@ -387,6 +394,9 @@ define([], function () {
       noConversation: 'Não há conversas.',
       selectContacts: 'Escolha contatos da lista de contatos de OpenWapp ' +
       'para começar uma conversa.',
+      removeGroupConversation: 'Você quer deixar o grupo {{groupTitle}} e ' +
+      'retire a conversa?',
+      remove1to1Conversation: 'Você quer remover a conversa com {{who}}?',
       today: 'Hoje',
       yesterday: 'Ontem',
       before: 'Anterior',
@@ -559,6 +569,9 @@ define([], function () {
       noConversation: 'Não há conversas.',
       selectContacts: 'Escolha contatos da lista de contatos de OpenWapp ' +
       'para começar uma conversa.',
+      removeGroupConversation: 'Você quer deixar o grupo {{groupTitle}} e ' +
+      'retire a conversa?',
+      remove1to1Conversation: 'Você quer remover a conversa com {{who}}?',
       today: 'Hoje',
       yesterday: 'Ontem',
       before: 'Anterior',

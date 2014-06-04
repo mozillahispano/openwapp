@@ -1,4 +1,6 @@
-<li class="{{#if isRead}}read{{else}}unread{{/if}}" id="inbox-conv-{{id}}">
+<li class="{{#if isRead}}read{{else}}unread{{/if}}" id="inbox-conv-{{id}}"
+  data-conversation-id="{{id}}" data-conversation-name="{{title}}"
+  {{#if isGroup}}data-is-group="true"{{/if}}>
   <a href="#" class="{{#if isGroup}}group{{/if}}">
     <aside class="avatar">
     </aside>
