@@ -12,6 +12,8 @@ define(['backbone', 'global'], function (Backbone, global) {
 
     intervalId: null,
 
+    TIME_TO_SEND_NOTIFICATIONS: 60 * 1000, // 1s
+
     defaults: function () {
       var awakePeriod = localStorage.getItem('awakePeriod') !== null ?
                         parseInt(localStorage.getItem('awakePeriod'), 10) :
@@ -44,10 +46,18 @@ define(['backbone', 'global'], function (Backbone, global) {
       if (this.alarmHandlerInstalled) { return; }
       navigator.mozSetMessageHandler('alarm', function _onAwake() {
         console.log('[background service] Awake signal received.');
+
+        // Reconnect
         if (!global.client.isOnline) {
           console.log('[background service] Service down, reconnecting!');
           global.auth.checkCredentials();
         }
+
+        // Check for new messages
+        setTimeout(function () {
+          global.notifications.sendNow();
+        }, this.TIME_TO_SEND_NOTIFICATIONS);
+
         this._resetAlarm();
       }.bind(this));
       this.alarmHandlerInstalled = true;
