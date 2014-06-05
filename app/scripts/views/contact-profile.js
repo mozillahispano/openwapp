@@ -3,8 +3,9 @@ define([
   'zeptojs',
   'global',
   'templates',
-  'models/contact'
-], function (Backbone, $, global, templates, Contact) {
+  'models/contact',
+  'templates/helpers'
+], function (Backbone, $, global, templates, Contact, helpers) {
   'use strict';
 
   var MozActivity = window.MozActivity;
@@ -33,6 +34,7 @@ define([
         phone: internationalPhone
       }));
       this._replacePhoto(this.model.get('photo'));
+      helpers.revealEmoji(this.$el.find('#state'));
     },
 
     _dialContact: function () {

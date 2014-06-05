@@ -7,9 +7,10 @@ define([
   'models/auth',
   'utils/thumbnail',
   'views/contact',
-  'utils/contact-picker'
+  'utils/contact-picker',
+  'templates/helpers'
 ], function (Backbone, $, global, templates, Contact, Auth, Thumbnail,
-             ContactView, pickContact) {
+             ContactView, pickContact, Helpers) {
   'use strict';
 
   var Profile = Backbone.View.extend({
@@ -307,12 +308,13 @@ define([
     },
 
     _addParticipant: function (contact) {
-      this.$el
-        .find('ul.participants')
-        .append(new ContactView({
+      var el = this.$el.find('ul.participants');
+
+      el.append(new ContactView({
           model: contact,
           showControls: this.showControls
         }).render().el);
+      Helpers.revealEmoji(el.find('dd.state'));
     },
 
     _closeProfile: function (evt) {

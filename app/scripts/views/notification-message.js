@@ -3,13 +3,16 @@ define([
   'zeptojs',
   'global',
   'models/message',
-  'templates'
-], function (Backbone, $, global, Message, templates) {
+  'templates',
+  'templates/helpers'
+], function (Backbone, $, global, Message, templates, helpers) {
   'use strict';
 
   return Backbone.View.extend({
 
     template: templates.notification,
+
+    el: '.notification',
 
     model: Message,
 
@@ -19,6 +22,7 @@ define([
         message: this._getMessage()
       });
       this.setElement(newElement);
+      helpers.revealEmoji(this.$el.find('.content'));
     },
 
     _getMessage: function () {

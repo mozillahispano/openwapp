@@ -112,6 +112,7 @@ define([
         this._updateConnectionStatus();
       }
       else {
+        Helpers.revealEmoji(this.$el.find('h1 a'));
         this._updateParticipants();
       }
     },
@@ -119,6 +120,7 @@ define([
     _updateTitle: function (title) {
       this.model.set('title', title);
       this.$el.find('h1 a').text(title);
+      Helpers.revealEmoji(this.$el.find('h1 a'));
     },
 
     _updateConnectionStatus: function () {
