@@ -26,6 +26,10 @@ define(['libphonenumber/PhoneNumber'], function (PhoneNumber) {
     CL: [{
       pattern: '^([9]\\d{7})',
       output: '09$1'
+    }],
+    VE: [{
+      pattern: '(?:0)(\\d{10})',
+      output: '$1'
     }]
   };
 
@@ -101,7 +105,7 @@ define(['libphonenumber/PhoneNumber'], function (PhoneNumber) {
       // Clean the number
       number = number.replace(/[^\d\+]+/g, '');
 
-      _region = locale || _region;
+      _region = (locale || _region || '').toUpperCase();
 
       if (beforeRules[_region]) {
         beforeRules[_region].forEach(function (rule) {
