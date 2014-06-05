@@ -6,17 +6,30 @@ define([
 
   var Notification = Backbone.Model.extend({
 
-    app: null,
+    _app: null,
+
+    _unattendedNotifications: 0,
 
     _queue: [],
 
     send: function (title, body) {
       var notification = { title: title, body: body };
-      if (document.mozHidden) {
+
+      // We are in background and there is not unattended notifications
+      if (document.mozHidden && this._unattendedNotifications === 0) {
+        console.log('[notifications] No unattended notifications.');
+        this._sendNow(notification);
+      }
+
+      // In background with unattended notifications
+      else if (document.mozHidden && this._unattendedNotifications) {
+        console.log('[notifications] Unattended notifications. Enqueing.');
         this._enqueue(notification);
       }
+
+      // In foreground
       else {
-        this.fire('notification', notification);
+        this.trigger('notification', notification);
       }
     },
 
@@ -24,20 +37,38 @@ define([
       this._queue.push(notification);
     },
 
-    sendNow: function () {
-      if (!('mozNotification' in navigator)) {
-        console.log('Notification disabled');
-        return;
+    _sendNow: function (notification) {
+
+      var _this = this;
+
+      if (document.mozHidden) {
+        if (!('mozNotification' in navigator)) {
+          console.log('Notification disabled');
+          return;
+        }
+
+        navigator.mozApps.getSelf().onsuccess = function gotSelf(evt) {
+          _this._app = evt.target.result;
+          _this._createNotification(notification.title, notification.body);
+        };
+      }
+      else {
+        this.trigger('notification', notification);
       }
 
+    },
+
+    sendReport: function () {
       var pendingNotifications = this._queue.length;
       if (pendingNotifications === 0) {
         return;
       }
 
       // One notification pending, send just that
-      var title = this._queue[0].title;
-      var body = this._queue[0].body;
+      var notification = {
+        title: this._queue[0].title,
+        body: this._queue[0].body
+      };
 
       // More than one, make a report
       if (pendingNotifications > 1) {
@@ -48,43 +79,45 @@ define([
         var titleMsg = l10n[titleId];
         var bodyMsg = l10n[bodyId];
 
-        title = interpolate(titleMsg, { count: pendingNotifications });
-        body = interpolate(bodyMsg, { names: this._queue.map(function (item) {
-          return item.title;
-        }) });
+        notification.title =
+          interpolate(titleMsg, { count: pendingNotifications });
+
+        notification.body =
+          interpolate(bodyMsg, { names: this._queue.map(function (item) {
+            return item.title;
+          }) });
       }
 
       this._queue.splice(0, pendingNotifications);
-
-      var _this = this;
-      navigator.mozApps.getSelf().onsuccess = function gotSelf(evt) {
-        _this.app = evt.target.result;
-        _this.createNotification(title, body);
-      };
-
+      this._sendNow(notification);
+      console.log('[notifications] Report sent!');
     },
 
-    createNotification: function (title, body) {
+    _createNotification: function (title, body) {
       var _this = this;
-      var icon = _this.getIconURI(_this.app);
+      var icon = _this._getIconURI(_this._app);
 
-      var notification = navigator.mozNotification.createNotification(title,
-                                                                    body,
-                                                                    icon);
+      var notification =
+        navigator.mozNotification.createNotification(title, body, icon);
 
       notification.onclick = function () {
-        _this.app.launch();
+        _this._app.launch();
         // TODO: to open the app in the conversation
         //  window.location.hash = '#conversation/' + phone;
       };
 
+      notification.onclose = function () {
+        _this._unattendedNotifications--;
+      };
+
+      _this._unattendedNotifications++;
       notification.show();
     },
 
     /**
      * Return the URI of the icon
      */
-    getIconURI: function (app, entryPoint) {
+    _getIconURI: function (app, entryPoint) {
       var icons = app.manifest.icons;
 
       if (entryPoint) {

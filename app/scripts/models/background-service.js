@@ -12,8 +12,6 @@ define(['backbone', 'global'], function (Backbone, global) {
 
     intervalId: null,
 
-    TIME_TO_SEND_NOTIFICATIONS: 60 * 1000, // 1s
-
     defaults: function () {
       var awakePeriod = localStorage.getItem('awakePeriod') !== null ?
                         parseInt(localStorage.getItem('awakePeriod'), 10) :
@@ -53,10 +51,8 @@ define(['backbone', 'global'], function (Backbone, global) {
           global.auth.checkCredentials();
         }
 
-        // Check for new messages
-        setTimeout(function () {
-          global.notifications.sendNow();
-        }, this.TIME_TO_SEND_NOTIFICATIONS);
+        // Send report of new messages
+        global.notifications.sendReport();
 
         this._resetAlarm();
       }.bind(this));
