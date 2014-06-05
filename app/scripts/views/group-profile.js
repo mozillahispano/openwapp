@@ -330,8 +330,11 @@ define([
 
     leave: function (evt) {
       if (evt) { evt.preventDefault(); }
-      var stringId = 'leaveGroupConfirm';
-      var msg = global.localisation[global.language][stringId];
+      var interpolate = global.l10nUtils.interpolate;
+      var stringId = 'removeGroupConversation';
+      var msg = interpolate(global.localisation[global.language][stringId], {
+        groupTitle: this.model.get('subject')
+      });
       if (window.confirm(msg)) {
         global.client.leaveGroup(this.model.get('id'));
         global.historyCollection.removeConversation(this.model.get('id'));
