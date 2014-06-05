@@ -105,7 +105,7 @@ define(['libphonenumber/PhoneNumber'], function (PhoneNumber) {
       // Clean the number
       number = number.replace(/[^\d\+]+/g, '');
 
-      _region = (locale || _region).toUpperCase();
+      _region = (locale || _region || '').toUpperCase();
 
       if (beforeRules[_region]) {
         beforeRules[_region].forEach(function (rule) {
