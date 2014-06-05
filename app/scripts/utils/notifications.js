@@ -12,8 +12,9 @@ define([
 
     _queue: [],
 
-    send: function (title, body) {
-      var notification = { title: title, body: body };
+    send: function (title, body, conversationId) {
+      var notification =
+        { title: title, body: body, conversationId: conversationId };
 
       // We are in background and there is not unattended notifications
       if (document.mozHidden && this._unattendedNotifications === 0) {

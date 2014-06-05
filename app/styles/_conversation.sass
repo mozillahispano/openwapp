@@ -18,11 +18,29 @@ $conversation-typing-height: 0.6rem
   width: 100%
   z-index: 90
 
+#conversation > header span.icon-back
+  position: relative
+
+#conversation > header span.icon-back:before
+  content: ""
+  position: absolute
+  height: 100%
+
+#conversation > header span.icon-back.new-messages:before
+  animation: pulse 10s infinite
+
 #conversation > header.connection-status .hide
   display: none
 
 #conversation > header h1 span.emoji
   vertical-align: middle
+
+#conversation > header h2.in-app-notification
+  background-color: rgba(0, 0, 0, 0.9)
+  color: #FFF
+  text-overflow: ellipsis 
+  white-space: nowrap
+  overflow: hidden
 
 #conversation > div.page-wrapper
   position: relative

@@ -61,7 +61,7 @@ define([
       // of the current language
       content = this._formatImageMessageContent(content);
       global.notifications.send(this._getNotificationTitle(from),
-        content.caption);
+        content.caption, from.msisdn);
 
       var message = new MessageModel({
         type: meta.type,
@@ -75,7 +75,7 @@ define([
 
     _onTextReceived: function (from, meta, inContent) {
       global.notifications.send(this._getNotificationTitle(from),
-                                inContent);
+                                inContent, from.msisdn);
       console.log('Received text from ', from, inContent, meta);
 
       var message = new MessageModel({
@@ -96,7 +96,7 @@ define([
       content.address = content.address ||
         global.localisation[global.language].defaultImageCaption;
       global.notifications.send(this._getNotificationTitle(from),
-        content.address);
+        content.address, from.msisdn);
 
       var message = new MessageModel({
         type: 'location',
