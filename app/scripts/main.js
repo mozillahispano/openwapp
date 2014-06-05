@@ -30,7 +30,7 @@ require.config({
     },
     'libphonenumber/PhoneNumber': {
       exports: 'PhoneNumber',
-      deps: ['libphonenumber/PhoneNumberMetaData']
+      deps: ['utils/PhoneNumberMetaDataUpdates']
     },
     'vendor/async-storage/async-storage': {
       exports: 'asyncStorage'
