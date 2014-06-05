@@ -102,6 +102,14 @@ define([
       return isVisible;
     },
 
+    _showCentinel: function () {
+      $(this._centinel).show();
+    },
+
+    _hideCentinel: function () {
+      $(this._centinel).hide();
+    },
+
     _goToValidate: function () {
       global.router.navigate(
         'validate/' + localStorage.getItem('phoneAndCC'), { trigger: true });
@@ -170,14 +178,22 @@ define([
       this.$el.find('#no-conversations').hide();
 
       this._contactListBuffer.appendChild(mc.el);
-      if (this._checkCentinelVisibility()) {
-        this._consumeBuffer();
+
+      // Display the centinel and process the buffer
+      if (this._centinel) {
+        this._showCentinel();
+        if (this._checkCentinelVisibility()) {
+          this._consumeBuffer();
+        }
       }
     },
 
     _consumeBuffer: function () {
       var list = this.$el.find('#conversations ul').first();
       list.append(this._contactListBuffer);
+      if (global.historyCollection.finishedSyncing) {
+        this._hideCentinel();
+      }
     },
 
     _onMessagePromoteConversation: function (miniConversation) {
@@ -231,11 +247,11 @@ define([
       }
 
       if (this.model.finishedSyncing) {
-        this.$el.find('#contacts-centinel').hide();
+        this._hideCentinel();
       }
       else {
         this.listenToOnce(this.model, 'history:synced', function () {
-          this.$el.find('#contacts-centinel').hide();
+          this._hideCentinel();
           if (this.model.models.length === 0) {
             this.$el.find('#no-conversations').show();
           }
