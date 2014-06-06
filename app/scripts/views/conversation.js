@@ -148,12 +148,14 @@ define([
           title: notification.title,
           body: notification.body
         });
-        _this.$el.find('h2.in-app-notification').text(message);
+        var inAppNotificationArea = _this.$el.find('h2.in-app-notification');
+        inAppNotificationArea.text(message);
+        Helpers.revealEmoji(inAppNotificationArea);
 
         setTimeout(function () {
           next();
         }, _this.TIME_TO_DISPLAY_NOTIFICATION);
-      })
+      });
 
       function next() {
         if (_this._inAppNotifications.length > 0) {

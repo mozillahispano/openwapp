@@ -89,7 +89,7 @@ define([
           }) });
       }
 
-      this._queue.splice(0, pendingNotifications);
+      this._queue = [];
       this._sendNow(notification);
       console.log('[notifications] Report sent!');
     },
