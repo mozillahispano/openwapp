@@ -12,8 +12,9 @@ define([
 
     _queue: [],
 
-    send: function (title, body) {
-      var notification = { title: title, body: body };
+    send: function (title, body, conversationId) {
+      var notification =
+        { title: title, body: body, conversationId: conversationId };
 
       // We are in background and there is not unattended notifications
       if (document.mozHidden && this._unattendedNotifications === 0) {
@@ -79,16 +80,21 @@ define([
         var titleMsg = l10n[titleId];
         var bodyMsg = l10n[bodyId];
 
-        notification.title =
-          interpolate(titleMsg, { count: pendingNotifications });
+        var notificationsByConversations = {};
+        this._queue.forEach(function (notification) {
+          notificationsByConversations[notification.conversationId] = true;
+        });
 
-        notification.body =
-          interpolate(bodyMsg, { names: this._queue.map(function (item) {
-            return item.title;
-          }) });
+        notification.title = interpolate(titleMsg, {
+          count: pendingNotifications
+        });
+
+        notification.body = interpolate(bodyMsg, {
+          count: Object.keys(notificationsByConversations).length
+        });
       }
 
-      this._queue.splice(0, pendingNotifications);
+      this._queue = [];
       this._sendNow(notification);
       console.log('[notifications] Report sent!');
     },

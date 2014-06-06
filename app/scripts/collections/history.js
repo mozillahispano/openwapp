@@ -60,8 +60,6 @@ define([
       // TODO: refactor this in a proper 'translate' method that takes care
       // of the current language
       content = this._formatImageMessageContent(content);
-      global.notifications.send(this._getNotificationTitle(from),
-        content.caption);
 
       var message = new MessageModel({
         type: meta.type,
@@ -74,8 +72,6 @@ define([
     },
 
     _onTextReceived: function (from, meta, inContent) {
-      global.notifications.send(this._getNotificationTitle(from),
-                                inContent);
       console.log('Received text from ', from, inContent, meta);
 
       var message = new MessageModel({
@@ -95,8 +91,6 @@ define([
 
       content.address = content.address ||
         global.localisation[global.language].defaultImageCaption;
-      global.notifications.send(this._getNotificationTitle(from),
-        content.address);
 
       var message = new MessageModel({
         type: 'location',
@@ -157,6 +151,17 @@ define([
             conversation.set('title', contact.get('displayName'));
           }
         }
+
+        var contents = message.get('contents');
+        var notificationBody = contents.address ||
+                               contents.caption ||
+                               contents;
+
+        global.notifications.send(
+          contact.get('displayName') || from.displayName,
+          notificationBody,
+          from.msisdn
+        );
 
         var isRead = (!!global.router.currentView &&
                       global.router.currentView.model === conversation);
@@ -463,11 +468,6 @@ define([
 
     comparator: function (conv, another) {
       return -(conv.get('date').getTime() - another.get('date').getTime());
-    },
-
-    _getNotificationTitle: function (from) {
-      return (from.displayName) ? from.displayName :
-        this._getConversationTitle(from.msisdn);
     },
 
     _getConversationTitle: function (identifier) {

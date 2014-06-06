@@ -115,6 +115,66 @@ define([
         Helpers.revealEmoji(this.$el.find('h1 a'));
         this._updateParticipants();
       }
+
+      this.listenTo(
+        global.notifications, 'notification', this._handleNotification);
+    },
+
+    _handleNotification: function (notification) {
+      if (notification.conversationId !== this.model.get('id')) {
+        this.$el.find('span.icon-back').addClass('new-messages');
+        this._enqueueInAppNotification(notification);
+      }
+    },
+
+    _inAppNotifications: [],
+
+    TIME_TO_DISPLAY_NOTIFICATION: 3000, // 3s
+
+    TIME_TO_HIDE_NOTIFICATION: 5000, // 5s
+
+    _enqueueInAppNotification: function (notification) {
+      var _this = this;
+
+      // Show notification area
+      _this.$el.find('h2.in-app-notification').removeClass('hide');
+      clearTimeout(_this._timeoutToHideNotifications);
+
+      // Add notification task
+      this._inAppNotifications.push(function (next) {
+        var interpolate = global.l10nUtils.interpolate;
+        var l10n = global.localisation[global.language];
+        var message = interpolate(l10n.inAppNotification, {
+          title: notification.title,
+          body: notification.body
+        });
+        var inAppNotificationArea = _this.$el.find('h2.in-app-notification');
+        inAppNotificationArea.text(message);
+        Helpers.revealEmoji(inAppNotificationArea);
+
+        setTimeout(function () {
+          next();
+        }, _this.TIME_TO_DISPLAY_NOTIFICATION);
+      });
+
+      function next() {
+        if (_this._inAppNotifications.length > 0) {
+          var task = _this._inAppNotifications[0];
+          task(function () {
+            _this._inAppNotifications.shift();
+            next();
+          });
+        }
+        else {
+          _this._timeoutToHideNotifications = setTimeout(function () {
+            _this.$el.find('h2.in-app-notification').addClass('hide');
+          }, _this.TIME_TO_HIDE_NOTIFICATION);
+        }
+      }
+
+      if (_this._inAppNotifications.length === 1) {
+        next();
+      }
     },
 
     _updateTitle: function (title) {
