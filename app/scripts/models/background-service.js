@@ -44,10 +44,16 @@ define(['backbone', 'global'], function (Backbone, global) {
       if (this.alarmHandlerInstalled) { return; }
       navigator.mozSetMessageHandler('alarm', function _onAwake() {
         console.log('[background service] Awake signal received.');
+
+        // Reconnect
         if (!global.client.isOnline) {
           console.log('[background service] Service down, reconnecting!');
           global.auth.checkCredentials();
         }
+
+        // Send report of new messages
+        global.notifications.sendReport();
+
         this._resetAlarm();
       }.bind(this));
       this.alarmHandlerInstalled = true;
