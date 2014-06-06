@@ -16,6 +16,8 @@ define([
 
     model: Conversation,
 
+    el: 'li',
+
     events: {
       'click li > a' : '_openConversation'
     },
@@ -55,7 +57,7 @@ define([
         this.contactPhoto = new ContactPhoto({ model: contact });
         this.$el.find('.avatar').append(this.contactPhoto.render().el);
       }
-
+      helpers.revealEmoji(this.$el.find('dd.name'));
       helpers.revealEmoji(this.$el.find('dd.event'));
     },
 
