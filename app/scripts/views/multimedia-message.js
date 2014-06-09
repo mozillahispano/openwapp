@@ -111,11 +111,15 @@ define([
       return (typeof navigator.mozTCPSocket.listen) !== 'function';
     },
 
+    isAAC: function () {
+      return this.model.get('contents').uri.match(/.aac$/);
+    },
+
     _downloadMedia: function () {
       var _this = this;
 
       // XXX: Delegate on browser to see media on Firefox 1.1
-      if (_this.isFFOX11()) {
+      if (!_this.isAAC() && _this.isFFOX11()) {
         new MozActivity({
           name: 'view',
           data: { type: 'url', url: this.model.get('contents').uri }
@@ -151,6 +155,7 @@ define([
       'image/gif': 'gif',
       'image/bmp': 'bmp',
       // Audio
+      'audio/aac': 'm4a',
       'audio/mpeg': 'mp3',
       'audio/mp4': 'm4a',
       'audio/ogg': 'ogg',
@@ -172,9 +177,15 @@ define([
       'text/x-vcard': 'vcf'
     },
 
+    _mimeConversionMap: {
+      'audio/aac': 'audio/mpeg'
+    },
+
     _openWithActivity: function (blob, dontSave) {
-      var _this = this;
       var extension = this._extensionByMimeType[blob.type];
+      blob = this._preprocessBlob(blob);
+
+      var _this = this;
       var fileName = Date.now() + '.' + extension;
       var activity = new window.MozActivity({
         name: 'open',
@@ -194,7 +205,16 @@ define([
           _this.model.saveToStorage();
         }
       };
+    },
 
+    _preprocessBlob: function (blob) {
+      var targetMimeType = this._mimeConversionMap[blob.type];
+      if (!targetMimeType) {
+        return blob;
+      }
+
+      blob = new Blob([blob], { type: targetMimeType });
+      return blob;
     }
   });
 });
