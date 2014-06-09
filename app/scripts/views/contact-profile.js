@@ -21,7 +21,8 @@ define([
     events: {
       'click .dial':        '_dialContact',
       'click .send-sms':    '_smsContact',
-      'click button.close': 'close'
+      'click button.close': 'close',
+      'click #profile-picture': '_openProfilePicture'
     },
 
     template: templates['contact-profile'],
@@ -35,6 +36,36 @@ define([
       }));
       this._replacePhoto(this.model.get('photo'));
       helpers.revealEmoji(this.$el.find('#state'));
+    },
+
+    _openProfilePicture: function (evt) {
+      if (evt) { evt.preventDefault(); }
+
+      var blob = this.model.get('photo');
+      if (blob instanceof window.Blob) {
+        var extension = this._extensionByMimeType[blob.type];
+        var fileName = this.model.get('displayName') + '.' + extension;
+        new window.MozActivity({
+          name: 'open',
+          data: {
+            filename: global.sdManager.getPath(fileName),
+            type: blob.type,
+            blob: blob,
+            allowSave: true
+          }
+        });
+      }
+      return false;
+    },
+
+    // XXX: Use this source:
+    // https://github.com/mozilla-b2g/gaia/blob/master/shared/js/mime_mapper.js
+    _extensionByMimeType: {
+      // Image
+      'image/jpeg': 'jpg',
+      'image/png': 'png',
+      'image/gif': 'gif',
+      'image/bmp': 'bmp'
     },
 
     _dialContact: function () {
