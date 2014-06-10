@@ -55,7 +55,7 @@ define([
 
     _openInBrowser: function (evt) {
       evt.preventDefault();
-      new MozActivity({
+      new window.MozActivity({
         name: 'view',
         data: { type: 'url', url: evt.target.href }
       });
