@@ -406,9 +406,9 @@ define([
       var contact = conversation.get('contact');
 
       var messages = conversation ? conversation.get('messages') : [];
-      messages.forEach(function (message) {
-        messages.remove(message);
-      });
+      while (messages.length > 0) {
+        messages.remove(messages.at(0));
+      };
 
       // Remove from history collection
       this.remove(conversation);
