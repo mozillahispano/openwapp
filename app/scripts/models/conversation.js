@@ -163,8 +163,14 @@ define([
 
     updateParticipantList: function () {
       this.trigger('dirty:participants');
-    }
+    },
 
+    removeMessage: function (messageId) {
+      messageId = parseInt(messageId, 10);
+      var messages = this.get('messages');
+      var message = messages.get(messageId);
+      messages.remove(message);
+    }
   });
 
   return Conversation;

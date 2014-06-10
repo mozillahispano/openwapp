@@ -46,6 +46,7 @@ define([], function () {
       removeGroupConversation: '¿Quiere abandonar el grupo {{groupTitle}} y ' +
       'eliminar la conversación?',
       remove1to1Conversation: '¿Quiere eliminar la conversación con {{who}}?',
+      removeMessage: '¿Quiere eliminar este mensaje?',
       today: 'Hoy',
       yesterday: 'Ayer',
       before: 'Anterior',
@@ -223,6 +224,7 @@ define([], function () {
       ' and delete the conversation?',
       remove1to1Conversation: 'Do you want to delete the conversation ' +
       ' with {{who}}?',
+      removeMessage: 'Do you want to remove this message?',
       today: 'Today',
       yesterday: 'Yesterday',
       before: 'Older',
@@ -401,6 +403,7 @@ define([], function () {
       removeGroupConversation: 'Você quer deixar o grupo {{groupTitle}} e ' +
       'retire a conversa?',
       remove1to1Conversation: 'Você quer remover a conversa com {{who}}?',
+      removeMessage: 'Você quer remover esta mensagem?',
       today: 'Hoje',
       yesterday: 'Ontem',
       before: 'Anterior',
@@ -578,6 +581,7 @@ define([], function () {
       removeGroupConversation: 'Você quer deixar o grupo {{groupTitle}} e ' +
       'retire a conversa?',
       remove1to1Conversation: 'Você quer remover a conversa com {{who}}?',
+      removeMessage: 'Você quer remover esta mensagem?',
       today: 'Hoje',
       yesterday: 'Ontem',
       before: 'Anterior',
