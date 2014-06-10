@@ -42,7 +42,8 @@ define([
       'click li.location img': 'goToImageViewer',
       'click header > a': 'goToInbox',
       'click #emoji-list button': '_hideEmojiList',
-      'click #emoji-list ul': '_selectEmoji'
+      'click #emoji-list ul': '_selectEmoji',
+      'contextmenu .messages': '_showContextMenu'
     },
 
     initialize: function (options) {
@@ -118,6 +119,25 @@ define([
 
       this.listenTo(
         global.notifications, 'notification', this._handleNotification);
+    },
+
+    _showContextMenu: function (evt) {
+      if (evt) { evt.preventDefault(); }
+
+      var l10n = global.localisation[global.language];
+
+      var listitem = $(evt.target).closest('li')[0];
+      console.log(listitem);
+      var messageId = listitem.dataset.messageid;
+
+      var stringId = 'removeMessage';
+      var msg = l10n[stringId];
+      if (window.confirm(msg)) {
+        console.log('Going to remove messageId', messageId);
+        global.historyCollection
+          .removeMessage(this.model.get('id'), messageId);
+        listitem.parentNode.removeChild(listitem);
+      }
     },
 
     _handleNotification: function (notification) {
