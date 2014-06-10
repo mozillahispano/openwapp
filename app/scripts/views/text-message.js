@@ -15,7 +15,8 @@ define([
     model: Message,
 
     events: {
-      'click .resend': '_requestResend'
+      'click .resend': '_requestResend',
+      'click a': '_openInBrowser'
     },
 
     initialize: function () {
@@ -50,6 +51,14 @@ define([
       var oldElement = this.$el;
       this.render();
       oldElement.replaceWith(this.$el);
+    },
+
+    _openInBrowser: function (evt) {
+      evt.preventDefault();
+      new MozActivity({
+        name: 'view',
+        data: { type: 'url', url: evt.target.href }
+      });
     }
   });
 });

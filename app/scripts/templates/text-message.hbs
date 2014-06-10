@@ -1,6 +1,6 @@
 <li class="{{messageOwnerClass from.msisdn}} text {{status}}">
   <span class="author">{{author}}</span>
-  <span class="content">{{contents}}</span>
+  <span class="content">{{expand contents}}</span>
   <time>{{formattedMessageDate meta.date}}</time>
   {{#ifIsUnsent status }}
     {{! not traslated because it will be replaced with a picture }}
