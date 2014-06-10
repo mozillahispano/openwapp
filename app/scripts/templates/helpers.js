@@ -101,6 +101,23 @@ define([
       $el.html(emoji.unifiedToHTML(html));
     },
 
+    _protocol:
+      /(\b(https?):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim,
+
+    _scheme: /(^|[^\/])(www\.[\S]+(\b|$))/gim,
+
+    _expand: function (text) {
+      text = text.replace(
+        Helpers._protocol,
+        '<a href="$1" target="_blank">$1</a>'
+      );
+      text = text.replace(
+        Helpers._scheme,
+        '$1<a href="http://$2" target="_blank">$2</a>'
+      );
+      return new Handlebars.SafeString(text);
+    },
+
     register: function () {
       Handlebars.registerHelper('messageOwnerClass', this._messageOwnerClass);
       Handlebars.registerHelper('formattedMessageDate',
@@ -111,6 +128,7 @@ define([
       Handlebars.registerHelper('translate', this._translate);
       Handlebars.registerHelper('ifNotIsMine', this._ifNotIsMine);
       Handlebars.registerHelper('currentCommit', this._currentCommit);
+      Handlebars.registerHelper('expand', this._expand);
     }
   };
 
