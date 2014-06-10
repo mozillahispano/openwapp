@@ -442,6 +442,8 @@ define([
     },
 
     _onAddMessage: function (message) {
+      var isAtBottom = this._isAtBottom();
+
       var view = this._createViewForMessage(message);
       view.render();
       this.listenTo(view, 'message:resend', this._resendMessage);
@@ -459,7 +461,20 @@ define([
       // insert element
       this.messageViews.splice(found, 0, view);
 
-      this.scrollToLastMessage();
+      if (isAtBottom) {
+        this.scrollToLastMessage();
+      }
+    },
+
+    _isAtBottom: function () {
+      var scrollView = this.$el.find('.page-wrapper')[0];
+      var lastScroll = scrollView.scrollTop;
+      scrollView.scrollTop += 1;
+
+      // scrollTop is clamped to the max value if we already are in the bottom
+      var isAtBottom = scrollView.scrollTop === lastScroll;
+      scrollView.scrollTop = lastScroll;
+      return isAtBottom;
     },
 
     _onRemoveMessage: function (message) {
