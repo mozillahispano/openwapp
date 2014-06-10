@@ -6,6 +6,8 @@ define([
   'use strict';
 
   var Message = Backbone.Model.extend({
+    idAttribute: '_id',
+
     defaults: function () {
       return {
         type: 'text',

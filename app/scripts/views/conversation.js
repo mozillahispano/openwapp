@@ -127,15 +127,13 @@ define([
       var l10n = global.localisation[global.language];
 
       var listitem = $(evt.target).closest('li')[0];
-      console.log(listitem);
-      var messageId = listitem.dataset.messageid;
+      var messageId = listitem.dataset.messageId;
 
       var stringId = 'removeMessage';
       var msg = l10n[stringId];
       if (window.confirm(msg)) {
         console.log('Going to remove messageId', messageId);
-        global.historyCollection
-          .removeMessage(this.model.get('id'), messageId);
+        this.model.removeMessage(messageId);
         listitem.parentNode.removeChild(listitem);
       }
     },
