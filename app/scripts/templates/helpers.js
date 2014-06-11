@@ -107,6 +107,7 @@ define([
     _scheme: /(^|[^\/])(www\.[\S]+(\b|$))/gim,
 
     _expand: function (text) {
+      text = Handlebars.Utils.escapeExpression(text);
       text = text.replace(
         Helpers._protocol,
         '<a href="$1" target="_blank">$1</a>'
