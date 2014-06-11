@@ -133,7 +133,7 @@ define([
 
         }, this);
       } catch (ex) {
-        callback(ex.message, null);
+        this._consumePendingActions(ex.message, null);
       }
     },
 
