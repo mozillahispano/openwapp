@@ -11,6 +11,14 @@ section[role="region"] header h2 {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+section[role="region"] > header:first-child .icon.icon-location {
+  background-image: url(/images/shared/headers/images/icons/location.png);
+}
+
+section[role="region"] > header:first-child .icon.icon-attach {
+  background-image: url(/images/shared/headers/images/icons/attachments.png);
+}
+
 section[role="region"] > header:first-child .icon.icon-group {
   background-image: url(/images/shared/headers/images/icons/group.png);
 }

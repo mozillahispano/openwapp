@@ -14,7 +14,7 @@ define([
     model: Message,
 
     events: {
-      'submit form#conversation-compose' : '_createTextMessage',
+      'click #conversation-send-button' : '_createTextMessage',
       'click #insert-emoji': '_showEmojiList'
     },
 
@@ -38,10 +38,17 @@ define([
     _createTextMessage: function (event) {
       event.preventDefault();
 
-      var input = this.$el.find('#message-text-input');
-      var text = input.val();
-      text = text.replace(/^\s+/g, '').replace(/\s+$/g, '');
-      if (text === '') { return; } // TODO: do proper validation
+      var input = this.$el.find('#message-text-input')[0];
+      var html = input.innerHTML;
+      html = html.trim();
+      if (html.length === 0) { return; }
+      var lines = html.split(/<br\/?>/g);
+      lines = lines.map(function _unscape(line) {
+        var d = document.createElement('div');
+        d.innerHTML = line;
+        return d.textContent;
+      });
+      var text = lines.join('\n');
 
       var newModel = new Message({
         type: 'text',
@@ -50,7 +57,7 @@ define([
         meta: {date: new Date()}
       });
 
-      input.val('');
+      input.innerHTML = '';
       this.trigger('compose:message:text', newModel);
     },
 
