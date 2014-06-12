@@ -34,11 +34,10 @@ define([
     contact: null,
 
     events: {
-      'click button.text': 'showComposeText',
-      'click button.location': 'showComposeLocation',
+      'click a.location': 'showComposeLocation',
+      'click a.multimedia': 'showComposeImage',
       'click form#conversation-compose button.back': 'hideComposeText',
       'keyup input#message-text-input': 'sendTypingActive',
-      'click button.image': 'showComposeImage',
       'click li.location img': 'goToImageViewer',
       'click header > a': 'goToInbox',
       'click #emoji-list button': '_hideEmojiList',
@@ -277,17 +276,13 @@ define([
       this.$el.find('.is-online').addClass('hide');
     },
 
-    showComposeText: function () {
-      this.$footer.addClass('typing');
-      this.$footer.find('input#message-text-input').focus();
-    },
-
     hideComposeText: function () {
       this.$footer.removeClass('typing');
       this.sendTypingIdle();
     },
 
-    showComposeLocation: function () {
+    showComposeLocation: function (evt) {
+      if (evt) { evt.preventDefault(); }
       global.router.navigate('conversation/' + this.model.get('id') +
         '/sendlocation', {trigger: true});
     },
@@ -575,7 +570,8 @@ define([
       global.router.navigate(link, {trigger: true});
     },
 
-    showComposeImage: function () {
+    showComposeImage: function (evt) {
+      if (evt) { evt.preventDefault(); }
       global.router.navigate('conversation/' + this.model.get('id') +
         '/sendimage', { trigger: true });
     },
