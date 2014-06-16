@@ -38,7 +38,8 @@ module.exports = function (grunt) {
       },
       handlebars: {
         files: [
-          '<%= openwappPaths.app %>/scripts/templates/*.hbs'
+          '<%= openwappPaths.app %>/scripts/templates/*.hbs',
+          '<%= openwappPaths.app %>/emoji/*.hbs'
         ],
         tasks: 'handlebars:compile'
       },
@@ -172,7 +173,6 @@ module.exports = function (grunt) {
             'components/PhoneNumber.js/PhoneNumber.js',
             'components/PhoneNumber.js/PhoneNumberMetaData.js',
             'components/coseme/coseme.js',
-            'components/emoji/lib/*',
             'components/fxosRate/locales/*',
             'components/fxosRate/l10n.js',
             'components/fxosRate/fxosrate.js',
@@ -181,6 +181,9 @@ module.exports = function (grunt) {
             'icons/**/*.{png,jpg}',
             'scripts/**/*.js',
             'scripts/**/*.json',
+            'emoji/*.js',
+            'emoji/*.css',
+            'emoji/*.png',
             '*.{ico,txt}',
             '*.html',
             'manifest.webapp'
@@ -214,10 +217,12 @@ module.exports = function (grunt) {
       compile: {
         files: {
           '.tmp/scripts/templates.js': [
-            '<%= openwappPaths.app %>/scripts/templates/*.hbs'
+            '<%= openwappPaths.app %>/scripts/templates/*.hbs',
+            '<%= openwappPaths.app %>/emoji/*.hbs'
           ],
           '<%= openwappPaths.app %>/scripts/templates.js': [
-            '<%= openwappPaths.app %>/scripts/templates/*.hbs'
+            '<%= openwappPaths.app %>/scripts/templates/*.hbs',
+            '<%= openwappPaths.app %>/emoji/*.hbs'
           ]
         },
         options: {
@@ -225,9 +230,9 @@ module.exports = function (grunt) {
           amd: true,
           processName: function (filename) {
             // funky name processing here
-            return filename
-              .replace(/^app\/scripts\/templates\//, '')
-              .replace(/\.hbs$/, '');
+            var parts = filename.split('/');
+            filename = parts[parts.length - 1];
+            return filename.replace(/\.hbs$/, '');
           }
         }
       }

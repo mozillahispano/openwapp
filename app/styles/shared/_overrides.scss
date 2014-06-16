@@ -22,3 +22,7 @@ section[role="region"] > header:first-child .icon.icon-attach {
 section[role="region"] > header:first-child .icon.icon-group {
   background-image: url(/images/shared/headers/images/icons/group.png);
 }
+
+[role="toolbar"] button:active {
+  background: #008aaa no-repeat 50% 50% / 3rem auto;
+}
