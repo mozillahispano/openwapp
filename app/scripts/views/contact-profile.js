@@ -4,8 +4,9 @@ define([
   'global',
   'templates',
   'models/contact',
-  'templates/helpers'
-], function (Backbone, $, global, templates, Contact, helpers) {
+  'templates/helpers',
+  'utils/mimetype'
+], function (Backbone, $, global, templates, Contact, helpers, MimeType) {
   'use strict';
 
   var MozActivity = window.MozActivity;
@@ -43,7 +44,7 @@ define([
 
       var blob = this.model.get('photo');
       if (blob instanceof window.Blob) {
-        var extension = this._extensionByMimeType[blob.type];
+        var extension = MimeType.getExtension(blob.type);
         var fileName = this.model.get('displayName') + '.' + extension;
         new window.MozActivity({
           name: 'open',
@@ -56,16 +57,6 @@ define([
         });
       }
       return false;
-    },
-
-    // XXX: Use this source:
-    // https://github.com/mozilla-b2g/gaia/blob/master/shared/js/mime_mapper.js
-    _extensionByMimeType: {
-      // Image
-      'image/jpeg': 'jpg',
-      'image/png': 'png',
-      'image/gif': 'gif',
-      'image/bmp': 'bmp'
     },
 
     _dialContact: function () {

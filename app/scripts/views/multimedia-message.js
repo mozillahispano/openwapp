@@ -5,8 +5,9 @@ define([
   'zeptojs',
   'global',
   'models/message',
-  'templates'
-], function (Backbone, $, global, Message, templates) {
+  'templates',
+  'utils/mimetype'
+], function (Backbone, $, global, Message, templates, Mimetype) {
   'use strict';
 
   return Backbone.View.extend({
@@ -146,43 +147,13 @@ define([
       }
     },
 
-    // XXX: Use this source:
-    // https://github.com/mozilla-b2g/gaia/blob/master/shared/js/mime_mapper.js
-    _extensionByMimeType: {
-      // Image
-      'image/jpeg': 'jpg',
-      'image/png': 'png',
-      'image/gif': 'gif',
-      'image/bmp': 'bmp',
-      // Audio
-      'audio/aac': 'm4a',
-      'audio/mpeg': 'mp3',
-      'audio/mp4': 'm4a',
-      'audio/ogg': 'ogg',
-      'audio/webm': 'webm',
-      'audio/3gpp': '3gp',
-      'audio/amr': 'amr',
-      // Video
-      'video/mp4': 'mp4',
-      'video/mpeg': 'mpg',
-      'video/ogg': 'ogg',
-      'video/webm': 'webm',
-      'video/3gpp': '3gp',
-      // Application
-      // If we want to support some types, like pdf, just add
-      // 'application/pdf': 'pdf'
-      'application/vcard': 'vcf',
-      // Text
-      'text/vcard': 'vcf',
-      'text/x-vcard': 'vcf'
-    },
 
     _mimeConversionMap: {
       'audio/aac': 'audio/mpeg'
     },
 
     _openWithActivity: function (blob, dontSave) {
-      var extension = this._extensionByMimeType[blob.type];
+      var extension = Mimetype.getExtension(blob.type);
       blob = this._preprocessBlob(blob);
 
       var _this = this;
