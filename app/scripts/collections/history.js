@@ -408,7 +408,7 @@ define([
       var messages = conversation ? conversation.get('messages') : [];
       while (messages.length > 0) {
         messages.remove(messages.at(0));
-      };
+      }
 
       // Remove from history collection
       this.remove(conversation);
