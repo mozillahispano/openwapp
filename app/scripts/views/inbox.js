@@ -257,6 +257,10 @@ define([
           }
         });
       }
+      // Ask for rating when everything is settled
+      this.ratePromptTimeout = window.setTimeout(function () {
+        window.fxosRate.promptRequired();
+      }, 2000);
     },
 
     _pickContact: function (event) {
@@ -308,6 +312,7 @@ define([
     },
 
     clear: function () {
+      window.clearTimeout(this.ratePromptTimeout);
       this.model.updateInbox = undefined;
       this._clearMiniConversations();
     },

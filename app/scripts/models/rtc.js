@@ -257,6 +257,9 @@ define([
     },
 
     _addSentMessage: function (messageId, callback) {
+      // Log sent messages
+      window.fxosRate.logEvent(1);
+
       var _this = this;
 
       if (typeof callback === 'function') {

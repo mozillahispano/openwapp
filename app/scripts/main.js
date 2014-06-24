@@ -8,7 +8,9 @@ require.config({
     rtc: 'vendor/ottcomms-rtc-web/rtc',
     libphonenumber: '../components/PhoneNumber.js',
     coseme: '../components/coseme/coseme',
-    emoji: '../components/emoji/lib/emoji'
+    emoji: '../components/emoji/lib/emoji',
+    fxosrate: '../components/fxosRate/fxosrate',
+    l10n: '../components/fxosRate/l10n'
   },
   shim: {
     'zeptojs': {
@@ -34,6 +36,13 @@ require.config({
     },
     'vendor/async-storage/async-storage': {
       exports: 'asyncStorage'
+    },
+    'l10n': {
+      exports: 'l10n'
+    },
+    'fxosrate': {
+      deps: ['l10n'],
+      exports: 'fxosRate'
     },
     'coseme': {
       exports: 'CoSeMe',

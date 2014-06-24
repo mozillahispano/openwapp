@@ -173,6 +173,9 @@ module.exports = function (grunt) {
             'components/PhoneNumber.js/PhoneNumberMetaData.js',
             'components/coseme/coseme.js',
             'components/emoji/lib/*',
+            'components/fxosRate/locales/*',
+            'components/fxosRate/l10n.js',
+            'components/fxosRate/fxosrate.js',
             /** END OF COMPONENTS **/
             'styles/main.css',
             'icons/**/*.{png,jpg}',
