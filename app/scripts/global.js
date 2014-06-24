@@ -6,7 +6,7 @@ define([
 
   // Initialize FirefoxOS Rate library
   window.fxosRate = Object.create(window.fxosRate);
-  window.fxosRate.init('openwapp', '1.3.0', 10, 5, 5, 0, 0, 7);
+  window.fxosRate.init('openwapp', '{{latestTag}}', 10, 5, 5, 0, 0, 7);
 
   var client = cosemeClient.init();
 
