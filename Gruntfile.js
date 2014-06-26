@@ -173,6 +173,9 @@ module.exports = function (grunt) {
             'components/PhoneNumber.js/PhoneNumberMetaData.js',
             'components/coseme/coseme.js',
             'components/emoji/lib/*',
+            'components/fxosRate/locales/*',
+            'components/fxosRate/l10n.js',
+            'components/fxosRate/fxosrate.js',
             /** END OF COMPONENTS **/
             'styles/main.css',
             'icons/**/*.{png,jpg}',
@@ -365,8 +368,23 @@ module.exports = function (grunt) {
             cb();
           }
         }
-      }
+      },
 
+      getLatestTag: {
+        command: 'git describe --abbrev=0 --tags',
+        options: {
+          callback: function (err, stdout, stderr, cb) {
+            stdout = stdout.trim();
+            // If we have a leading 'v' in the version, remove it
+            if (stdout.substring(0, 1) === 'v') {
+              stdout = stdout.substring(1);
+            }
+            console.log('Latest tag: ' + stdout);
+            grunt.config.set('openwappLatestTag', stdout);
+            cb();
+          }
+        }
+      }
     },
 
     'string-replace': {
@@ -379,6 +397,18 @@ module.exports = function (grunt) {
           replacements: [{
             pattern: '{{currentCommit}}',
             replacement: '<%= openwappVersion %>'
+          }]
+        }
+      },
+      writeLatestTag: {
+        files: {
+          '<%= openwappPaths.dist %>/scripts/global.js':
+            '<%= openwappPaths.dist %>/scripts/global.js'
+        },
+        options: {
+          replacements: [{
+            pattern: '{{latestTag}}',
+            replacement: '<%= openwappLatestTag %>'
           }]
         }
       }
@@ -446,7 +476,9 @@ module.exports = function (grunt) {
     // 'imagemin',
     'copy:build',
     'shell:getVersion',
-    'string-replace:writeVersion'
+    'string-replace:writeVersion',
+    'shell:getLatestTag',
+    'string-replace:writeLatestTag'
   ]);
 
   grunt.registerTask('simulate', 'Launch with B2G simulator', function () {
