@@ -17,11 +17,23 @@ define([
     events: {
       'click #conversation-send-button' : '_createTextMessage',
       'click #insert-emoji': '_toggleEmojiList',
-      'click #message-text-input': '_hideEmojiList'
+      'click #message-text-input': '_hideEmojiList',
+      'focus #message-text-input': '_updateScrollTarget',
+      'blur #message-text-input': '_updateScrollTarget'
     },
 
-
     initialize: function () {
+      window.onresize = this._updateScroll.bind(this);
+    },
+
+    _updateScrollTarget: function () {
+      var scrollView = $('.page-wrapper').get(0);
+      this._scrollTarget = scrollView.scrollTop + scrollView.clientHeight;
+    },
+
+    _updateScroll: function () {
+      var scrollView = $('.page-wrapper').get(0);
+      scrollView.scrollTop = this._scrollTarget - scrollView.clientHeight;
     },
 
     _toggleEmojiList: function () {
@@ -39,7 +51,6 @@ define([
     render: function () {
       var newElement = this.template(this.model.toJSON());
       this.setElement($(newElement));
-
 
       this.$messageComposer = this.$el.find('#message-text-input');
 

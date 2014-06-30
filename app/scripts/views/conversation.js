@@ -292,11 +292,10 @@ define([
     },
 
     scrollToLastMessage: function () {
-      var wrapper = this.$el.find('.page-wrapper')[0];
-      var list = this.$el.find('ul.messages')[0];
-      if (wrapper && list) {
-        wrapper.scrollTop = Math.max(0,
-          list.clientHeight - wrapper.clientHeight);
+      var scrollView = this._scrollView;
+      if (scrollView) {
+        scrollView.scrollTop = Math.max(0,
+          scrollView.scrollHeight - scrollView.clientHeight);
       }
     },
 
@@ -479,7 +478,8 @@ define([
         // to big enough positions) as [date, conversationId]. conversationId
         // need to be padded as well. Damn IDB!
         if (this._nextToShow === null ||
-            messageTimestamp <= parseInt(this._nextToShow.dataset.timestamp)) {
+            messageTimestamp <=
+              parseInt(this._nextToShow.dataset.timestamp, 10)) {
           this._nextToShow = this._nextToShow || view.$el.get(0);
           view.$el.hide();
         }
@@ -501,7 +501,7 @@ define([
     _onScroll: function () {
       var scrollHeight = this._scrollView.scrollHeight;
       var scrollTop = this._scrollView.scrollTop;
-      if (scrollTop < 30) {
+      if (scrollTop < 60) {
         this._showNextChunk();
         this._scrollView.scrollTop =
           this._scrollView.scrollHeight - scrollHeight + scrollTop;
