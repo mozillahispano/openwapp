@@ -18,6 +18,7 @@ define([
 
     render: function () {
       var newElement = this.template({
+        timestamp: this.model.get('meta').date.getTime(),
         date: this.model.get('meta').date,
         message: this._getMessage()
       });

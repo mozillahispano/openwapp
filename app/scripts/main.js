@@ -51,6 +51,7 @@ require.config({
         var CoSeMe = this.CoSeMe;
         CoSeMe.crypto = this.CryptoJS;
         CoSeMe.common.Logger.disableAll();
+        CoSeMe.common.Logger.enableAll();
         return this.CoSeMe;
       }
     }

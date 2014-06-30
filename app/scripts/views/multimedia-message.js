@@ -38,6 +38,7 @@ define([
       else {
         jsonModel.author = jsonModel.from.displayName;
       }
+      jsonModel.meta.timestamp = jsonModel.meta.date.getTime();
       var newElement = this.template(jsonModel);
       this.setElement(newElement);
 
