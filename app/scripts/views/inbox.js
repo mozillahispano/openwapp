@@ -25,7 +25,8 @@ define([
 
     events: {
       'click #add-contact': '_pickContact',
-      'contextmenu #conversations ul': '_showContextMenu'
+      'contextmenu #conversations ul': '_showContextMenu',
+      'click #new-group': '_newGroup'
     },
 
     initialize: function () {
@@ -50,6 +51,19 @@ define([
         global.auth.checkCredentials();
       }
       this._contactListBuffer = document.createDocumentFragment();
+    },
+
+    _newGroup: function (evt) {
+      if (evt) { evt.preventDefault(); }
+      var groups = global.contacts.getGroups();
+      if (groups && groups.length >= 50) {
+        var l10n = global.localisation[global.language];
+        var stringId = 'participatingInTooMuchGroups';
+        window.alert(l10n[stringId]);
+      } else {
+        console.log('Limit not reached, allowing creating a new group');
+        global.router.navigate('new-group', { trigger: true });
+      }
     },
 
     _showContextMenu: function (evt) {

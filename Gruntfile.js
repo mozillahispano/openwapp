@@ -42,12 +42,12 @@ module.exports = function (grunt) {
         ],
         tasks: 'handlebars:compile'
       },
-      coverage: {
+      dist: {
         files: [
           '<%= openwappPaths.app %>/scripts/{,*/}*.js',
           '<%= .tmp/scripts/*.js',
         ],
-        tasks: 'cover:compile'
+        tasks: 'dist'
       }
     },
 

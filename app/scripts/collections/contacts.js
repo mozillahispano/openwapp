@@ -29,6 +29,10 @@ define([
       }
     },
 
+    getGroups: function() {
+      return this.where({ isGroup: true });
+    },
+
     findOrCreate: function (phone, displayName, callback) {
       var _this = this;
       var isNew = false;
