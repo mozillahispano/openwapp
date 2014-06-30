@@ -177,7 +177,9 @@ define([], function () {
       errorAddingParticipant: 'No se puede añadir este contacto al grupo',
       genericConnectionProblem: 'Hubo un error inesperado. ¿Estás seguro de ' +
             'que tienes red? Prueba a reiniciar OpenWapp y si sigue ' +
-            'ocurriendo, intenta la operación más tarde'
+            'ocurriendo, intenta la operación más tarde',
+      participatingInTooMuchGroups: 'Estás participando en demasiados grupos.' +
+            ' El límite es 50. Por favor, abandona uno antes de crear otro'
     },
     'en-US': {
       all: 'All',
@@ -357,7 +359,9 @@ define([], function () {
       errorAddingParticipant: 'This contact can not be added to this group',
       genericConnectionProblem: 'There was an unexpected problem. Are you ' +
             'sure you are connected? Try to close and open OpenWapp. If the ' +
-            'behaviour keep reproducing, try again later.'
+            'behaviour keep reproducing, try again later.',
+      participatingInTooMuchGroups: 'You are participating in too much groups' +
+      '. The limit is 50. You must leave one group before starting another one.'
     },
     pt : {
       all: 'Tudo',
@@ -535,7 +539,9 @@ define([], function () {
             'a este grupo',
       genericConnectionProblem: 'Houve um problema inesperado. Tem certeza ' +
             'que você está conectado? Tente fechar e abrir OpenWapp. Se o ' +
-            'comportamento continuar reproduzindo, tente novamente mais tarde.'
+            'comportamento continuar reproduzindo, tente novamente mais tarde.',
+      participatingInTooMuchGroups: 'Está muito adicionado em grupos. O ' +
+      'limite é de 50. Você deve deixar um grupo antes de iniciar outra.'
     },
     'pt-BR' : {
       all: 'Tudo',
@@ -714,7 +720,9 @@ define([], function () {
             'a este grupo',
       genericConnectionProblem: 'Houve um problema inesperado. Tem certeza ' +
             'que você está conectado? Tente fechar e abrir OpenWapp. Se o ' +
-            'comportamento continuar reproduzindo, tente novamente mais tarde.'
+            'comportamento continuar reproduzindo, tente novamente mais tarde.',
+      participatingInTooMuchGroups: 'Está muito adicionado em grupos. O ' +
+      'limite é de 50. Você deve deixar um grupo antes de iniciar outra.'
     }
   };
 });
