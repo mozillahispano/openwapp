@@ -30,6 +30,7 @@ define([
         locationText: this.model.get('contents').address ?
                       this.model.get('contents').address : ''
       });
+      data.meta.timestamp = data.meta.date.getTime();
       var newElement = this.template(data);
       this.setElement(newElement);
 

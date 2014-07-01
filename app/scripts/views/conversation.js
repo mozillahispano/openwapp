@@ -95,6 +95,9 @@ define([
 
     render: function () {
       this.$el.html(this.template(this.model.toJSON()));
+      this._scrollView = this.$el.find('.page-wrapper').get(0);
+      $(this._scrollView).on('scroll', this._onScroll.bind(this));
+
       if (this.model.get('isGroup')) {
         this.$el.find('#conversation').addClass('group');
       }
@@ -123,9 +126,12 @@ define([
 
       var l10n = global.localisation[global.language];
 
-      var listitem = $(evt.target).closest('li')[0];
-      var messageId = listitem.dataset.messageId;
+      var listitem = $(evt.target).closest('li').get(0);
+      if (!listitem) {
+        return;
+      }
 
+      var messageId = listitem.dataset.messageId;
       var stringId = 'removeMessage';
       var msg = l10n[stringId];
       if (window.confirm(msg)) {
@@ -286,11 +292,10 @@ define([
     },
 
     scrollToLastMessage: function () {
-      var wrapper = this.$el.find('.page-wrapper')[0];
-      var list = this.$el.find('ul.messages')[0];
-      if (wrapper && list) {
-        wrapper.scrollTop = Math.max(0,
-          list.clientHeight - wrapper.clientHeight);
+      var scrollView = this._scrollView;
+      if (scrollView) {
+        scrollView.scrollTop = Math.max(0,
+          scrollView.scrollHeight - scrollView.clientHeight);
       }
     },
 
@@ -435,9 +440,9 @@ define([
       return view;
     },
 
-    // Finds the position of the previous message for an incoming message
+    // Finds the position of the next message for an incoming message
     // - returns the index, 0...length   (length = add one at end)
-    _findPreviousMessageIndex: function (message) {
+    _findNextMessageIndex: function (message) {
       if (!this.messageViews.length) {
         return 0;
       }
@@ -454,13 +459,31 @@ define([
 
     _onAddMessage: function (message) {
       var isAtBottom = this._isAtBottom();
+      var isNotFirstChunk =
+        this._scrollView.scrollHeight > this._scrollView.clientHeight * 1.5;
 
+      // Create and hide view
       var view = this._createViewForMessage(message);
       view.render();
       this.listenTo(view, 'message:resend', this._resendMessage);
 
       // Make sure the view is added in the right position
-      var found = this._findPreviousMessageIndex(message);
+      var found = this._findNextMessageIndex(message);
+      if (isNotFirstChunk) {
+        var messageTimestamp = message.get('meta').date.getTime();
+        // This is because the message can come in any order so we force
+        // elements after _nextToShow to be visible. Not optimal but working
+        // as this happens only from time to time.
+        // TODO: Add a combined index with a string timestamp (padded with 0s
+        // to big enough positions) as [date, conversationId]. conversationId
+        // need to be padded as well. Damn IDB!
+        if (this._nextToShow === null ||
+            messageTimestamp <=
+              parseInt(this._nextToShow.dataset.timestamp, 10)) {
+          this._nextToShow = this._nextToShow || view.$el.get(0);
+          view.$el.hide();
+        }
+      }
       if (found === this.messageViews.length) {
         this.$el.find('ul.messages').append(view.$el);
       } else if (found === 0) {
@@ -468,8 +491,6 @@ define([
       } else {
         this.messageViews[found].$el.before(view.$el);
       }
-
-      // insert element
       this.messageViews.splice(found, 0, view);
 
       if (isAtBottom) {
@@ -477,8 +498,31 @@ define([
       }
     },
 
+    _onScroll: function () {
+      var scrollHeight = this._scrollView.scrollHeight;
+      var scrollTop = this._scrollView.scrollTop;
+      if (scrollTop < 60) {
+        this._showNextChunk();
+        this._scrollView.scrollTop =
+          this._scrollView.scrollHeight - scrollHeight + scrollTop;
+      }
+    },
+
+    CHUNK_SIZE: 7,
+
+    _nextToShow: null,
+
+    _showNextChunk: function () {
+      var messagesShown = 0;
+      while (this._nextToShow && messagesShown < this.CHUNK_SIZE) {
+        $(this._nextToShow).show();
+        this._nextToShow = this._nextToShow.previousSibling;
+        messagesShown++;
+      }
+    },
+
     _isAtBottom: function () {
-      var scrollView = this.$el.find('.page-wrapper')[0];
+      var scrollView = this._scrollView;
       var lastScroll = scrollView.scrollTop;
       scrollView.scrollTop += 1;
 

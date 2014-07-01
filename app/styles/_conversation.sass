@@ -48,13 +48,11 @@ $conversation-typing-height: 0.6rem
 
 #conversation > div.page-wrapper
   position: relative
-  max-height: -moz-calc(100% - #{$conversation-footer-height + $header-height})
-  max-height: -webkit-calc(100% - #{$conversation-footer-height + $header-height})
+  top: 3.5rem
+  max-height: calc(100% - #{$conversation-footer-height + $header-height} - 3.5rem)
 
 #conversation ul.messages
-  // extra bottom padding to make space for the
-  // absolute positioned time in last balloon
-  padding: 0.7rem 0.7rem 2.5rem 0.7rem
+  padding: 0.7rem
   // idle & active indicator
   &:after
     content: ""
@@ -115,8 +113,6 @@ $conversation-typing-height: 0.6rem
   +clearfix
   position: relative
   margin-top: 1rem
-  &:first-child
-    margin-top: 2.7rem
   span.author
     visibility: hidden
   span.content
@@ -289,7 +285,7 @@ $conversation-typing-height: 0.6rem
   left: 0
   right: 0
   +box-sizing(border-box)
-  padding: 0rem
+  padding: 0 
   nav
     height: $conversation-footer-height
     padding: 0
