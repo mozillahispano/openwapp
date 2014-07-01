@@ -40,8 +40,6 @@ define([
       'keyup input#message-text-input': 'sendTypingActive',
       'click li.location img': 'goToImageViewer',
       'click header > a': 'goToInbox',
-      'click #emoji-list button': '_hideEmojiList',
-      'click #emoji-list ul': '_selectEmoji',
       'contextmenu .messages': '_showContextMenu'
     },
 
@@ -583,20 +581,7 @@ define([
         this.$el.find('.progressContainer').css('display', 'none');
       }
       this.$el.find('.progressContainer progress.pack-activity').val(value);
-    },
-
-    //TODO: Move emoji functionallity to its own view
-    _hideEmojiList: function () {
-      $('#emoji-list').addClass('hidden');
-    },
-
-    _selectEmoji: function (event) {
-      if (event.target.tagName.toLowerCase() === 'input') {
-        this.composeMessageView.createEmojiMessage();
-        this._hideEmojiList();
-      }
     }
-
   });
 
   return Conversation;

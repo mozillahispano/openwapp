@@ -3,8 +3,9 @@ define([
   'zeptojs',
   'global',
   'models/message',
+  'views/emoji-selector',
   'templates'
-], function (Backbone, $, global, Message, templates) {
+], function (Backbone, $, global, Message, EmojiSelector, templates) {
   'use strict';
 
   return Backbone.View.extend({
@@ -15,15 +16,20 @@ define([
 
     events: {
       'click #conversation-send-button' : '_createTextMessage',
-      'click #insert-emoji': '_showEmojiList'
+      'click #insert-emoji': '_toggleEmojiList',
+      'click #message-text-input': '_hideEmojiList'
     },
+
 
     initialize: function () {
     },
 
-    //TODO: Move emoji functionallity to its own view
-    _showEmojiList: function () {
-      $('#emoji-list').removeClass('hidden');
+    _toggleEmojiList: function () {
+      this._emojiSelector[this._emojiSelector.isHidden() ? 'show' : 'hide']();
+    },
+
+    _hideEmojiList: function () {
+      this._emojiSelector.hide();
     },
 
     clear: function () {
@@ -33,23 +39,25 @@ define([
     render: function () {
       var newElement = this.template(this.model.toJSON());
       this.setElement($(newElement));
+
+
+      this.$messageComposer = this.$el.find('#message-text-input');
+
+      this._emojiSelector = new EmojiSelector({
+        composer: this.$messageComposer.get(0)
+      });
+      $('#conversation').after(this._emojiSelector.render().el);
+      this._emojiSelector.changeTab('people');
     },
 
     _createTextMessage: function (event) {
       event.preventDefault();
 
-      var input = this.$el.find('#message-text-input')[0];
-      var html = input.innerHTML;
-      html = html.trim();
+      var html = this.$messageComposer.html().trim();
       if (html.length === 0) { return; }
-      var lines = html.split(/<br\/?>/g);
-      lines = lines.map(function _unscape(line) {
-        var d = document.createElement('div');
-        d.innerHTML = line;
-        return d.textContent;
-      });
-      var text = lines.join('\n');
 
+      html = this._emojiToUnicode(html);
+      var text = this._brToBreakLines(html);
       var newModel = new Message({
         type: 'text',
         contents: text,
@@ -57,21 +65,31 @@ define([
         meta: {date: new Date()}
       });
 
-      input.innerHTML = '';
+      this.$messageComposer.html('<br>');
+      this._emojiSelector.clearCaretPosition();
       this.trigger('compose:message:text', newModel);
     },
 
-    createEmojiMessage: function () {
-      var $emojiItem = $('#emoji-list input:checked');
-      var emojiCode = $emojiItem.val();
-      var newModel = new Message({
-        type: 'text',
-        contents: emojiCode,
-        from: {msisdn: global.auth.get('msisdn')},
-        meta: {date: new Date()}
+    _emojiToUnicode: function (html) {
+      var container = document.createElement('div');
+      container.innerHTML = html;
+      var emojis = container.querySelectorAll('.emoji');
+      emojis = Array.prototype.slice.call(emojis);
+      emojis.forEach(function _replace(emojiElement) {
+        var entity = document.createTextNode(emojiElement.dataset.code);
+        emojiElement.parentNode.replaceChild(entity, emojiElement);
       });
-      this.trigger('compose:message:text', newModel);
-    }
+      return container.innerHTML;
+    },
 
+    _brToBreakLines: function (html) {
+      var lines = html.split(/<br\/?>/g);
+      lines = lines.map(function _unscape(line) {
+        var d = document.createElement('div');
+        d.innerHTML = line;
+        return d.textContent;
+      });
+      return lines.join('\n');
+    }
   });
 });

@@ -29,7 +29,7 @@ define([
       }
     },
 
-    getGroups: function() {
+    getGroups: function () {
       return this.where({ isGroup: true });
     },
 

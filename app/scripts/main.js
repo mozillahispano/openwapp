@@ -8,7 +8,7 @@ require.config({
     rtc: 'vendor/ottcomms-rtc-web/rtc',
     libphonenumber: '../components/PhoneNumber.js',
     coseme: '../components/coseme/coseme',
-    emoji: '../components/emoji/lib/emoji',
+    emoji: '../emoji/emoji',
     fxosrate: '../components/fxosRate/fxosrate',
     l10n: '../components/fxosRate/l10n'
   },

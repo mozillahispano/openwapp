@@ -1,13 +1,51 @@
-// TODO: Use Isma's technique for vertical center in BuildingBlocks
+#emoji-list
+  min-height: 0
+  height: 21rem
+  background-color: #333
+  overflow: hidden
+  z-index: 100
+  padding: 0.2rem 0 0 0
+  position: absolute
+  bottom: 0
+  [role="toolbar"]
+    position: absolute
+    text-align: center
+    ul:last-child
+      width: 100%
+      float: none
+    ul:last-child li
+      display: inline-block
+      float: none
+
+#emoji-list .content
+  height: calc(100% - 4rem - 0.2rem)
+  overflow: auto
+  text-align: center
+
 #emoji-list i.emoji
   margin-top: 1.2rem
 
-#emoji-list
-  opacity: 1
-  pointer-events: auto
-  transition: opacity 200ms ease
-
 #emoji-list.hidden
-  opacity: 0
-  pointer-events: none
+  display: none
 
+#emoji-list .content li
+  display: inline-block
+
+#emoji-list .emoji
+  width: 4.5rem
+  height: 4.5rem
+
+#emoji-list .icon.icon-people
+  background-image: url(/images/people.png)
+
+#emoji-list .icon.icon-nature
+  background-image: url(/images/nature.png)
+
+#emoji-list .icon.icon-objects
+  background-image: url(/images/objects.png)
+
+#emoji-list .icon.icon-places
+  background-image: url(/images/places.png)
+
+#emoji-list .icon.icon-symbols
+  background-image: url(/images/symbols.png)

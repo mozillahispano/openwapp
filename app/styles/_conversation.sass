@@ -4,11 +4,17 @@ $conversation-typing-height: 0.6rem
 #conversation
   background: #ebebeb url(/images/divider_line2x.png) center top repeat-y
   +background-size(1.2rem 1rem)
-  position: relative
+  position: absolute
+  top: 0
+  bottom: 0
+  height: auto
+
   &.group header menu
     visibility: visible
   &:not(.group) h2.participants
     visibility: hidden
+  &.selecting-emoji
+    bottom: 21rem
 
 #conversation > header.connection-status
   position: absolute
@@ -304,7 +310,7 @@ $conversation-typing-height: 0.6rem
   form
     +box-sizing(border-box)
     white-space: nowrap
-    #message-text-input 
+    #message-text-input
       font: inherit
       font-size: 1.7rem
       border: none
