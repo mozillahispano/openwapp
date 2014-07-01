@@ -50,8 +50,10 @@ define([
         var onExpired = function () {
           this.stopListening(global.auth, 'login:fail', onFail);
           this.stopListening(global.auth, 'login:success', onSuccess);
+          var l10n = global.localisation[global.language];
+          var stringId = 'accountExpired';
           var wantToPurchase =
-            confirm('Your account has expired. Do you want to update your account?');
+            window.confirm(l10n[stringId]);
           if (wantToPurchase) {
             window.open(this._getUpgradeURL(), '', 'dialog');
           }
