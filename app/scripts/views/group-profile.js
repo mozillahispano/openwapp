@@ -75,7 +75,8 @@ define([
       'click button.leave':                  'leave',
       'click #profile-picture':              'selectPicture',
       'click .add-participant':              'showParticipants',
-      'click .remove-participant':           'removeParticipant'
+      'click .remove-participant':           'removeParticipant',
+      'keydown input':                       'preventEnter'
     },
 
     checkSubjectInput: function (evt) {
@@ -352,6 +353,13 @@ define([
 
     clear: function () {
       window.URL.revokeObjectURL(this.$el.find('img').attr('src'));
+    },
+
+    preventEnter: function (evt) {
+      if (evt.keyCode === 13) {
+        evt.preventDefault();
+        evt.target.blur();
+      }
     }
   });
 
