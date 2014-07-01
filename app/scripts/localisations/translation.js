@@ -179,7 +179,10 @@ define([], function () {
             'que tienes red? Prueba a reiniciar OpenWapp y si sigue ' +
             'ocurriendo, intenta la operación más tarde',
       participatingInTooMuchGroups: 'Estás participando en demasiados grupos.' +
-            ' El límite es 50. Por favor, abandona uno antes de crear otro'
+            ' El límite es 50. Por favor, abandona uno antes de crear otro',
+      accountExpired: 'Su cuenta ha caducado. ¿Desea actualizar su cuenta?',
+      accountExpiration: 'Fecha de expiración',
+      upgradeNow: 'Actualizar ahora'
     },
     'en-US': {
       all: 'All',
@@ -361,7 +364,12 @@ define([], function () {
             'sure you are connected? Try to close and open OpenWapp. If the ' +
             'behaviour keep reproducing, try again later.',
       participatingInTooMuchGroups: 'You are participating in too much groups' +
-      '. The limit is 50. You must leave one group before starting another one.'
+      '. The limit is 50. You must leave one group before starting another ' +
+      'one.',
+      accountExpired: 'Your account has expired. Do you want to upgrade ' +
+                         'your account now?',
+      accountExpiration: 'Expiration date',
+      upgradeNow: 'Upgrade now'
     },
     pt : {
       all: 'Tudo',
@@ -541,7 +549,11 @@ define([], function () {
             'que você está conectado? Tente fechar e abrir OpenWapp. Se o ' +
             'comportamento continuar reproduzindo, tente novamente mais tarde.',
       participatingInTooMuchGroups: 'Está muito adicionado em grupos. O ' +
-      'limite é de 50. Você deve deixar um grupo antes de iniciar outra.'
+      'limite é de 50. Você deve deixar um grupo antes de iniciar outra.',
+      accountExpired: 'Sua conta expirou. Você quer atualizar a sua conta ' +
+                         'agora?',
+      accountExpiration: 'Data de validade',
+      upgradeNow: 'Actualizar agora'
     },
     'pt-BR' : {
       all: 'Tudo',
@@ -722,7 +734,11 @@ define([], function () {
             'que você está conectado? Tente fechar e abrir OpenWapp. Se o ' +
             'comportamento continuar reproduzindo, tente novamente mais tarde.',
       participatingInTooMuchGroups: 'Está muito adicionado em grupos. O ' +
-      'limite é de 50. Você deve deixar um grupo antes de iniciar outra.'
+      'limite é de 50. Você deve deixar um grupo antes de iniciar outra.',
+      accountExpired: 'Sua conta expirou. Você quer atualizar a sua conta ' +
+                         'agora?',
+      accountExpiration: 'Data de validade',
+      upgradeNow: 'Actualizar agora'
     }
   };
 });

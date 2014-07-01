@@ -33,10 +33,12 @@ define([
       if (!global.client.isOnline) {
         var onSuccess = function () {
           this.stopListening(global.auth, 'login:fail', onFail);
+          this.stopListening(global.auth, 'login:expired', onExpired);
         };
 
         var onFail = function () {
           this.stopListening(global.auth, 'login:success', onSuccess);
+          this.stopListening(global.auth, 'login:expired', onExpired);
           if (localStorage.getItem('isPinSent')) {
             this._goToValidate();
           }
@@ -45,12 +47,27 @@ define([
           }
         };
 
+        var onExpired = function () {
+          this.stopListening(global.auth, 'login:fail', onFail);
+          this.stopListening(global.auth, 'login:success', onSuccess);
+          var wantToPurchase =
+            confirm('Your account has expired. Do you want to update your account?');
+          if (wantToPurchase) {
+            window.open(this._getUpgradeURL(), '', 'dialog');
+          }
+        };
+
         this.listenToOnce(global.auth, 'login:success', onSuccess);
         this.listenToOnce(global.auth, 'login:fail', onFail);
+        this.listenToOnce(global.auth, 'login:expired', onExpired);
 
         global.auth.checkCredentials();
       }
       this._contactListBuffer = document.createDocumentFragment();
+    },
+
+    _getUpgradeURL: function () {
+      return global.client.getUpgradeAccountURL(global.auth.get('msisdn'));
     },
 
     _newGroup: function (evt) {

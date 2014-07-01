@@ -58,7 +58,10 @@ define([
       if (!messageDate) { return ''; }
       var formattedDate = formatDay(messageDate);
       var formattedTime = /^\d\d:\d\d/.exec(messageDate.toTimeString());
-      return formattedTime + ' ' + formattedDate;
+      var currentYear = new Date().getFullYear();
+      var formattedYear = currentYear !== messageDate.getFullYear() ?
+                          ' ' + messageDate.getFullYear() : '';
+      return formattedTime + ' ' + formattedDate + formattedYear;
     },
 
     _ifIsUnsent: function (status, block) {

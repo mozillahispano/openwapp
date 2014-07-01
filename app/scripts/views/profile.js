@@ -32,6 +32,7 @@ define([
 
     render: function () {
       this.$el.html(this.template({
+        expiration: global.client.expirationDate,
         screenName: this.model.get('screenName'),
         status: this.model.get('status')
       }));
@@ -51,7 +52,8 @@ define([
       'click button.close':                  'goToInbox',
       'click img':                           'selectPicture',
       'click legend':                        'showSelect',
-      'change select':                       'setAwakePeriod'
+      'change select':                       'setAwakePeriod',
+      'click #upgrade-now':                  'goToUpgradeNow'
     },
 
     checkNameInput: function (evt) {
@@ -164,6 +166,12 @@ define([
     goToInbox: function (evt) {
       if (evt) { evt.preventDefault(); }
       global.router.navigate('inbox', { trigger: true });
+    },
+
+    goToUpgradeNow: function (evt) {
+      if (evt) { evt.preventDefault(); }
+      var phone = this.model.get('msisdn');
+      window.open(global.client.getUpgradeAccountURL(phone), '', 'dialog');
     },
 
     clear: function () {
