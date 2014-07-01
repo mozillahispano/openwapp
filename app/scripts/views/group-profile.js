@@ -41,10 +41,12 @@ define([
     },
 
     render: function () {
+      var maxSubjectLength = global.client.getProperty('max_subject');
       this.$el.html(this.template({
         isEditMode: this.isEditMode,
         showControls: this.showControls,
-        subject: this.model.get('subject')
+        subject: this.model.get('subject'),
+        maxSubjectLength: maxSubjectLength
       }));
       this._replacePhoto(this.picture);
 

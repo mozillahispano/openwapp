@@ -105,6 +105,15 @@
       var appVersion = 0.5;
       var yowsup = CoSeMe.yowsup;
 
+      // Default properties map
+      var propertiesDefault = {
+        'max_subject': 25,
+        'max_groups': 50
+      };
+      // Holds the object sent by the server
+      var properties;
+
+
       var signals = yowsup.getSignalsInterface();
       var methods = yowsup.getMethodsInterface();
 
@@ -127,12 +136,13 @@
         var args = [].slice.call(arguments, 1);
         getCallbacks(type).forEach(function(callback) {
           callback.apply(null, args);
-        })
+        });
       }
 
       // Auth setup
       signals.registerListener('auth_success', onAuthSuccess);
       signals.registerListener('auth_fail', onAuthError);
+      signals.registerListener('got_properties', onGotProperties);
 
       function onAuthSuccess() {
         if (_authSuccessCallback) {
@@ -148,6 +158,11 @@
         }
         _authErrorCallback = null;
         fire('disconnected');
+      }
+
+      function onGotProperties(props) {
+        console.log('Got properties', props);
+        properties = props;
       }
 
       // Contact status
@@ -614,6 +629,12 @@
           }
 
           return true;
+        },
+
+        // If getting a new `name` property, add a default value to
+        // propertiesDefault
+        getProperty: function (name) {
+          return properties && properties[name] || propertiesDefault[name];
         },
 
         /* My presence */
