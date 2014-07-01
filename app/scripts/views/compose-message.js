@@ -37,7 +37,9 @@ define([
     },
 
     _toggleEmojiList: function () {
+      this._updateScrollTarget();
       this._emojiSelector[this._emojiSelector.isHidden() ? 'show' : 'hide']();
+      setTimeout(this._updateScroll.bind(this), 100);
     },
 
     _hideEmojiList: function () {
