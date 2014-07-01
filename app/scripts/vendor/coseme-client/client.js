@@ -570,6 +570,21 @@
           return methods.call('is_online', []);
         },
 
+        get expirationDate() {
+          return methods.call('getExpirationDate', []);
+        },
+
+        UPGRADE_URL: 'http://www.whatsapp.com/payments/cksum_pay.php?' +
+                     'phone={{phone}}&cksum={{cksum}}',
+
+        getUpgradeAccountURL: function (phone) {
+          var token = phone + 'abc';
+          var cksum = CoSeMe.crypto.MD5(token);
+          var url = this.UPGRADE_URL.replace('{{phone}}', phone);
+          url = url.replace('{{cksum}}', cksum);
+          return url + '';
+        },
+
         auth: function(userId, password, callback) {
           // Avoid authenticate while in the middle of another authentication
           if (authenticating) {

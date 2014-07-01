@@ -87,15 +87,17 @@ define([
           _this.trigger('login:fail');
           return;
         }
-
-        // TODO: Distinguish when the error is expired to warn the users about
-        // the state of their account.
+        else if (err === 'expired') {
+          _this.trigger('login:expired');
+          return;
+        }
         else if (err) {
           _this._retryLoginBecauseOfErrors();
           return;
         }
 
-        console.log('WA PASSWORD: ' + pass);
+        console.log('[auth] MSISDN: ' + msisdn);
+        console.log('[auth] password: ' + pass);
 
         _this.set('password', pass);
         _this.set('msisdn', msisdn);
