@@ -41,10 +41,10 @@ define([
       this.reset();
     },
 
-    _formatImageMessageContent: function (content) {
+    _formatMultiMediaMessageContent: function (content, type) {
       var res = _.extend({}, content);
       res.caption = content.caption ||
-        global.localisation[global.language].defaultImageCaption;
+        global.localisation[global.language][type];
       return res;
     },
 
@@ -59,7 +59,7 @@ define([
       console.log('received image from', from, meta, content);
       // TODO: refactor this in a proper 'translate' method that takes care
       // of the current language
-      content = this._formatImageMessageContent(content);
+      content = this._formatMultiMediaMessageContent(content, meta.type);
 
       var message = new MessageModel({
         type: meta.type,
@@ -137,7 +137,6 @@ define([
     },
 
     _addIncomingMessage: function (message) {
-      // lookup (or create) Conversation
       var from = message.get('from');
       this.findOrCreate(from.msisdn, null, function (err, result) {
         var conversation = result.conversation;
