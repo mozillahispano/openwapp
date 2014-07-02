@@ -96,25 +96,14 @@ $conversation-typing-height: 0.6rem
 #conversation div.typing
   display: none
 
-#conversation ul.messages li.notification
-  span.content
-    font-size: 2rem
-    word-wrap: break-word
-    white-space: pre-wrap
-    text-align: center
-    color: #333
-    background: #DDD
-    border-bottom: 0.1rem solid #444
-    &:after
-      background: none
-
 #conversation ul.messages li
   +clearfix
   margin-top: 3rem
   overflow: visible
   position: relative
   span.author
-    visibility: hidden
+    display: none
+    padding-left: 0.2rem
   span.content
     border-radius: 0 0.2rem 0.2rem 0
     word-wrap: break-word
@@ -175,6 +164,22 @@ $conversation-typing-height: 0.6rem
         color: #f00
       span.content
         border-color: #cd1c1c
+  &.notification
+    time
+      float: right
+      text-align: right
+      position: relative
+      right: 0.2rem
+    span.content
+      font-size: 1.3rem
+      word-wrap: break-word
+      white-space: pre-wrap
+      text-align: center
+      color: #333
+      background: #DDD
+      border-bottom: 0.1rem solid #444
+      &:after
+        background: none
   &.other
     padding-right: 5rem
     span.status
@@ -235,7 +240,7 @@ $conversation-typing-height: 0.6rem
 
 #conversation.group ul.messages li.other
   span.author
-    visibility: visible
+    display: inline
   aside
     top: 3rem
 

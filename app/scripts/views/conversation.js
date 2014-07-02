@@ -294,8 +294,8 @@ define([
     scrollToLastMessage: function () {
       var scrollView = this._scrollView;
       if (scrollView) {
-        scrollView.scrollTop = Math.max(0,
-          scrollView.scrollHeight - scrollView.clientHeight);
+        scrollView.scrollTop =
+          scrollView.scrollHeight - scrollView.clientHeight;
       }
     },
 
@@ -309,6 +309,7 @@ define([
     },
 
     _onComposeMessage: function (message) {
+      message.mine = true;
       this.model.get('messages').push(message);
       this._sendMessage(message);
     },
@@ -493,7 +494,7 @@ define([
       }
       this.messageViews.splice(found, 0, view);
 
-      if (isAtBottom) {
+      if (isAtBottom || message.mine) {
         this.scrollToLastMessage();
       }
     },
