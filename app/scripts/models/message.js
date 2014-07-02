@@ -20,6 +20,8 @@ define([
       };
     },
 
+    fromRemote: false,
+
     // Save this message to storage, converting it to the appropriate
     // json format (no from, no meta)
     //

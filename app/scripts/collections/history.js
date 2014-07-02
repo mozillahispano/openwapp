@@ -137,6 +137,7 @@ define([
     },
 
     _addIncomingMessage: function (message) {
+      message.fromRemote = true; // mark as received from the server
       var from = message.get('from');
       this.findOrCreate(from.msisdn, null, function (err, result) {
         var conversation = result.conversation;
