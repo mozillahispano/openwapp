@@ -74,8 +74,9 @@ define([
 
     _newGroup: function (evt) {
       if (evt) { evt.preventDefault(); }
+      var maxGroups = global.client.getProperty('max_groups');
       var groups = global.contacts.getGroups();
-      if (groups && groups.length >= 50) {
+      if (groups && groups.length >= maxGroups) {
         var l10n = global.localisation[global.language];
         var stringId = 'participatingInTooMuchGroups';
         window.alert(l10n[stringId]);

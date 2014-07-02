@@ -105,6 +105,27 @@
       var appVersion = 0.5;
       var yowsup = CoSeMe.yowsup;
 
+      // Default properties map, 20140702
+      var defaultProperties = {
+        'audio': 1,
+        'broadcast': 50,
+        'checkmarks': 0,
+        'image_max_edge': 1280,
+        'image_max_kbytes': 5120,
+        'image_quality': 80,
+        'library': 0,
+        'lists': 1,
+        'location': 0,
+        'max_groups': 50,
+        'max_participants': 51,
+        'max_subject': 25,
+        'media': 16,
+        'newmedia': 0,
+        'qr': 0,
+        'timeout': 300
+      };
+      var properties;
+
       var signals = yowsup.getSignalsInterface();
       var methods = yowsup.getMethodsInterface();
 
@@ -127,12 +148,13 @@
         var args = [].slice.call(arguments, 1);
         getCallbacks(type).forEach(function(callback) {
           callback.apply(null, args);
-        })
+        });
       }
 
       // Auth setup
       signals.registerListener('auth_success', onAuthSuccess);
       signals.registerListener('auth_fail', onAuthError);
+      signals.registerListener('got_properties', onGotProperties);
 
       function onAuthSuccess() {
         if (_authSuccessCallback) {
@@ -148,6 +170,10 @@
         }
         _authErrorCallback = null;
         fire('disconnected');
+      }
+
+      function onGotProperties(props) {
+        properties = props;
       }
 
       // Contact status
@@ -614,6 +640,14 @@
           }
 
           return true;
+        },
+
+        getProperty: function (name) {
+          return properties[name] ? properties[name] : defaultProperties[name];
+        },
+
+        getAvailableProperties: function () {
+          return Object.keys(properties || defaultProperties);
         },
 
         /* My presence */
