@@ -121,7 +121,6 @@ define([
     _checkCentinelVisibility: function () {
       var view = this.$el.find('.page-wrapper')[0];
       var viewTop = view.offsetTop + view.scrollTop;
-      var viewBottom = viewTop + view.clientHeight;
       var centinelTop = this._centinel.offsetTop;
       var centinelBottom = centinelTop + this._centinel.offsetHeight;
       var isVisible = viewTop < centinelBottom;
