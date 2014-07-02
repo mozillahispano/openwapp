@@ -105,14 +105,26 @@
       var appVersion = 0.5;
       var yowsup = CoSeMe.yowsup;
 
-      // Default properties map
-      var propertiesDefault = {
+      // Default properties map, 20140702
+      var defaultProperties = {
+        'audio': 1,
+        'broadcast': 50,
+        'checkmarks': 0,
+        'image_max_edge': 1280,
+        'image_max_kbytes': 5120,
+        'image_quality': 80,
+        'library': 0,
+        'lists': 1,
+        'location': 0,
+        'max_groups': 50,
+        'max_participants': 51,
         'max_subject': 25,
-        'max_groups': 50
+        'media': 16,
+        'newmedia': 0,
+        'qr': 0,
+        'timeout': 300
       };
-      // Holds the object sent by the server
       var properties;
-
 
       var signals = yowsup.getSignalsInterface();
       var methods = yowsup.getMethodsInterface();
@@ -161,7 +173,6 @@
       }
 
       function onGotProperties(props) {
-        console.log('Got properties', props);
         properties = props;
       }
 
@@ -631,10 +642,12 @@
           return true;
         },
 
-        // If getting a new `name` property, add a default value to
-        // propertiesDefault
         getProperty: function (name) {
-          return properties && properties[name] || propertiesDefault[name];
+          return properties[name] ? properties[name] : defaultProperties[name];
+        },
+
+        getAvailableProperties: function () {
+          return Object.keys(properties || defaultProperties);
         },
 
         /* My presence */
