@@ -308,7 +308,7 @@ form#conversation-compose,
 form#conversation-compose-image
   +box-shadow(0 -0.2rem 0.1rem rgba(0, 0, 0, 0.15))
   background: #fff
-  padding: 0.6rem 0.3rem
+  padding: 0.6rem 0.3rem 0 0
   font-size: 0
 
 form#conversation-compose input[type=text],
@@ -352,8 +352,12 @@ form#conversation-compose input[type=submit]
   margin-right: 0.7rem
 
 #insert-emoji
+  width: 4rem
   background: url(/images/emoji_button.png) center center no-repeat
   +background-size(3rem 3rem)
+  &.shown
+    background-image: url(/images/emoji_button_inv.png)
+    background-color: #333
 
 #conversation-send-button
   background: url(/images/send.png) center center no-repeat

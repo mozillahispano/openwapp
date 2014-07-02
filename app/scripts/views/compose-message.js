@@ -24,11 +24,14 @@ define([
     },
 
     _toggleEmojiList: function () {
-      this._emojiSelector[this._emojiSelector.isHidden() ? 'show' : 'hide']();
+      var isHidden = this._emojiSelector.isHidden();
+      this.$el.find('#insert-emoji').get(0).classList.toggle('shown');
+      this._emojiSelector[isHidden ? 'show' : 'hide']();
     },
 
     _hideEmojiList: function () {
       this._emojiSelector.hide();
+      this.$el.find('#insert-emoji').get(0).classList.remove('shown');
     },
 
     clear: function () {
