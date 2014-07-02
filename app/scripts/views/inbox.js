@@ -124,7 +124,7 @@ define([
       var viewBottom = viewTop + view.clientHeight;
       var centinelTop = this._centinel.offsetTop;
       var centinelBottom = centinelTop + this._centinel.offsetHeight;
-      var isVisible = viewTop < centinelBottom && centinelBottom <= viewBottom;
+      var isVisible = viewTop < centinelBottom;
       if (!this._centinelWasVisible && isVisible) {
         this.trigger('centinel:appeared');
       }
