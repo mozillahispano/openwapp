@@ -470,7 +470,7 @@ define([
 
       // Make sure the view is added in the right position
       var found = this._findNextMessageIndex(message);
-      if (isNotFirstChunk) {
+      if (!message.fromRemote && isNotFirstChunk) {
         var messageTimestamp = message.get('meta').date.getTime();
         // This is because the message can come in any order so we force
         // elements after _nextToShow to be visible. Not optimal but working
