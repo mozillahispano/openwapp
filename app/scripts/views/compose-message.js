@@ -17,29 +17,14 @@ define([
     events: {
       'click #conversation-send-button' : '_createTextMessage',
       'click #insert-emoji': '_toggleEmojiList',
-      'click #message-text-input': '_hideEmojiList',
-      'focus #message-text-input': '_updateScrollTarget',
-      'blur #message-text-input': '_updateScrollTarget'
+      'click #message-text-input': '_hideEmojiList'
     },
 
     initialize: function () {
-      window.onresize = this._updateScroll.bind(this);
-    },
-
-    _updateScrollTarget: function () {
-      var scrollView = $('.page-wrapper').get(0);
-      this._scrollTarget = scrollView.scrollTop + scrollView.clientHeight;
-    },
-
-    _updateScroll: function () {
-      var scrollView = $('.page-wrapper').get(0);
-      scrollView.scrollTop = this._scrollTarget - scrollView.clientHeight;
     },
 
     _toggleEmojiList: function () {
-      this._updateScrollTarget();
       this._emojiSelector[this._emojiSelector.isHidden() ? 'show' : 'hide']();
-      setTimeout(this._updateScroll.bind(this), 100);
     },
 
     _hideEmojiList: function () {
@@ -65,6 +50,7 @@ define([
 
     _createTextMessage: function (event) {
       event.preventDefault();
+      this._hideEmojiList();
 
       var html = this.$messageComposer.html().trim();
       if (html.length === 0) { return; }
