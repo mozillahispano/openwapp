@@ -43,39 +43,6 @@ define([
       this.setElement(newElement);
 
       var img = this.$el.find('aside img');
-      img.css('visibility', 'hidden');
-
-      var _this = this;
-      img.on('load', function () {
-        _this._cropImage();
-        img.css('visibility', 'visible');
-      });
-    },
-
-    _cropImage: function () {
-      var containerWidth = this.$el.find('aside a').width();
-      var containerHeight = this.$el.find('aside a').height();
-      var img = this.$el.find('aside img');
-
-      var thumbWidth = containerWidth;
-      var thumbHeight = containerHeight;
-      var ratio = img.width() / img.height();
-      if (ratio >= 1) { // landscape
-        thumbWidth = thumbHeight * ratio;
-      }
-      else { // portrait
-        thumbHeight = thumbWidth / ratio;
-      }
-
-      img.width(thumbWidth);
-      img.height(thumbHeight);
-      img.css({
-        'position': 'absolute',
-        'top': '50%',
-        'left': '50%',
-        'margin-left': -thumbWidth / 2 + 'px',
-        'margin-top': -thumbHeight / 2 + 'px'
-      });
     },
 
     _requestResend: function () {
