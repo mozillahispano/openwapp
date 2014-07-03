@@ -1,7 +1,8 @@
 define([
   'backbone',
-  'global'
-], function (Backbone, global) {
+  'global',
+  'utils/platform'
+], function (Backbone, global, platform) {
   'use strict';
 
   var Notification = Backbone.Model.extend({
@@ -110,6 +111,12 @@ define([
         _this._app.launch();
         // TODO: to open the app in the conversation
         //  window.location.hash = '#conversation/' + phone;
+
+        // Firefox OS 1.1 does not send the onclose event along with the
+        // onclick, so we must rely on onclick only for 1.1
+        if (platform.isFFOS11()) {
+          _this._unattendedNotifications--;
+        }
       };
 
       notification.onclose = function () {

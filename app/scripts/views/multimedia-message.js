@@ -6,8 +6,9 @@ define([
   'global',
   'models/message',
   'templates',
-  'utils/mimetype'
-], function (Backbone, $, global, Message, templates, Mimetype) {
+  'utils/mimetype',
+  'utils/platform'
+], function (Backbone, $, global, Message, templates, Mimetype, platform) {
   'use strict';
 
   return Backbone.View.extend({
@@ -76,10 +77,6 @@ define([
       return false;
     },
 
-    isFFOX11: function () {
-      return (typeof navigator.mozTCPSocket.listen) !== 'function';
-    },
-
     isAAC: function () {
       return this.model.get('contents').uri.match(/.aac$/);
     },
@@ -88,7 +85,7 @@ define([
       var _this = this;
 
       // XXX: Delegate on browser to see media on Firefox 1.1
-      if (!_this.isAAC() && _this.isFFOX11()) {
+      if (!_this.isAAC() && platform.isFFOS11()) {
         new MozActivity({
           name: 'view',
           data: { type: 'url', url: this.model.get('contents').uri }
