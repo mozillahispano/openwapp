@@ -856,9 +856,9 @@
         },
 
         updateGroupProfile: function (gid, profileData) {
-          var gid = this.getJID(gid);
+          var cosemeGid = this.getJID(gid);
           if (profileData.subject) {
-            methods.call('group_setSubject', [gid, profileData.subject]);
+            methods.call('group_setSubject', [cosemeGid, profileData.subject]);
           }
           if (profileData.photo) {
             this._setPicture('group', profileData, gid);
