@@ -142,6 +142,7 @@ $conversation-typing-height: 0.6rem
       height: 100%
       overflow: hidden
     img
+      height: 9.4rem
       &.landscape
         margin-left: -50%
       &.portrait
@@ -177,7 +178,8 @@ $conversation-typing-height: 0.6rem
       text-align: center
       color: #333
       background: #DDD
-      border-bottom: 0.1rem solid #444
+      border-bottom: 0.1rem solid #d7d7d7
+      border-radius: 0
       &:after
         background: none
   &.other
@@ -195,7 +197,7 @@ $conversation-typing-height: 0.6rem
     aside a
       font-size: 0px
       line-height: 5rem
-      text-align: center
+      text-align: right
       position: relative
     img
       display: inline-block
@@ -242,7 +244,7 @@ $conversation-typing-height: 0.6rem
   span.author
     display: inline
   aside
-    top: 3rem
+    top: 2.2rem
 
 @mixin conversation-button($image-name)
   +appearance(none)
