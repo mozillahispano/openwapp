@@ -85,7 +85,12 @@ define([
       if (evt) { evt.preventDefault(); }
       var subject = $('input[name=subject]').val();
       var button = $('button.done');
-      button.prop('disabled', subject.length < 3 || subject.length > 25);
+      var maxSubjectLength = global.client.getProperty('max_subject');
+      button.prop('disabled', subject.length < 3 ||
+        subject.length > maxSubjectLength);
+      if (subject.length >= maxSubjectLength) {
+        $('input[name=subject]').val(subject.slice(0, 24));
+      }
     },
 
     _createGroup: function (evt) {
