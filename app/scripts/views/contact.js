@@ -20,6 +20,10 @@ define([
 
     contactPhoto: null,
 
+    events: {
+      'click span': '_goToConversation'
+    },
+
     initialize: function () {
       this.listenTo(this.model, 'change:state', this.render);
       this.listenTo(this.model, 'change:displayName', this.render);
@@ -51,6 +55,12 @@ define([
       helpers.revealEmoji(this.$el.find('dd.state'));
 
       return this;
+    },
+
+    _goToConversation: function (evt) {
+      if (evt) { evt.preventDefault(); }
+      global.router.navigate('conversation/' + this.model.get('id'),
+        {trigger: true});
     },
 
     clear: function () {}
