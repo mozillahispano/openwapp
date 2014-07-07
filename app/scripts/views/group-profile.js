@@ -31,7 +31,7 @@ define([
 
     PICTURE_MAX_SIZE: 640,
 
-    THUMB_MAX_SIZE: 180,
+    THUMB_MAX_SIZE: 96,
 
     initialize: function () {
       this.picture = this.model.get('photo');
@@ -226,6 +226,7 @@ define([
       });
 
       var _this = this;
+      var quality = global.client.getProperty('image_quality');
       requestPicture.onsuccess = function () {
         var picture = requestPicture.result.blob;
         _this.isGroupPictureDirty = true;
@@ -240,8 +241,8 @@ define([
           Thumbnail.generate(picture, function (err, thumb) {
             if (err) { return; }
             _this.thumb = thumb;
-          }, { asBlob: true });
-        }, { asBlob: true });
+          }, { asBlob: true, quality: quality / 2 });
+        }, { asBlob: true, quality: quality });
       };
 
       requestPicture.onerror = function () {

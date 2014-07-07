@@ -10,6 +10,7 @@ define([], function () {
     generate: function (imageBlob, callback, options) {
       options = options || {};
       var maxSize = this.maxSize || DEFAULT_MAX_SIZE;
+      var quality = options.quality || 0.8;
 
       var fileReader = new FileReader();
       fileReader.readAsDataURL(imageBlob);
@@ -31,7 +32,7 @@ define([], function () {
           ctx.drawImage(img, 0, 0, width * scale, height * scale);
 
           if (options.asBlob) {
-            c.toBlob(callback.bind(null, null), 'image/jpeg');
+            c.toBlob(callback.bind(null, null), 'image/jpeg', quality);
           } else {
             callback(null, c.toDataURL('image/jpeg').split('base64,')[1]);
           }

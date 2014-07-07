@@ -22,7 +22,7 @@ define([
 
     PICTURE_MAX_SIZE: 640,
 
-    THUMB_MAX_SIZE: 180,
+    THUMB_MAX_SIZE: 96,
 
     initialize: function () {
       this.picture = this.model.get('photo');
@@ -131,13 +131,16 @@ define([
     },
 
     generatePicture: function (picture, callback) {
+      var quality = global.client.getProperty('image_quality');
       Thumbnail.setMaxSize(this.PICTURE_MAX_SIZE);
-      Thumbnail.generate(picture, callback, { asBlob: true });
+      Thumbnail.generate(picture, callback, { asBlob: true, quality: quality });
     },
 
     generateThumbnail: function (picture, callback) {
+      var quality = global.client.getProperty('image_quality');
       Thumbnail.setMaxSize(this.THUMB_MAX_SIZE);
-      Thumbnail.generate(picture, callback, { asBlob: true });
+      Thumbnail
+        .generate(picture, callback, { asBlob: true, quality: quality / 2 });
     },
 
     showSelect: function () {
