@@ -31,7 +31,7 @@ define([
 
     PICTURE_MAX_SIZE: 640,
 
-    THUMB_MAX_SIZE: 180,
+    THUMB_MAX_SIZE: 96,
 
     initialize: function () {
       this.picture = this.model.get('photo');
@@ -226,12 +226,14 @@ define([
       });
 
       var _this = this;
+      var quality = global.client.getProperty('image_quality');
       requestPicture.onsuccess = function () {
         var picture = requestPicture.result.blob;
         _this.isGroupPictureDirty = true;
         Thumbnail.setMaxSize(_this.PICTURE_MAX_SIZE);
-        Thumbnail.generate(picture, function (err, picture) {
+        Thumbnail.generate(picture, function (err, picture, ratio) {
           if (err) { return; }
+          if (ratio !== 1) { _this._showNotSquareWarning(); }
           _this.picture = picture;
           _this._replacePhoto(picture);
 
@@ -240,13 +242,17 @@ define([
           Thumbnail.generate(picture, function (err, thumb) {
             if (err) { return; }
             _this.thumb = thumb;
-          }, { asBlob: true });
-        }, { asBlob: true });
+          }, { asBlob: true, quality: quality / 2, forceSquare: true });
+        }, { asBlob: true, quality: quality, forceSquare: true });
       };
 
       requestPicture.onerror = function () {
         console.error('Impossible to get profile\'s picture.');
       };
+    },
+
+    _showNotSquareWarning: function () {
+      this.$el.find('.not-square').get(0).classList.remove('hidden');
     },
 
     showParticipants: function () {
