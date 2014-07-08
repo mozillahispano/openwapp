@@ -11,6 +11,7 @@ define([], function () {
       options = options || {};
       var maxSize = this.maxSize || DEFAULT_MAX_SIZE;
       var quality = options.quality || 0.8;
+      var forceSquare = options.forceSquare || false;
 
       var fileReader = new FileReader();
       fileReader.readAsDataURL(imageBlob);
@@ -23,18 +24,32 @@ define([], function () {
               height = img.height;
 
           var scale = Math.min(maxSize / Math.max(height, width), 1);
+          var ratio = width / height;
 
           var c = document.createElement('canvas');
-          c.width = width * scale;
-          c.height = height * scale;
+          var newWidth = width * scale;
+          var newHeight = height * scale;
+          if (forceSquare) {
+            c.width = Math.max(newWidth, newHeight);
+            c.height = c.width;
+          }
+          else {
+            c.width = newWidth;
+            c.height = newHeight;
+          }
 
           var ctx = c.getContext('2d');
-          ctx.drawImage(img, 0, 0, width * scale, height * scale);
+          var offsetX = (c.width - newWidth) / 2;
+          var offsetY = (c.height - newHeight) / 2;
+          ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
 
           if (options.asBlob) {
-            c.toBlob(callback.bind(null, null), 'image/jpeg', quality);
+            c.toBlob(function (blob) {
+              callback(null, blob, ratio);
+            }, 'image/jpeg', quality);
           } else {
-            callback(null, c.toDataURL('image/jpeg').split('base64,')[1]);
+            callback(
+              null, c.toDataURL('image/jpeg').split('base64,')[1], ratio);
           }
         };
 

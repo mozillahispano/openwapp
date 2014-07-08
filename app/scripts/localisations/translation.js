@@ -184,7 +184,7 @@ define([], function () {
       accountExpiration: 'Fecha de expiración',
       upgradeNow: 'Actualizar ahora',
       notSquarePicture: 'La imagen seleccionada no es cuadrada. Esto hará que' +
-      ' aparezcan bandas blancas en los laterales. Si quieres arreglarlo, ' +
+      ' aparezcan bandas de relleno alrededor. Si quieres arreglarlo, ' +
       'abre la aplicación de Galería y edita y recorta la imagen para que ' +
       'tenga un aspecto 1:1'
     },
@@ -374,7 +374,7 @@ define([], function () {
       accountExpiration: 'Expiration date',
       upgradeNow: 'Upgrade now',
       notSquarePicture: 'The selected image is not square. This will make to ' +
-      'appear white bands in the laterals. If you want to fix it, go to the ' +
+      'appear padding bands around. If you want to fix it, go to the ' +
       'Gallery, and edit and crop the photo, using a 1:1 aspect ratio.'
     },
     pt : {
@@ -560,7 +560,7 @@ define([], function () {
       accountExpiration: 'Data de validade',
       upgradeNow: 'Actualizar agora',
       notSquarePicture: 'A imagem selecionada não é quadrado. Isso fará com ' +
-      'que apareçam faixas brancas nas laterais. Se você quiser corrigi-lo, ' +
+      'que apareçam faixas ao redor. Se você quiser corrigi-lo, ' +
       'vá até a Galeria e editar e cortar a foto, usando uma relação de ' +
       'aspecto de 1:1.'
     },
@@ -748,7 +748,7 @@ define([], function () {
       accountExpiration: 'Data de validade',
       upgradeNow: 'Actualizar agora',
       notSquarePicture: 'A imagem selecionada não é quadrado. Isso fará com ' +
-      'que apareçam faixas brancas nas laterais. Se você quiser corrigi-lo, ' +
+      'que apareçam faixas ao redor. Se você quiser corrigi-lo, ' +
       'vá até a Galeria e editar e cortar a foto, usando uma relação de ' +
       'aspecto de 1:1.'
     }

@@ -90,6 +90,10 @@ define([
       });
     },
 
+    _showNotSquareWarning: function () {
+      this.$el.find('.not-square').get(0).classList.remove('hidden');
+    },
+
     updateProfileData: function (evt) {
       evt.preventDefault();
 
@@ -113,8 +117,9 @@ define([
       var _this = this;
       requestPicture.onsuccess = function () {
         var picture = requestPicture.result.blob;
-        _this.generatePicture(picture, function (err, resizedPic) {
+        _this.generatePicture(picture, function (err, resizedPic, ratio) {
           if (err) { return; }
+          if (ratio !== 1) { _this._showNotSquareWarning(); }
           _this.picture = resizedPic;
           _this._replacePhoto(resizedPic);
         });
@@ -133,14 +138,19 @@ define([
     generatePicture: function (picture, callback) {
       var quality = global.client.getProperty('image_quality');
       Thumbnail.setMaxSize(this.PICTURE_MAX_SIZE);
-      Thumbnail.generate(picture, callback, { asBlob: true, quality: quality });
+      Thumbnail.generate(
+        picture, callback,
+        { asBlob: true, quality: quality, forceSquare: true }
+      );
     },
 
     generateThumbnail: function (picture, callback) {
       var quality = global.client.getProperty('image_quality');
       Thumbnail.setMaxSize(this.THUMB_MAX_SIZE);
-      Thumbnail
-        .generate(picture, callback, { asBlob: true, quality: quality / 2 });
+      Thumbnail.generate(
+        picture, callback,
+        { asBlob: true, quality: quality / 2, forceSquare: true }
+      );
     },
 
     showSelect: function () {
