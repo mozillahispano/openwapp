@@ -182,7 +182,11 @@ define([], function () {
             ' El límite es 50. Por favor, abandona uno antes de crear otro',
       accountExpired: 'Su cuenta ha caducado. ¿Desea actualizar su cuenta?',
       accountExpiration: 'Fecha de expiración',
-      upgradeNow: 'Actualizar ahora'
+      upgradeNow: 'Actualizar ahora',
+      notSquarePicture: 'La imagen seleccionada no es cuadrada. Esto hará que' +
+      ' aparezcan bandas blancas en los laterales. Si quieres arreglarlo, ' +
+      'abre la aplicación de Galería y edita y recorta la imagen para que ' +
+      'tenga un aspecto 1:1'
     },
     'en-US': {
       all: 'All',
@@ -368,7 +372,10 @@ define([], function () {
       accountExpired: 'Your account has expired. Do you want to upgrade ' +
                          'your account now?',
       accountExpiration: 'Expiration date',
-      upgradeNow: 'Upgrade now'
+      upgradeNow: 'Upgrade now',
+      notSquarePicture: 'The selected image is not square. This will make to ' +
+      'appear white bands in the laterals. If you want to fix it, go to the ' +
+      'Gallery, and edit and crop the photo, using a 1:1 aspect ratio.'
     },
     pt : {
       all: 'Tudo',
@@ -551,7 +558,11 @@ define([], function () {
       accountExpired: 'Sua conta expirou. Você quer atualizar a sua conta ' +
                          'agora?',
       accountExpiration: 'Data de validade',
-      upgradeNow: 'Actualizar agora'
+      upgradeNow: 'Actualizar agora',
+      notSquarePicture: 'A imagem selecionada não é quadrado. Isso fará com ' +
+      'que apareçam faixas brancas nas laterais. Se você quiser corrigi-lo, ' +
+      'vá até a Galeria e editar e cortar a foto, usando uma relação de ' +
+      'aspecto de 1:1.'
     },
     'pt-BR' : {
       all: 'Tudo',
@@ -735,7 +746,11 @@ define([], function () {
       accountExpired: 'Sua conta expirou. Você quer atualizar a sua conta ' +
                          'agora?',
       accountExpiration: 'Data de validade',
-      upgradeNow: 'Actualizar agora'
+      upgradeNow: 'Actualizar agora',
+      notSquarePicture: 'A imagem selecionada não é quadrado. Isso fará com ' +
+      'que apareçam faixas brancas nas laterais. Se você quiser corrigi-lo, ' +
+      'vá até a Galeria e editar e cortar a foto, usando uma relação de ' +
+      'aspecto de 1:1.'
     }
   };
 });
