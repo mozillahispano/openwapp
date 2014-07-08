@@ -42,8 +42,6 @@ define([
       jsonModel.meta.timestamp = jsonModel.meta.date.getTime();
       var newElement = this.template(jsonModel);
       this.setElement(newElement);
-
-      var img = this.$el.find('aside img');
     },
 
     _requestResend: function () {
