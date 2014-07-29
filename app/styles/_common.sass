@@ -32,10 +32,7 @@ $color-active-button: #20839a
 
 @mixin common-row
   +ellipsis-overflow
-  background: #f2f2f2
-  border-top: 0.1rem solid #fff
-  border-bottom: 0.1rem solid #dadada
-  color: #3d3d3d
+  background: #fff
   font-size: 1.7rem
   line-height: 3.2rem
 
@@ -87,18 +84,6 @@ $color-active-button: #20839a
     img
       width: $avatar-size
       height: $avatar-size
-    &:before
-      content: ''
-      position: absolute
-      top: 0
-      left: 0
-      display: block
-      width: $avatar-size
-      height: $avatar-size
-      z-index: 1
-      background-position: top left
-      background-repeat: no-repeat
-      +background-size($avatar-size $avatar-size)
 
   dl
     +vertical-aligned

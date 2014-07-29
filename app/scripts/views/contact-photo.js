@@ -7,8 +7,6 @@ define([
 ], function (Backbone, $, global, contactModel, templates) {
   'use strict';
   var Contacts = Backbone.View.extend({
-    tagName: 'img',
-
     template: templates['contact-photo'],
 
     model: contactModel,
@@ -23,15 +21,18 @@ define([
 
     _updatePicture: function () {
       this._makeURL();
-      this.$el.html(this.template({
+      var newElement = this.template({
         photoURL: this.photoURL
-      }));
-      var _this = this;
+      });
+      if (this.$el) {
+        this.$el.replaceWith(newElement);
+      }
+      this.setElement(newElement);
 
       // Revoke the URL as the image data is already loaded by the image.
-      this.$el.find('img')[0].onload = function () {
-        _this._clear();
-      };
+      this.el.onload = function () {
+        this._clear();
+      }.bind(this);
     },
 
     _makeURL: function () {
