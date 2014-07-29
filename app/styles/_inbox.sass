@@ -11,7 +11,7 @@
 
 #inbox .legend
   +inbox-header
-  background: #f2f2f2
+  background: #fff
   text-transform: capitalize
 
 #inbox section.conversation-list
@@ -42,34 +42,38 @@
     line-height: 1.5rem
     text-align: right
   a
-    padding: 0.7rem 1.3rem 0.7rem 0.7rem
+    white-space: nowrap
     &:active
       background-color: #cbf1fa
       aside:before
         background-image: url(/images/frame_contact_active.png)
-    &.group
+    &.group dd.event
       background-repeat: no-repeat
       background-image: url(/images/shared/headers/images/icons/group.png)
-      background-position: center right 1rem
-      @include respond-to(peak)
-        background-image: url(/images/shared/headers/icon/group2x.png)
+      background-position: center left
+      background-size: auto 100%
+      padding-left: 3rem
   aside
-    margin-right: 0.5rem
-    &:before
-      background-image: url(/images/frame_contact_read.png)
+    vertical-align: middle
+    display: inline-block
+  aside img
+    border-radius: 50%
   dl
-    width: -moz-calc(100% - 8rem) // 100% - (5 + 2)rem
-    width: -webkit-calc(100% - 8rem) // 100% - (5 + 2)rem
+    vertical-align: middle
+    display: inline-block
+    width: calc(100% - 9.4rem) // 100% - (5 + 2)rem
+    padding-left: 1.4rem
+    padding-top: 0.7rem
+    padding-bottom: 0.7rem
+    border-bottom: 0.2rem solid #efefef
   dd
+    font-size: 1.4rem
+    line-height: 2.2rem
     &.name
+      font-weight: bold
+      color: #4c4c4c
       font-size: 1.7rem
-      line-height: 2rem
     &.event
-      font-size: 1.4rem
-      line-height: 3rem
-      padding-top: 0.5rem
-      color: #646464
-      max-height: 3rem
       padding-right: 3rem
     &.text
       +message-icon(message)

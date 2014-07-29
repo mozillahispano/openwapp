@@ -2,8 +2,6 @@
   data-conversation-id="{{id}}" data-conversation-name="{{title}}"
   {{#if isGroup}}data-is-group="true"{{/if}}>
   <a href="#" class="{{#if isGroup}}group{{/if}}">
-    <aside class="avatar">
-    </aside>
     <dl>
       <dt class="name">Name</dt>
       <dd class="name">{{title}}</dd>
@@ -11,7 +9,10 @@
       <dd
       class="event {{lastMessageType}} {{#if isRead}}read{{else}}unread{{/if}}">
       {{lastMessage}}</dd>
+      <dt class="time">Time</dt>
+      <dd class="time"><time>{{formattedMessageDate date}}</time></dd>
     </dl>
-    <p><time>{{formattedMessageDate date}}</time></p>
+    <aside class="avatar">
+    </aside>
 </a>
 </li>
