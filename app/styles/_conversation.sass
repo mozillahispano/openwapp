@@ -3,6 +3,8 @@ $conversation-typing-height: 0.6rem
 
 #conversation
   background-color: #e4e4e4
+  background-size: cover
+  background-position: center center
   position: absolute
   top: 0
   bottom: 0
@@ -52,6 +54,7 @@ $conversation-typing-height: 0.6rem
 
 #conversation ul.messages
   padding: 0
+  pointer-events: none
   // idle & active indicator
   &:after
     content: ""
@@ -105,6 +108,7 @@ $conversation-typing-height: 0.6rem
     display: none
     padding-left: 0.2rem
   span.content
+    pointer-events: auto
     border-radius: 0 0.5rem 0.5rem 0
     word-wrap: break-word
     position: relative

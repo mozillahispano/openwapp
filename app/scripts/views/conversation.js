@@ -40,7 +40,8 @@ define([
       'keyup input#message-text-input': 'sendTypingActive',
       'click li.location img': 'goToImageViewer',
       'click header > a': 'goToInbox',
-      'contextmenu .messages': '_showContextMenu'
+      'contextmenu .messages': '_showContextMenu',
+      'contextmenu .page-wrapper': '_chooseWallpaper'
     },
 
     initialize: function (options) {
@@ -119,10 +120,15 @@ define([
 
       this.listenTo(
         global.notifications, 'notification', this._handleNotification);
+
+      this._setWallpaper(this.model.get('wallpaper'));
     },
 
     _showContextMenu: function (evt) {
-      if (evt) { evt.preventDefault(); }
+      if (evt) {
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+      }
 
       var l10n = global.localisation[global.language];
 
@@ -139,6 +145,27 @@ define([
         this.model.removeMessage(messageId);
         listitem.parentNode.removeChild(listitem);
       }
+    },
+
+    _chooseWallpaper: function (evt) {
+      var activity = new MozActivity({
+        name: 'pick',
+        data: {
+          type: 'image/*'
+        }
+      });
+      activity.onsuccess = function () {
+        this._setWallpaper(activity.result.blob);
+      }.bind(this);
+    },
+
+    _setWallpaper: function (blob) {
+      if (!blob) { return; }
+      this.model.set('wallpaper', blob);
+      this.model.saveToStorage();
+      var background = this.$el.find('#conversation');
+      var url = URL.createObjectURL(blob);
+      background.css('background-image', 'url(' + url  + ')');
     },
 
     _handleNotification: function (notification) {
