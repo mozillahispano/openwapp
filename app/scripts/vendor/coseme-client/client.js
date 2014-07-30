@@ -37,6 +37,7 @@
 
   if (typeof window.navigator.getDeviceStorage === 'function') {
     _sdcard = navigator.getDeviceStorage('sdcard');
+    _seedForId = 'c9qjareu'; // testing purposes
   }
   else {
     console.error('There is no getDeviceStorage API');
