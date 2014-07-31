@@ -147,8 +147,8 @@ define([
       }
     },
 
-    _chooseWallpaper: function (evt) {
-      var activity = new MozActivity({
+    _chooseWallpaper: function () {
+      var activity = new window.MozActivity({
         name: 'pick',
         data: {
           type: 'image/*'
@@ -164,7 +164,7 @@ define([
       this.model.set('wallpaper', blob);
       this.model.saveToStorage();
       var background = this.$el.find('#conversation');
-      var url = URL.createObjectURL(blob);
+      var url = window.URL.createObjectURL(blob);
       background.css('background-image', 'url(' + url  + ')');
     },
 
