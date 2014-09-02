@@ -100,7 +100,7 @@ define([], function () {
       received: 'recibido',
       composeImageCaptionPlaceholder: 'Añadir título',
       sendButton: 'Enviar',
-      loadImageError: 'No se puede cargar la imagen ahora, vuelva a' +
+      loadImageError: 'No se puede cargar la imagen ahora, vuelva a ' +
       'intentarlo más tarde.',
       sendingImage: 'Enviando',
       audioMessageSent: 'Audio enviado',
