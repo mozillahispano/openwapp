@@ -23,7 +23,7 @@
     }
   },
   "default_locale": "es",
-  "version": "1.4",
+  "version": "1.4.1",
   "orientation": "portrait",
   "messages": [
     { "alarm": "/index.html" }
