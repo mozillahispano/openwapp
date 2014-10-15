@@ -56,10 +56,12 @@ define([
       this._hideEmojiList();
 
       var html = this.$messageComposer.html().trim();
-      if (html.length === 0) { return; }
 
       html = this._emojiToUnicode(html);
       var text = this._brToBreakLines(html);
+      text = text.trim();
+      if (text.length === 0) { return; }
+
       var newModel = new Message({
         type: 'text',
         contents: text,
