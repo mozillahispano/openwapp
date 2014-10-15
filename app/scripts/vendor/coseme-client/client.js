@@ -37,11 +37,10 @@
 
   if (typeof window.navigator.getDeviceStorage === 'function') {
     _sdcard = navigator.getDeviceStorage('sdcard');
-    _seedForId = 'c9qjareu'; // testing purposes
   }
   else {
     console.error('There is no getDeviceStorage API');
-    _seedForId = 'rr6wol76'; // testing purposes
+    _seedForId = 'c9qjareu'; // testing purposes
   }
 
   function getSeed(callback) {
@@ -54,7 +53,8 @@
     }
 
     // Get the file handler
-    console.log('OpenWapp: Getting the seed file from sdcard: ' + SEED_FILENAME);
+    console.log('OpenWapp: Getting the seed file from sdcard: ' +
+                SEED_FILENAME);
     var request = _sdcard.get(SEED_FILENAME);
     request.onsuccess = function _getFileSuccess() {
       var file = this.result;
