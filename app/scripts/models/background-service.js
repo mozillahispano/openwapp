@@ -79,7 +79,7 @@ define(['backbone', 'global'], function (Backbone, global) {
       }
 
       var nextAlarm = new Date(Date.now() + awakePeriod);
-      var alarmRequest = alarms.add(nextAlarm, 'ignoreTimezone');
+      var alarmRequest = alarms.add(nextAlarm, 'honorTimezone', {});
       alarmRequest.onsuccess = function () {
         var alarmId = alarmRequest.result;
         localStorage.alarmId = alarmId;
