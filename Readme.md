@@ -1,12 +1,14 @@
 # OpenWapp HTML5 webapp
 
-# Workstation configuration
+* __Note__: This is a fork of the official OpenWapp repo at http://git.ovz.ca/openwapp/openwapp. It is here because GitHub has a nice PR system and all devs are here. Oh, and the community wants to help with this in a more open way.
+
+# Workstation configuration
 
 ## Requirements
 
-* CoSeMe component
-* Node.js (0.8.x or >= 0.10.1)
+* Node.js (0.10.x)
 * Ruby
+* Firefox (Nightly)
 
 ## Introduction
 
@@ -23,13 +25,14 @@ The setup process is a bit convoluted but needs to be done only once.
 ### Install Node.js
 
 Download it from [nodejs.org](http://nodejs.org/). Make sure to not select the
-0.10.0 version (>=0.10.1 and 0.8.x works well).
+0.10.
 
 ### Install Bower and Grunt npm modules globally:
 
 ```sh
-$ sudo npm install -g grunt-cli bower
+$ npm install -g grunt-cli bower
 ```
+* Note: add `sudo` if you are on Linux. It is not needed on MacOS.
 
 ### Install needed modules from npm, RubyGems and Bower:
 
@@ -38,18 +41,6 @@ $ npm install
 $ gem install bundler && bundle install
 $ bower install
 ```
-
-### Adding CoSeMe library
-
-OpenWapp needs CoSeMe library to work. This is provided in
-[a separated git repository](http://git.ovz.ca/openwapp/coseme).
-Once you get it, you need to create a directory:
-
-```
-app/components/coseme
-```
-
-And put `coseme.js` library inside.
 
 ## Troubleshooting
 
