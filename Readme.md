@@ -1,6 +1,6 @@
 # OpenWapp HTML5 webapp
 
-* __Note__: This is a fork of the official OpenWapp repo at http://git.ovz.ca/openwapp/openwapp. It is here because GitHub has a nice PR system and all devs are here. Oh, and the community wants to help with this in a more open way.
+* __Note__: We are now the official repo. Yay!
 
 # Workstation configuration
 
