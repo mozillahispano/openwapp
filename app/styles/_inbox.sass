@@ -12,7 +12,8 @@
 #inbox .legend
   +inbox-header
   background: #fff
-  text-transform: capitalize
+  text-transform: uppercase
+  color: #1E9494
 
 #inbox section.conversation-list
   h1
@@ -21,22 +22,25 @@
 
 @mixin message-icon($name)
   &:before
-    content: ""
     display: inline-block
-    width: 1.4rem
-    height: 1.4rem
-    background: url(/images/icon_14px_#{$name}_unread2x.png) 0 0 no-repeat
-    +background-size(1.4rem 1.4rem)
+    width: 2.2rem
+    height: 2.2rem
+    background: url(/images/icon_14px_#{$name}_unread.png) 0 0 no-repeat
+    +background-size(2.2rem 2.2rem)
     margin-right: 0.5rem
   &.read:before
-    background-image: url(/images/icon_14px_#{$name}_read2x.png)
+    background-image: url(/images/icon_14px_#{$name}_read.png)
 
 #inbox li
   +common-row
   +contact(6rem)
   &.unread
-    background-color: #e6e6e6
-    font-weight: bold
+    background-color: #00ADAD
+    color: #ffffff
+    dl
+      border-bottom: 0.1rem solid #00adad
+    dl:active
+      border-bottom: 0.1rem solid #efefef
   p
     font-size: 1.5rem
     line-height: 1.5rem
@@ -65,24 +69,33 @@
     padding-left: 1.4rem
     padding-top: 0.7rem
     padding-bottom: 0.7rem
-    border-bottom: 0.2rem solid #efefef
+    border-bottom: 0.1rem solid #efefef
   dd
-    font-size: 1.4rem
+    font-size: 1.5rem
     line-height: 2.2rem
     &.name
-      font-weight: bold
-      color: #4c4c4c
-      font-size: 1.7rem
+      color: #3B3B3B
+      font-size: 1.8rem
+      font-style: italic
     &.event
-      padding-right: 3rem
+      padding-right: 0rem
+      color: #969696
+    &.event.unread
+      color: #ffffff
+    &.time
+      color: #969696
+      text-transform: uppercase
     &.text
       +message-icon(message)
     &.image, &.video, &.audio
       +message-icon(image)
+      content: ""
     &.location
       +message-icon(place)
+      content: ""
     &.notification
       +message-icon(notification)
+      content: ""
 
 #inbox .empty-info
   font-size: 1.7rem
@@ -100,7 +113,7 @@
   text-align: center
   padding: 1rem
   padding-bottom: 2rem
-  background: linear-gradient(to bottom, #dadada, #fff)
+  background: #ffffff
   p
     margin-bottom: 1rem
     font-size: small

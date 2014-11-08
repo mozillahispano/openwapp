@@ -1,25 +1,26 @@
 @mixin action-button
   +box-sizing(border-box)
-  +background-image(linear-gradient(bottom, #df351b 0%, #f56b1b 100%))
+  /*+background-image(linear-gradient(bottom, #df351b 0%, #f56b1b 100%))*/
   width: 100%
   color: #ffffff
-  border: 0.1rem solid #c1331e
+  border: 0.1rem transparent
   padding: 0.8rem
-  border-radius: 0.2rem
+  border-radius: 2rem
   font-size: 1.7rem
+  background: #00CAF2
+  font-family: sans-serif
+  font-style: italic
   &:disabled
     background: #d7d6d6
     border-color: #c7c7c7
     color: #aaa
   &:active:not(:disabled)
-    background: #c1331d
-    border-color: #c1331e
+    background: #B2F2FF
 
 @mixin secondary-action-button
   +action-button
-  +background-image(linear-gradient(bottom, #cacaca 0%, #fff 100%))
+  /*+background-image(linear-gradient(bottom, #cacaca 0%, #fff 100%))*/
   color: #333
-  border-color: #a6a6a6
   &:active:not(:disabled)
     border-color: #a6a6a6
     background: #969696
@@ -56,9 +57,10 @@
     border: none
     legend
       border: 0.1rem solid #CCCCCC
-      border-right: none
       border-top-left-radius: 3px
       border-bottom-left-radius: 3px
+      border-top-right-radius: 3px
+      border-bottom-right-radius: 3px
       padding: 0
       width: 30%
       height: 4rem
@@ -84,12 +86,11 @@
     line-height: 2.25rem
     color: #555555
     background: #f2f2f2
-    border-bottom: 0.1rem solid #fff
     min-height: 9rem
   section.main
     padding-top: 2rem
-    color: #858585
-    font-size: 1.4rem
+    color: #A8A8A8
+    font-size: 1.5rem
     line-height: 1.75rem
     p
       margin-top: 1rem
