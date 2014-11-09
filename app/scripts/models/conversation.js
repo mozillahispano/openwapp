@@ -95,7 +95,6 @@ define([
             return;
           }
 
-          /* jshint es5:true */
           item.continue();
           /* jshint es5:false */
         }

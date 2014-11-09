@@ -1,5 +1,4 @@
 // Generated on 2013-03-06 using generator-webapp 0.1.5
-/*jshint es5: true */
 'use strict';
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
