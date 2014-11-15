@@ -3,9 +3,18 @@
   "description": "OpenWapp es una aplicación gratuita, no oficial y abierta para llevar los servicios de comunicación de WhatsApp a tu dispositivo Firefox OS. Somos un proyecto de software libre que confía en la comunidad para mantener y mejorar el software.",
   "launch_path": "/index.html",
   "icons": {
+    "16": "/icons/16/openwapp.png",
     "30": "/icons/30/openwapp.png",
+    "32": "/icons/32/openwapp.png",
+    "48": "/icons/48/openwapp.png",
     "60": "/icons/60/openwapp.png",
-    "128": "/icons/128/openwapp.png"
+    "64": "/icons/64/openwapp.png",
+    "84": "/icons/84/openwapp.png",
+    "90": "/icons/90/openwapp.png",
+    "128": "/icons/128/openwapp.png",
+    "256": "/icons/256/openwapp.png",
+    "284": "/icons/284/openwapp.png",
+    "512": "/icons/512/openwapp.png"
   },
   "developer": {
     "name": "OpenWapp Team"
