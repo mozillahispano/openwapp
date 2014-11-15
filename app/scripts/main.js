@@ -2,12 +2,13 @@ require.config({
   baseUrl: '/scripts/',
   paths: {
     zeptojs: '../components/zepto/zepto.min',
+    jquery: '../components/zepto/zepto',
     underscore: '../components/underscore/underscore-min',
-    backbone: '../components/backbone/backbone-min',
-    handlebars: '../components/handlebars.js/dist/handlebars.runtime',
+    backbone: '../components/backbone/backbone',
+    handlebars: '../components/handlebars/handlebars.min',
     rtc: 'vendor/ottcomms-rtc-web/rtc',
     libphonenumber: '../components/PhoneNumber.js',
-    coseme: '../components/coseme/coseme',
+    coseme: '../components/coseme/dist/coseme',
     emoji: '../emoji/emoji',
     fxosrate: '../components/fxosRate/fxosrate',
     l10n: '../components/fxosRate/l10n'
@@ -20,7 +21,7 @@ require.config({
       exports: '_'
     },
     'backbone': {
-      deps: ['underscore', 'zeptojs'],
+      deps: ['underscore', 'jquery'],
       exports: 'Backbone'
     },
     'handlebars': {
@@ -79,6 +80,7 @@ require([
              Translation, TranslationUtils, Language, SDManager,
              BackgroundService) {
   'use strict';
+  Backbone.$ = require('zeptojs');
   global.router = new Router();
   global.auth = new Auth();
   global.geoPosition = new GeoPosition();
