@@ -778,30 +778,35 @@ define([], function () {
       movilNumberValidationAlert: 'Die Rufnummer:\n' +
         '+{{prefix}} {{number}}\nscheint keine gültige Mobilfunknummer aus ' +
         '{{country}} zu sein.\nWollen Sie trotzdem fortfahren?',
-      registerErrorObjectAlert: 'Beim Registrieren Ihrer Nummer ist ein Fehler aufgetreten.\n' +
-        'Bitte überprüfen Sie Ihre Verbindungseinstellungen.',
-      registerError429Alert: 'Beim Registrieren Ihrer Nummer ist ein Fehler aufgetreten.\n' +
-        'Bitte kontaktieren Sie den technischen Support.',
-      registerErrorGenericAlert: 'Beim Registrieren Ihrer Nummer ist ein Fehler aufgetreten.\n' +
-        'Bitte versuchen Sie es später noch einmal.',
-      registerErrorTooRecent: 'Die erneute Anforderung eines Registrierungscodes ist noch nicht möglich. ' +
-        'Bitte überprüfen Sie, ob Sie die Bestätigungsnachricht empfangen haben. Ansonsten können Sie in {{minutes}} ' +
-        'einen neuen Code anfordern.',
+      registerErrorObjectAlert: 'Beim Registrieren Ihrer Nummer ist ein ' +
+      'Fehler aufgetreten.\nBitte überprüfen Sie Ihre ' +
+      'Verbindungseinstellungen.',
+      registerError429Alert: 'Beim Registrieren Ihrer Nummer ist ein Fehler ' +
+      'aufgetreten.\nBitte kontaktieren Sie den technischen Support.',
+      registerErrorGenericAlert: 'Beim Registrieren Ihrer Nummer ist ein ' +
+      'Fehler aufgetreten.\nBitte versuchen Sie es später noch einmal.',
+      registerErrorTooRecent: 'Die erneute Anforderung eines ' +
+      'Registrierungscodes ist noch nicht möglich. Bitte überprüfen Sie, ob ' +
+      'Sie die Bestätigungsnachricht empfangen haben. Ansonsten können Sie ' +
+      'in {{minutes}} einen neuen Code anfordern.',
       pinInvalidAlert: 'PIN nicht erkannt. Bitte versuchen Sie es noch einmal.',
       screenNameAlert: 'Bitte geben Sie Ihren Namen ein.',
       inbox: 'Eingang',
       noConversation: 'Keine Konversationen.',
-      selectContacts: 'Wählen Sie einen Kontakt aus, um eine Nachricht zu schreiben.',
-      removeGroupConversation: 'Wollen Sie die Gruppe {{groupTitle}} verlassen ' +
-        'und die Konversation löschen?',
-      remove1to1Conversation: 'Wollen Sie die Konversation mit {{who}} löschen?',
+      selectContacts: 'Wählen Sie einen Kontakt aus, um eine Nachricht zu ' +
+      'schreiben.',
+      removeGroupConversation: 'Wollen Sie die Gruppe {{groupTitle}} ' +
+      'verlassen und die Konversation löschen?',
+      remove1to1Conversation: 'Wollen Sie die Konversation mit {{who}} l' +
+      'öschen?',
       removeMessage: 'Wollen Sie diese Nachricht löschen?',
       today: 'Heute',
       yesterday: 'Gestern',
       before: 'Älter',
       settings: 'Einstellungen',
       profile: 'Profil',
-      profileExplanation: 'Hier können Sie ihren Kontaktnamen, Status und Kontaktbild einstellen.',
+      profileExplanation: 'Hier können Sie ihren Kontaktnamen, Status und ' +
+      'Kontaktbild einstellen.',
       openWapp: 'OpenWapp',
       loading: 'Lade...',
       laodingConversations: 'Lade Konversationen...',
@@ -809,8 +814,8 @@ define([], function () {
       welcomeMessage1: 'Willkommen bei OpenWapp.',
       welcomeMessage2: 'Die Registrierung ist schnell und einfach.',
       insertMobileNumber: 'Bitte geben Sie Ihre Mobilfunknummer ein',
-      countryDetectedOnLogin: 'Sie scheinen eine Mobilfunknummer aus Österreich zu haben. ' +
-        'Ändern Sie dies andernfalls.',
+      countryDetectedOnLogin: 'Sie scheinen eine Mobilfunknummer aus ' +
+      'Österreich zu haben. Ändern Sie dies andernfalls.',
       countryNotDetectedOnLogin: 'Bitte wählen Sie unterhalb ihr Land aus.',
       country: 'Land',
       yourNumberPlaceHolder: 'Mobilfunknummer',
@@ -856,9 +861,9 @@ define([], function () {
       retrievingLocation: 'Frage Standort ab...',
       cancelButton: 'Abbrechen',
       currentLocation: 'Mein derzeitiger Standort',
-      logoutAlertText: 'Nutzen Sie diese Option nur, falls Sie OpenWapp zurücksetzen wollen, ' +
-        'um Sie sich auf einem anderen Gerät einloggen können. ' +
-        'Um sich abzumelden, schließen Sie OpenWapp einfach.',
+      logoutAlertText: 'Nutzen Sie diese Option nur, falls Sie OpenWapp ' +
+      'zurücksetzen wollen, um Sie sich auf einem anderen Gerät einloggen ' +
+      'können. Um sich abzumelden, schließen Sie OpenWapp einfach.',
       savePicture: 'Speichern',
       sdCardUnavailable: 'Speicherkarte ist nicht verfügbar',
       pictureSavePrompt: 'Wollen Sie dieses Foto in die Galerie speichern?',
@@ -871,8 +876,9 @@ define([], function () {
       conversationIsOnline: 'Online',
       loadingParticipants: 'Lade Kontakte…',
       invite: 'Zu WhatsApp einladen',
-      tellAFriendText: 'Entdecke WhatsApp für BlackBerry, Android, iPhone, Nokia ' +
-        'und Windows Phone. Lade es noch heute von http://whatsapp.com/dl/ herunter.',
+      tellAFriendText: 'Entdecke WhatsApp für BlackBerry, Android, iPhone, ' +
+      'Nokia und Windows Phone. Lade es noch heute von ' +
+      'http://whatsapp.com/dl/ herunter.',
       emojiListTitle: 'Wähle ein Emoji zum Senden aus',
       contactProfile: 'Kontaktfoto',
       newGroup: 'Neue Gruppe',
@@ -895,17 +901,20 @@ define([], function () {
       notificationSubjectChangedByYou: 'Sie haben das Thema der Gruppe ' +
       'to:\n{{subject}}\ngeändert.',
       notificationGroupParticipantAdded: '{{who}} ist der Gruppe beigetreten',
-      notificationGroupParticipantRemoved: '{{who}} ist aus der Gruppe ausgetreten',
+      notificationGroupParticipantRemoved: '{{who}} ist aus der Gruppe ' +
+      'ausgetreten',
       notificationGroupPictureUpdated: '{{who}} hat das Gruppenbild geändert',
-      notificationGroupPictureUpdatedByYou: 'Sie haben das Gruppenbild geändert',
+      notificationGroupPictureUpdatedByYou: 'Sie haben das Gruppenbild ' +
+      'geändert',
       notificationGroupPictureRemoved: '{{who}} hat das Gruppenbild entfernt',
-      notificationGroupPictureRemovedByYou: 'Sie haben das Gruppenbild entfernt',
+      notificationGroupPictureRemovedByYou: 'Sie haben das Gruppenbild ' +
+      'entfernt',
       notificationReportTitle: 'Sie haben {{count}} neue Nachrichten',
       notificationReportBody: 'in {{count}} Konversationen',
       inAppNotification: '{{title}} {{body}}',
       wakeUpTime: 'Empfange neue Nachrichten…',
-      wakeUpDescription: 'Synchronisierungsintervall: kürzere Intervalle führen ' +
-        'zu höherem Energieverbrauch.',
+      wakeUpDescription: 'Synchronisierungsintervall: kürzere Intervalle ' +
+      'führen zu höherem Energieverbrauch.',
       eachMinute: 'Jede Minute',
       each5Minutes: 'Alle 5 Minuten',
       each10Minutes: 'Alle 10 Minuten',
@@ -916,18 +925,22 @@ define([], function () {
       termsOfUse: 'Allgemeine Geschäftsbedingungen',
       fileTooLargeToBeSent: 'Die Datei ist zu groß. Die maximale Dateigröße ' +
         'beträgt 10MiB.',
-      errorAddingParticipant: 'Dieser Kontakt kann nicht zu dieser Gruppe hinzugefügt werden',
-      genericConnectionProblem: 'Ein unerwarteter Fehler ist aufgetreten. Sind Sie sicher, ' +
-        'dass sie mit dem Internet verbunden sind? Versuchen Sie, OpenWapp zu schließen und ' +
-        'neu zu starten. Falls das Problem erneut auftritt, versuchen Sie es später noch einmal.',
+      errorAddingParticipant: 'Dieser Kontakt kann nicht zu dieser Gruppe ' +
+      'hinzugefügt werden',
+      genericConnectionProblem: 'Ein unerwarteter Fehler ist aufgetreten. ' +
+      'Sind Sie sicher, dass sie mit dem Internet verbunden sind? Versuchen ' +
+      'Sie, OpenWapp zu schließen und neu zu starten. Falls das Problem ' +
+      'erneut auftritt, versuchen Sie es später noch einmal.',
       participatingInTooMuchGroups: 'Sie sind in zu vielen Gruppen Mitglied. ' +
-        'Sie können maximal Mitglied von 50 Gruppen sein. Um einer Gruppe beizutreten, ' +
-        'müssen Sie zuerst aus einer Gruppe austreten.',
-      accountExpired: 'Ihr Benutzerkonto ist abgelaufen. Wollen Sie Ihr Benutzerkonto jetzt erneuern?',
+        'Sie können maximal Mitglied von 50 Gruppen sein. Um einer Gruppe ' +
+      'beizutreten, müssen Sie zuerst aus einer Gruppe austreten.',
+      accountExpired: 'Ihr Benutzerkonto ist abgelaufen. Wollen Sie Ihr ' +
+      'Benutzerkonto jetzt erneuern?',
       accountExpiration: 'Ablaufdatum',
       upgradeNow: 'Jetzt erneuern',
-      notSquarePicture: 'Das ausgewählte Bild ist nicht quadratisch, daher wird ein Balken hinzugefügt. ' +
-        'Um dies zu ändern, gehen Sie in die Gallerie und schneiden Sie das Foto zu.'
+      notSquarePicture: 'Das ausgewählte Bild ist nicht quadratisch, daher ' +
+      'wird ein Balken hinzugefügt. Um dies zu ändern, gehen Sie in die ' +
+      'Gallerie und schneiden Sie das Foto zu.'
     }
   };
 });
