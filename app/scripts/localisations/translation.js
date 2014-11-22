@@ -926,7 +926,7 @@ define([], function () {
      termsOfUse: 'Termini e condizioni',
      fileTooLargeToBeSent: 'Il file è troppo grande. Il limite per mandare i' +
      'file è 10MiB.',
-     errorAddingParticipant: 'Questo contatto non può esser aggiunto al gruppo,
+     errorAddingParticipant: 'Questo contatto non può esser aggiunto al gruppo',
      genericConnectionProblem: 'Problema inaspettato. Sei ' +
      'sicuro d\' esser connesso? Prova a chiudere e aprire nuovamente OpenWapp. Se il ' +
      'problema continua, riprova più tardi.',
