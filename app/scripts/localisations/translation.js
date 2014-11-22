@@ -211,7 +211,7 @@ define([], function () {
       'from the Firefox Marketplace to enjoy new functionality.',
       selectCountryAlert: 'Please select a country.',
       movilNumberValidationAlert: 'The mobile number:\n' +
-      '+{{prefix}} {{number}}\ndoes not seem a valid number from ' +
+      '+{{prefix}} {{number}}\ndoes not seem to be a valid number from ' +
       '{{country}}.\nDo you want to continue in any case?',
       registerErrorObjectAlert: 'There was an error registering ' +
       'your number.\n Please check your connectivity settings.',
@@ -324,7 +324,7 @@ define([], function () {
       newGroup: 'New group',
       groupProfile: 'Group info',
       leaveGroup: 'Leave group',
-      groupPictureDescription: 'Choose and image for the group',
+      groupPictureDescription: 'Choose an image for the group',
       subjectPlaceHolder: 'This group is about…',
       subjectDescription: 'Briefly describe what is this group about',
       participants: 'Participants',
