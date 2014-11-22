@@ -45,7 +45,7 @@ define([
       evt.preventDefault();
       // TODO: put right locale here
       var locale = Language.getLanguage().replace(/\-.*$/, '');
-      global.auth.register(this.options.phoneNumber, locale, function () {
+      global.auth.register(this.phoneNumber, locale, function () {
         // TODO: Implement callback here
       });
     },
@@ -80,7 +80,7 @@ define([
       this.showSpinner('validate-page');
 
       global.auth.validate(
-        this.options.countryCode, this.options.phoneNumber, pin, '',
+        this.countryCode, this.phoneNumber, pin, '',
         function (err) {
           _this.hideSpinner('validate-page');
           if (err) {

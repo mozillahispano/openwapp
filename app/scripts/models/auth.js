@@ -122,11 +122,11 @@ define([
       }, this.RETRY_TIME);
     },
 
-    register: function (countryCode, phoneNumber, locale, callback) {
+    register: function (countryCode, phoneNumber, locale, mcc, mnc, callback) {
       var _this = this;
       global.client
         .register(
-          countryCode, phoneNumber, locale, function (err, response) {
+          countryCode, phoneNumber, locale, mcc, mnc, function (err, response) {
             if (err) {
               return callback(err, response);
             }

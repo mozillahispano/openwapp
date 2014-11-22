@@ -663,14 +663,15 @@
           methods.call(methodName, [jid]);
         },
 
-        register: function(countryCode, phoneNumber, locale, callback) {
+        register: function(countryCode, phoneNumber, locale, mcc, mnc, callback) {
           getSeed(function (err, seed) {
             if (err && err !== 'not-exist') {
               return callback(err);
             }
 
             seed = CoSeMe.registration
-                     .getCode(countryCode, phoneNumber, onReady, onError, seed);
+                     .getCode(countryCode, phoneNumber, onReady, onError,
+                      seed, mcc, mnc, locale);
 
             if (err === 'not-exist') {
               saveSeed(seed);

@@ -22,7 +22,8 @@ define([
 
     initialize: function () {
       this.mcc = 0;
-      this.getMcc();
+      this.mnc = 0;
+      this.getMccAndMnc();
       this.countryTables = new CountriesCollection();
     },
 
@@ -67,7 +68,7 @@ define([
       }
     },
 
-    getMcc: function () {
+    getMccAndMnc: function () {
       var mozCnx;
       var network;
       var _this = this;
@@ -76,6 +77,7 @@ define([
         network = (mozCnx.lastKnownHomeNetwork || mozCnx.lastKnownNetwork ||
           '-').split('-');
         this.mcc = parseInt(network[0], 10);
+        this.mnc = parseInt(network[1], 10);
       }
       // Firefox OS 1.2+
       else if ((mozCnx = navigator.mozMobileConnections)) {
@@ -83,6 +85,7 @@ define([
           network = (mozCnx[c].lastKnownHomeNetwork ||
             mozCnx.lastKnownNetwork || '-').split('-');
           _this.mcc = parseInt(network[0], 10);
+          _this.mnc = parseInt(network[1], 10);
         }
       }
       // Desktop or simulator
@@ -172,7 +175,7 @@ define([
       // TODO: Get locale from the i18n object (or from the phone number)
       localStorage.removeItem('isPinSent');
       phoneNumber = phoneNumber.replace(/[^\d]/g, '');
-      global.auth.register(countryCode, phoneNumber, 'es-ES',
+      global.auth.register(countryCode, phoneNumber, 'es-ES', _this.mcc, _this.mnc,
         function (err, details) {
           _this.toggleSpinner();
           if (err) {
