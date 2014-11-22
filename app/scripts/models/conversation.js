@@ -96,7 +96,6 @@ define([
           }
 
           item.continue();
-          /* jshint es5:false */
         }
       });
     },

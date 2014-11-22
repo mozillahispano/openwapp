@@ -456,7 +456,6 @@ define([
         // Save all
         _.forEach(params.key, function dbManagerRemoveForEach(obj) {
           var request = store.delete(obj);
-          /* jshint es5:false */
           request.onerror = function (error) {
             didFail = error;
             if (!params.continueOnError) {
@@ -617,7 +616,6 @@ define([
             result.push(item.value);
           } else {
             params.callback(null, item); // pass one
-            /* jshint es5:false */
           }
 
           if (typeof limit !== 'undefined' && limit > 0) {
@@ -658,7 +656,6 @@ define([
           if (!finished) {
             if (!params.loadWithCursor) {
               item.continue();
-              /* jshint es5:false */
             }
           }
           else { // finished by limit

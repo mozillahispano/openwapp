@@ -67,7 +67,6 @@ function (_, Backbone) {
     callbacks = callbacks || {};
     if (this.isReady()) {
       var deletereq = this.storage.delete(this.getPath(filename));
-      /*jslint es5: false */
       deletereq.onerror = deletereq.onsuccess = addFile;
       console.log('sdcard SAVE', filename);
     }
