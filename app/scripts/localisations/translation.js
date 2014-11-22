@@ -755,7 +755,7 @@ define([], function () {
     de: {
       all: 'Alle',
       contacts: 'Kontakte',
-      noContacts: 'Sie habe keine Kontake',
+      noContacts: 'Sie haben keine Kontake',
       jan: 'Jan',
       feb: 'Febr',
       mar: 'März',
@@ -772,9 +772,9 @@ define([], function () {
       online: 'online',
       connecting: 'Verbinde...',
       oldAppAlert: 'Diese Version wird nicht mehr unterstützt. ' +
-        'Bitte installieren Sie das Update vom Firefox Marketplace, ' +
+        'Bitte installieren Sie das Update im Firefox Marketplace, ' +
         'um die neuesten Funktionen zu genießen.',
-      selectCountryAlert: 'Bitte wählen Sie en Land aus.',
+      selectCountryAlert: 'Bitte wählen Sie ein Land aus.',
       movilNumberValidationAlert: 'Die Rufnummer:\n' +
         '+{{prefix}} {{number}}\nscheint keine gültige Mobilfunknummer aus ' +
         '{{country}} zu sein.\nWollen Sie trotzdem fortfahren?',
@@ -797,8 +797,8 @@ define([], function () {
       'schreiben.',
       removeGroupConversation: 'Wollen Sie die Gruppe {{groupTitle}} ' +
       'verlassen und die Konversation löschen?',
-      remove1to1Conversation: 'Wollen Sie die Konversation mit {{who}} l' +
-      'öschen?',
+      remove1to1Conversation: 'Wollen Sie die Konversation mit {{who}} ' +
+      'löschen?',
       removeMessage: 'Wollen Sie diese Nachricht löschen?',
       today: 'Heute',
       yesterday: 'Gestern',
@@ -862,8 +862,8 @@ define([], function () {
       cancelButton: 'Abbrechen',
       currentLocation: 'Mein derzeitiger Standort',
       logoutAlertText: 'Nutzen Sie diese Option nur, falls Sie OpenWapp ' +
-      'zurücksetzen wollen, um Sie sich auf einem anderen Gerät einloggen ' +
-      'können. Um sich abzumelden, schließen Sie OpenWapp einfach.',
+      'zurücksetzen wollen, um sich auf einem anderen Gerät einloggen ' +
+      'zu können. Um sich abzumelden, schließen Sie OpenWapp einfach.',
       savePicture: 'Speichern',
       sdCardUnavailable: 'Speicherkarte ist nicht verfügbar',
       pictureSavePrompt: 'Wollen Sie dieses Foto in die Galerie speichern?',
@@ -886,7 +886,7 @@ define([], function () {
       leaveGroup: 'Gruppe verlassen',
       groupPictureDescription: 'Wählen Sie ein Bild für die Gruppe aus',
       subjectPlaceHolder: 'In dieser Gruppe geht es um...',
-      subjectDescription: 'Beschreibe kurz das Thema der Gruppe',
+      subjectDescription: 'Beschreiben Sie kurz das Thema der Gruppe',
       participants: 'Mitglieder',
       unknownParticipant: 'Unbekanntes Mitglied',
       participantsDescription: 'Wählen Sie die Mitglieder aus',
@@ -899,7 +899,7 @@ define([], function () {
       notificationSubjectChanged: '{{who}} hat das Thema der Gruppe ' +
       'zu:\n{{subject}}\ngeändert.',
       notificationSubjectChangedByYou: 'Sie haben das Thema der Gruppe ' +
-      'to:\n{{subject}}\ngeändert.',
+      'zu:\n{{subject}}\ngeändert.',
       notificationGroupParticipantAdded: '{{who}} ist der Gruppe beigetreten',
       notificationGroupParticipantRemoved: '{{who}} ist aus der Gruppe ' +
       'ausgetreten',
@@ -932,7 +932,7 @@ define([], function () {
       'Sie, OpenWapp zu schließen und neu zu starten. Falls das Problem ' +
       'erneut auftritt, versuchen Sie es später noch einmal.',
       participatingInTooMuchGroups: 'Sie sind in zu vielen Gruppen Mitglied. ' +
-        'Sie können maximal Mitglied von 50 Gruppen sein. Um einer Gruppe ' +
+        'Sie können maximal in 50 Gruppen sein. Um einer Gruppe ' +
       'beizutreten, müssen Sie zuerst aus einer Gruppe austreten.',
       accountExpired: 'Ihr Benutzerkonto ist abgelaufen. Wollen Sie Ihr ' +
       'Benutzerkonto jetzt erneuern?',
