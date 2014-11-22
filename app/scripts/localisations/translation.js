@@ -211,7 +211,7 @@ define([], function () {
       'from the Firefox Marketplace to enjoy new functionality.',
       selectCountryAlert: 'Please select a country.',
       movilNumberValidationAlert: 'The mobile number:\n' +
-      '+{{prefix}} {{number}}\ndoes not seem a valid number from ' +
+      '+{{prefix}} {{number}}\ndoes not seem to be a valid number from ' +
       '{{country}}.\nDo you want to continue in any case?',
       registerErrorObjectAlert: 'There was an error registering ' +
       'your number.\n Please check your connectivity settings.',
@@ -324,7 +324,7 @@ define([], function () {
       newGroup: 'New group',
       groupProfile: 'Group info',
       leaveGroup: 'Leave group',
-      groupPictureDescription: 'Choose and image for the group',
+      groupPictureDescription: 'Choose an image for the group',
       subjectPlaceHolder: 'This group is about…',
       subjectDescription: 'Briefly describe what is this group about',
       participants: 'Participants',
@@ -751,6 +751,196 @@ define([], function () {
       'que apareçam faixas ao redor. Se você quiser corrigi-lo, ' +
       'vá até a Galeria e editar e cortar a foto, usando uma relação de ' +
       'aspecto de 1:1.'
+    },
+    de: {
+      all: 'Alle',
+      contacts: 'Kontakte',
+      noContacts: 'Sie haben keine Kontake',
+      jan: 'Jan',
+      feb: 'Febr',
+      mar: 'März',
+      apr: 'Apr',
+      may: 'Mai',
+      jun: 'Juni',
+      jul: 'Juli',
+      aug: 'Aug',
+      sep: 'Sept',
+      oct: 'Okt',
+      nov: 'Nov',
+      dic: 'Dez',
+      offline: 'offline',
+      online: 'online',
+      connecting: 'Verbinde...',
+      oldAppAlert: 'Diese Version wird nicht mehr unterstützt. ' +
+        'Bitte installieren Sie das Update im Firefox Marketplace, ' +
+        'um die neuesten Funktionen zu genießen.',
+      selectCountryAlert: 'Bitte wählen Sie ein Land aus.',
+      movilNumberValidationAlert: 'Die Rufnummer:\n' +
+        '+{{prefix}} {{number}}\nscheint keine gültige Mobilfunknummer aus ' +
+        '{{country}} zu sein.\nWollen Sie trotzdem fortfahren?',
+      registerErrorObjectAlert: 'Beim Registrieren Ihrer Nummer ist ein ' +
+      'Fehler aufgetreten.\nBitte überprüfen Sie Ihre ' +
+      'Verbindungseinstellungen.',
+      registerError429Alert: 'Beim Registrieren Ihrer Nummer ist ein Fehler ' +
+      'aufgetreten.\nBitte kontaktieren Sie den technischen Support.',
+      registerErrorGenericAlert: 'Beim Registrieren Ihrer Nummer ist ein ' +
+      'Fehler aufgetreten.\nBitte versuchen Sie es später noch einmal.',
+      registerErrorTooRecent: 'Die erneute Anforderung eines ' +
+      'Registrierungscodes ist noch nicht möglich. Bitte überprüfen Sie, ob ' +
+      'Sie die Bestätigungsnachricht empfangen haben. Ansonsten können Sie ' +
+      'in {{minutes}} einen neuen Code anfordern.',
+      pinInvalidAlert: 'PIN nicht erkannt. Bitte versuchen Sie es noch einmal.',
+      screenNameAlert: 'Bitte geben Sie Ihren Namen ein.',
+      inbox: 'Eingang',
+      noConversation: 'Keine Konversationen.',
+      selectContacts: 'Wählen Sie einen Kontakt aus, um eine Nachricht zu ' +
+      'schreiben.',
+      removeGroupConversation: 'Wollen Sie die Gruppe {{groupTitle}} ' +
+      'verlassen und die Konversation löschen?',
+      remove1to1Conversation: 'Wollen Sie die Konversation mit {{who}} ' +
+      'löschen?',
+      removeMessage: 'Wollen Sie diese Nachricht löschen?',
+      today: 'Heute',
+      yesterday: 'Gestern',
+      before: 'Älter',
+      settings: 'Einstellungen',
+      profile: 'Profil',
+      profileExplanation: 'Hier können Sie ihren Kontaktnamen, Status und ' +
+      'Kontaktbild einstellen.',
+      openWapp: 'OpenWapp',
+      loading: 'Lade...',
+      laodingConversations: 'Lade Konversationen...',
+      registerOpenWapp: 'OpenWapp Registrierung',
+      welcomeMessage1: 'Willkommen bei OpenWapp.',
+      welcomeMessage2: 'Die Registrierung ist schnell und einfach.',
+      insertMobileNumber: 'Bitte geben Sie Ihre Mobilfunknummer ein',
+      countryDetectedOnLogin: 'Sie scheinen eine Mobilfunknummer aus ' +
+      'Österreich zu haben. Ändern Sie dies andernfalls.',
+      countryNotDetectedOnLogin: 'Bitte wählen Sie unterhalb ihr Land aus.',
+      country: 'Land',
+      yourNumberPlaceHolder: 'Mobilfunknummer',
+      nextButton: 'Vor',
+      backButton: 'Zurück',
+      reEnterPhone: 'Registrieren Sie ein anderes Telefon',
+      goToValidateButton: 'Ich kenne meinen Code bereits!',
+      smsValMessage: 'Danke, Ihre Nummer wird jetzt überprüft:',
+      codePlaceholder: 'Code',
+      sendingValCode: 'Nummer wird überprüft...',
+      loginEditIncorrect: 'Antippen, um die Nummer zu korrigieren.',
+      loginNumberOk: 'Drücken Sie OK, falls Ihre Nummer korrekt ist.',
+      acceptButton: 'OK',
+      name: 'Ihr Name',
+      settingGeneral: 'Allgemein',
+      settingsAbout: 'Über',
+      settingsVersion: 'Version',
+      logout: 'Ausloggen',
+      validateCode: 'Bitte geben Sie den per SMS empfangenen Code ein.',
+      validateCodeProgress: 'Überprüfe Code...',
+      validateCodeCall: 'Anruf anfordern',
+      settingAccount: 'Erstelle Benutzerkonto...',
+      pictureDescription: 'Wählen Sie Ihr Kontaktbild aus',
+      screenNamePlaceHolder: 'Ihr Name',
+      screenNameDescription: 'Wird bei anderen als Ihr Name angezeigt.',
+      statusPlaceHolder: 'Ich fühle mich...',
+      statusDescription: 'Wird bei anderen als Ihr Status angezeigt.',
+      doneButton: 'Fertig',
+      pending: 'ausstehend',
+      sent: 'gesendet',
+      unsent: 'nicht gesendet',
+      defaultImageCaption: 'Bild',
+      received: 'Empfangen',
+      composeImageCaptionPlaceholder: 'Füge einen Titel hinzu',
+      sendButton: 'Senden',
+      loadImageError: 'Das Bild kann im Moment nicht geladen werden.\n' +
+        'Bitte versuchen Sie es später noch einmal.',
+      sendingImage: 'Sende...',
+      audioMessageSent: 'Audio gesendet',
+      audioMessageReceived: 'Audio empfangen',
+      loadAudioError: 'Die Datei kann im Moment nicht geladen werden.\n' +
+        'Bitte versuchen Sie es später noch einmal.',
+      retrievingLocation: 'Frage Standort ab...',
+      cancelButton: 'Abbrechen',
+      currentLocation: 'Mein derzeitiger Standort',
+      logoutAlertText: 'Nutzen Sie diese Option nur, falls Sie OpenWapp ' +
+      'zurücksetzen wollen, um sich auf einem anderen Gerät einloggen ' +
+      'zu können. Um sich abzumelden, schließen Sie OpenWapp einfach.',
+      savePicture: 'Speichern',
+      sdCardUnavailable: 'Speicherkarte ist nicht verfügbar',
+      pictureSavePrompt: 'Wollen Sie dieses Foto in die Galerie speichern?',
+      pictureSaveInfo: 'Gespeichert',
+      pictureSaveError: 'Beim Speichern des Fotos ist ein Fehler aufgetreten.',
+      migrationHeader: 'OpenWapp Update',
+      migrationBody: 'OpenWapp aktualisiert sich zur neuesten Version.',
+      migrationPleaseWait: 'Bitte warten',
+      conversationLastSeen: 'Zuletzt gesehen:',
+      conversationIsOnline: 'Online',
+      loadingParticipants: 'Lade Kontakte…',
+      invite: 'Zu WhatsApp einladen',
+      tellAFriendText: 'Entdecke WhatsApp für BlackBerry, Android, iPhone, ' +
+      'Nokia und Windows Phone. Lade es noch heute von ' +
+      'http://whatsapp.com/dl/ herunter.',
+      emojiListTitle: 'Wähle ein Emoji zum Senden aus',
+      contactProfile: 'Kontaktfoto',
+      newGroup: 'Neue Gruppe',
+      groupProfile: 'Gruppeninformation',
+      leaveGroup: 'Gruppe verlassen',
+      groupPictureDescription: 'Wählen Sie ein Bild für die Gruppe aus',
+      subjectPlaceHolder: 'In dieser Gruppe geht es um...',
+      subjectDescription: 'Beschreiben Sie kurz das Thema der Gruppe',
+      participants: 'Mitglieder',
+      unknownParticipant: 'Unbekanntes Mitglied',
+      participantsDescription: 'Wählen Sie die Mitglieder aus',
+      addParticipant: 'Mitglied hinzufügen',
+      removeParticipant: 'Mitglied aus der Gruppe löschen',
+      image: 'Bild',
+      video: 'Video',
+      audio: 'Audio',
+      you: 'Sie',
+      notificationSubjectChanged: '{{who}} hat das Thema der Gruppe ' +
+      'zu:\n{{subject}}\ngeändert.',
+      notificationSubjectChangedByYou: 'Sie haben das Thema der Gruppe ' +
+      'zu:\n{{subject}}\ngeändert.',
+      notificationGroupParticipantAdded: '{{who}} ist der Gruppe beigetreten',
+      notificationGroupParticipantRemoved: '{{who}} ist aus der Gruppe ' +
+      'ausgetreten',
+      notificationGroupPictureUpdated: '{{who}} hat das Gruppenbild geändert',
+      notificationGroupPictureUpdatedByYou: 'Sie haben das Gruppenbild ' +
+      'geändert',
+      notificationGroupPictureRemoved: '{{who}} hat das Gruppenbild entfernt',
+      notificationGroupPictureRemovedByYou: 'Sie haben das Gruppenbild ' +
+      'entfernt',
+      notificationReportTitle: 'Sie haben {{count}} neue Nachrichten',
+      notificationReportBody: 'in {{count}} Konversationen',
+      inAppNotification: '{{title}} {{body}}',
+      wakeUpTime: 'Empfange neue Nachrichten…',
+      wakeUpDescription: 'Synchronisierungsintervall: kürzere Intervalle ' +
+      'führen zu höherem Energieverbrauch.',
+      eachMinute: 'Jede Minute',
+      each5Minutes: 'Alle 5 Minuten',
+      each10Minutes: 'Alle 10 Minuten',
+      each20Minutes: 'Alle 20 Minuten',
+      each30Minutes: 'Alle 30 Minuten',
+      eachHour: 'Jede Stunde',
+      disabled: 'Nie',
+      termsOfUse: 'Allgemeine Geschäftsbedingungen',
+      fileTooLargeToBeSent: 'Die Datei ist zu groß. Die maximale Dateigröße ' +
+        'beträgt 10MiB.',
+      errorAddingParticipant: 'Dieser Kontakt kann nicht zu dieser Gruppe ' +
+      'hinzugefügt werden',
+      genericConnectionProblem: 'Ein unerwarteter Fehler ist aufgetreten. ' +
+      'Sind Sie sicher, dass sie mit dem Internet verbunden sind? Versuchen ' +
+      'Sie, OpenWapp zu schließen und neu zu starten. Falls das Problem ' +
+      'erneut auftritt, versuchen Sie es später noch einmal.',
+      participatingInTooMuchGroups: 'Sie sind in zu vielen Gruppen Mitglied. ' +
+        'Sie können maximal in 50 Gruppen sein. Um einer Gruppe ' +
+      'beizutreten, müssen Sie zuerst aus einer Gruppe austreten.',
+      accountExpired: 'Ihr Benutzerkonto ist abgelaufen. Wollen Sie Ihr ' +
+      'Benutzerkonto jetzt erneuern?',
+      accountExpiration: 'Ablaufdatum',
+      upgradeNow: 'Jetzt erneuern',
+      notSquarePicture: 'Das ausgewählte Bild ist nicht quadratisch, daher ' +
+      'wird ein Balken hinzugefügt. Um dies zu ändern, gehen Sie in die ' +
+      'Gallerie und schneiden Sie das Foto zu.'
     }
   };
 });
