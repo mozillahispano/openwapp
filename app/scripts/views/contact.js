@@ -24,12 +24,12 @@ define([
       'click span': '_goToConversation'
     },
 
-    initialize: function () {
+    initialize: function (options) {
       this.listenTo(this.model, 'change:state', this.render);
       this.listenTo(this.model, 'change:displayName', this.render);
       this.listenTo(this.model, 'change:subject', this.render);
       this.listenTo(this.model, 'change:_photo', this.render);
-      this.showControls = !!this.options.showControls;
+      this.showControls = !!options.showControls;
     },
 
     render: function () {

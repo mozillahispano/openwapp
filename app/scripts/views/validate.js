@@ -14,9 +14,14 @@ define([
 
     template: templates.validate,
 
+    initialize: function(options) {
+      this.phoneNumber = options.phoneNumber;
+      this.countryCode = options.countryCode;
+    },
+
     render: function () {
       var internationalNumber;
-      var fullNumber = this.options.countryCode + this.options.phoneNumber;
+      var fullNumber = this.countryCode + this.phoneNumber;
       this.$el.removeClass().addClass('page validate');
       try {
         internationalNumber = PhoneNumber.format(fullNumber);

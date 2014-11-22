@@ -33,9 +33,9 @@ define([
 
     THUMB_MAX_SIZE: 96,
 
-    initialize: function () {
+    initialize: function (options) {
       this.picture = this.model.get('photo');
-      this.isEditMode = !!this.options.isEditMode;
+      this.isEditMode = !!options.isEditMode;
       this.showControls = !this.isEditMode ||
                           global.auth.isMe(this.model.get('admin'));
     },
