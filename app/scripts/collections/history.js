@@ -229,7 +229,7 @@ define([
       AsyncStorage.getItem(key, function (conversation) {
         if (conversation) {
           console.log('[history] Conversation:', id, 'loaded!');
-          conversation = _this.add(conversation).get(id);
+          conversation = _this.add(conversation);
           global.contacts.findOrCreate(conversation.get('id'), null,
             function (err, result) {
               conversation.set('contact', result.contact);
@@ -355,7 +355,7 @@ define([
                 conversation = _this.add({
                   id: id,
                   title: conversationSubject || _this._getConversationTitle(id)
-                }).get(id);
+                });
                 conversation.set('contact', result.contact);
                 _this.saveToStorage(conversation);
                 postLoad(conversation);

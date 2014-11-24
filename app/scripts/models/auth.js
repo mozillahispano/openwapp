@@ -16,7 +16,9 @@ define([
         screenName: null,
         status: null,
         photo: null,
-        thumb: null
+        thumb: null,
+        mnc: '000',
+        mcc: '000'
       };
     },
 
@@ -32,13 +34,15 @@ define([
       // Credentials are loaded
       if (this.get('userId')) {
         this._tryToLogin(
-          this.get('userId'), this.get('password'), this.get('msisdn'));
+          this.get('userId'), this.get('password'), this.get('msisdn'),
+          this.get('mcc'), this.get('mnc'));
       }
 
       // Credentials are not yet loaded
       else {
         var _this = this;
-        authStorage.load(function (userId, password, msisdn, profile) {
+        authStorage.load(
+        function (userId, password, msisdn, mcc, mnc, profile) {
           if (profile) {
             _this.set('photo', profile.photo || null);
             _this.set('thumb', profile.thumb || null);
@@ -52,7 +56,7 @@ define([
             _this.set('msisdn', msisdn);
           }
           if (userId && password) {
-            _this._tryToLogin(userId, password, msisdn);
+            _this._tryToLogin(userId, password, msisdn, mcc, mnc);
           } else {
             _this.trigger('login:fail', 'missing-credentials');
           }
@@ -60,28 +64,28 @@ define([
       }
     },
 
-    _tryToLogin: function (userId, pass, msisdn) {
+    _tryToLogin: function (userId, pass, msisdn, mcc, mnc) {
       if (connectivity.get('online') && !global.client.isOnline) {
         console.log('[auth] Logging in...');
-        this._login(userId, pass, msisdn);
+        this._login(userId, pass, msisdn, mcc, mnc);
       }
       else {
         console.warn('[auth] No connectivity, impossible to log in.');
         this.listenToOnce(connectivity, 'change:online', function (isOnline) {
           if (isOnline) {
-            this._tryToLogin(userId, pass, msisdn);
+            this._tryToLogin(userId, pass, msisdn, mcc, mnc);
           }
         });
       }
     },
 
-    _login: function (userId, pass, msisdn) {
+    _login: function (userId, pass, msisdn, mcc, mnc) {
       if (this.intervalLoginRetries) {
         window.clearInterval(this.intervalLoginRetries);
       }
 
       var _this = this;
-      global.client.auth(userId, pass, function (err) {
+      global.client.auth(userId, pass, mcc, mnc, function (err) {
 
         if (err === 'auth-failed') {
           _this.trigger('login:fail');
@@ -102,7 +106,7 @@ define([
         _this.set('password', pass);
         _this.set('msisdn', msisdn);
 
-        authStorage.store(userId, pass, msisdn, {
+        authStorage.store(userId, pass, msisdn, mcc, mnc, {
           screenName: _this.get('screenName'),
           status: _this.get('status'),
           photo: _this.get('photo'),
@@ -136,6 +140,8 @@ define([
               var params = _this._parseApiResults(response);
               params.msisdn = countryCode + phoneNumber;
               _this.set(params);
+              _this.set('mcc', mcc);
+              _this.set('mnc', mnc);
               needsValidation = false;
             }
             callback(null, needsValidation);
@@ -150,15 +156,7 @@ define([
     _parseApiResults: function (result) {
       return {
         userId: result.login,
-        password: result.pw,
-        // TODO: remove all of this when checked
-        storageUrl: 'no storage url',
-        sipCredentials: {
-          username: 'no username',
-          password: 'no password',
-          domain: 'no domain',
-          server: 'no server'
-        }
+        password: result.pw
       };
     },
 
