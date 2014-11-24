@@ -51,7 +51,7 @@ define([
               phone: phone,
               displayName: displayName || '+' + phone,
               subject: displayName
-            }).get(phone);
+            });
             _this.saveToStorage(contact);
           }
 
@@ -78,7 +78,7 @@ define([
           console.log('[contacts] Loading contact', phone, 'from storage.');
           var contact = items && items[0] || null;
           if (contact) {
-            contact = _this.add(contact).get(phone);
+            contact = _this.add(contact);
           }
           callback(err, contact);
         }

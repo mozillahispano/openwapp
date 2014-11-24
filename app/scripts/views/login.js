@@ -84,8 +84,8 @@ define([
         for (var c = 0; c < navigator.mozMobileConnections.length; c++) {
           network = (mozCnx[c].lastKnownHomeNetwork ||
             mozCnx.lastKnownNetwork || '-').split('-');
-          _this.mcc = parseInt(network[0], 10);
-          _this.mnc = parseInt(network[1], 10);
+          _this.mcc = _this.mcc || parseInt(network[0], 10);
+          _this.mnc = _this.mnc || parseInt(network[1], 10);
         }
       }
       // Desktop or simulator
@@ -175,7 +175,8 @@ define([
       // TODO: Get locale from the i18n object (or from the phone number)
       localStorage.removeItem('isPinSent');
       phoneNumber = phoneNumber.replace(/[^\d]/g, '');
-      global.auth.register(countryCode, phoneNumber, 'es-ES', _this.mcc, _this.mnc,
+      global.auth
+      .register(countryCode, phoneNumber, 'es-ES', _this.mcc, _this.mnc,
         function (err, details) {
           _this.toggleSpinner();
           if (err) {

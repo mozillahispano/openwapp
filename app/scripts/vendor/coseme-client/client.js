@@ -612,7 +612,7 @@
           return url + '';
         },
 
-        auth: function(userId, password, callback) {
+        auth: function(userId, password, mcc, mnc, callback) {
           // Avoid authenticate while in the middle of another authentication
           if (authenticating) {
             console.log('Already authenticating. Aborting.');
@@ -623,7 +623,7 @@
           fire('connecting');
           _authSuccessCallback = onSuccess;
           _authErrorCallback = onError;
-          methods.call('auth_login', [userId, password]);
+          methods.call('auth_login', [userId, password, mcc, mnc]);
 
           var _this = this;
           function onSuccess() {
