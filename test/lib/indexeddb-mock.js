@@ -206,9 +206,7 @@ define([
 
           // Mocked delete from store
           //
-          /* jshint es5:true */
           store.delete = function (object) {
-          /* jshint es5:false */
             var request = {};
             setTimeout(function () {
               if (txn._isAborted || shouldFail()) {
@@ -266,7 +264,6 @@ define([
               };
 
               var item = {};
-              /* jshint es5:true */
               item.continue = function () {
                 if (pos < items.length) {
                   item.value = nextValue();
@@ -280,7 +277,6 @@ define([
                 }
               };
               item.continue(); // fetch first
-              /* jshint es5:false */
             }, 0);
             return cursor;
           };
@@ -325,7 +321,6 @@ define([
                 };
 
                 var item = {};
-                /* jshint es5:true */
                 item.continue = function () {
                   if (pos < items.length) {
                     item.value = nextValue();
@@ -339,7 +334,6 @@ define([
                   }
                 };
                 item.continue(); // fetch first
-                /* jshint es5:false */
               }, 0);
               return cursor;
             };
