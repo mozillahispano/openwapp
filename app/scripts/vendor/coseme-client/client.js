@@ -87,13 +87,14 @@
     if (storage_seed === null) {
       getSeedFromSdcard(function(error, seed) {
         if (error === null) {
+          console.log('Moving the seed from filesystem to localStorage');
           saveSeed(seed);
           _sdcard && _sdcard.delete(SEED_FILENAME);
         }
         callback(error, seed);
       });
     }
-    console.log('OpenWapp: got the seed from the localStorage', storage_seed);
+    console.log('OpenWapp: got the seed', storage_seed);
     callback(null, storage_seed);
   }
 
