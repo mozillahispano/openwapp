@@ -43,7 +43,8 @@
     _seedForId = 'c9qjareu'; // testing purposes
   }
 
-  function getSeed(callback) {
+  function getSeedFromSdcard(callback) {
+    // compatibility reasons
     var err;
     if (_seedForId) {
       return callback(null, _seedForId);
@@ -78,26 +79,27 @@
     };
   }
 
-  function saveSeed(seed, callback) {
-    _seedForId = seed;
-    if (!_seedForId) {
-      return callback && callback('no-seed');
+  function getSeed(callback) {
+    /* because older versions saved the seed to the sd card, we still have to
+     * fallback to it if its not in the database
+    */
+    var storage_seed = window.localStorage.getItem('seed');
+    if (storage_seed === null) {
+      getSeedFromSdcard(function(error, seed) {
+        if (error === null) {
+          saveSeed(seed);
+          _sdcard && _sdcard.delete(SEED_FILENAME);
+        }
+        callback(error, seed);
+      });
     }
-    if (!_sdcard) {
-      return callback && callback('no-sdcard');
-    }
+    console.log('OpenWapp: got the seed from the localStorage', storage_seed);
+    callback(null, storage_seed);
+  }
 
-    console.log('OpenWapp: saving the seed.');
-    var content = new Blob([_seedForId], { type: 'text/plain' });
-    var request = _sdcard.addNamed(content, SEED_FILENAME);
-    request.onsuccess = function _addFileSuccess() {
-      console.log('OpenWapp: seed ' + _seedForId + ' saved!');
-      callback && callback(null);
-    };
-    request.onerror = function _addFileError() {
-      console.error('OpenWapp: impossible to save the seed.');
-      callback && callback('open-fail');
-    };
+  function saveSeed(seed) {
+    console.log('OpenWapp: saving the seed.', seed);
+    window.localStorage.setItem('seed', seed);
   }
 
   // Actual module implementation
