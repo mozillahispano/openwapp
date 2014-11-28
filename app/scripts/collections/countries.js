@@ -20,13 +20,14 @@ define([
     fetchCountries: function () {
       // Get from the countries.json. responseType to json is not allowed, see
       // http://updates.html5rocks.com/2012/01/Getting-Rid-of-Synchronous-XHRs
-      var xhr = new XMLHttpRequest();
+      var xhr = new XMLHttpRequest(),
+        _this = this;
       xhr.open('GET', '/scripts/countries.json', false); // sync request
       xhr.send(null);
 
       //Fill with an empty country
       this.add(new Country({
-        mcc: 0,
+        networkList: {},
         code: '',
         name: global.localisation[global.language].country,
         prefix: ''
@@ -40,15 +41,12 @@ define([
           console.error('Something happened while trying to parse the JSON', e);
         }
 
-        // And walk over all countries found
-        var keys = _.keys(parsed);
-        var _this = this;
-        keys.forEach(function (key) {
+        parsed.map(function(country) {
           _this.add(new Country({
-            mcc: parseInt(key, 10),
-            code: parsed[key].code,
-            name: parsed[key].full,
-            prefix: parsed[key].prefix
+            carriers: country.carriers,
+            code: country.code,
+            name: country.full,
+            prefix: country.prefix
           }));
         });
       } else {
@@ -63,11 +61,11 @@ define([
       return result;
     },
 
-    getCountryByMCC: function (mcc) {
-      var result = this.find(function (model) {
-        return model.get('mcc') === mcc;
+    getCountryByMccMnc: function (mcc, mnc) {
+      //TODO: slow! maybe make a hashmap of concentated mcc and mnc
+      return this.find(function (model) {
+        return model.hasMccMnc(mcc, mnc);
       });
-      return result;
     }
   });
 
