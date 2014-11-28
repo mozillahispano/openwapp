@@ -17,7 +17,7 @@ define([
     getLegalLocale: function () {
       var availableToSLocales = {
         es: 'es',
-        en: 'en-US'
+        en: 'en-US',
         'en-US': 'en-US',
         'pt-br': 'pt-br',
         pt: 'pt-br',
