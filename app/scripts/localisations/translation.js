@@ -1129,6 +1129,193 @@ define([], function () {
       notSquarePicture: 'Das ausgewählte Bild ist nicht quadratisch, daher ' +
       'wird ein Balken hinzugefügt. Um dies zu ändern, gehen Sie in die ' +
       'Gallerie und schneiden Sie das Foto zu.'
+    },
+    nl: {
+      all: 'Alle',
+      contacts: 'Contacten',
+      noContacts: 'Geen contacten gevonden',
+      jan: 'jan',
+      feb: 'feb',
+      mar: 'maa',
+      apr: 'apr',
+      may: 'mei',
+      jun: 'jun',
+      jul: 'jul',
+      aug: 'aug',
+      sep: 'sep',
+      oct: 'oct',
+      nov: 'nov',
+      dic: 'dec',
+      offline: 'offline',
+      online: 'online',
+      connecting: 'verbinden',
+      oldAppAlert: 'Deze versie wordt niet ondersteund. Download een nieuwe ' +
+      'versie uit de Firefox Marketplace om van de verbeteringen te genieten.',
+      selectCountryAlert: 'Selecteer een land.',
+      movilNumberValidationAlert: 'Het mobiele nummer:\n' +
+      '+{{prefix}} {{number}}\nlijkt niet een geldig nummer te zijn binnen ' +
+      '{{country}}.\nWilt u toch verder gaan?',
+      registerErrorObjectAlert: 'Er was een fout bij het registreren van ' +
+      'uw nummer.\n Controleer uw verbinding(sinstellingen).',
+      registerError429Alert: 'Er was een fout bij het registreren van uw ' +
+      'nummer\n Neem a.u.b. contact op met support.',
+      registerErrorGenericAlert: 'Er was een fout bij het registreren van uw ' +
+      'nummer\n Probeer het a.u.b. later nog eens.',
+      registerErrorTooRecent: 'It is too early to request another ' +
+      'registration code.\nCheck that you have not received the confirmation ' +
+      'message. If so, wait a little bit or try to register in {{minutes}} ' +
+      'minutes',
+      pinInvalidAlert: 'PIN wordt niet herkend. Probeer het nog eens.',
+      screenNameAlert: 'Vul uw naam in.',
+      inbox: 'Postbak IN',
+      noConversation: 'Geen gesprekken.',
+      selectContacts: 'Klik een contact in de OpenWapp contactenlijst om ' +
+      'een gesprek te starten.',
+      removeGroupConversation: 'Wilt u de groep {{groupTitle}}' +
+      ' verlaten en de gesprekken verwijderen?',
+      remove1to1Conversation: 'Wilt u het gesprek met {{who}} verwijderen?',
+      removeMessage: 'Wilt u deze boodschap verwijderen?',
+      today: 'Vandaag',
+      yesterday: 'Gisteren',
+      before: 'Ouder',
+      settings: 'Instellingen',
+      profile: 'Profiel',
+      profileExplanation: 'Hier kunt u uw contactnaam, status  ' +
+      'contactafbeelding instellen:',
+      openWapp: 'OpenWapp',
+      loading: 'Laden…',
+      loadingConversations: 'Gesprekken worden geladen…',
+      registerOpenWapp: 'OpenWapp Sign-up',
+      welcomeMessage1: 'Welkom bij OpenWapp.',
+      welcomeMessage2: 'Registreren is snel en eenvoudig.',
+      insertMobileNumber: 'Voer uw nummer in a.u.b.',
+      countryDetectedOnLogin: 'U heeft een {{country}} telefoonnummer. ' +
+      'Pas dit aan indien dit niet juist is',
+      countryNotDetectedOnLogin: 'Selecteer uw land hieronder a.u.b.',
+      country: 'Land',
+      yourNumberPlaceHolder: 'Mobiele nummer',
+      nextButton: 'Volgende',
+      backButton: 'Terug',
+      reEnterPhone: 'Andere telefoon registreren',
+      goToValidateButton: 'Ik heb al een code!',
+      smsValMessage: 'Bedankt, we proberen nu uw nummer te valideren:',
+      codePlaceholder: 'PIN',
+      sendingValCode: 'Nummer valideren…',
+      loginEditIncorrect: 'Tik als uw nummer niet correct is.',
+      loginNumberOk: 'Klik OK als uw nummer correct is.',
+      acceptButton: 'OK',
+      name: 'Uw naam',
+      settingsGeneral: 'Algemeen',
+      settingsAbout: 'Info',
+      settingsVersion: 'Versie',
+      logout: 'Uitloggen',
+      validateCode: 'Voer de PIN die u heeft ontvangen ' +
+      'via SMS om',
+      validateCodeProgress: 'Code verifieren…',
+      validateCodeCall: 'Bel me voor de code',
+      settingAccount: 'Uw account wordt opgezet…',
+      pictureDescription: 'Kies een afbeelding die wordt gebruikt als\'s ' +
+      ' contactafbeelding',
+      screenNamePlaceHolder: 'Uw naam',
+      screenNameDescription: 'Dit zal te zien zijn als uw contactnaam',
+      statusPlaceHolder: 'Ik voel me…',
+      statusDescription: 'Dit zal te zien zijn als uw status',
+      doneButton: 'Klaar',
+      pending: 'bezig',
+      sent: 'verzonden',
+      unsent: 'niet verzonden',
+      defaultImageCaption: 'Afbeelding',
+      received: 'ontvangen',
+      composeImageCaptionPlaceholder: 'Voeg een beschrijving toe',
+      sendButton: 'Zend',
+      loadImageError: 'De afbeelding kan niet geladen worden op dit moment,\n ' +
+      'probeer het later nog eens.',
+      sendingImage: 'Zenden',
+      audioMessageSent: 'Audio zenden',
+      audioMessageReceived: 'Audio ontvangen',
+      loadAudioError: 'Het bestand kan niet geladen worden op dit moment,\n ' +
+      'probeer het later nog eens.',
+      sendLocation: 'Lokatie verzenden',
+      loadLocationError: 'De lokatie kan nu niet worden geladent.\n' +
+      'Probeer het later nog eens.',
+      retrievingLocation: 'Lokatie ontvangen…',
+      cancelButton: 'Annuleren',
+      currentLocation: 'Mijn huidige lokatie',
+      logoutAlertText: 'Gebruik deze optie alleen als u OpenWapp wilt' +
+      'verwijderen van dit apparaat om in te loggen via OpenWapp met een ' +
+      'ander apparaat. Om offline te gaan, schakel weg bij OpenWapp en ' +
+      'het zal automatisch in slaapstand gaan.',
+      savePicture: 'Opslaan',
+      sdCardUnavailable: 'Geheugenkaart is niet beschikbaar.',
+      pictureSavePrompt: 'Wilt u deze foto opslaan in de Gallerij?',
+      pictureSaveInfo: 'Opgeslagen',
+      pictureSaveError: 'Er was een probleem bij het opslaan van de foto.',
+      migrationHeader: 'OpenWapp update',
+      migrationBody: 'OpenWapp is klaar met updaten naar de nieuwste versie.',
+      migrationPleaseWait: 'Een ogenblik a.u.b.',
+      conversationLastSeen: 'Laatst gezien:',
+      conversationIsOnline: 'Online',
+      loadingParticipants: 'Contacten laden…',
+      invite: 'Uitnodigen voor WhatsApp',
+      tellAFriendText: 'Check WhatsApp Messenger voor Android, iPhone, ' +
+      'Nokia, BlackBerry, Windows Phone and nu Firefox OS! Download het ' +
+      'vandaag van http://whatsapp.com/dl/',
+      emojiListTitle: 'Kies de emoticon om te verzenden',
+      contactProfile: 'Contact Profiel',
+      newGroup: 'Nieuwe groep',
+      groupProfile: 'Groep info',
+      leaveGroup: 'Groep verlaten',
+      groupPictureDescription: 'Kies een afbeelding voor de groep',
+      subjectPlaceHolder: 'Deze groep is om…',
+      subjectDescription: 'Beschrijf deze groep ',
+      participants: 'Deelnemers',
+      unknownParticipant: 'Onbekende deelnemer',
+      participantsDescription: 'Selecteer de deelnemers van deze groep',
+      addParticipant: 'Deelnemer toevoegen',
+      removeParticipant: 'Deelnemer verwijderen',
+      image: 'Afbeelding',
+      video: 'Video',
+      audio: 'Audio',
+      you: 'Jij',
+      notificationSubjectChanged: '{{who}} veranderde de titel van de groep ' +
+                                  'naar:\n{{subject}}',
+      notificationSubjectChangedByYou: 'Jij veranderde de titel van de groep ' +
+                                       'naar:\n{{subject}}',
+      notificationGroupParticipantAdded: '{{who}} aan groep toegevoegd',
+      notificationGroupParticipantRemoved: '{{who}} heeft groep verlaten',
+      notificationGroupPictureUpdated: '{{who}} veranderde de groepsafbeelding',
+      notificationGroupPictureUpdatedByYou: 'Jij veranderde de groepsafbeelding',
+      notificationGroupPictureRemoved: '{{who}} verwijderde de groepsafbeelding',
+      notificationGroupPictureRemovedByYou: 'Jij verwijderde de groepsafbeelding',
+      notificationReportTitle: 'Je hebt {{count}} nieuwe meldingen.',
+      notificationReportBody: 'In {{count}} gesprekken.',
+      inAppNotification: '{{title}}: {{body}}',
+      wakeUpTime: 'Check voor gesprekken…',
+      wakeUpDescription: 'Tijd om nieuwe meldingen te checken: kortere ' +
+                         'tijden hebben een kortere batterijduur tot gevolg.',
+      eachMinute: 'Elke minuut',
+      each5Minutes: 'Elke 5 minuten',
+      each10Minutes: 'Elke 10 minuten',
+      each20Minutes: 'Elke 20 minuten',
+      each30Minutes: 'Elke 30 minuten',
+      eachHour: 'Elk uur',
+      disabled: 'Nooit',
+      termsOfUse: 'Gebruiksvoorwaarden',
+      fileTooLargeToBeSent: 'Het bestand is te groot. Het maximum voor  ' +
+                            'te verzenden bestanden is 10MiB.',
+      errorAddingParticipant: 'Contact kan niet aan deze groep worden toegeveoegd',
+      genericConnectionProblem: 'Onverwacht probleem. Weet u zeker dat u ' +
+            'verbonden bent? Probeer OpenWapp te sluiten en te heropenen. Als' +
+            ' het probleem nog steeds optreedt, probeer dan later nog eens.',
+      participatingInTooMuchGroups: 'U neemt deel in te veel groepen.' +
+      'Het maximum is 50. U moet een groep verlaten voordat u een nieuwe kunt ' +
+      'starten.',
+      accountExpired: 'Uw account is verlopen. Wilt u uw account nu upgraden?',
+      accountExpiration: 'Expiratie datum',
+      upgradeNow: 'Nu upgraden',
+      notSquarePicture: 'De geselecteerde afbeelding is niet vierkant. Er ' +
+      'zullen dan strepen te zien zijn. Wilt u dit voorkomen, ga dan naar ' +
+      'Gallerij, en crop/edit de foto, en zorg voor een 1:1 verhouding.'
     }
   };
 });

@@ -22,7 +22,8 @@ define([
         'pt-br': 'pt-br',
         pt: 'pt-br',
         it: 'it',
-        de: 'de'
+        de: 'de',
+        nl: 'nl'
       };
 
       var lang = this.getLanguage();
