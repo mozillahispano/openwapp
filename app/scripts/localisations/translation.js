@@ -1007,7 +1007,7 @@ define([], function () {
       countryNotDetectedOnLogin: 'Bitte wählen Sie unterhalb ihr Land aus.',
       country: 'Land',
       yourNumberPlaceHolder: 'Mobilfunknummer',
-      nextButton: 'Vor',
+      nextButton: 'Weiter',
       backButton: 'Zurück',
       reEnterPhone: 'Registrieren Sie ein anderes Telefon',
       goToValidateButton: 'Ich kenne meinen Code bereits!',
