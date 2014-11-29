@@ -227,8 +227,8 @@ define([], function () {
       registerErrorOldVersion: 'Old version, please contact OpenWapp devs',
       registerErrorStale: 'Registration code expired. You need to request a ' +
       'new one',
-      registerErrorNoRoutes: 'No cell routes for %1 caused by your operator. ' +
-      'Please try again later or contact OpenWapp developers',
+      registerErrorNoRoutes: 'No cell routes for sending sms caused by your ' +
+      'operator. Please try again later or contact OpenWapp developers',
       registerErrorGenericAlert: 'Oops, error. Message={{error}}',
       pinInvalidAlert: 'PIN not recognized. Please try again.',
       screenNameAlert: 'Please enter your name.',
@@ -975,8 +975,8 @@ define([], function () {
       'Bitte aktualisieren Sie die App oder kontaktieren sie die Openwapp ' +
       'Entwickler',
       registerErrorStale: 'Ihr Registrierungscode ist abgelaufen. Bitte ',
-      registerErrorNoRoutes: 'No cell routes for %1 caused by your operator. ' +
-      'Please try again later or contact OpenWapp developers',
+      registerErrorNoRoutes: 'Es konnte keine Verbindung hergestellt werden, ' +
+      'um eine sms zu senden. Bitte versuchen Sie es später noch einmal.',
       registerErrorGenericAlert: 'Ein unerwarteter Fehler ist aufgetreten. ' +
       'Die Fehlernachricht lautet "{{error}}"',
       registerErrorTooRecent: 'Die erneute Anforderung eines ' +
