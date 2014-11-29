@@ -91,6 +91,10 @@ define([
       // Desktop or simulator
       else {
         console.log('mozMobileConnection not available');
+        var l10n = global.localisation[global.language];
+        var stringId = 'simRequired';
+        var message = l10n[stringId];
+        window.alert(message);
       }
     },
 

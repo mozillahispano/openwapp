@@ -188,7 +188,9 @@ define([], function () {
       notSquarePicture: 'La imagen seleccionada no es cuadrada. Esto hará que' +
       ' aparezcan bandas de relleno alrededor. Si quieres arreglarlo, ' +
       'abre la aplicación de Galería y edita y recorta la imagen para que ' +
-      'tenga un aspecto 1:1'
+      'tenga un aspecto 1:1',
+      simRequired: 'Se necesita una tarjeta SIM. Si sigues, igual encuentras ' +
+      'dragones…'
     },
     'en-US': {
       all: 'All',
@@ -378,7 +380,8 @@ define([], function () {
       upgradeNow: 'Upgrade now',
       notSquarePicture: 'The selected image is not square. This will make to ' +
       'appear padding bands around. If you want to fix it, go to the ' +
-      'Gallery, and edit and crop the photo, using a 1:1 aspect ratio.'
+      'Gallery, and edit and crop the photo, using a 1:1 aspect ratio.',
+      simRequired: 'SIM card required. Here be dragons…'
     },
     pt : {
       all: 'Tudo',
@@ -561,7 +564,8 @@ define([], function () {
       notSquarePicture: 'A imagem selecionada não é quadrado. Isso fará com ' +
       'que apareçam faixas ao redor. Se você quiser corrigi-lo, ' +
       'vá até a Galeria e editar e cortar a foto, usando uma relação de ' +
-      'aspecto de 1:1.'
+      'aspecto de 1:1.',
+      simRequired: 'Um cartão SIM é necessário'
     },
     'pt-BR' : {
       all: 'Tudo',
@@ -745,192 +749,193 @@ define([], function () {
       notSquarePicture: 'A imagem selecionada não é quadrado. Isso fará com ' +
       'que apareçam faixas ao redor. Se você quiser corrigi-lo, ' +
       'vá até a Galeria e editar e cortar a foto, usando uma relação de ' +
-      'aspecto de 1:1.'
+      'aspecto de 1:1.',
+      simRequired: 'Um cartão SIM é necessário'
      },
-     'it': {
-     all: 'Tutti',
-     contacts: 'Contatti',
-     noContacts: 'Nessun contatto trovato',
-     jan: 'Gen',
-     feb: 'Feb',
-     mar: 'Mar',
-     apr: 'Apr',
-     may: 'Mag',
-     jun: 'Giu',
-     jul: 'Lug',
-     aug: 'Ago',
-     sep: 'Set',
-     oct: 'Ott',
-     nov: 'Nov',
-     dic: 'Dic',
-     offline: 'offline',
-     online: 'online',
-     connecting: 'connessione',
-     oldAppAlert: 'Questa versione non è supportata. Aggiornala perfavore ' +
-     'dal Firefox Marketplace per ricevere nuove funzionalità.',
-     selectCountryAlert: 'Perfavore seleziona una nazione.',
-     movilNumberValidationAlert: 'Il numero del cellulare:\n' +
-     '+{{prefix}} {{number}}\nnon sembra essere un numero valido del ' +
-     '{{country}}.\nVuoi continuare in ogni caso?',
-     registerErrorGenericAlert: 'Errore nel registrare il numero.' +
-     ' \n Riprovare più tardi.',
-     registerErrorTooRecent: 'È ancora troppo presto per richiedere un altro ' +
-     'codice di registrazione.\nControlla di non aver ricevuto il messaggio di conferma con il ' +
-     'codice. Se così fosse attendere un altro pò oppure riprovre fra  {{minutes}} ' +
-     'minuti',
-     pinInvalidAlert: 'PIN non riconosciuto. Perfavore riprova.',
-     screenNameAlert: 'Perfavore inserisci il tuo nome.',
-     inbox: 'In entrata',
-     noConversation: 'Nessuna conversazione',
-     selectContacts: 'Seleziona un contatto nella lista dei contatti di OpenWapp per' +
-     'iniziare a chattare.',
-     removeGroupConversation: 'Vuoi uscire dal gruppo {{groupTitle}}' +
-     ' e cancellare la conversazione?',
-     remove1to1Conversation: 'Sicuro di voler cancellare la conversazione ' +
-     ' con {{who}}?',
-     removeMessage: 'Sicuro di voler rimuovere questo messaggio?',
-     today: 'Oggi',
-     yesterday: 'Ieri',
-     before: 'Vecchio',
-     settings: 'Impostazioni',
-     profile: 'Profilo',
-     profileExplanation: 'Qui puoi impostare il tuo nome, stato e ' +
-     'immagine del profilo:',
-     openWapp: 'OpenWapp',
-     loading: 'Caricamento…',
-     loadingConversations: 'Caricamento conversazioni…',
-     registerOpenWapp: 'OpenWapp Registrazione',
-     welcomeMessage1: 'Benvenuto su OpenWapp.',
-     welcomeMessage2: 'La registrazione è facile e veloce.',
-     insertMobileNumber: 'Perfavore inserisci il tuo numero:.',
-     countryDetectedOnLogin: 'Numero del {{country}} . ' +
-     'Cambialo se non è corretto',
-     countryNotDetectedOnLogin: 'Perfavore seleziona la tua nazione qui sotto',
-     country: 'Nazione',
-     yourNumberPlaceHolder: 'Numero cellulare',
-     nextButton: 'Avanti',
-     backButton: 'Indietro',
-     reEnterPhone: 'Registra un altro numero',
-     goToValidateButton: 'Già possiedo il codice!',
-     smsValMessage: 'Grazie, proveremo a convalidare il tuo numero:',
-     codePlaceholder: 'PIN',
-     sendingValCode: 'Convalidazione numero…',
-     loginEditIncorrect: 'Clicca per modificare il tuo numero se incorretto.',
-     loginNumberOk: 'Premi OK se il numero è giusto.',
-     acceptButton: 'OK',
-     name: 'Tuo nome',
-     settingsGeneral: 'Generale',
-     settingsAbout: 'About',
-     settingsVersion: 'Versione',
-     logout: 'Esci',
-     validateCode: 'Inserisci il PIN che hai ricevuto ' +
-     'via SMS',
-     validateCodeProgress: 'Verifica codice…',
-     validateCodeCall: 'Chiamami per convalidare il codice',
-     settingAccount: 'Impostando l account…',
-     pictureDescription: 'Scegli un immagine da far visualizzare ai tuoi contatti ',
-     screenNamePlaceHolder: 'Tuo nome',
-     screenNameDescription: 'Questo apparirà come il tuo nome ai contatti',
-     statusPlaceHolder: 'Cosa sto pensando?',
-     statusDescription: 'Questo apparirà come il tuo stato ai contatti',
-     doneButton: 'Fatto',
-     pending: 'in attesa',
-     sent: 'inviato',
-     unsent: 'non inviato',
-     defaultImageCaption: 'Immagine',
-     received: 'ricevuto',
-     composeImageCaptionPlaceholder: 'Aggiungi un immagine',
-     sendButton: 'Inviato',
-     loadImageError: 'L\' immagine non può essere caricata in questo momento\n Perfavore ' +
-     'riprova più tardi.',
-     sendingImage: 'Invio in corso',
-     audioMessageSent: 'Audio inviato',
-     audioMessageReceived: 'Audio ricevuto',
-     loadAudioError: 'Questo file non può essere inviato al momento.\n Perfavore ' +
-     'riprova più tardi.',
-     sendLocation: 'Invia posizione',
-     loadLocationError: 'La posizione non può essere caricata al momento\n' +
-     'Perfavore riprova più tardi.',
-     retrievingLocation: 'Ricavando i dati per la posizione…',
-     cancelButton: 'Cancella',
-     currentLocation: 'La mia posizione attuale',
-     logoutAlertText: 'Utilizza questa opzione soltanto se vuoi pulire OpenWapp ' +
-     'da questo dispositivo, in modo da poter entrare con OpenWapp da un altro dispositivo ' +
-     'Per andare offline, ti basterà chiudere semplicemente OpenWapp' +
-     'andrà in stanby automaticamente',
-     savePicture: 'Salva',
-     sdCardUnavailable: 'La scheda di memoria (SD) non è disponibile ',
-     pictureSavePrompt: 'Vuoi salvare quest\' immagine nella galleria?',
-     pictureSaveInfo: 'Salvata',
-     pictureSaveError: 'Errore nel salvare l\' immagine',
-     migrationHeader: 'OpenWapp aggiornato',
-     migrationBody: 'OpenWapp sta terminando l\'aggiornamento',
-     migrationPleaseWait: 'Perfavore attendi',
-     conversationLastSeen: 'Ultimo accesso:',
-     conversationIsOnline: 'Online',
-     loadingParticipants: 'Caricamento contatti…',
-     invite: 'Invita a  WhatsApp',
-     tellAFriendText: 'Controlla Whatsapp Messenger per Android, iPhone, ' +
-     'Nokia, BlackBerry, Windows Phone e adesso anche Firefox OS! Scaricalo' +
-     'oggi da http://whatsapp.com/dl/',
-     emojiListTitle: 'Seegli un emoji da mandare',
-     contactProfile: 'Profilo del contatto',
-     newGroup: 'Nuovo gruppo',
-     groupProfile: 'Informazioni Gruppo',
-     leaveGroup: 'Abbandona il Gruppo',
-     groupPictureDescription: 'Scegli un immagine per il gruppo',
-     subjectPlaceHolder: 'Questo gruppo tratta di...',
-     subjectDescription: 'Brevemente descrivi di cosa tratta questo gruppo',
-     participants: 'Membri',
-     unknownParticipant: 'Membro sconosciuto',
-     participantsDescription: 'Scegli i membri di questo gruppo',
-     addParticipant: 'Aggiungi Membro',
-     removeParticipant: 'Rimuovi membro',
-     image: 'Immagine',
-     video: 'Video',
-     audio: 'Audio',
-     you: 'Tu',
-     notificationSubjectChanged: '{{who}} ha cambiato il titolo del gruppo ' +
-     'to:\n{{subject}}',
-     notificationSubjectChangedByYou: 'Hai cambiato il titolo del gruppo' +
-     'to:\n{{subject}}',
-     notificationGroupParticipantAdded: '{{who}} è entrato nel gruppo',
-     notificationGroupParticipantRemoved: '{{who}} ha lasciato il gruppo',
-     notificationGroupPictureUpdated: '{{who}} ha cambiato l\' immagine del gruppo',
-     notificationGroupPictureUpdatedByYou: 'Hai cambiato l\'immagine del gruppo',
-     notificationGroupPictureRemoved: '{{who}} ha rimosso l\' immagine del gruppo',
-     notificationGroupPictureRemovedByYou: 'Hai rimosso l\'immagine del gruppo',
-     notificationReportTitle: 'Hai {{count}} nuovi messaggi.',
-     notificationReportBody: 'Da {{count}} conversazioni.',
-     inAppNotification: '{{title}}: {{body}}',
-     wakeUpTime: 'Controlla messaggi…',
-     wakeUpDescription: 'Tempo nella quale OpenWapp controlla nuovi messaggi: meno tempo ' +
-     'equivale ad un alto consumo della batteria',
-     eachMinute: 'Ogni minuto',
-     each5Minutes: 'Ogni 5 minuti',
-     each10Minutes: 'Ogni 10 minuti',
-     each20Minutes: 'Ogni 20 minuti',
-     each30Minutes: 'Ogni 30 minuti',
-     eachHour: 'Ogni ora',
-     disabled: 'Mai',
-     termsOfUse: 'Termini e condizioni',
-     fileTooLargeToBeSent: 'Il file è troppo grande. Il limite per mandare i' +
-     'file è 10MiB.',
-     errorAddingParticipant: 'Questo contatto non può esser aggiunto al gruppo',
-     genericConnectionProblem: 'Problema inaspettato. Sei ' +
-     'sicuro d\' esser connesso? Prova a chiudere e aprire nuovamente OpenWapp. Se il ' +
-     'problema continua, riprova più tardi.',
-     participatingInTooMuchGroups: 'Stai partecipando in troppi gruppi' +
-     '. Il limite è 50. Dovresti uscire in qualcuno prima di entrare ' +
-     'in un altro.',
-     accountExpired: 'Il tuo account è scaduto. Vorresti aggiornare ' +
-     'il tuo account adesso?',
-     accountExpiration: 'Data di scadenza:',
-     upgradeNow: 'Aggiornalo adesso',
-     notSquarePicture: 'L\'immagine selezionata non è un quadrato. Questo renderà l\' immagine ' +
-     'modificata male ai lati. Se vuoi risolvere il problema, vai nella ' +
-     'Galleria, ed edita la foto, usando 1:1 come scala.'
-  },
+    'it': {
+      all: 'Tutti',
+      contacts: 'Contatti',
+      noContacts: 'Nessun contatto trovato',
+      jan: 'Gen',
+      feb: 'Feb',
+      mar: 'Mar',
+      apr: 'Apr',
+      may: 'Mag',
+      jun: 'Giu',
+      jul: 'Lug',
+      aug: 'Ago',
+      sep: 'Set',
+      oct: 'Ott',
+      nov: 'Nov',
+      dic: 'Dic',
+      offline: 'offline',
+      online: 'online',
+      connecting: 'connessione',
+      oldAppAlert: 'Questa versione non è supportata. Aggiornala perfavore ' +
+      'dal Firefox Marketplace per ricevere nuove funzionalità.',
+      selectCountryAlert: 'Perfavore seleziona una nazione.',
+      movilNumberValidationAlert: 'Il numero del cellulare:\n' +
+      '+{{prefix}} {{number}}\nnon sembra essere un numero valido del ' +
+      '{{country}}.\nVuoi continuare in ogni caso?',
+      registerErrorGenericAlert: 'Errore nel registrare il numero.' +
+      ' \n Riprovare più tardi.',
+      registerErrorTooRecent: 'È ancora troppo presto per richiedere un altro ' +
+      'codice di registrazione.\nControlla di non aver ricevuto il messaggio di conferma con il ' +
+      'codice. Se così fosse attendere un altro pò oppure riprovre fra  {{minutes}} ' +
+      'minuti',
+      pinInvalidAlert: 'PIN non riconosciuto. Perfavore riprova.',
+      screenNameAlert: 'Perfavore inserisci il tuo nome.',
+      inbox: 'In entrata',
+      noConversation: 'Nessuna conversazione',
+      selectContacts: 'Seleziona un contatto nella lista dei contatti di OpenWapp per' +
+      'iniziare a chattare.',
+      removeGroupConversation: 'Vuoi uscire dal gruppo {{groupTitle}}' +
+      ' e cancellare la conversazione?',
+      remove1to1Conversation: 'Sicuro di voler cancellare la conversazione ' +
+      ' con {{who}}?',
+      removeMessage: 'Sicuro di voler rimuovere questo messaggio?',
+      today: 'Oggi',
+      yesterday: 'Ieri',
+      before: 'Vecchio',
+      settings: 'Impostazioni',
+      profile: 'Profilo',
+      profileExplanation: 'Qui puoi impostare il tuo nome, stato e ' +
+      'immagine del profilo:',
+      openWapp: 'OpenWapp',
+      loading: 'Caricamento…',
+      loadingConversations: 'Caricamento conversazioni…',
+      registerOpenWapp: 'OpenWapp Registrazione',
+      welcomeMessage1: 'Benvenuto su OpenWapp.',
+      welcomeMessage2: 'La registrazione è facile e veloce.',
+      insertMobileNumber: 'Perfavore inserisci il tuo numero:.',
+      countryDetectedOnLogin: 'Numero del {{country}} . ' +
+      'Cambialo se non è corretto',
+      countryNotDetectedOnLogin: 'Perfavore seleziona la tua nazione qui sotto',
+      country: 'Nazione',
+      yourNumberPlaceHolder: 'Numero cellulare',
+      nextButton: 'Avanti',
+      backButton: 'Indietro',
+      reEnterPhone: 'Registra un altro numero',
+      goToValidateButton: 'Già possiedo il codice!',
+      smsValMessage: 'Grazie, proveremo a convalidare il tuo numero:',
+      codePlaceholder: 'PIN',
+      sendingValCode: 'Convalidazione numero…',
+      loginEditIncorrect: 'Clicca per modificare il tuo numero se incorretto.',
+      loginNumberOk: 'Premi OK se il numero è giusto.',
+      acceptButton: 'OK',
+      name: 'Tuo nome',
+      settingsGeneral: 'Generale',
+      settingsAbout: 'About',
+      settingsVersion: 'Versione',
+      logout: 'Esci',
+      validateCode: 'Inserisci il PIN che hai ricevuto ' +
+      'via SMS',
+      validateCodeProgress: 'Verifica codice…',
+      validateCodeCall: 'Chiamami per convalidare il codice',
+      settingAccount: 'Impostando l account…',
+      pictureDescription: 'Scegli un immagine da far visualizzare ai tuoi contatti ',
+      screenNamePlaceHolder: 'Tuo nome',
+      screenNameDescription: 'Questo apparirà come il tuo nome ai contatti',
+      statusPlaceHolder: 'Cosa sto pensando?',
+      statusDescription: 'Questo apparirà come il tuo stato ai contatti',
+      doneButton: 'Fatto',
+      pending: 'in attesa',
+      sent: 'inviato',
+      unsent: 'non inviato',
+      defaultImageCaption: 'Immagine',
+      received: 'ricevuto',
+      composeImageCaptionPlaceholder: 'Aggiungi un immagine',
+      sendButton: 'Inviato',
+      loadImageError: 'L\' immagine non può essere caricata in questo momento\n Perfavore ' +
+      'riprova più tardi.',
+      sendingImage: 'Invio in corso',
+      audioMessageSent: 'Audio inviato',
+      audioMessageReceived: 'Audio ricevuto',
+      loadAudioError: 'Questo file non può essere inviato al momento.\n Perfavore ' +
+      'riprova più tardi.',
+      sendLocation: 'Invia posizione',
+      loadLocationError: 'La posizione non può essere caricata al momento\n' +
+      'Perfavore riprova più tardi.',
+      retrievingLocation: 'Ricavando i dati per la posizione…',
+      cancelButton: 'Cancella',
+      currentLocation: 'La mia posizione attuale',
+      logoutAlertText: 'Utilizza questa opzione soltanto se vuoi pulire OpenWapp ' +
+      'da questo dispositivo, in modo da poter entrare con OpenWapp da un altro dispositivo ' +
+      'Per andare offline, ti basterà chiudere semplicemente OpenWapp' +
+      'andrà in stanby automaticamente',
+      savePicture: 'Salva',
+      sdCardUnavailable: 'La scheda di memoria (SD) non è disponibile ',
+      pictureSavePrompt: 'Vuoi salvare quest\' immagine nella galleria?',
+      pictureSaveInfo: 'Salvata',
+      pictureSaveError: 'Errore nel salvare l\' immagine',
+      migrationHeader: 'OpenWapp aggiornato',
+      migrationBody: 'OpenWapp sta terminando l\'aggiornamento',
+      migrationPleaseWait: 'Perfavore attendi',
+      conversationLastSeen: 'Ultimo accesso:',
+      conversationIsOnline: 'Online',
+      loadingParticipants: 'Caricamento contatti…',
+      invite: 'Invita a  WhatsApp',
+      tellAFriendText: 'Controlla Whatsapp Messenger per Android, iPhone, ' +
+      'Nokia, BlackBerry, Windows Phone e adesso anche Firefox OS! Scaricalo' +
+      'oggi da http://whatsapp.com/dl/',
+      emojiListTitle: 'Seegli un emoji da mandare',
+      contactProfile: 'Profilo del contatto',
+      newGroup: 'Nuovo gruppo',
+      groupProfile: 'Informazioni Gruppo',
+      leaveGroup: 'Abbandona il Gruppo',
+      groupPictureDescription: 'Scegli un immagine per il gruppo',
+      subjectPlaceHolder: 'Questo gruppo tratta di...',
+      subjectDescription: 'Brevemente descrivi di cosa tratta questo gruppo',
+      participants: 'Membri',
+      unknownParticipant: 'Membro sconosciuto',
+      participantsDescription: 'Scegli i membri di questo gruppo',
+      addParticipant: 'Aggiungi Membro',
+      removeParticipant: 'Rimuovi membro',
+      image: 'Immagine',
+      video: 'Video',
+      audio: 'Audio',
+      you: 'Tu',
+      notificationSubjectChanged: '{{who}} ha cambiato il titolo del gruppo ' +
+      'to:\n{{subject}}',
+      notificationSubjectChangedByYou: 'Hai cambiato il titolo del gruppo' +
+      'to:\n{{subject}}',
+      notificationGroupParticipantAdded: '{{who}} è entrato nel gruppo',
+      notificationGroupParticipantRemoved: '{{who}} ha lasciato il gruppo',
+      notificationGroupPictureUpdated: '{{who}} ha cambiato l\' immagine del gruppo',
+      notificationGroupPictureUpdatedByYou: 'Hai cambiato l\'immagine del gruppo',
+      notificationGroupPictureRemoved: '{{who}} ha rimosso l\' immagine del gruppo',
+      notificationGroupPictureRemovedByYou: 'Hai rimosso l\'immagine del gruppo',
+      notificationReportTitle: 'Hai {{count}} nuovi messaggi.',
+      notificationReportBody: 'Da {{count}} conversazioni.',
+      inAppNotification: '{{title}}: {{body}}',
+      wakeUpTime: 'Controlla messaggi…',
+      wakeUpDescription: 'Tempo nella quale OpenWapp controlla nuovi messaggi: meno tempo ' +
+      'equivale ad un alto consumo della batteria',
+      eachMinute: 'Ogni minuto',
+      each5Minutes: 'Ogni 5 minuti',
+      each10Minutes: 'Ogni 10 minuti',
+      each20Minutes: 'Ogni 20 minuti',
+      each30Minutes: 'Ogni 30 minuti',
+      eachHour: 'Ogni ora',
+      disabled: 'Mai',
+      termsOfUse: 'Termini e condizioni',
+      fileTooLargeToBeSent: 'Il file è troppo grande. Il limite per mandare i' +
+      'file è 10MiB.',
+      errorAddingParticipant: 'Questo contatto non può esser aggiunto al gruppo',
+      genericConnectionProblem: 'Problema inaspettato. Sei ' +
+      'sicuro d\' esser connesso? Prova a chiudere e aprire nuovamente OpenWapp. Se il ' +
+      'problema continua, riprova più tardi.',
+      participatingInTooMuchGroups: 'Stai partecipando in troppi gruppi' +
+      '. Il limite è 50. Dovresti uscire in qualcuno prima di entrare ' +
+      'in un altro.',
+      accountExpired: 'Il tuo account è scaduto. Vorresti aggiornare ' +
+      'il tuo account adesso?',
+      accountExpiration: 'Data di scadenza:',
+      upgradeNow: 'Aggiornalo adesso',
+      notSquarePicture: 'L\'immagine selezionata non è un quadrato. Questo renderà l\' immagine ' +
+      'modificata male ai lati. Se vuoi risolvere il problema, vai nella ' +
+      'Galleria, ed edita la foto, usando 1:1 come scala.'
+    },
     de: {
       all: 'Alle',
       contacts: 'Kontakte',
