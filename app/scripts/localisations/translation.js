@@ -190,7 +190,9 @@ define([], function () {
       'abre la aplicación de Galería y edita y recorta la imagen para que ' +
       'tenga un aspecto 1:1',
       simRequired: 'Se necesita una tarjeta SIM. Si sigues, igual encuentras ' +
-      'dragones…'
+      'dragones…',
+      multiSIMdetectedWarn: 'Se ha detectado más de una SIM. OpenWapp sólo ' +
+      'funciona con la SIM insertada en la posición 1'
     },
     'en-US': {
       all: 'All',
@@ -381,7 +383,9 @@ define([], function () {
       notSquarePicture: 'The selected image is not square. This will make to ' +
       'appear padding bands around. If you want to fix it, go to the ' +
       'Gallery, and edit and crop the photo, using a 1:1 aspect ratio.',
-      simRequired: 'SIM card required. Here be dragons…'
+      simRequired: 'SIM card required. Here be dragons…',
+      multiSIMdetectedWarn: 'More than one SIM detected. OpenWapp only works ' +
+      'with the SIM inserted in position 1'
     },
     pt : {
       all: 'Tudo',
@@ -565,7 +569,9 @@ define([], function () {
       'que apareçam faixas ao redor. Se você quiser corrigi-lo, ' +
       'vá até a Galeria e editar e cortar a foto, usando uma relação de ' +
       'aspecto de 1:1.',
-      simRequired: 'Um cartão SIM é necessário'
+      simRequired: 'Um cartão SIM é necessário',
+      multiSIMdetectedWarn: 'Mais do que um SIM detectado . OpenWapp só ' +
+      'funciona com o SIM inserido na posição 1'
     },
     'pt-BR' : {
       all: 'Tudo',
@@ -750,7 +756,9 @@ define([], function () {
       'que apareçam faixas ao redor. Se você quiser corrigi-lo, ' +
       'vá até a Galeria e editar e cortar a foto, usando uma relação de ' +
       'aspecto de 1:1.',
-      simRequired: 'Um cartão SIM é necessário'
+      simRequired: 'Um cartão SIM é necessário',
+      multiSIMdetectedWarn: 'Mais do que um SIM detectado . OpenWapp só ' +
+      'funciona com o SIM inserido na posição 1'
      },
     'it': {
       all: 'Tutti',

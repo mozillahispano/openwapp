@@ -69,9 +69,11 @@ define([
     },
 
     getMccAndMnc: function () {
-      var mozCnx;
-      var network;
+      var mozCnx, network;
+      var stringId;
+      var multiSIMdetected = false;
       var _this = this;
+      var l10n = global.localisation[global.language];
       // Firefox OS 1.1-
       if ((mozCnx = navigator.mozMobileConnection)) {
         network = (mozCnx.lastKnownHomeNetwork || mozCnx.lastKnownNetwork ||
@@ -81,6 +83,9 @@ define([
       }
       // Firefox OS 1.2+
       else if ((mozCnx = navigator.mozMobileConnections)) {
+        if (navigator.mozMobileConnections.length > 1) {
+          multiSIMdetected = true;
+        }
         for (var c = 0; c < navigator.mozMobileConnections.length; c++) {
           network = (mozCnx[c].lastKnownHomeNetwork ||
             mozCnx.lastKnownNetwork || '-').split('-');
@@ -91,10 +96,18 @@ define([
       // Desktop or simulator
       else {
         console.log('mozMobileConnection not available');
-        var l10n = global.localisation[global.language];
-        var stringId = 'simRequired';
-        var message = l10n[stringId];
-        window.alert(message);
+        stringId = 'simRequired';
+        window.alert(l10n[stringId]);
+      }
+
+      if (multiSIMdetected) {
+        stringId = 'multiSIMdetectedWarn';
+        window.alert(l10n[stringId]);
+      }
+
+      if (isNaN(this.mcc)) {
+        stringId = 'simRequired';
+        window.alert(l10n[stringId]);
       }
     },
 
