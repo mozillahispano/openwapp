@@ -10,7 +10,6 @@
   "developer": {
     "name": "OpenWapp Team"
   },
-  "csp": "default-src *; script-src 'self'; object-src 'none'; style-src 'self'",
   "type": "privileged",
   "locales": {
     "es": {
@@ -23,8 +22,7 @@
     }
   },
   "default_locale": "en-US",
-  "version": "1.5.1-dev",
-  "orientation": "portrait",
+  "version": "1.6.0-dev",
   "messages": [
     { "alarm": "/index.html" }
   ],

@@ -270,7 +270,7 @@ define([
       } else {
         stringId = 'registerErrorGenericAlert';
         message = interpolate(l10n[stringId], {
-          error: JSON.stringify(err)
+          error: JSON.stringify(data)
         });
       }
 
