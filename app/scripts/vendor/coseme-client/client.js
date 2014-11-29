@@ -31,76 +31,17 @@
   var _groupInfoRequests = {};
   var _setPictureRequests = {};
   var _presenceRequests = {};
-  var _seedForId, _sdcard;
 
-  var SEED_FILENAME = '.openwapp_seed';
+  var SEED_KEY = 'openwapp_seed';
 
-  if (typeof window.navigator.getDeviceStorage === 'function') {
-    _sdcard = navigator.getDeviceStorage('sdcard');
-  }
-  else {
-    console.error('There is no getDeviceStorage API');
-    _seedForId = 'c9qjareu'; // testing purposes
-  }
-
-  function getSeedFromSdcard(callback) {
-    // compatibility reasons
-    var err;
-    if (_seedForId) {
-      return callback(null, _seedForId);
-    }
-    if (!_sdcard) {
-      return callback('no-sdcard');
-    }
-
-    // Get the file handler
-    console.log('OpenWapp: Getting the seed file from sdcard: ' +
-                SEED_FILENAME);
-    var request = _sdcard.get(SEED_FILENAME);
-    request.onsuccess = function _getFileSuccess() {
-      var file = this.result;
-
-      // Reads the contents
-      var reader = new FileReader();
-      reader.onloadend = function () {
-        console.log('OpenWapp: seed is ' + this.result);
-        _seedForId = this.result;
-        callback(null, _seedForId);
-      };
-      reader.onerror = function () {
-        console.error('OpenWapp: error reading the seed!');
-        callback('error-reading');
-      };
-      reader.readAsBinaryString(file);
-    };
-    request.onerror = function _getFileError() {
-      console.error('OpenWapp: seed file does not exist!');
-      callback('not-exist');
-    };
-  }
-
-  function getSeed(callback) {
-    /* because older versions saved the seed to the sd card, we still have to
-     * fallback to it if its not in the database
-    */
-    var storage_seed = window.localStorage.getItem('seed');
-    if (storage_seed === null) {
-      getSeedFromSdcard(function(error, seed) {
-        if (error === null) {
-          console.log('Moving the seed from filesystem to localStorage');
-          saveSeed(seed);
-          _sdcard && _sdcard.delete(SEED_FILENAME);
-        }
-        callback(error, seed);
-      });
-    }
-    console.log('OpenWapp: got the seed', storage_seed);
-    callback(null, storage_seed);
+  function getSeed() {
+    console.log('OpenWapp: getting the seed.');
+    return window.localStorage.getItem(SEED_KEY);
   }
 
   function saveSeed(seed) {
     console.log('OpenWapp: saving the seed.', seed);
-    window.localStorage.setItem('seed', seed);
+    window.localStorage.setItem(SEED_KEY, seed);
   }
 
   // Actual module implementation
@@ -667,19 +608,7 @@
         },
 
         register: function(countryCode, phoneNumber, locale, mcc, mnc, callback) {
-          getSeed(function (err, seed) {
-            if (err && err !== 'not-exist') {
-              return callback(err);
-            }
-
-            seed = CoSeMe.registration
-                     .getCode(countryCode, phoneNumber, onReady, onError,
-                      seed, mcc, mnc, locale);
-
-            if (err === 'not-exist') {
-              saveSeed(seed);
-            }
-          });
+          var origSeed = getSeed();
 
           function onReady(response) {
             if (response.status !== 'fail') {
@@ -690,22 +619,25 @@
               callback(-1, response); /* unknown error */
             }
           }
+
           function onError() {
             var statusCode = this.status || -1;
             callback(statusCode, null);
+          }
+
+
+          var seed = CoSeMe.registration
+                   .getCode(countryCode, phoneNumber, onReady, onError,
+                    origSeed, mcc, mnc, locale);
+
+          if (origSeed === null) {
+            saveSeed(seed);
           }
         },
 
         validate:
         function(countryCode, phoneNumber, pin, screenName, callback) {
-          getSeed(function (err, seed) {
-            if (err) {
-              return callback(err);
-            }
-
-            CoSeMe.registration
-              .register(countryCode, phoneNumber, pin, onReady, onError, seed);
-          });
+          var seed = getSeed();
 
           function onReady(response) {
             if (response.status !== 'fail') {
@@ -714,9 +646,13 @@
               callback(-1, response); /* unknown error */
             }
           }
+
           function onError() {
             callback(this.statusCode, null);
           }
+
+          CoSeMe.registration
+            .register(countryCode, phoneNumber, pin, onReady, onError, seed);
         },
 
         updateProfile: function(profileData) {
