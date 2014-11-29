@@ -383,9 +383,10 @@ define([], function () {
       notSquarePicture: 'The selected image is not square. This will make to ' +
       'appear padding bands around. If you want to fix it, go to the ' +
       'Gallery, and edit and crop the photo, using a 1:1 aspect ratio.',
-      simRequired: 'SIM card required. Here be dragons…',
-      multiSIMdetectedWarn: 'More than one SIM detected. OpenWapp only works ' +
-      'with the SIM inserted in position 1'
+      noSimForThisNumber: 'No SIM-Card was detected for this number.',
+      chooseNetwork: 'Please choose your carrier and your MMC/MNC number below',
+      sameNumberMultiplePhonesWarning: 'Simultaneous usage of the same ' +
+      'mobile number on different devices can lead to unexpected errors.'
     },
     pt : {
       all: 'Tudo',
@@ -1140,10 +1141,13 @@ define([], function () {
       notSquarePicture: 'Das ausgewählte Bild ist nicht quadratisch, daher ' +
       'wird ein Balken hinzugefügt. Um dies zu ändern, gehen Sie in die ' +
       'Gallerie und schneiden Sie das Foto zu.',
-      simRequired: 'Sie benötigen eine SIM-Karte. Die App funktioniert ' +
-      'möglicherweise nicht.',
-      multiSIMdetectedWarn: 'Mehrere SIM-Karten wurden festgestellt. ' +
-      'OpenWapp wird die erste SIM-Karte verwendend.'
+      noSimForThisNumber: 'Es wurde keine SIM-Karte für diese Nummer gefunden ' +
+      'werden.',
+      chooseNetwork: 'Bitte wählen Sie unten ihren Betreiber und ihre ' +
+      'MMC/MNC-Nummer aus.',
+      sameNumberMultiplePhonesWarning: 'Bei der gleichzeitigen Verwendung der ' +
+      'gleichen SIM-Karte auf unterschiedlichen Geräten kann es zu ' +
+      'unerwarteten Fehlern kommen.'
     },
     nl: {
       all: 'Alle',

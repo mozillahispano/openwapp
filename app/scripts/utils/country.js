@@ -37,7 +37,7 @@ define([
     getCarrier: function(mcc, mnc) {
       var carriers = this.get('carriers'),
         carrierList = Object.keys(carriers),
-        neededCarrierList = carrierList.map(function(carrierName) {
+        neededCarrierList = carrierList.filter(function(carrierName) {
           return carriers[carrierName].filter(function(mccMnc) {
             return mccMnc.mcc === mcc && mccMnc.mnc === mnc;
           }).length > 0;
