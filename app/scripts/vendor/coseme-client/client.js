@@ -613,10 +613,8 @@
           function onReady(response) {
             if (response.status !== 'fail') {
               callback(null, response);
-            } else if (response.reason === 'too_recent') {
-              callback('too_recent', response['retry_after']);
             } else {
-              callback(-1, response); /* unknown error */
+              callback(response.reason, response);
             }
           }
 

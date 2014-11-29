@@ -248,27 +248,36 @@ define([
       button.prop('disabled', !button.prop('disabled'));
     },
 
-    // TODO: we need to discern other kind of errors in this method
     errorRegister: function (err, data) {
+      var l10n = global.localisation[global.language];
+      var interpolate = global.l10nUtils.interpolate;
+      var stringId, message;
       this.$el.find('section.intro > p').show();
       if (err === 'too_recent') {
-        var l10n = global.localisation[global.language];
-        var interpolate = global.l10nUtils.interpolate;
-        var stringId = 'registerErrorTooRecent';
-        var message = interpolate(l10n[stringId], {
-          minutes: Math.ceil(data / 60)
+        var tryAfter = (data && data['retry_after']) || 0;
+        stringId = 'registerErrorTooRecent';
+        message = interpolate(l10n[stringId], {
+          minutes: Math.ceil(tryAfter / 60)
         });
-        window.alert(message);
-      } else if (typeof err === 'object') {
-        window.alert(global.localisation[global.language]
-          .registerErrorObjectAlert);
-      } else if (err === 429) {
-        window.alert(global.localisation[global.language]
-          .registerError429Alert);
+      } else if (err === 'too_many') {
+        stringId = 'registerErrorTooMany';
+      } else if (err === 'old_version' || err === 'bad_token') {
+        stringId = 'registerErrorOldVersion';
+      } else if (err === 'stale') {
+        stringId = 'registerErrorStale';
+      } else if (err === 'no_routes') {
+        stringId = 'registerErrorNoRoutes';
       } else {
-        window.alert(global.localisation[global.language]
-          .registerErrorObjectAlert);
+        stringId = 'registerErrorGenericAlert';
+        message = interpolate(l10n[stringId], {
+          error: JSON.stringify(err)
+        });
       }
+
+      if (!message) {
+        message = l10n[stringId];
+      }
+      window.alert(message);
     },
 
     showTOS: function (evt) {

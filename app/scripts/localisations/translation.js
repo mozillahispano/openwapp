@@ -27,16 +27,18 @@ define([], function () {
       movilNumberValidationAlert: 'El número de móvil:\n' +
       '+{{prefix}} {{number}}\nno parece un número de {{country}} válido.\n ' +
       '¿Quieres seguir de todas formas?',
-      registerErrorObjectAlert: 'Se ha producido un error al registrar su ' +
-      'número de móvil.\n Por favor, compruebe su conectividad.',
-      registerError429Alert: 'Se ha producido un error al registrar su ' +
-      'número de móvil.\n Por favor, contacte con el servicio de asistencia.',
-      registerErrorGenericAlert: 'Se ha producido un error al registrar su ' +
-      'número de móvil.\n Por favor, reinténtelo más tarde.',
       registerErrorTooRecent: 'Es demasiado pronto para solicitar otro código' +
       ' de registro. Comprueba que no te ha llegado el mensaje de ' +
       'confirmación. Si es así, espera un poco o vuelve a intentar registrar ' +
       'tu número pasados {{minutes}} minutos',
+      registerErrorTooMany: 'Demasiados intentos inválidos de código',
+      registerErrorOldVersion: 'Versión antigua. Contacte con los ' +
+      'desarrolladores de OpenWapp',
+      registerErrorStale: 'Código de registro expirado. Tiene que pedir uno ' +
+      'nuevo',
+      registerErrorNoRoutes: 'No hay rutas para enviar el SMS a su operador.' +
+      'Pruebe tarde, o contacte con los desarrolladores de OpenWapp',
+      registerErrorGenericAlert: '¡Uy! No sabemos qué es esto: {{error}}',
       pinInvalidAlert: 'PIN no válido.',
       screenNameAlert: 'Su nombre de pantalla no puede estar vacío.',
       inbox: 'Chats',
@@ -213,16 +215,17 @@ define([], function () {
       movilNumberValidationAlert: 'The mobile number:\n' +
       '+{{prefix}} {{number}}\ndoes not seem to be a valid number from ' +
       '{{country}}.\nDo you want to continue in any case?',
-      registerErrorObjectAlert: 'There was an error registering ' +
-      'your number.\n Please check your connectivity settings.',
-      registerError429Alert: 'There was an error registering your number.\n' +
-      ' Please contact technical support.',
-      registerErrorGenericAlert: 'There was an error registering your number.' +
-      ' \n Please try again later.',
       registerErrorTooRecent: 'It is too early to request another ' +
       'registration code.\nCheck that you have not received the confirmation ' +
       'message. If so, wait a little bit or try to register in {{minutes}} ' +
       'minutes',
+      registerErrorTooMany: 'Too many wrong code guesses',
+      registerErrorOldVersion: 'Old version, please contact OpenWapp devs',
+      registerErrorStale: 'Registration code expired. You need to request a ' +
+      'new one',
+      registerErrorNoRoutes: 'No cell routes for %1 caused by your operator. ' +
+      'Please try again later or contact OpenWapp developers',
+      registerErrorGenericAlert: 'Oops, error. Message={{error}}',
       pinInvalidAlert: 'PIN not recognized. Please try again.',
       screenNameAlert: 'Please enter your name.',
       inbox: 'Inbox',
@@ -402,12 +405,8 @@ define([], function () {
       movilNumberValidationAlert: 'O número de celular:\n' +
       '+{{prefix}} {{number}}\nnão parece um número válido de {{country}}.\n ' +
       'De qualquer forma, você quer continuar?',
-      registerErrorObjectAlert: 'Houve um erro ao cadastrar' +
-      'seu número.\n Por favor, verifique sua conexão.',
-      registerError429Alert: 'Houve um erro ao cadastrar ' +
-      'seu número.\n Por favor, contate com o suporte.',
       registerErrorGenericAlert: 'Houve um erro ao cadastrar ' +
-      'seu número.\n Por favor, tente novamente mais tarde.',
+      'seu número.\n Error={{error}}',
       registerErrorTooRecent: 'É muito cedo para solicitar outro código de ' +
       'registo. Verifique se você não tiver recebido a mensagem de ' +
       'confirmação. Se assim for, espere um pouco ou tentar registrar em ' +
@@ -589,12 +588,8 @@ define([], function () {
       movilNumberValidationAlert: 'O número de celular:\n' +
       '+{{prefix}} {{number}}\nnão parece um número válido de {{country}}.\n ' +
       'De qualquer forma, você quer continuar?',
-      registerErrorObjectAlert: 'Houve um erro ao cadastrar' +
-      'seu número.\n Por favor, verifique sua conexão.',
-      registerError429Alert: 'Houve um erro ao cadastrar ' +
-      'seu número.\n Por favor, contate com o suporte.',
       registerErrorGenericAlert: 'Houve um erro ao cadastrar ' +
-      'seu número.\n Por favor, tente novamente mais tarde.',
+      'seu número.\n Error={{error}}',
       registerErrorTooRecent: 'É muito cedo para solicitar outro código de ' +
       'registo. Verifique se você não tiver recebido a mensagem de ' +
       'confirmação. Se assim for, espere um pouco ou tentar registrar em ' +
@@ -777,10 +772,6 @@ define([], function () {
      movilNumberValidationAlert: 'Il numero del cellulare:\n' +
      '+{{prefix}} {{number}}\nnon sembra essere un numero valido del ' +
      '{{country}}.\nVuoi continuare in ogni caso?',
-     registerErrorObjectAlert: 'Errore nella registrazione' +
-     'il tuo numero.\n Perfavore controlla la connessione a internet.',
-     registerError429Alert: 'Errore nel registrare il  numero\n' +
-     ' Contattare il supporto.',
      registerErrorGenericAlert: 'Errore nel registrare il numero.' +
      ' \n Riprovare più tardi.',
      registerErrorTooRecent: 'È ancora troppo presto per richiedere un altro ' +
@@ -966,11 +957,6 @@ define([], function () {
       movilNumberValidationAlert: 'Die Rufnummer:\n' +
         '+{{prefix}} {{number}}\nscheint keine gültige Mobilfunknummer aus ' +
         '{{country}} zu sein.\nWollen Sie trotzdem fortfahren?',
-      registerErrorObjectAlert: 'Beim Registrieren Ihrer Nummer ist ein ' +
-      'Fehler aufgetreten.\nBitte überprüfen Sie Ihre ' +
-      'Verbindungseinstellungen.',
-      registerError429Alert: 'Beim Registrieren Ihrer Nummer ist ein Fehler ' +
-      'aufgetreten.\nBitte kontaktieren Sie den technischen Support.',
       registerErrorGenericAlert: 'Beim Registrieren Ihrer Nummer ist ein ' +
       'Fehler aufgetreten.\nBitte versuchen Sie es später noch einmal.',
       registerErrorTooRecent: 'Die erneute Anforderung eines ' +
@@ -1155,10 +1141,6 @@ define([], function () {
       movilNumberValidationAlert: 'Het mobiele nummer:\n' +
       '+{{prefix}} {{number}}\nlijkt niet een geldig nummer te zijn binnen ' +
       '{{country}}.\nWilt u toch verder gaan?',
-      registerErrorObjectAlert: 'Er was een fout bij het registreren van ' +
-      'uw nummer.\n Controleer uw verbinding(sinstellingen).',
-      registerError429Alert: 'Er was een fout bij het registreren van uw ' +
-      'nummer\n Neem a.u.b. contact op met support.',
       registerErrorGenericAlert: 'Er was een fout bij het registreren van uw ' +
       'nummer\n Probeer het a.u.b. later nog eens.',
       registerErrorTooRecent: 'It is too early to request another ' +
