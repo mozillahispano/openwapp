@@ -287,7 +287,7 @@ define([
       } else {
         stringId = 'registerErrorGenericAlert';
         message = interpolate(l10n[stringId], {
-          error: JSON.stringify(data)
+          error: JSON.stringify(data, null, ' ')
         });
       }
 
