@@ -28,7 +28,8 @@ define([
       this.selectedSimCard = null;
       this.proposedCountry = null;
       this.countryTables = new CountriesCollection();
-      console.log("got countries");
+      this.countryChooseEnabled = true;
+      this.mccMncChooseEnabled = true;
       this.getMccAndMnc();
     },
 
@@ -36,13 +37,16 @@ define([
       'submit #register':            'gotoConfirmation',
       'submit #register-conf':       'register',
       'submit #register-network':    'networkSelected',
-      'click #validate-button':      'goToValidate',
-      'click .btn-back':             'back',
-      'change #country-select':      'setCountryPrefix',
-      'change #sim-select' :         'setSimCard',
-      'change #network-name-select': 'setNetworkName',
-      'change #mcc-mnc-select':      'setNetwork',
-      'click  .action':              'showSelect',
+      'click  #validate-button':     'goToValidate',
+      'click  .icon-back':           'back',
+      'blur   #country-select':      'setCountryPrefix',
+      'blur   #sim-select' :         'setSimCard',
+      'blur   #carrier-select':      'setCarrier',
+      'blur   #mcc-mnc-select':      'setNetwork',
+      'click  #choose-sim':          'showSimSelect',
+      'click  #choose-country':      'showSelect',
+      'click  #choose-carrier':      'showCarrierSelect',
+      'click  #choose-mcc-mnc':      'showMccMncSelect',
       'click  .tos a':               'showTOS'
     },
 
@@ -53,7 +57,6 @@ define([
       } else {
         var message, stringId;
         var l10n = global.localisation[global.language];
-        var _this = this;
 
         if (this.possibleSimCards.length === 0) {
           stringId = 'countryNotDetectedOnLogin';
@@ -75,9 +78,10 @@ define([
           countryDetectionMessage: message
         });
         this.$el.html(el);
-        this.possibleSimCards.length > 1 && this.populateSimCards();
-        console.log("populating sim cards");
         this.populateCountryNames();
+        if (this.possibleSimCards.length > 1) {
+          this.populateSimCards();
+        }
         this.$el.removeClass().addClass('page init');
       }
     },
@@ -91,9 +95,8 @@ define([
             Array.from(navigator.mozMobileConnections))||
             // simulator
           []
-        );
-      console.log(SimCardList);
-      var possibleSimCards = SimCardList.
+      ),
+        possibleSimCards = SimCardList.
           map(function(sim, index) {
             console.log(sim, index);
             var network = (sim.lastKnownHomeNetwork ||
@@ -123,32 +126,49 @@ define([
 
     populateSimCards: function () {
       var _this = this,
-        $select = this.$el.find('#sim-select');
-      console.log("select", $select.length);
+        $select = this.$el.find('#sim-select').html(''),
+        $choose = this.$el.find('#choose-sim'),
+        $button = this.$el.find('#register button'),
+        $mobileNumberInput = this.$el.find('#register input'),
+        $prefixChoose = this.$el.find('#choose-country');
       this.possibleSimCards.map(function(sim) {
+        console.log(_this.countryTables);
         var country = _this.countryTables.getCountryByMccMnc(sim.mcc, sim.mnc),
           carrier = country.getCarrier(sim.mcc, sim.mnc);
         $select.append(new Option(
           'Slot ' + sim.index + ': ' + carrier, sim.index
         ));
       });
-      console.log("select", $select.length);
-      this.selectedSimCard = this.possibleSimCards[$select.val()];
-      $select.removeClass('hidden');
+      $choose.removeClass('hidden');
+      $button.attr('disabled', true);
+      $mobileNumberInput.attr('disabled', true);
+      $prefixChoose.removeClass('action');
+      this.countryChooseEnabled = false;
     },
 
     setSimCard: function(evt) {
       var simNumber = $(evt.target).val(),
         simCard = this.possibleSimCards[simNumber],
         $countrySelect = this.$el.find('#country-select'),
+        $chooseSim = this.$el.find('#choose-sim'),
         country = this.countryTables.getCountryByMccMnc(
-          simCard.mcc, simCard.mnc);
+          simCard.mcc, simCard.mnc),
+        carrier = country.getCarrier(simCard.mcc, simCard.mnc),
+        $button = this.$el.find('#register button'),
+        $mobileNumberInput = this.$el.find('#register input'),
+        $prefixChoose = this.$el.find('#choose-country');
       this.selectedSimCard = simCard;
+      $chooseSim.html('Slot ' + simNumber + ': ' + carrier);
       $countrySelect.val(country.get('code'));
+      this.setCountryPrefix({target: $countrySelect, preventDefault: String});
+      $button.removeAttr('disabled');
+      $mobileNumberInput.removeAttr('disabled');
+      $prefixChoose.addClass('action');
+      this.countryChooseEnabled = true;
     },
 
     populateNetworkNames: function() {
-      var $select = this.$el.find('#network-name-select').html('');
+      var $select = this.$el.find('#carrier-select').html('');
       Object.keys(this.proposedCountry.get('carriers')).
         map(function(carrierName) {
           $select.append(new Option(carrierName, carrierName));
@@ -158,8 +178,6 @@ define([
 
     populateNetworks: function(networkName) {
       var $mccMncSelect = this.$el.find('#mcc-mnc-select').html('');
-      console.log(networkName);
-      console.log(this.proposedCountry.get('carriers'));
       this.proposedCountry.get('carriers')[networkName].
         map(function(network, index) {
           $mccMncSelect.append(new Option(
@@ -167,19 +185,24 @@ define([
             index
           ));
         });
-      this.setNetworkFromElem($mccMncSelect, networkName);
     },
 
-    setNetworkName: function(evt) {
+    setCarrier: function(evt) {
       var networkName = $(evt.target).val();
+      this.$el.find('#choose-carrier').html(networkName);
       this.populateNetworks(networkName);
     },
 
     setNetwork: function(evt) {
-      this.setNetworkFromElem(
-        $(evt.target),
-        this.$el.find('#network-name-select').val()
+      var mccMncIndex = $(evt.target).val(),
+        carrier = this.$el.find('#carrier-select').val(),
+        network = this.proposedCountry.get('carriers')[carrier][mccMncIndex];
+      this.$el.find('#choose-mcc-mnc').html(
+        'MCC: ' + network.mcc + ', MNC: ' + network.mnc
       );
+      this.$el.find('#network-submit').removeAttr('disabled');
+      this.mcc = network.mcc;
+      this.mnc = network.mnc;
     },
 
     setNetworkFromElem: function($elem, carrier) {
@@ -201,14 +224,35 @@ define([
         $select.append(new Option(country.toString(), country.get('code'),
           true, isSim));
         if (isSim) {
-          _this.$el.find('legend').html(country.get('prefix'));
+          _this.$el.find('.country-prefix').html(country.get('prefix'));
           _this.proposedCountry = country;
         }
       });
     },
 
     showSelect: function () {
+      if (!this.countryChooseEnabled) {
+        return;
+      }
       var $select = this.$el.find('#country-select');
+      $select.focus();
+    },
+
+    showSimSelect: function () {
+      var $select = this.$el.find('#sim-select');
+      $select.focus();
+    },
+
+    showCarrierSelect: function () {
+      var $select = this.$el.find('#carrier-select');
+      $select.focus();
+    },
+
+    showMccMncSelect: function () {
+      if (!this.mccMncChooseEnabled) {
+        return;
+      }
+      var $select = this.$el.find('#mcc-mnc-select');
       $select.focus();
     },
 
@@ -216,8 +260,7 @@ define([
       evt.preventDefault();
       var country = this.countryTables
           .getSelectedCountry($(evt.target).val());
-      this.$el.find('legend').html(country.get('prefix'));
-      console.log(country);
+      this.$el.find('.country-prefix').html(country.get('prefix'));
       this.proposedCountry = country;
     },
 
@@ -260,7 +303,7 @@ define([
         message = global.localisation[global.language][stringId];
       console.log('chosen mcc', this.mcc);
       console.log('chosen mnc', this.mnc);
-      alert(message);
+      window.alert(message);
       this.next('confirmation');
     },
 
@@ -366,6 +409,8 @@ define([
       var stringId, message;
       this.$el.find('section.intro > p').show();
       if (err === 'too_recent') {
+        /*jshint -W069*/
+        /*Justification: camelCase/dotstyle conflict*/
         var tryAfter = (data && data['retry_after']) || 0;
         stringId = 'registerErrorTooRecent';
         message = interpolate(l10n[stringId], {
