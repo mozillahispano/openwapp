@@ -982,7 +982,7 @@ define([], function () {
       registerErrorTooRecent: 'Die erneute Anforderung eines ' +
       'Registrierungscodes ist noch nicht möglich. Bitte überprüfen Sie, ob ' +
       'Sie die Bestätigungsnachricht empfangen haben. Ansonsten können Sie ' +
-      'in {{minutes}} einen neuen Code anfordern.',
+      'in {{minutes}} Minuten einen neuen Code anfordern.',
       pinInvalidAlert: 'PIN nicht erkannt. Bitte versuchen Sie es noch einmal.',
       screenNameAlert: 'Bitte geben Sie Ihren Namen ein.',
       inbox: 'Eingang',
