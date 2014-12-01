@@ -227,8 +227,8 @@ define([], function () {
       registerErrorOldVersion: 'Old version, please contact OpenWapp devs',
       registerErrorStale: 'Registration code expired. You need to request a ' +
       'new one',
-      registerErrorNoRoutes: 'No cell routes for %1 caused by your operator. ' +
-      'Please try again later or contact OpenWapp developers',
+      registerErrorNoRoutes: 'No cell routes for sending sms caused by your ' +
+      'operator. Please try again later or contact OpenWapp developers',
       registerErrorGenericAlert: 'Oops, error. Message={{error}}',
       pinInvalidAlert: 'PIN not recognized. Please try again.',
       screenNameAlert: 'Please enter your name.',
@@ -970,12 +970,19 @@ define([], function () {
       movilNumberValidationAlert: 'Die Rufnummer:\n' +
         '+{{prefix}} {{number}}\nscheint keine gültige Mobilfunknummer aus ' +
         '{{country}} zu sein.\nWollen Sie trotzdem fortfahren?',
-      registerErrorGenericAlert: 'Beim Registrieren Ihrer Nummer ist ein ' +
-      'Fehler aufgetreten.\nBitte versuchen Sie es später noch einmal.',
+      registerErrorTooMany: 'Der Code wurde zu oft falsch eingegeben.',
+      registerErrorOldVersion: 'Sie scheinen eine alte Version zu benutzen. ' +
+      'Bitte aktualisieren Sie die App oder kontaktieren sie die Openwapp ' +
+      'Entwickler',
+      registerErrorStale: 'Ihr Registrierungscode ist abgelaufen. Bitte ',
+      registerErrorNoRoutes: 'Es konnte keine Verbindung hergestellt werden, ' +
+      'um eine sms zu senden. Bitte versuchen Sie es später noch einmal.',
+      registerErrorGenericAlert: 'Ein unerwarteter Fehler ist aufgetreten. ' +
+      'Die Fehlernachricht lautet "{{error}}"',
       registerErrorTooRecent: 'Die erneute Anforderung eines ' +
       'Registrierungscodes ist noch nicht möglich. Bitte überprüfen Sie, ob ' +
       'Sie die Bestätigungsnachricht empfangen haben. Ansonsten können Sie ' +
-      'in {{minutes}} einen neuen Code anfordern.',
+      'in {{minutes}} Minuten einen neuen Code anfordern.',
       pinInvalidAlert: 'PIN nicht erkannt. Bitte versuchen Sie es noch einmal.',
       screenNameAlert: 'Bitte geben Sie Ihren Namen ein.',
       inbox: 'Eingang',
@@ -1002,11 +1009,11 @@ define([], function () {
       welcomeMessage2: 'Die Registrierung ist schnell und einfach.',
       insertMobileNumber: 'Bitte geben Sie Ihre Mobilfunknummer ein',
       countryDetectedOnLogin: 'Sie scheinen eine Mobilfunknummer aus ' +
-      'Österreich zu haben. Ändern Sie dies andernfalls.',
+      '{{country}} zu haben. Ändern Sie dies andernfalls.',
       countryNotDetectedOnLogin: 'Bitte wählen Sie unterhalb ihr Land aus.',
       country: 'Land',
       yourNumberPlaceHolder: 'Mobilfunknummer',
-      nextButton: 'Vor',
+      nextButton: 'Weiter',
       backButton: 'Zurück',
       reEnterPhone: 'Registrieren Sie ein anderes Telefon',
       goToValidateButton: 'Ich kenne meinen Code bereits!',
@@ -1127,7 +1134,11 @@ define([], function () {
       upgradeNow: 'Jetzt erneuern',
       notSquarePicture: 'Das ausgewählte Bild ist nicht quadratisch, daher ' +
       'wird ein Balken hinzugefügt. Um dies zu ändern, gehen Sie in die ' +
-      'Gallerie und schneiden Sie das Foto zu.'
+      'Gallerie und schneiden Sie das Foto zu.',
+      simRequired: 'Sie benötigen eine SIM-Karte. Die App funktioniert ' +
+      'möglicherweise nicht.',
+      multiSIMdetectedWarn: 'Mehrere SIM-Karten wurden festgestellt. ' +
+      'OpenWapp wird die erste SIM-Karte verwendend.'
     },
     nl: {
       all: 'Alle',
