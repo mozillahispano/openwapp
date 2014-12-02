@@ -258,6 +258,8 @@ define([], function () {
       countryDetectedOnLogin: 'You have a {{country}} phone number. ' +
       'Change it if it is not correct',
       countryNotDetectedOnLogin: 'Please, select your country below',
+      multipleSimCards: 'You have multiple SIM-Cards inserted. Please choose ' +
+      'the one you want to use below',
       country: 'Country',
       yourNumberPlaceHolder: 'Mobile number',
       nextButton: 'Next',

@@ -1992,7 +1992,7 @@
     },
     {
         "carriers": {
-            "Debitel": [
+                                                                        "Debitel": [
                 {
                     "mcc": "262",
                     "mnc": "n/a"

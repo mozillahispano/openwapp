@@ -1,3 +1,18 @@
+/*
+ * On this page, there exist three pages - one of which is optional:
+ * * page 1: -init- user can enter phone number, choose country and optionally
+ *   choose sim (if more than 1 are available & valid)
+ * * page 2: -network- exists only if the user chose a country which doesn't
+ *   match the chosen sim - which means always if no sim is available: The user
+ *   has to choose carrier and network manually
+ * * page 3: -confirm- the user can change his number (not the country) again
+ *   and request the sms
+ * A sim card belongs to a certain network.
+ * A network can be uniquely identified by a mcc/mnc combination
+ * A carrier consists of one or more networks and has a unique name per country
+ */
+
+
 define([
   'backbone',
   'zeptojs',
@@ -20,21 +35,21 @@ define([
 
     currentPage: 'init',
 
+    /***********************GENERAL*************************************/
+
     initialize: function () {
-      console.log('called init');
       this.mcc = '';
       this.mnc = '';
       this.possibleSimCards = []; //only relevant if multiple sims found
       this.selectedSimCard = null;
       this.proposedCountry = null;
       this.countryTables = new CountriesCollection();
-      this.countryChooseEnabled = true;
-      this.mccMncChooseEnabled = true;
-      this.getMccAndMnc();
+      this.readSimCards();
+      this.elements = {};
     },
 
     events: {
-      'submit #register':            'gotoConfirmation',
+      'submit #register':            'goToConfirmation',
       'submit #register-conf':       'register',
       'submit #register-network':    'networkSelected',
       'click  #validate-button':     'goToValidate',
@@ -43,10 +58,11 @@ define([
       'blur   #sim-select' :         'setSimCard',
       'blur   #carrier-select':      'setCarrier',
       'blur   #mcc-mnc-select':      'setNetwork',
-      'click  #choose-sim':          'showSimSelect',
-      'click  #choose-country':      'showSelect',
-      'click  #choose-carrier':      'showCarrierSelect',
-      'click  #choose-mcc-mnc':      'showMccMncSelect',
+      'change #number-input':        'checkValidRegister',
+      'click  #sim-choose':          'showSimSelect',
+      'click  #country-choose':      'showCountrySelect',
+      'click  #carrier-choose':      'showCarrierSelect',
+      'click  #network-choose':      'showNetworkSelect',
       'click  .tos a':               'showTOS'
     },
 
@@ -73,20 +89,59 @@ define([
           stringId = 'multipleSimCards';
           message = l10n[stringId];
         }
-        console.log(message);
         var el = this.template({
           countryDetectionMessage: message
         });
         this.$el.html(el);
+        this.populateElements();
         this.populateCountryNames();
-        if (this.possibleSimCards.length > 1) {
-          this.populateSimCards();
-        }
+        this.populateSimCards();
+        this.checkValidRegister();
         this.$el.removeClass().addClass('page init');
       }
     },
 
-    getMccAndMnc: function () {
+    populateElements: function () {
+      var _this = this,
+        e = function(selector) {
+          return _this.$el.find(selector);
+        };
+      this.elements = {
+        sim: {
+          choose: e('#sim-choose'),
+          select: e('#sim-select')
+        },
+        country: {
+          choose: e('#country-choose'),
+          select: e('#country-select')
+        },
+        carrier: {
+          choose: e('#carrier-choose'),
+          select: e('#carrier-select')
+        },
+        network: {
+          choose: e('#network-choose'),
+          select: e('#network-select')
+        },
+        submits: {
+          init: e('#register .submit'),
+          network: e('#network-submit')
+        },
+        forms: {
+          init: e('#register'),
+          network: e('#register-network'),
+          confirm: e('#register-conf')
+        },
+        numberInput: e('#register input')
+      };
+    },
+
+    readSimCards: function () {
+      /*
+       * Reads the sim cards out and populates ``this.possibleSimCards``
+       * with a list of {mnc: {mnc}, mcc: {mcc}, slotNr: {slotNr}}
+       * slotNr starts at 1
+       */
       var SimCardList = (
           // < 1.3
           (navigator.mozMobileConnection && [navigator.mozMobileConnection]) ||
@@ -95,16 +150,14 @@ define([
             Array.from(navigator.mozMobileConnections))||
             // simulator
           []
-      ),
-        possibleSimCards = SimCardList.
+      );
+      this.possibleSimCards = SimCardList.
           map(function(sim, index) {
-            console.log(sim, index);
             var network = (sim.lastKnownHomeNetwork ||
                            sim.lastKnownNetwork || '-').
                             split('-');
-            console.log(network);
             return {
-              index: index,
+              slotNr: index + 1,
               mcc: network[0],
               mnc: network[1]
             };
@@ -112,161 +165,112 @@ define([
           filter(function(sim) {
             return sim.mcc && sim.mnc;
           });
-      if (possibleSimCards.length === 1) {
-        console.log('Single sim card found', possibleSimCards[0]);
-        this.selectedSimCard = possibleSimCards[0];
-        this.possibleSimCards = possibleSimCards;
-      } else if (possibleSimCards.length > 1) {
-        console.log('Multiple usable sim cards found', possibleSimCards);
-        this.possibleSimCards = possibleSimCards;
+      console.log('Possible sim cards', this.possibleSimCards);
+    },
+
+    next: function (nextPage) {
+      this.previousPages.push(this.currentPage);
+      this.$el.removeClass().addClass('page').addClass(nextPage);
+      this.currentPage = nextPage;
+    },
+
+    back: function (evt) {
+      evt.preventDefault();
+      var previous = this.previousPages[this.previousPages.length - 1];
+      this.$el.removeClass().addClass('page').addClass(previous);
+      this.currentPage = previous;
+      this.previousPages.pop(this.previousPages.length - 1);
+    },
+
+    /**********************PAGE 1 - INIT********************************/
+
+
+    checkValidRegister: function() {
+      var isValid = this.elements.numberInput.val() && this.proposedCountry;
+      if (isValid) {
+        this.elements.submits.init.removeAttr('disabled');
       } else {
-        console.warn('No usable sim card found');
+        this.elements.submits.init.attr('disabled', true);
       }
+      return isValid;
     },
 
     populateSimCards: function () {
-      var _this = this,
-        $select = this.$el.find('#sim-select').html(''),
-        $choose = this.$el.find('#choose-sim'),
-        $button = this.$el.find('#register button'),
-        $mobileNumberInput = this.$el.find('#register input'),
-        $prefixChoose = this.$el.find('#choose-country');
-      this.possibleSimCards.map(function(sim) {
-        console.log(_this.countryTables);
+      /*
+       * Populates the sim card select and disables everything else - the sim
+       * card should be selected first & selecting the sim card possibly the
+       * country prefix automatically.
+       */
+      if (this.possibleSimCards.length < 2) {
+        if (this.possibleSimCards.length === 1) {
+          this.selectedSimCard = this.possibleSimCards[0];
+        }
+        return;
+      }
+      var _this = this;
+      this.possibleSimCards.map(function(sim, index) {
         var country = _this.countryTables.getCountryByMccMnc(sim.mcc, sim.mnc),
           carrier = country.getCarrier(sim.mcc, sim.mnc);
-        $select.append(new Option(
-          'Slot ' + sim.index + ': ' + carrier, sim.index
+        _this.elements.sim.select.append(new Option(
+          'Slot ' + sim.index + ': ' + carrier, index
         ));
       });
-      $choose.removeClass('hidden');
-      $button.attr('disabled', true);
-      $mobileNumberInput.attr('disabled', true);
-      $prefixChoose.removeClass('action');
-      this.countryChooseEnabled = false;
-    },
-
-    setSimCard: function(evt) {
-      var simNumber = $(evt.target).val(),
-        simCard = this.possibleSimCards[simNumber],
-        $countrySelect = this.$el.find('#country-select'),
-        $chooseSim = this.$el.find('#choose-sim'),
-        country = this.countryTables.getCountryByMccMnc(
-          simCard.mcc, simCard.mnc),
-        carrier = country.getCarrier(simCard.mcc, simCard.mnc),
-        $button = this.$el.find('#register button'),
-        $mobileNumberInput = this.$el.find('#register input'),
-        $prefixChoose = this.$el.find('#choose-country');
-      this.selectedSimCard = simCard;
-      $chooseSim.html('Slot ' + simNumber + ': ' + carrier);
-      $countrySelect.val(country.get('code'));
-      this.setCountryPrefix({target: $countrySelect, preventDefault: String});
-      $button.removeAttr('disabled');
-      $mobileNumberInput.removeAttr('disabled');
-      $prefixChoose.addClass('action');
-      this.countryChooseEnabled = true;
-    },
-
-    populateNetworkNames: function() {
-      var $select = this.$el.find('#carrier-select').html('');
-      Object.keys(this.proposedCountry.get('carriers')).
-        map(function(carrierName) {
-          $select.append(new Option(carrierName, carrierName));
-        });
-      this.populateNetworks($select.val());
-    },
-
-    populateNetworks: function(networkName) {
-      var $mccMncSelect = this.$el.find('#mcc-mnc-select').html('');
-      this.proposedCountry.get('carriers')[networkName].
-        map(function(network, index) {
-          $mccMncSelect.append(new Option(
-            'MCC: ' + network.mcc + ', MNC: ' + network.mnc,
-            index
-          ));
-        });
-    },
-
-    setCarrier: function(evt) {
-      var networkName = $(evt.target).val();
-      this.$el.find('#choose-carrier').html(networkName);
-      this.populateNetworks(networkName);
-    },
-
-    setNetwork: function(evt) {
-      var mccMncIndex = $(evt.target).val(),
-        carrier = this.$el.find('#carrier-select').val(),
-        network = this.proposedCountry.get('carriers')[carrier][mccMncIndex];
-      this.$el.find('#choose-mcc-mnc').html(
-        'MCC: ' + network.mcc + ', MNC: ' + network.mnc
-      );
-      this.$el.find('#network-submit').removeAttr('disabled');
-      this.mcc = network.mcc;
-      this.mnc = network.mnc;
-    },
-
-    setNetworkFromElem: function($elem, carrier) {
-      var networkNumber = $elem.val(),
-        network = this.proposedCountry.get('carriers')[carrier][networkNumber];
-      console.log(networkNumber);
-      this.mcc = network.mcc;
-      this.mnc = network.mnc;
-      console.log(network);
+      this.sim.choose.removeClass('hidden');
+      this.submits.init.attr('disabled', true);
+      this.numberInput.attr('disabled', true);
+      this.country.choose.removeClass('action');
     },
 
     populateCountryNames: function () {
-      var _this = this,
-        $select = this.$el.find('#country-select').html('');
+      var _this = this;
+      this.elements.country.select.html('');
       this.countryTables.forEach(function (country) {
         var isSim = _this.selectedSimCard && country.hasMccMnc(
-          _this.selectedSimCard.mcc, _this.selectedSimCard.mnc
+            _this.selectedSimCard.mcc, _this.selectedSimCard.mnc
+          );
+        _this.elements.country.select.append(
+          new Option(country.toString(), country.get('code'), true, isSim)
         );
-        $select.append(new Option(country.toString(), country.get('code'),
-          true, isSim));
         if (isSim) {
-          _this.$el.find('.country-prefix').html(country.get('prefix'));
+          _this.elements.country.choose.html(country.get('prefix'));
           _this.proposedCountry = country;
         }
       });
     },
 
-    showSelect: function () {
-      if (!this.countryChooseEnabled) {
-        return;
-      }
-      var $select = this.$el.find('#country-select');
-      $select.focus();
-    },
-
-    showSimSelect: function () {
-      var $select = this.$el.find('#sim-select');
-      $select.focus();
-    },
-
-    showCarrierSelect: function () {
-      var $select = this.$el.find('#carrier-select');
-      $select.focus();
-    },
-
-    showMccMncSelect: function () {
-      if (!this.mccMncChooseEnabled) {
-        return;
-      }
-      var $select = this.$el.find('#mcc-mnc-select');
-      $select.focus();
+    setSimCard: function(evt) {
+      var simNumber = $(evt.target).val(),
+        simCard = this.possibleSimCards[simNumber],
+        country = this.countryTables.getCountryByMccMnc(
+          simCard.mcc, simCard.mnc),
+        carrier = country.getCarrier(simCard.mcc, simCard.mnc);
+      this.selectedSimCard = simCard;
+      this.elements.sim.choose.html('Slot ' + simNumber + ': ' + carrier);
+      this.elements.country.select.val(country.get('code'));
+      //this.setCountryPrefix({target: $countrySelect, preventDefault: String});
+      //TODO: redo
+      this.elements.numberInput.removeAttr('disabled');
+      this.elements.country.choose.addClass('action');
     },
 
     setCountryPrefix: function (evt) {
       evt.preventDefault();
       var country = this.countryTables
-          .getSelectedCountry($(evt.target).val());
-      this.$el.find('.country-prefix').html(country.get('prefix'));
+        .getSelectedCountry($(evt.target).val());
+      this.elements.country.choose.html(country.get('prefix'));
       this.proposedCountry = country;
     },
 
-    gotoConfirmation: function (evt) {
+    showCountrySelect: function (evt) {
+      if (!$(evt.target).hasClass('action')) {
+        return;
+      }
+      this.elements.country.select.focus();
+    },
+
+    goToConfirmation: function (evt) {
       evt.preventDefault();
-      var countryCode = $(evt.target).find('#country-select').val();
+      var countryCode = this.elements.country.select.val();
       var phoneParts = this._getPhoneParts();
 
       var isValid = this._checkPhoneNumber(phoneParts, countryCode);
@@ -275,6 +279,7 @@ define([
       }
       var $confirmationForm = this.$el.find('#register-conf');
       $confirmationForm.find('input[name=msisdn]').val(phoneParts.number);
+      $confirmationForm.find('.country-prefix').html(phoneParts.prefix);
       if (this.selectedSimCard && this.proposedCountry.hasMccMnc(
           this.selectedSimCard.mcc, this.selectedSimCard.mnc)) {
         this.mcc = this.selectedSimCard.mcc;
@@ -283,10 +288,96 @@ define([
         console.log('mnc', this.mnc);
         this.next('confirmation');
       } else {
-        this.populateNetworkNames();
+        this.populateCarriers();
         this.next('network-prompt');
       }
     },
+
+    /**********************PAGE 2 - NETWORK SELECT - OPTIONAL***********/
+
+    populateCarriers: function() {
+      /*
+       * Again, the carrier has to be selected before the network can be
+       * selected
+       */
+      var $select = this.elements.carrier.select,
+        l10n = global.localisation[global.language],
+        strindId = 'carrier',
+        carrierTranslation = l10n[strindId];
+      this.elements.carrier.select.html('');
+      Object.keys(this.proposedCountry.get('carriers')).
+        map(function(carrierName) {
+          $select.append(new Option(carrierName, carrierName));
+        });
+      this.elements.carrier.choose.html(
+        global.localisation[global.language][carrierTranslation]);
+      this.elements.submits.network.attr('disabled', true);
+      this.elements.network.choose.removeClass('action');
+      this.elements.network.choose.html('MCC/MNC');
+    },
+
+    populateNetworks: function(carrier) {
+      this.elements.network.select.html('');
+      var networkList = this.proposedCountry.get('carriers')[carrier],
+        _this = this;
+      networkList.map(function(network, index) {
+        _this.elements.network.select.append(new Option(
+            'MCC: ' + network.mcc + ', MNC: ' + network.mnc,
+            index
+          ));
+        });
+      console.assert(networkList.length > 0);
+      var network = networkList[0];
+      this.elements.network.choose.addClass('action');
+      this.setToNetwork(network);
+    },
+
+    setCarrier: function(evt) {
+      var carrier = $(evt.target).val();
+      this.elements.carrier.choose.html(carrier);
+      this.populateNetworks(carrier);
+      this.elements.submits.network.removeAttr('disabled');
+    },
+
+    setNetwork: function() {
+      var networkIndex = this.$el.find('#network-select').val(),
+        carrier = this.$el.find('#carrier-select').val(),
+        network = this.proposedCountry.get('carriers')[carrier][networkIndex];
+      this.setToNetwork(network);
+    },
+
+    setToNetwork: function(network) {
+      this.elements.network.choose.html(
+        'MCC: ' + network.mcc + ', MNC: ' + network.mnc
+      );
+      this.mcc = network.mcc;
+      this.mnc = network.mnc;
+    },
+
+    showSimSelect: function () {
+      this.elements.sim.select.focus();
+    },
+
+    showCarrierSelect: function () {
+      this.elements.carrier.select.focus();
+    },
+
+    showNetworkSelect: function (evt) {
+      if($(evt.target).hasClass('action')) {
+        this.elements.network.select.focus();
+      }
+    },
+
+    networkSelected: function () {
+      var stringId = 'sameNumberMultiplePhonesWarning',
+        message = global.localisation[global.language][stringId];
+      console.log('manually chosen mcc', this.mcc);
+      console.log('manually chosen mnc', this.mnc);
+      window.alert(message);
+      this.next('confirmation');
+    },
+
+    /*********************PAGE 3 - CONFIRMATION************************/
 
     goToValidate: function (evt) {
       evt.preventDefault();
@@ -298,20 +389,11 @@ define([
       );
     },
 
-    networkSelected: function () {
-      var stringId = 'sameNumberMultiplePhonesWarning',
-        message = global.localisation[global.language][stringId];
-      console.log('chosen mcc', this.mcc);
-      console.log('chosen mnc', this.mnc);
-      window.alert(message);
-      this.next('confirmation');
-    },
-
     _getPhoneParts: function (pageId) {
       pageId = pageId || '#login-page';
-      var code = this.$el.find('#country-select').val();
-      var country = this.countryTables.findWhere({ code: code });
-      var prefix = country.get('prefix').substr(1);
+      var code = this.elements.country.select.val(),
+        country = this.countryTables.findWhere({ code: code }),
+        prefix = country.get('prefix').substr(1);
       var number = this.$el.find(pageId + ' input[name=msisdn]').val();
       return { prefix: prefix, number: number, complete: prefix + number };
     },
@@ -383,20 +465,6 @@ define([
       return true;
     },
 
-    next: function (nextPage) {
-      this.previousPages.push(this.currentPage);
-      this.$el.removeClass().addClass('page').addClass(nextPage);
-      this.currentPage = nextPage;
-    },
-
-    back: function (evt) {
-      evt.preventDefault();
-      var previous = this.previousPages[this.previousPages.length - 1];
-      this.$el.removeClass().addClass('page').addClass(previous);
-      this.currentPage = previous;
-      this.previousPages.pop(this.previousPages.length - 1);
-    },
-
     toggleSpinner: function () {
       this.$el.find('.spinner').toggle();
       var button = this.$el.find('input[type=submit]');
@@ -435,14 +503,6 @@ define([
         message = l10n[stringId];
       }
       window.alert(message);
-    },
-
-    showTOS: function (evt) {
-      evt.preventDefault();
-      window.open(
-        evt.target.href,
-        global.localisation[global.language].termsOfUse, 'dialog'
-      );
     }
   });
 

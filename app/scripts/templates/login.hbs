@@ -20,18 +20,18 @@
       <form id="register" class="default">
         <p>
           <fieldset>
-            <legend class="action hidden" id="choose-sim">
+            <legend class="action hidden" id="sim-choose">
               {{translate 'simCard'}}
             </legend>
           </fieldset>
         </p>
         <p>
           <fieldset>
-            <legend class="action country-prefix" id="choose-country" >
+            <legend class="action country-prefix" id="country-choose" >
               {{translate 'country'}}
             </legend>
             <input type="tel" name="msisdn"
-            placeholder="{{translate 'yourNumberPlaceHolder'}}" required>
+            placeholder="{{translate 'yourNumberPlaceHolder'}}" required id="mobile-number-input" class="number-input">
           </fieldset>
         </p>
 
@@ -42,7 +42,7 @@
           <select id="sim-select"></select>
         </p>
         <p>
-          <input type="submit" value="{{translate 'nextButton'}}">
+          <input type="submit" value="{{translate 'nextButton'}}" class="number-submit">
         </p>
       </form>
     </section><!-- main -->
@@ -67,7 +67,7 @@
                         {{translate 'carrier'}}
                       </option>
                   </select>
-                  <select id="mcc-mnc-select">
+                  <select id="network-select">
                       <option value="" selected="selected">
                         MCC/MNC
                       </option>
@@ -75,21 +75,21 @@
                 </p>
                 <p>
                   <fieldset>
-                    <legend class="action" id="choose-carrier">
+                    <legend class="action" id="carrier-choose">
                       {{translate 'carrier'}}
                     </legend>
                   </fieldset>
                 </p>
                 <p>
                   <fieldset>
-                    <legend class="action" id="choose-mcc-mnc">
+                    <legend id="network-choose">
                       MCC/MNC
                     </legend>
                   </fieldset>
                 </p>
                 <p>
                   <input type="submit" value="{{translate 'nextButton'}}"
-                         id="network-submit" disabled>
+                         id="network-submit" disabled class="submit">
                 </p>
             </form>
         </section>
