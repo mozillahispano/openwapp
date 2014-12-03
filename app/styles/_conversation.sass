@@ -101,7 +101,7 @@ $conversation-typing-height: 0.6rem
 
 #conversation ul.messages li
   +clearfix
-  margin-top: 3rem
+  margin-top: 2.5rem
   overflow: visible
   position: relative
   span.author
@@ -109,13 +109,12 @@ $conversation-typing-height: 0.6rem
     padding-left: 0.2rem
   span.content
     pointer-events: auto
-    border-radius: 0 0.5rem 0.5rem 0
+    border-radius: 0 1.5rem 1.5rem
     word-wrap: break-word
     position: relative
     display: block
     background: #fcc987
-    padding: 1rem
-    padding-left: 3rem
+    padding: 1rem 1rem 2rem 3rem
     color: #000
     font-size: 1.9rem
     &.placeholder
@@ -123,12 +122,15 @@ $conversation-typing-height: 0.6rem
   time, span.status
     display: block
     width: 50%
-    font-size: 1.4rem
+    font-size: 1.2rem
     color: #555
     text-transform: capitalize
   time
     float: right
     text-align: right
+    position: relative
+    top: -2.1rem
+    right: 1rem
   span.status
     float: left
     text-align: left
@@ -153,18 +155,17 @@ $conversation-typing-height: 0.6rem
       &.portrait
         margin-top: -50%
   &.me
-    padding-left: 6rem
+    padding-left: 4rem
+    padding-right: 1.5rem
     span.status
       text-align: left
       float: left
     span.content
-      border-radius: 0.5rem 0 0 0.5rem
+      border-radius: 1.5rem 0 1.5rem 1.5rem
       background: #fff
     time
       float: right
       text-align: right
-      position: relative
-      right: 0.2rem
     &.unsent
       span.status, time
         color: #f00
@@ -188,7 +189,8 @@ $conversation-typing-height: 0.6rem
       &:after
         background: none
   &.other
-    padding-right: 5rem
+    padding-right: 4rem
+    padding-left: 1.5rem
     span.status
       display: none
     aside
@@ -222,7 +224,7 @@ $conversation-typing-height: 0.6rem
     display: block
     position: absolute
     top: -1.75rem
-    left: 4.5rem
+    left: 2.5rem
     width: 3.5rem
     height: 3.5rem
     line-height: 3.6rem
