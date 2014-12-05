@@ -252,9 +252,8 @@ define([], function () {
       loading: 'Loading…',
       loadingConversations: 'Loading conversations…',
       registerOpenWapp: 'OpenWapp Sign-up',
-      welcomeMessage1: 'Welcome to OpenWapp.',
-      welcomeMessage2: 'Registering is very quick and easy.',
-      insertMobileNumber: 'Please enter your mobile number.',
+      registerIntroMessage: 'Registering is very quick and easy, just enter ' +
+      'your mobile number.',
       countryDetectedOnLogin: 'You have a {{country}} phone number. ' +
       'Change it if it is not correct',
       countryNotDetectedOnLogin: 'Please, select your country below',

@@ -6,14 +6,8 @@
 
   <div class="page-wrapper">
     <section class="intro">
-      <p>{{translate 'welcomeMessage1'}}</p>
-      <p>{{translate 'welcomeMessage2'}}</p>
-      <p>{{translate 'insertMobileNumber'}}</p>
+      <p>{{translate 'registerIntroMessage'}}</p>
       <p>{{countryDetectionMessage}}</p>
-      <p class="tos">
-        <a href="http://git.ovz.ca/openwapp/openwapp/raw/master/TERMS.txt"
-        target="_blank">{{translate 'termsOfUse'}}</a>
-      </p>
     </section><!-- intro -->
 
     <section class="main">
@@ -31,7 +25,8 @@
               {{translate 'country'}}
             </legend>
             <input type="tel" name="msisdn"
-            placeholder="{{translate 'yourNumberPlaceHolder'}}" required id="mobile-number-input" class="number-input">
+            placeholder="{{translate 'yourNumberPlaceHolder'}}"
+            required id="mobile-number-input" class="number-input">
           </fieldset>
         </p>
 
@@ -42,7 +37,8 @@
           <select id="sim-select"></select>
         </p>
         <p>
-          <input type="submit" value="{{translate 'nextButton'}}" class="number-submit">
+          <input type="submit" value="{{translate 'nextButton'}}"
+                 class="submit" disabled>
         </p>
       </form>
     </section><!-- main -->
@@ -67,23 +63,11 @@
                         {{translate 'carrier'}}
                       </option>
                   </select>
-                  <select id="network-select">
-                      <option value="" selected="selected">
-                        MCC/MNC
-                      </option>
-                  </select>
                 </p>
                 <p>
                   <fieldset>
                     <legend class="action" id="carrier-choose">
                       {{translate 'carrier'}}
-                    </legend>
-                  </fieldset>
-                </p>
-                <p>
-                  <fieldset>
-                    <legend id="network-choose">
-                      MCC/MNC
                     </legend>
                   </fieldset>
                 </p>

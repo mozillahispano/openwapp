@@ -9,8 +9,7 @@ define([
         carriers: {},
         code: '',
         name: '',
-        prefix: '',
-        mncList: []
+        prefix: ''
       };
     },
 
