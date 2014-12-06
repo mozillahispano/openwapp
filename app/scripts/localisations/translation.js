@@ -785,12 +785,17 @@ define([], function () {
       movilNumberValidationAlert: 'Il numero del cellulare:\n' +
       '+{{prefix}} {{number}}\nnon sembra essere un numero valido del ' +
       '{{country}}.\nVuoi continuare in ogni caso?',
-      registerErrorGenericAlert: 'Errore nel registrare il numero.' +
-      ' \n Riprovare più tardi.',
       registerErrorTooRecent: 'È ancora troppo presto per richiedere un altro ' +
       'codice di registrazione.\nControlla di non aver ricevuto il messaggio di conferma con il ' +
       'codice. Se così fosse attendere un altro pò oppure riprovre fra  {{minutes}} ' +
       'minuti',
+      registerErrorTooMany: 'Troppi codici errati inseriti',
+      registerErrorOldVersion: 'Versione obsoleta, perfavore contatta i sviluppatori OpenWapp',
+      registerErrorStale: 'Codice registrazione scaduto. Mandare una richiesta nuova per avere ' +
+      'un nuovo codice.',
+      registerErrorNoRoutes: 'Openwapp non riesce a connettersi al tuo operatore. ' +
+      'Perfavore riprova oppure contatta i sviluppatori',
+      registerErrorGenericAlert: 'Oops, errore. Messaggio={{error}}',
       pinInvalidAlert: 'PIN non riconosciuto. Perfavore riprova.',
       screenNameAlert: 'Perfavore inserisci il tuo nome.',
       inbox: 'In entrata',
