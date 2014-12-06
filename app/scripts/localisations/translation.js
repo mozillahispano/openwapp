@@ -785,8 +785,6 @@ define([], function () {
       movilNumberValidationAlert: 'Il numero del cellulare:\n' +
       '+{{prefix}} {{number}}\nnon sembra essere un numero valido del ' +
       '{{country}}.\nVuoi continuare in ogni caso?',
-      registerErrorGenericAlert: 'Errore nel registrare il numero.' +
-      ' \n Riprovare più tardi.',
       registerErrorTooRecent: 'È ancora troppo presto per richiedere un altro ' +
       'codice di registrazione.\nControlla di non aver ricevuto il messaggio di conferma con il ' +
       'codice. Se così fosse attendere un altro pò oppure riprovre fra  {{minutes}} ' +
