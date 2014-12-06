@@ -791,6 +791,13 @@ define([], function () {
       'codice di registrazione.\nControlla di non aver ricevuto il messaggio di conferma con il ' +
       'codice. Se così fosse attendere un altro pò oppure riprovre fra  {{minutes}} ' +
       'minuti',
+      registerErrorTooMany: 'Troppi codici errati inseriti',
+      registerErrorOldVersion: 'Versione obsoleta, perfavore contatta i sviluppatori OpenWapp',
+      registerErrorStale: 'Codice registrazione scaduto. Mandare una richiesta nuova per avere ' +
+      'un nuovo codice.',
+      registerErrorNoRoutes: 'Openwapp non riesce a connettersi al tuo operatore. ' +
+      'Perfavore riprova oppure contatta i sviluppatori',
+      registerErrorGenericAlert: 'Oops, errore. Messaggio={{error}}',
       pinInvalidAlert: 'PIN non riconosciuto. Perfavore riprova.',
       screenNameAlert: 'Perfavore inserisci il tuo nome.',
       inbox: 'In entrata',
