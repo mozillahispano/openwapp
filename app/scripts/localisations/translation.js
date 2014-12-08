@@ -1172,10 +1172,18 @@ define([], function () {
       '{{country}}.\nWilt u toch verder gaan?',
       registerErrorGenericAlert: 'Er was een fout bij het registreren van uw ' +
       'nummer\n Probeer het a.u.b. later nog eens.',
-      registerErrorTooRecent: 'It is too early to request another ' +
-      'registration code.\nCheck that you have not received the confirmation ' +
-      'message. If so, wait a little bit or try to register in {{minutes}} ' +
-      'minutes',
+      registerErrorTooRecent: 'U probeert te snel een nieuwe regisratiecode ' +
+      'te verkrijgen.\nControleer of u de bevestiging echt nog niet heeft ' +
+      'ontvangen. Is dat toch het geval, wacht minstens {{minutes}} om ' +
+      'opnieuw te registreren.',
+      registerErrorTooMany: 'Te vaak een onjuiste code gebruikt',
+      registerErrorOldVersion: 'Oude versie, neem contact op met OpenWapp devs',
+      registerErrorStale: 'Registration code verlopen. U moet een nieuw code ' +
+      'aanvragen',
+      registerErrorNoRoutes: 'Het verzenden van de sms is niet mogelijk door ' +
+      'een probleem bij de provider. Probeer het later nog eens of neem ' +
+      'contact op met de OpenWapp developers',
+      registerErrorGenericAlert: 'Oeps, foutmelding = {{error}}',
       pinInvalidAlert: 'PIN wordt niet herkend. Probeer het nog eens.',
       screenNameAlert: 'Vul uw naam in.',
       inbox: 'Postbak IN',
@@ -1225,7 +1233,7 @@ define([], function () {
       validateCodeProgress: 'Code verifieren…',
       validateCodeCall: 'Bel me voor de code',
       settingAccount: 'Uw account wordt opgezet…',
-      pictureDescription: 'Kies een afbeelding die wordt gebruikt als\'s ' +
+      pictureDescription: 'Kies een afbeelding die u wilt gebruiken als uw ' +
       ' contactafbeelding',
       screenNamePlaceHolder: 'Uw naam',
       screenNameDescription: 'Dit zal te zien zijn als uw contactnaam',
@@ -1268,7 +1276,7 @@ define([], function () {
       conversationIsOnline: 'Online',
       loadingParticipants: 'Contacten laden…',
       invite: 'Uitnodigen voor WhatsApp',
-      tellAFriendText: 'Check WhatsApp Messenger voor Android, iPhone, ' +
+      tellAFriendText: 'WhatsApp Messenger voor Android, iPhone, ' +
       'Nokia, BlackBerry, Windows Phone and nu Firefox OS! Download het ' +
       'vandaag van http://whatsapp.com/dl/',
       emojiListTitle: 'Kies de emoticon om te verzenden',
@@ -1287,23 +1295,23 @@ define([], function () {
       image: 'Afbeelding',
       video: 'Video',
       audio: 'Audio',
-      you: 'Jij',
+      you: 'U',
       notificationSubjectChanged: '{{who}} veranderde de titel van de groep ' +
                                   'naar:\n{{subject}}',
-      notificationSubjectChangedByYou: 'Jij veranderde de titel van de groep ' +
+      notificationSubjectChangedByYou: 'U veranderde de titel van de groep ' +
                                        'naar:\n{{subject}}',
       notificationGroupParticipantAdded: '{{who}} aan groep toegevoegd',
       notificationGroupParticipantRemoved: '{{who}} heeft groep verlaten',
       notificationGroupPictureUpdated: '{{who}} veranderde de groepsafbeelding',
-      notificationGroupPictureUpdatedByYou: 'Jij veranderde de groepsafbeelding',
+      notificationGroupPictureUpdatedByYou: 'U veranderde de groepsafbeelding',
       notificationGroupPictureRemoved: '{{who}} verwijderde de groepsafbeelding',
-      notificationGroupPictureRemovedByYou: 'Jij verwijderde de groepsafbeelding',
+      notificationGroupPictureRemovedByYou: 'U verwijderde de groepsafbeelding',
       notificationReportTitle: 'Je hebt {{count}} nieuwe meldingen.',
       notificationReportBody: 'In {{count}} gesprekken.',
       inAppNotification: '{{title}}: {{body}}',
-      wakeUpTime: 'Check voor gesprekken…',
-      wakeUpDescription: 'Tijd om nieuwe meldingen te checken: kortere ' +
-                         'tijden hebben een kortere batterijduur tot gevolg.',
+      wakeUpTime: 'Controle nieuwe meldingen…',
+      wakeUpDescription: 'Periode tussen de controles op nieuwe meldingen: ' +
+                         'kortere perioden zijn nadelig voor de batterijduur. ',
       eachMinute: 'Elke minuut',
       each5Minutes: 'Elke 5 minuten',
       each10Minutes: 'Elke 10 minuten',
@@ -1314,7 +1322,7 @@ define([], function () {
       termsOfUse: 'Gebruiksvoorwaarden',
       fileTooLargeToBeSent: 'Het bestand is te groot. Het maximum voor  ' +
                             'te verzenden bestanden is 10MiB.',
-      errorAddingParticipant: 'Contact kan niet aan deze groep worden toegeveoegd',
+      errorAddingParticipant: 'Contact kan niet aan deze groep worden toegevoegd',
       genericConnectionProblem: 'Onverwacht probleem. Weet u zeker dat u ' +
             'verbonden bent? Probeer OpenWapp te sluiten en te heropenen. Als' +
             ' het probleem nog steeds optreedt, probeer dan later nog eens.',
@@ -1326,7 +1334,11 @@ define([], function () {
       upgradeNow: 'Nu upgraden',
       notSquarePicture: 'De geselecteerde afbeelding is niet vierkant. Er ' +
       'zullen dan strepen te zien zijn. Wilt u dit voorkomen, ga dan naar ' +
-      'Gallerij, en crop/edit de foto, en zorg voor een 1:1 verhouding.'
+      'Gallerij, en crop/edit de foto, en zorg voor een 1:1 verhouding.',
+      simRequired: 'Er is een SIM-kaart benodigd. Zonder een SIM-kaart werkt ' +
+      'de app waarschijnlijk niet goed.',
+      multiSIMdetectedWarn: 'Er zijn meerder SIM-kaarten aanwezig. ' +
+      'OpenWapp zal de eerste SIM-kaart gebruiken.'
     }
   };
 });
