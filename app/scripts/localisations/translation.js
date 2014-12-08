@@ -385,7 +385,7 @@ define([], function () {
       'appear padding bands around. If you want to fix it, go to the ' +
       'Gallery, and edit and crop the photo, using a 1:1 aspect ratio.',
       noSimForThisNumber: 'No SIM-Card was detected for this number.',
-      chooseNetwork: 'Please choose your carrier and your MMC/MNC number below',
+      chooseNetwork: 'Please choose your carrier below',
       sameNumberMultiplePhonesWarning: 'Simultaneous usage of the same ' +
       'mobile number on different devices can lead to unexpected errors.',
       carrier: 'Carrier',
@@ -1014,12 +1014,13 @@ define([], function () {
       loading: 'Lade...',
       laodingConversations: 'Lade Konversationen...',
       registerOpenWapp: 'OpenWapp Registrierung',
-      welcomeMessage1: 'Willkommen bei OpenWapp.',
-      welcomeMessage2: 'Die Registrierung ist schnell und einfach.',
-      insertMobileNumber: 'Bitte geben Sie Ihre Mobilfunknummer ein',
+      registerIntroMessage: 'Die Registrierung ist schnell und einfach, ' +
+      'geben Sie einfach Ihre Mobilfunknummer ein',
       countryDetectedOnLogin: 'Sie scheinen eine Mobilfunknummer aus ' +
       '{{country}} zu haben. Ändern Sie dies andernfalls.',
       countryNotDetectedOnLogin: 'Bitte wählen Sie unterhalb ihr Land aus.',
+      multipleSimCards: 'Sie scheinen mehrere SIM-Karten zu verwenden. Bitte ' +
+      'wählen Sie eine aus',
       country: 'Land',
       yourNumberPlaceHolder: 'Mobilfunknummer',
       nextButton: 'Weiter',
@@ -1146,11 +1147,12 @@ define([], function () {
       'Gallerie und schneiden Sie das Foto zu.',
       noSimForThisNumber: 'Es wurde keine SIM-Karte für diese Nummer gefunden ' +
       'werden.',
-      chooseNetwork: 'Bitte wählen Sie unten ihren Betreiber und ihre ' +
-      'MMC/MNC-Nummer aus.',
+      chooseNetwork: 'Bitte wählen Sie ihren Betreiber aus.',
       sameNumberMultiplePhonesWarning: 'Bei der gleichzeitigen Verwendung der ' +
       'gleichen SIM-Karte auf unterschiedlichen Geräten kann es zu ' +
-      'unerwarteten Fehlern kommen.'
+      'unerwarteten Fehlern kommen.',
+      carrier: 'Betreiber',
+      simCard: 'SIM-Karte'
     },
     nl: {
       all: 'Alle',
