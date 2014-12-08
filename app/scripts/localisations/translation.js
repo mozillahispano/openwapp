@@ -1310,8 +1310,8 @@ define([], function () {
       notificationReportBody: 'In {{count}} gesprekken.',
       inAppNotification: '{{title}}: {{body}}',
       wakeUpTime: 'Controle nieuwe meldingen…',
-      wakeUpDescription: 'Tijd om tussen controle op nieuwe meldingen: kortere' +
-                         ' tijden hebben een kortere batterijduur tot gevolg.',
+      wakeUpDescription: 'Periode tussen de controles op nieuwe meldingen: ' +
+                         'kortere perioden zijn nadelig voor de batterijduur. ',
       eachMinute: 'Elke minuut',
       each5Minutes: 'Elke 5 minuten',
       each10Minutes: 'Elke 10 minuten',
