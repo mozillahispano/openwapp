@@ -1176,6 +1176,14 @@ define([], function () {
       'registration code.\nCheck that you have not received the confirmation ' +
       'message. If so, wait a little bit or try to register in {{minutes}} ' +
       'minutes',
+      registerErrorTooMany: 'Te vaak een onjuiste code gebruikt',
+      registerErrorOldVersion: 'Oude versie, neem contact op met OpenWapp devs',
+      registerErrorStale: 'Registration code verlopen. U moet een nieuw code ' +
+      'aanvragen',
+      registerErrorNoRoutes: 'Het verzenden van de sms is niet mogelijk door ' +
+      'een probleem bij de provider. Probeer het later nog eens of neem ' +
+      'contact op met de OpenWapp developers',
+      registerErrorGenericAlert: 'Oeps, foutmelding = {{error}}',
       pinInvalidAlert: 'PIN wordt niet herkend. Probeer het nog eens.',
       screenNameAlert: 'Vul uw naam in.',
       inbox: 'Postbak IN',
@@ -1326,7 +1334,11 @@ define([], function () {
       upgradeNow: 'Nu upgraden',
       notSquarePicture: 'De geselecteerde afbeelding is niet vierkant. Er ' +
       'zullen dan strepen te zien zijn. Wilt u dit voorkomen, ga dan naar ' +
-      'Gallerij, en crop/edit de foto, en zorg voor een 1:1 verhouding.'
+      'Gallerij, en crop/edit de foto, en zorg voor een 1:1 verhouding.',
+      simRequired: 'Er is een SIM-kaart benodigd. Zonder een SIM-kaart werkt ' +
+      'de app waarschijnlijk niet goed.',
+      multiSIMdetectedWarn: 'Er zijn meerder SIM-kaarten aanwezig. ' +
+      'OpenWapp zal de eerste SIM-kaart gebruiken.'
     }
   };
 });
