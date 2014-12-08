@@ -1172,10 +1172,10 @@ define([], function () {
       '{{country}}.\nWilt u toch verder gaan?',
       registerErrorGenericAlert: 'Er was een fout bij het registreren van uw ' +
       'nummer\n Probeer het a.u.b. later nog eens.',
-      registerErrorTooRecent: 'It is too early to request another ' +
-      'registration code.\nCheck that you have not received the confirmation ' +
-      'message. If so, wait a little bit or try to register in {{minutes}} ' +
-      'minutes',
+      registerErrorTooRecent: 'U probeert te snel een nieuwe regisratiecode ' +
+      'te verkrijgen.\nControleer of u de bevestiging echt nog niet heeft ' +
+      'ontvangen. Is dat toch het geval, wacht minstens {{minutes}} om ' +
+      'opnieuw te registreren.',
       registerErrorTooMany: 'Te vaak een onjuiste code gebruikt',
       registerErrorOldVersion: 'Oude versie, neem contact op met OpenWapp devs',
       registerErrorStale: 'Registration code verlopen. U moet een nieuw code ' +
@@ -1276,7 +1276,7 @@ define([], function () {
       conversationIsOnline: 'Online',
       loadingParticipants: 'Contacten laden…',
       invite: 'Uitnodigen voor WhatsApp',
-      tellAFriendText: 'Check WhatsApp Messenger voor Android, iPhone, ' +
+      tellAFriendText: 'WhatsApp Messenger voor Android, iPhone, ' +
       'Nokia, BlackBerry, Windows Phone and nu Firefox OS! Download het ' +
       'vandaag van http://whatsapp.com/dl/',
       emojiListTitle: 'Kies de emoticon om te verzenden',
@@ -1309,9 +1309,9 @@ define([], function () {
       notificationReportTitle: 'Je hebt {{count}} nieuwe meldingen.',
       notificationReportBody: 'In {{count}} gesprekken.',
       inAppNotification: '{{title}}: {{body}}',
-      wakeUpTime: 'Check voor gesprekken…',
-      wakeUpDescription: 'Tijd om nieuwe meldingen te checken: kortere ' +
-                         'tijden hebben een kortere batterijduur tot gevolg.',
+      wakeUpTime: 'Controle nieuwe meldingen…',
+      wakeUpDescription: 'Tijd om tussen controle op nieuwe meldingen: kortere' +
+                         ' tijden hebben een kortere batterijduur tot gevolg.',
       eachMinute: 'Elke minuut',
       each5Minutes: 'Elke 5 minuten',
       each10Minutes: 'Elke 10 minuten',
