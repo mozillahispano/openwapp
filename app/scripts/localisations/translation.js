@@ -1233,7 +1233,7 @@ define([], function () {
       validateCodeProgress: 'Code verifieren…',
       validateCodeCall: 'Bel me voor de code',
       settingAccount: 'Uw account wordt opgezet…',
-      pictureDescription: 'Kies een afbeelding die wordt gebruikt als\'s ' +
+      pictureDescription: 'Kies een afbeelding die u wilt gebruiken als uw ' +
       ' contactafbeelding',
       screenNamePlaceHolder: 'Uw naam',
       screenNameDescription: 'Dit zal te zien zijn als uw contactnaam',
@@ -1295,17 +1295,17 @@ define([], function () {
       image: 'Afbeelding',
       video: 'Video',
       audio: 'Audio',
-      you: 'Jij',
+      you: 'U',
       notificationSubjectChanged: '{{who}} veranderde de titel van de groep ' +
                                   'naar:\n{{subject}}',
-      notificationSubjectChangedByYou: 'Jij veranderde de titel van de groep ' +
+      notificationSubjectChangedByYou: 'U veranderde de titel van de groep ' +
                                        'naar:\n{{subject}}',
       notificationGroupParticipantAdded: '{{who}} aan groep toegevoegd',
       notificationGroupParticipantRemoved: '{{who}} heeft groep verlaten',
       notificationGroupPictureUpdated: '{{who}} veranderde de groepsafbeelding',
-      notificationGroupPictureUpdatedByYou: 'Jij veranderde de groepsafbeelding',
+      notificationGroupPictureUpdatedByYou: 'U veranderde de groepsafbeelding',
       notificationGroupPictureRemoved: '{{who}} verwijderde de groepsafbeelding',
-      notificationGroupPictureRemovedByYou: 'Jij verwijderde de groepsafbeelding',
+      notificationGroupPictureRemovedByYou: 'U verwijderde de groepsafbeelding',
       notificationReportTitle: 'Je hebt {{count}} nieuwe meldingen.',
       notificationReportBody: 'In {{count}} gesprekken.',
       inAppNotification: '{{title}}: {{body}}',
@@ -1322,7 +1322,7 @@ define([], function () {
       termsOfUse: 'Gebruiksvoorwaarden',
       fileTooLargeToBeSent: 'Het bestand is te groot. Het maximum voor  ' +
                             'te verzenden bestanden is 10MiB.',
-      errorAddingParticipant: 'Contact kan niet aan deze groep worden toegeveoegd',
+      errorAddingParticipant: 'Contact kan niet aan deze groep worden toegevoegd',
       genericConnectionProblem: 'Onverwacht probleem. Weet u zeker dat u ' +
             'verbonden bent? Probeer OpenWapp te sluiten en te heropenen. Als' +
             ' het probleem nog steeds optreedt, probeer dan later nog eens.',
