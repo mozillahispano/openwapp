@@ -820,8 +820,8 @@ define([], function () {
       registerOpenWapp: 'OpenWapp Registrazione',
       welcomeMessage1: 'Benvenuto su OpenWapp.',
       welcomeMessage2: 'La registrazione è facile e veloce.',
-      insertMobileNumber: 'Perfavore inserisci il tuo numero:.',
-      countryDetectedOnLogin: 'Numero del {{country}} . ' +
+      insertMobileNumber: 'Perfavore inserisci il tuo numero:',
+      countryDetectedOnLogin: 'Numero {{country}} . ' +
       'Cambialo se non è corretto',
       countryNotDetectedOnLogin: 'Perfavore seleziona la tua nazione qui sotto',
       country: 'Nazione',
@@ -870,7 +870,7 @@ define([], function () {
       loadLocationError: 'La posizione non può essere caricata al momento\n' +
       'Perfavore riprova più tardi.',
       retrievingLocation: 'Ricavando i dati per la posizione…',
-      cancelButton: 'Cancella',
+      cancelButton: 'Annulla',
       currentLocation: 'La mia posizione attuale',
       logoutAlertText: 'Utilizza questa opzione soltanto se vuoi pulire OpenWapp ' +
       'da questo dispositivo, in modo da poter entrare con OpenWapp da un altro dispositivo ' +
