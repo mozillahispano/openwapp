@@ -6,42 +6,84 @@
 
   <div class="page-wrapper">
     <section class="intro">
-      <p>{{translate 'welcomeMessage1'}}</p>
-      <p>{{translate 'welcomeMessage2'}}</p>
-      <p>{{translate 'insertMobileNumber'}}</p>
+      <p>{{translate 'registerIntroMessage'}}</p>
       <p>{{countryDetectionMessage}}</p>
-      <p class="tos">
-        <a href="http://git.ovz.ca/openwapp/openwapp/raw/master/TERMS.txt"
-        target="_blank">{{translate 'termsOfUse'}}</a>
-      </p>
     </section><!-- intro -->
 
     <section class="main">
       <form id="register" class="default">
         <p>
           <fieldset>
-            <legend class="action">{{translate 'country'}}</legend>
+            <legend class="action hidden" id="sim-choose">
+              {{translate 'simCard'}}
+            </legend>
+          </fieldset>
+        </p>
+        <p>
+          <fieldset>
+            <legend class="action country-prefix" id="country-choose" >
+              {{translate 'country'}}
+            </legend>
             <input type="tel" name="msisdn"
-            placeholder="{{translate 'yourNumberPlaceHolder'}}" required>
+            placeholder="{{translate 'yourNumberPlaceHolder'}}"
+            required id="mobile-number-input" class="number-input">
           </fieldset>
         </p>
 
         <p class="hidden">
-          <select>
+          <select id="country-select">
             <option value="" selected="selected">{{translate 'country'}}</option>
           </select>
+          <select id="sim-select"></select>
         </p>
         <p>
-          <input type="submit" value="{{translate 'nextButton'}}">
+          <input type="submit" value="{{translate 'nextButton'}}"
+                 class="submit" disabled>
         </p>
       </form>
     </section><!-- main -->
   </div><!-- page wrapper -->
 </section><!-- login -->
 
+<section role="region" id="network-prompt-page" class="register-network-page">
+    <header>
+        <a><span class="icon icon-back">Back</span></a>
+        <h1>{{translate 'registerOpenWapp'}}</h1>
+    </header>
+    <div class="page-wrapper">
+        <section class="intro">
+            <p>{{translate 'noSimForThisNumber'}}</p>
+            <p>{{translate 'chooseNetwork'}}</p>
+        </section>
+        <section class="main">
+            <form id="register-network" class="default">
+                <p class="hidden">
+                  <select id="carrier-select">
+                      <option value="" selected="selected">
+                        {{translate 'carrier'}}
+                      </option>
+                  </select>
+                </p>
+                <p>
+                  <fieldset>
+                    <legend class="action" id="carrier-choose">
+                      {{translate 'carrier'}}
+                    </legend>
+                  </fieldset>
+                </p>
+                <p>
+                  <input type="submit" value="{{translate 'nextButton'}}"
+                         id="network-submit" disabled class="submit">
+                </p>
+            </form>
+        </section>
+    </div>
+</section>
+
 <section role="region" id="confirm-phone-page"
  class="register-confirmation-page register-flow-page">
   <header>
+    <a><span class="icon icon-back">Back</span></a>
     <h1>{{translate 'registerOpenWapp'}}</h1>
   </header>
   <div class="page-wrapper">
@@ -57,7 +99,7 @@
         <p>
 
           <fieldset>
-            <legend class="action">{{translate 'country'}}</legend>
+            <legend class="country-prefix">{{translate 'country'}}</legend>
             <input type="tel" name="msisdn"
             placeholder="{{translate 'yourNumberPlaceHolder'}}" required>
           </fieldset>
@@ -68,7 +110,9 @@
           <input type="submit" value="{{translate 'acceptButton'}}">
         </p>
         <p>
-          <button>{{translate 'goToValidateButton'}}</button>
+          <button id="validate-button" class="right">
+            {{translate 'goToValidateButton'}}
+          </button>
         </p>
       </form>
     </section><!-- main -->

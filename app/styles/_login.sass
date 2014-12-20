@@ -2,6 +2,19 @@
   &.init
     .register-page
       left: 0%
+    .register-network-page
+      left: 100%
+    .tos-page
+      left: 100%
+    .privacy-page
+      left: 100%
+    .register-confirmation-page
+      left: 100%
+  &.network-prompt
+    .register-page
+      left: -100%
+    .register-network-page
+      left: 0%
     .tos-page
       left: 100%
     .privacy-page
@@ -11,6 +24,8 @@
   &.confirmation
     .register-page
       left: -100%
+    .register-network-page
+      left: -100%
     .tos-page
       left: 100%
     .privacy-page
@@ -18,7 +33,7 @@
     .register-confirmation-page
       left: 0%
 
-#login-page, #tos-page, #confirm-phone-page
+#login-page, #tos-page, #confirm-phone-page, #network-prompt-page
   +register-page
 
 #login-page input[type=submit], #confirm-phone-page input[type=submit]
@@ -33,4 +48,12 @@
   +secondary-action-button
   padding-top: 0
   margin-top: 1.8rem
+
+#confirm-phone-page legend
+  background-color: #E6E6E6
+
+#login-page, #network-prompt-page
+  #carrier-choose, #network-choose, #sim-choose
+    width: 100%
+    border-right: #ccc solid 0.1rem
 

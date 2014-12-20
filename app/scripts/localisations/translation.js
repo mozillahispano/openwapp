@@ -252,12 +252,13 @@ define([], function () {
       loading: 'Loading…',
       loadingConversations: 'Loading conversations…',
       registerOpenWapp: 'OpenWapp Sign-up',
-      welcomeMessage1: 'Welcome to OpenWapp.',
-      welcomeMessage2: 'Registering is very quick and easy.',
-      insertMobileNumber: 'Please enter your mobile number.',
+      registerIntroMessage: 'Registering is very quick and easy, just enter ' +
+      'your mobile number.',
       countryDetectedOnLogin: 'You have a {{country}} phone number. ' +
       'Change it if it is not correct',
       countryNotDetectedOnLogin: 'Please, select your country below',
+      multipleSimCards: 'You have multiple SIM-Cards inserted. Please choose ' +
+      'the one you want to use below',
       country: 'Country',
       yourNumberPlaceHolder: 'Mobile number',
       nextButton: 'Next',
@@ -383,9 +384,12 @@ define([], function () {
       notSquarePicture: 'The selected image is not square. This will make to ' +
       'appear padding bands around. If you want to fix it, go to the ' +
       'Gallery, and edit and crop the photo, using a 1:1 aspect ratio.',
-      simRequired: 'SIM card required. Here be dragons…',
-      multiSIMdetectedWarn: 'More than one SIM detected. OpenWapp only works ' +
-      'with the SIM inserted in position 1'
+      noSimForThisNumber: 'No SIM-Card was detected for this number.',
+      chooseNetwork: 'Please choose your carrier below',
+      sameNumberMultiplePhonesWarning: 'Simultaneous usage of the same ' +
+      'mobile number on different devices can lead to unexpected errors.',
+      carrier: 'Carrier',
+      simCard: 'SIM-Card'
     },
     pt : {
       all: 'Tudo',
@@ -1010,12 +1014,13 @@ define([], function () {
       loading: 'Lade...',
       laodingConversations: 'Lade Konversationen...',
       registerOpenWapp: 'OpenWapp Registrierung',
-      welcomeMessage1: 'Willkommen bei OpenWapp.',
-      welcomeMessage2: 'Die Registrierung ist schnell und einfach.',
-      insertMobileNumber: 'Bitte geben Sie Ihre Mobilfunknummer ein',
+      registerIntroMessage: 'Die Registrierung ist schnell und einfach, ' +
+      'geben Sie einfach Ihre Mobilfunknummer ein',
       countryDetectedOnLogin: 'Sie scheinen eine Mobilfunknummer aus ' +
       '{{country}} zu haben. Ändern Sie dies andernfalls.',
       countryNotDetectedOnLogin: 'Bitte wählen Sie unterhalb ihr Land aus.',
+      multipleSimCards: 'Sie scheinen mehrere SIM-Karten zu verwenden. Bitte ' +
+      'wählen Sie eine aus',
       country: 'Land',
       yourNumberPlaceHolder: 'Mobilfunknummer',
       nextButton: 'Weiter',
@@ -1140,10 +1145,14 @@ define([], function () {
       notSquarePicture: 'Das ausgewählte Bild ist nicht quadratisch, daher ' +
       'wird ein Balken hinzugefügt. Um dies zu ändern, gehen Sie in die ' +
       'Gallerie und schneiden Sie das Foto zu.',
-      simRequired: 'Sie benötigen eine SIM-Karte. Die App funktioniert ' +
-      'möglicherweise nicht.',
-      multiSIMdetectedWarn: 'Mehrere SIM-Karten wurden festgestellt. ' +
-      'OpenWapp wird die erste SIM-Karte verwendend.'
+      noSimForThisNumber: 'Es wurde keine SIM-Karte für diese Nummer gefunden ' +
+      'werden.',
+      chooseNetwork: 'Bitte wählen Sie ihren Betreiber aus.',
+      sameNumberMultiplePhonesWarning: 'Bei der gleichzeitigen Verwendung der ' +
+      'gleichen SIM-Karte auf unterschiedlichen Geräten kann es zu ' +
+      'unerwarteten Fehlern kommen.',
+      carrier: 'Betreiber',
+      simCard: 'SIM-Karte'
     },
     nl: {
       all: 'Alle',
