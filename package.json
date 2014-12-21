@@ -1,6 +1,6 @@
 {
   "name": "OpenWapp",
-  "version": "1.7.0-rc1",
+  "version": "1.7.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/mozillahispano/openwapp.git"
