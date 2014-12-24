@@ -794,7 +794,7 @@ define([], function () {
       '{{country}}.\nVuoi continuare in ogni caso?',
       registerErrorTooRecent: 'È ancora troppo presto per richiedere un altro ' +
       'codice di registrazione.\nControlla di non aver ricevuto il messaggio di conferma con il ' +
-      'codice. Se così fosse attendere un altro pò oppure riprovre fra  {{minutes}} ' +
+      'codice. Se così fosse attendere un altro pò oppure riprovare fra  {{minutes}} ' +
       'minuti',
       registerErrorTooMany: 'Troppi codici errati inseriti',
       registerErrorOldVersion: 'Versione obsoleta, perfavore contatta i sviluppatori OpenWapp',
@@ -828,7 +828,7 @@ define([], function () {
       welcomeMessage1: 'Benvenuto su OpenWapp.',
       welcomeMessage2: 'La registrazione è facile e veloce.',
       insertMobileNumber: 'Perfavore inserisci il tuo numero:',
-      countryDetectedOnLogin: 'Numero {{country}} . ' +
+      countryDetectedOnLogin: 'Prefisso {{country}} .' +
       'Cambialo se non è corretto',
       countryNotDetectedOnLogin: 'Perfavore seleziona la tua nazione qui sotto',
       country: 'Nazione',
