@@ -226,7 +226,7 @@ module.exports = function (grunt) {
           ]
         },
         options: {
-          namespace: 'Handlebars.templates',
+          namespace: 'Handlebars',
           amd: true,
           processName: function (filename) {
             // funky name processing here
