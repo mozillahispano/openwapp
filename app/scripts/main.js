@@ -11,7 +11,7 @@ require.config({
     coseme: '../components/coseme/dist/coseme',
     emoji: '../emoji/emoji',
     fxosrate: '../components/fxosRate/fxosrate',
-    l10n: '../components/fxosRate/l10n'
+
   },
   shim: {
     'zeptojs': {
@@ -38,11 +38,7 @@ require.config({
     'vendor/async-storage/async-storage': {
       exports: 'asyncStorage'
     },
-    'l10n': {
-      exports: 'l10n'
-    },
     'fxosrate': {
-      deps: ['l10n'],
       exports: 'fxosRate'
     },
     'coseme': {

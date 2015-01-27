@@ -72,23 +72,20 @@ define([
         this.$el.html(templates.updateNeeded);
       } else {
         var message, stringId;
-        var l10n = global.localisation[global.language];
-
+        
         if (this.possibleSimCards.length === 0) {
-          stringId = 'countryNotDetectedOnLogin';
-          message = l10n[stringId];
+          message = navigator.mozL10n.get('countryNotDetectedOnLogin');
         }
         else if (this.possibleSimCards.length === 1) {
           this.selectedSimCard = this.possibleSimCards[0];
           var interpolate = global.l10nUtils.interpolate;
-          stringId = 'countryDetectedOnLogin';
-          message = interpolate(l10n[stringId], {
+          stringId = navigator.mozL10n.get('countryDetectedOnLogin');
+          message = interpolate(stringId, {
             country: this.countryTables.getCountryByMccMnc(
               this.selectedSimCard.mcc, this.selectedSimCard.mnc)
           });
         } else {
-          stringId = 'multipleSimCards';
-          message = l10n[stringId];
+          message = navigator.mozL10n.get('multipleSimCards');
         }
         var el = this.template({
           countryDetectionMessage: message
@@ -310,9 +307,7 @@ define([
        * selected
        */
       var $select = this.elements.carrier.select,
-        l10n = global.localisation[global.language],
-        strindId = 'carrier',
-        carrierTranslation = l10n[strindId];
+        carrierTranslation = navigator.mozL10n.get('carrier');
       this.elements.carrier.select.html('');
       Object.keys(this.proposedCountry.get('carriers')).
         map(function(carrierName) {
@@ -338,7 +333,7 @@ define([
 
     networkSelected: function () {
       var stringId = 'sameNumberMultiplePhonesWarning',
-        message = global.localisation[global.language][stringId];
+        message = navigator.mozL10n.get([stringId]);
       console.log('manually chosen mcc', this.mcc);
       console.log('manually chosen mnc', this.mnc);
       window.alert(message);
@@ -440,7 +435,6 @@ define([
     },
 
     errorRegister: function (err, data) {
-      var l10n = global.localisation[global.language];
       var interpolate = global.l10nUtils.interpolate;
       var stringId, message;
       this.$el.find('section.intro > p').show();
@@ -449,7 +443,7 @@ define([
         /*Justification: camelCase/dotstyle conflict*/
         var tryAfter = (data && data['retry_after']) || 0;
         stringId = 'registerErrorTooRecent';
-        message = interpolate(l10n[stringId], {
+        message = interpolate(navigator.mozL10n.get([stringId]), {
           minutes: Math.ceil(tryAfter / 60)
         });
       } else if (err === 'too_many') {
@@ -462,13 +456,13 @@ define([
         stringId = 'registerErrorNoRoutes';
       } else {
         stringId = 'registerErrorGenericAlert';
-        message = interpolate(l10n[stringId], {
+        message = interpolate(navigator.mozL10n.get([stringId]), {
           error: JSON.stringify(data, null, ' ')
         });
       }
 
       if (!message) {
-        message = l10n[stringId];
+        message = navigator.mozL10n.get([stringId]);
       }
       window.alert(message);
     }

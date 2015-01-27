@@ -82,7 +82,7 @@ define([
     },
 
     _translate: function (id) {
-      return global.localisation[global.language][id];
+      return navigator.mozL10n.get([id]);
     },
 
     _currentCommit: function () {

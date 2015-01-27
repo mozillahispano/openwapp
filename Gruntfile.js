@@ -110,6 +110,7 @@ module.exports = function (grunt) {
       all: [
         'Gruntfile.js',
         '<%= openwappPaths.app %>/scripts/{,*/}*.js',
+        '!<%= openwappPaths.app %>/scripts/l10n.js',
         '!<%= openwappPaths.app %>/scripts/vendor/*',
         '!<%= openwappPaths.app %>/scripts/templates.js',
         'test/spec/{,*/}*.js'
@@ -173,14 +174,13 @@ module.exports = function (grunt) {
             'components/PhoneNumber.js/PhoneNumber.js',
             'components/PhoneNumber.js/PhoneNumberMetaData.js',
             'components/coseme/dist/coseme.js',
-            'components/fxosRate/locales/*',
-            'components/fxosRate/l10n.js',
             'components/fxosRate/fxosrate.js',
             /** END OF COMPONENTS **/
             'styles/main.css',
             'icons/**/*.{png,jpg}',
             'scripts/**/*.js',
             'scripts/**/*.json',
+            'locales/*.properties',
             'emoji/*.js',
             'emoji/*.css',
             'emoji/*.png',

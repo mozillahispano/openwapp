@@ -32,7 +32,6 @@ define([
       var contents = notification.get('contents');
       var type = notification.get('meta').type;
       var interpolate = global.l10nUtils.interpolate;
-      var l10n = global.localisation[global.language];
 
       switch (type) {
       case 'group-subject':
@@ -41,7 +40,7 @@ define([
         if (global.auth.isMe(who)) {
           stringId += 'ByYou';
         }
-        message = interpolate(l10n[stringId], {
+        message = interpolate(navigator.mozL10n.get([stringId]), {
           who: global.contacts.getParticipantName(who),
           subject: contents.subject
         });
@@ -50,7 +49,7 @@ define([
       case 'group-participant':
         stringId = 'notificationGroupParticipant';
         stringId += contents.event === 'add' ? 'Added' : 'Removed';
-        localisedMessage = l10n[stringId];
+        localisedMessage = navigator.mozL10n.get([stringId]);
         message = interpolate(localisedMessage, {
           who: global.contacts.getParticipantName(contents.participant)
         });
@@ -62,9 +61,9 @@ define([
         who = notification.get('from').authorMsisdn;
         if (global.auth.isMe(who)) {
           stringId += 'ByYou';
-          message = l10n[stringId];
+          message = navigator.mozL10n.get([stringId]);
         } else {
-          message = interpolate(l10n[stringId], {
+          message = interpolate(navigator.mozL10n.get([stringId]), {
             who: global.contacts.getParticipantName(who)
           });
         }
