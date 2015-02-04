@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------------
-  HEADERS: layout
+  HEADERS new: layout
   Form factor or Skin dependent styles should NOT be defined here.
 ------------------------------------------------------------------- */
 
@@ -59,7 +59,6 @@ section[role="region"] > header:first-child button {
   background: none;
   padding: 0 1rem;
   margin: 0;
-  font-weight: 400;
   font-size: 1.5rem;
   line-height: 5rem;
   border-radius: 0;
@@ -187,7 +186,7 @@ section[role="region"] > header:first-child .icon-send {
 }
 
 section[role="region"] > header:first-child .icon-close {
-  background-image: url(/images/shared/headers/images/icons/close.png);
+  background-image: url(/images/shared/headers/images/icons/back.png);
 }
 
 section[role="region"] > header:first-child .icon-back {
@@ -219,8 +218,7 @@ section[role="region"] > header:first-child .icon-options {
 ---------------------------------- */
 
 section[role="region"] header h2 {
-  color: #424242;
-  border-bottom: solid 0.1rem #e6e6e6;
+  color: #1E9494;
 }
 
 /* -----------------------------------------------------------------

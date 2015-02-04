@@ -1,5 +1,7 @@
 #profile
   +register-page
+  div.page-wrapper
+    background: #ffffff
   img
     max-width: 20rem
     max-height: 15rem
@@ -27,9 +29,7 @@
 
   button
     background-image: none
-    background-color: #f2f2f2
     text-align: left
-    font-weight: bold
 
   button:active
     background-color: #b2f2ff
@@ -41,14 +41,23 @@
 
   button.icon-call
     background-image: url(/images/call.png)
+    background-size: 2.14rem 2.14rem
 
   button.icon-message
     background-image: url(/images/sms.png)
+    background-size: 2.14rem 2.14rem
 
   button.dial
     width: calc(100% - 5rem)
+    border-radius: 0.2rem
+    border: 1px solid rgb(225, 225, 225)
+    background-color: rgb(255, 255, 255)
+    color: rgb(180, 180, 180)
 
   button.send-sms
     float: right
     width: 4rem
     background-position: center
+    border-radius: 0.2rem
+    border: 1px solid rgb(225, 225, 225)
+    background-color: rgb(255, 255, 255)
