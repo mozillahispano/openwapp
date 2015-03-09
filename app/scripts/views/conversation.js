@@ -130,7 +130,6 @@ define([
         evt.stopImmediatePropagation();
       }
 
-      var l10n = global.localisation[global.language];
 
       var listitem = $(evt.target).closest('li').get(0);
       if (!listitem) {
@@ -138,8 +137,7 @@ define([
       }
 
       var messageId = listitem.dataset.messageId;
-      var stringId = 'removeMessage';
-      var msg = l10n[stringId];
+      var msg = navigator.mozL10n.get('removeMessage');
       if (window.confirm(msg)) {
         console.log('Going to remove messageId', messageId);
         this.model.removeMessage(messageId);

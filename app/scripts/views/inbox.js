@@ -50,10 +50,9 @@ define([
         var onExpired = function () {
           this.stopListening(global.auth, 'login:fail', onFail);
           this.stopListening(global.auth, 'login:success', onSuccess);
-          var l10n = global.localisation[global.language];
           var stringId = 'accountExpired';
           var wantToPurchase =
-            window.confirm(l10n[stringId]);
+            window.confirm(navigator.mozL10n.get([stringId]));
           if (wantToPurchase) {
             window.open(this._getUpgradeURL(), '', 'dialog');
           }
@@ -77,9 +76,8 @@ define([
       var maxGroups = global.client.getProperty('max_groups');
       var groups = global.contacts.getGroups();
       if (groups && groups.length >= maxGroups) {
-        var l10n = global.localisation[global.language];
         var stringId = 'participatingInTooMuchGroups';
-        window.alert(l10n[stringId]);
+        window.alert(navigator.mozL10n.get([stringId]));
       } else {
         console.log('Limit not reached, allowing creating a new group');
         global.router.navigate('new-group', { trigger: true });
@@ -90,7 +88,6 @@ define([
       if (evt) { evt.preventDefault(); }
 
       var interpolate = global.l10nUtils.interpolate;
-      var l10n = global.localisation[global.language];
 
       var listitem = $(evt.target).closest('li')[0];
       var conversationId = listitem.dataset.conversationId;
@@ -100,12 +97,12 @@ define([
       var stringId, message;
       if (isGroup) {
         stringId = 'removeGroupConversation';
-        message = interpolate(l10n[stringId], {
+        message = interpolate(navigator.mozL10n.get([stringId]), {
           groupTitle: title
         });
       } else {
         stringId = 'remove1to1Conversation';
-        message = interpolate(l10n[stringId], {
+        message = interpolate(navigator.mozL10n.get([stringId]), {
           who: title
         });
       }
