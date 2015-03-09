@@ -79,8 +79,8 @@ define([
         else if (this.possibleSimCards.length === 1) {
           this.selectedSimCard = this.possibleSimCards[0];
           var interpolate = global.l10nUtils.interpolate;
-          stringId = navigator.mozL10n.get('countryDetectedOnLogin');
-          message = interpolate(stringId, {
+          stringId = 'countryDetectedOnLogin';
+          message = interpolate(navigator.mozL10n.get([stringId]), {
             country: this.countryTables.getCountryByMccMnc(
               this.selectedSimCard.mcc, this.selectedSimCard.mnc)
           });
