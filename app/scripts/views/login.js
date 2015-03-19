@@ -71,18 +71,18 @@ define([
         console.log('Old app version. Need to update');
         this.$el.html(templates.updateNeeded);
       } else {
-        var message, stringId;
+        var message, stringId, countryName;
         
         if (this.possibleSimCards.length === 0) {
           message = navigator.mozL10n.get('countryNotDetectedOnLogin');
         }
         else if (this.possibleSimCards.length === 1) {
           this.selectedSimCard = this.possibleSimCards[0];
-          var interpolate = global.l10nUtils.interpolate;
           stringId = 'countryDetectedOnLogin';
-          message = interpolate(navigator.mozL10n.get([stringId]), {
-            country: this.countryTables.getCountryByMccMnc(
-              this.selectedSimCard.mcc, this.selectedSimCard.mnc)
+          countryName = this.countryTables.getCountryByMccMnc(
+            this.selectedSimCard.mcc, this.selectedSimCard.mnc).attributes.name;
+	  message = navigator.mozL10n.get([stringId], {
+            'country': countryName
           });
         } else {
           message = navigator.mozL10n.get('multipleSimCards');

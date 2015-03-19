@@ -75,11 +75,10 @@ define([
       // More than one, make a report
       if (pendingNotifications > 1) {
         var interpolate = global.l10nUtils.interpolate;
-        var l10n = global.localisation[global.language];
         var titleId = 'notificationReportTitle';
         var bodyId = 'notificationReportBody';
-        var titleMsg = l10n[titleId];
-        var bodyMsg = l10n[bodyId];
+        var titleMsg = navigator.mozL10n.get([titleId]);
+        var bodyMsg = navigator.mozL10n.get([bodyId]);
 
         var notificationsByConversations = {};
         this._queue.forEach(function (notification) {
