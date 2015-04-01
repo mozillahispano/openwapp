@@ -74,23 +74,20 @@ define([
 
       // More than one, make a report
       if (pendingNotifications > 1) {
-        var interpolate = global.l10nUtils.interpolate;
         var titleId = 'notificationReportTitle';
         var bodyId = 'notificationReportBody';
-        var titleMsg = navigator.mozL10n.get([titleId]);
-        var bodyMsg = navigator.mozL10n.get([bodyId]);
 
         var notificationsByConversations = {};
         this._queue.forEach(function (notification) {
           notificationsByConversations[notification.conversationId] = true;
         });
 
-        notification.title = interpolate(titleMsg, {
-          count: pendingNotifications
+        notification.title = navigator.mozL10n.get([titleId], {
+          'count' : pendingNotifications
         });
 
-        notification.body = interpolate(bodyMsg, {
-          count: Object.keys(notificationsByConversations).length
+        notification.body = navigator.mozL10n.get([bodyId], {
+          'count': Object.keys(notificationsByConversations).length
         });
       }
 

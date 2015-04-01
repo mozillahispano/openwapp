@@ -346,10 +346,9 @@ define([
 
     leave: function (evt) {
       if (evt) { evt.preventDefault(); }
-      var interpolate = global.l10nUtils.interpolate;
       var stringId = 'removeGroupConversation';
-      var msg = interpolate(global.localisation[global.language][stringId], {
-        groupTitle: this.model.get('subject')
+      var msg = navigator.mozL10n.get([stringId], {
+        'groupTitle' : this.model.get('subject')
       });
       if (window.confirm(msg)) {
         global.client.leaveGroup(this.model.get('id'));

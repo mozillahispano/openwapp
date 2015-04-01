@@ -416,13 +416,11 @@ define([
         var countrySelect = this.$el.find('#country-select')[0];
         var countryName =
           countrySelect.options[countrySelect.selectedIndex].textContent;
-        var message =
-          global.localisation[global.language].movilNumberValidationAlert;
-        var interpolate = global.l10nUtils.interpolate;
-        return window.confirm(interpolate(message, {
-          country: countryName,
-          number: parts.number,
-          prefix: parts.prefix
+	var stringId = 'movilNumberValidationAlert';
+        return window.confirm(navigator.mozL10n.get([stringId], {
+          'country' : countryName,
+          'number' : parts.number,
+          'prefix' : parts.prefix
         }));
       }
       return true;
@@ -435,7 +433,6 @@ define([
     },
 
     errorRegister: function (err, data) {
-      var interpolate = global.l10nUtils.interpolate;
       var stringId, message;
       this.$el.find('section.intro > p').show();
       if (err === 'too_recent') {
@@ -443,8 +440,8 @@ define([
         /*Justification: camelCase/dotstyle conflict*/
         var tryAfter = (data && data['retry_after']) || 0;
         stringId = 'registerErrorTooRecent';
-        message = interpolate(navigator.mozL10n.get([stringId]), {
-          minutes: Math.ceil(tryAfter / 60)
+        message = navigator.mozL10n.get([stringId], {
+          'minutes' : Math.ceil(tryAfter / 60)
         });
       } else if (err === 'too_many') {
         stringId = 'registerErrorTooMany';
@@ -456,8 +453,8 @@ define([
         stringId = 'registerErrorNoRoutes';
       } else {
         stringId = 'registerErrorGenericAlert';
-        message = interpolate(navigator.mozL10n.get([stringId]), {
-          error: JSON.stringify(data, null, ' ')
+        message = navigator.mozL10n.get([stringId], {
+          'error' : JSON.stringify(data, null, ' ')
         });
       }
 
