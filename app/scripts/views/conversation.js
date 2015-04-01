@@ -188,11 +188,9 @@ define([
 
       // Add notification task
       this._inAppNotifications.push(function (next) {
-        var interpolate = global.l10nUtils.interpolate;
-        var l10n = global.localisation[global.language];
-        var message = interpolate(l10n.inAppNotification, {
-          title: notification.title,
-          body: notification.body
+        var message = navigator.mozL10n.get('inAppNotification', {
+          'title': notification.title,
+          'body': notification.body
         });
         var inAppNotificationArea = _this.$el.find('h2.in-app-notification');
         inAppNotificationArea.text(message);
