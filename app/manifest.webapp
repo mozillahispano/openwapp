@@ -22,7 +22,7 @@
     }
   },
   "default_locale": "en-US",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "messages": [
     { "alarm": "/index.html" }
   ],
