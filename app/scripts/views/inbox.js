@@ -87,8 +87,6 @@ define([
     _showContextMenu: function (evt) {
       if (evt) { evt.preventDefault(); }
 
-      var interpolate = global.l10nUtils.interpolate;
-
       var listitem = $(evt.target).closest('li')[0];
       var conversationId = listitem.dataset.conversationId;
       var title = listitem.dataset.conversationName;
@@ -97,14 +95,14 @@ define([
       var stringId, message;
       if (isGroup) {
         stringId = 'removeGroupConversation';
-        message = interpolate(navigator.mozL10n.get([stringId]), {
-          groupTitle: title
-        });
+        message = navigator.mozL10n.get([stringId], {
+          'groupTitle' : title
+         });
       } else {
         stringId = 'remove1to1Conversation';
-        message = interpolate(navigator.mozL10n.get([stringId]), {
-          who: title
-        });
+        message = navigator.mozL10n.get([stringId], {
+          'who' : title
+         });
       }
 
       if (window.confirm(message)) {
@@ -314,8 +312,7 @@ define([
             _this._tellAFriend(contact.get('phone'));
           }
         } else {
-          window.alert(global.localisation[global.language]
-              .genericConnectionProblem);
+          window.alert(navigator.mozL10n.get('genericConnectionProblem'));
         }
       });
     },
@@ -350,13 +347,13 @@ define([
     _translateStatus : function (status) {
       //TODO get from properties
       status = status.toLowerCase();
-      var newStatus = global.localisation[global.language].offline;
+      var newStatus = navigator.mozL10n.get('offline');
       if (status === 'online') {
-        newStatus = global.localisation[global.language].online;
+        newStatus = navigator.mozL10n.get('online');
       } else if (status === 'offline') {
-        newStatus = global.localisation[global.language].offline;
+        newStatus = navigator.mozL10n.get('offline');
       } else if (status === 'connecting') {
-        newStatus = global.localisation[global.language].connecting;
+        newStatus = navigator.mozL10n.get('connecting');
       }
       return newStatus;
     }

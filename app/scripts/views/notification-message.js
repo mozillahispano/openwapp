@@ -27,11 +27,10 @@ define([
     },
 
     _getMessage: function () {
-      var stringId, localisedMessage, message, who;
+      var stringId, message, who;
       var notification = this.model;
       var contents = notification.get('contents');
       var type = notification.get('meta').type;
-      var interpolate = global.l10nUtils.interpolate;
 
       switch (type) {
       case 'group-subject':
@@ -40,18 +39,17 @@ define([
         if (global.auth.isMe(who)) {
           stringId += 'ByYou';
         }
-        message = interpolate(navigator.mozL10n.get([stringId]), {
-          who: global.contacts.getParticipantName(who),
-          subject: contents.subject
-        });
+        message = navigator.mozL10n.get([stringId], {
+            'who': global.contacts.getParticipantName(who),
+            'subject': contents.subject
+          }); 
         break;
 
       case 'group-participant':
         stringId = 'notificationGroupParticipant';
         stringId += contents.event === 'add' ? 'Added' : 'Removed';
-        localisedMessage = navigator.mozL10n.get([stringId]);
-        message = interpolate(localisedMessage, {
-          who: global.contacts.getParticipantName(contents.participant)
+        message = navigator.mozL10n.get([stringId], {
+          'who': global.contacts.getParticipantName(contents.participant)
         });
         break;
 
@@ -63,8 +61,8 @@ define([
           stringId += 'ByYou';
           message = navigator.mozL10n.get([stringId]);
         } else {
-          message = interpolate(navigator.mozL10n.get([stringId]), {
-            who: global.contacts.getParticipantName(who)
+          message = navigator.mozL10n.get([stringId], {
+            'who' : global.contacts.getParticipantName(who)
           });
         }
         break;

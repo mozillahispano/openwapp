@@ -67,13 +67,12 @@ require([
   'utils/notifications',
   'storage/dbmanager',
   'localisations/translation',
-  'localisations/translation-utilities',
   'utils/language',
   'utils/sdmanager',
   'models/background-service'
 ], function (Backbone, global, Auth, Contacts, Router, Rtc, GeoPosition,
              HistoryCollection, HandlebarsHelpers, Notifications, DbManager,
-             Translation, TranslationUtils, Language, SDManager,
+             Translation, Language, SDManager,
              BackgroundService) {
   'use strict';
   Backbone.$ = require('zeptojs');
@@ -85,7 +84,6 @@ require([
   global.historyCollection = new HistoryCollection();
   global.notifications = new Notifications();
   global.localisation = Translation;
-  global.l10nUtils = TranslationUtils;
   global.language = Language.getLanguage();
   global.sdManager = new SDManager();
   global.backgroundService = new BackgroundService();
