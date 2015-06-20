@@ -104,8 +104,15 @@ define([
       var _this = this;
       var icon = _this._getIconURI(_this._app);
 
-      var notification =
-        navigator.mozNotification.createNotification(title, body, icon);
+      if ('Notification' in window) {
+        var notification =
+          new window.Notification(title, {'body': body, 'icon': icon});
+      }
+      else {
+        // support legacy notifications prior to Firefox 22 (Firefox OS <1.2)
+        var notification =
+          navigator.mozNotification.createNotification(title, body, icon);
+      }
 
       notification.onclick = function () {
         _this._app.launch();
@@ -124,7 +131,9 @@ define([
       };
 
       _this._unattendedNotifications++;
-      notification.show();
+
+      // support legacy notifications prior to Firefox 22 (Firefox OS <1.2)
+      notification.show && notification.show();
     },
 
     /**
