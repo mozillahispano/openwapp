@@ -113,6 +113,9 @@ define([
         if (platform.isFFOS11()) {
           _this._unattendedNotifications--;
         }
+
+        // close the notification after user is directed to the chat
+        notification.close();
       };
 
       notification.onclose = function () {
