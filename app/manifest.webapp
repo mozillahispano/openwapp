@@ -32,7 +32,7 @@
     }
   },
   "default_locale": "en-US",
-  "version": "1.7.6",
+  "version": "1.8.0",
   "messages": [
     { "alarm": "/index.html" }
   ],
