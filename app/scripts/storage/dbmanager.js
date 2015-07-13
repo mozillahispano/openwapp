@@ -549,7 +549,7 @@ define([
       }
 
       // A read with no callback can't happen
-      if (!params.callback || !params.callback instanceof Function) {
+      if (!params.callback || !(params.callback instanceof Function)) {
         return;
       }
 
@@ -648,7 +648,7 @@ define([
           }
 
           if (!params.filterFunction ||
-              !params.filterFunction instanceof Function ||
+              !(params.filterFunction instanceof Function) ||
               params.filterFunction(item.value)) {
             finished = doSuccessfulCallback(item);
           }
