@@ -1,6 +1,6 @@
 # OpenWapp
 
-Use WhatsApp in your Firefox OS device. 
+Use WhatsApp in your Firefox OS device. Install it from [Firefox Marketplace](https://marketplace.firefox.com/app/openwapp)!
 
 With OpenWapp you can communicate with all your friends and family already using WhatsApp in Firefox OS or any other phone.
 
@@ -15,13 +15,13 @@ Please note that current version of OpenWapp has been tested to work on versions
 
 OpenWapp is an open source project and therefore you are more than welcome to download the code and contribute to the OpenWapp Library ([CoSeMe](https://github.com/mozillahispano/coseme)) and/or the [OpenWapp client](https://github.com/mozillahispano/openwapp/wiki). If you find any issue please report it to us [here](https://github.com/mozillahispano/openwapp/issues) and we will try to fix it as soon as possible.
 
-## Developing
-
 You can [compile](https://github.com/mozillahispano/openwapp/wiki/Compilation) OpenWapp by yourself and [test it](https://github.com/mozillahispano/openwapp/wiki/Testing) on your device.
 
 If you're a coder you can read [guidelines](https://github.com/mozillahispano/openwapp/wiki/Developing) about code structure and other useful information. [Here](https://github.com/mozillahispano/openwapp/wiki/Design) you can read information about app design.
 
 If you want to translate OpenWapp in your favorite language, please visit [Transifex](https://www.transifex.com/projects/p/openwapp/).
+
+If you just want to support our work, please [leave a rating](https://marketplace.firefox.com/app/openwapp/ratings/add) on Firefox Marketplace.
 
 ## News about OpenWapp
 [Follow us](https://twitter.com/openwapp) on Twitter to be updated about all news.
