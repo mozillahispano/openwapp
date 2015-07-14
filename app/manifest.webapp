@@ -1,6 +1,6 @@
 {
   "name": "OpenWapp",
-  "description": "OpenWapp is an open, free and unofficial app for bringing WhatsApp's communication services to your Firefox OS device. We are a open source project relying on the community to support and improve this software.",
+  "description": "OpenWapp is an open, free and unofficial app for bringing WhatsApp's communication services to your Firefox OS device. We are an open source project relying on the community to support and improve this software.",
   "launch_path": "/index.html",
   "type": "privileged",
   "developer": {
@@ -76,7 +76,54 @@
     },
     "eo": {
       "name": "OpenWapp",
-      "description": "OpenWapp is an open, free and unofficial app for bringing WhatsApp's communication services to your Firefox OS device. We are a open source project relying on the community to support and improve this software."
+      "description": "OpenWapp estas libera, senkosta kaj neoficiala aplikaĵo por uzi tujmesaĝilon WhatsApp en via aparato kun Firefox OS. Nia estasmalfermitkoda projekto kaj ni baziĝas sur la komunumo por subteni kaj libonigi ĉi tiun aplikaĵon.",
+      "permissions": {
+        "alarms": {
+          "description": "Necesita por periode ricevi disponeblajn mesaĝojn"
+        },
+        "contacts": {
+          "description": "Necesita por sinkronigi viajn kontaktojn"
+        },
+        "desktop-notification": {
+          "description": "Necesita por montri atentigojn al uzanto"
+        },
+        "geolocation": {
+          "description": "Necesita por lokiĝi aparaton"
+        },
+        "device-storage:sdcard": {
+          "description": "Necesita por manteni specifajn informojn pri la aparato"
+        },
+        "device-storage:pictures": {
+          "description": "Necesita por sendi kaj konservi bildojn"
+        },
+        "device-storage:music": {
+          "description": "Necesita por sendi kaj konservi sonojn"
+        },
+        "device-storage:videos": {
+          "description": "Necesita por sendi kaj konservi filmetojn"
+        },
+        "storage": {
+          "description": "Necesita por akiri al loka datumbazo"
+        },
+        "audio-channel-normal": {
+          "description": "Necesita por ludi sonojn de la grafika uzantinterfaco"
+        },
+        "audio-channel-content": {
+          "description": "Necesita por ludi sonojn kaj videojn"
+        },
+        "audio-channel-notification": {
+          "description": "Necesita por ludi sonojn de mesaĝoj kaj atentigoj"
+        },
+        "tcp-socket": {
+          "description": "Necesita por enŝalti krudajn konektinterfacojn por komuniki kun la servilo"
+        },
+        "mobilenetwork": {
+          "description": "Necesita por rekoni la portanton kaj informojn pri regiono."
+        },
+        "systemXHR": {
+          "description": "Necesita por permesi XHR-petojn sen CORS-striktigoj"
+        }
+      }
     },
     "es": {
       "name": "OpenWapp",
@@ -84,57 +131,52 @@
     },
     "it": {
       "name": "OpenWapp",
-      "description": "OpenWapp è un'app aperta, gratuita e non ufficiale per portare il servizio messaggistica istantanea di WhatsApp sul tuo dispositivo con Firefox OS. Siamo un progetto a open source project relying on the community to support and improve this software",
+      "description": "OpenWapp è un'app aperta, gratuita e non ufficiale per portare il servizio messaggistica istantanea di WhatsApp sul tuo dispositivo con Firefox OS. Siamo un progetto open source che si basa sul supporto della comunità per migliorare la nostra app",
       "permissions": {
         "alarms": {
-          "description": "Required to periodically receive available messages"
+          "description": "Necessario per ricevere periodicamente i messaggi disponibili"
         },
         "contacts": {
-          "description": "Required to synchronize your contacts",
-          "access": "readwrite"
+          "description": "Necessario per  sincronizzare i tuoi contatti"
         },
         "desktop-notification": {
-          "description": "Show notifications to the user"
+          "description": "Necessario per mostrare le notifiche all'utente"
         },
         "geolocation": {
-          "description": "Device geolocation"
+          "description": "Necessario per la geolocalizzazione del dispositivo"
         },
         "device-storage:sdcard": {
-          "description": "Keep device specific information",
-          "access": "readwrite"
+          "description": "Necessario per mantenere le informazioni specifiche del dispositivo"
         },
         "device-storage:pictures": {
-          "description": "Send and save pictures",
-          "access": "readwrite"
+          "description": "Necessario per inviare e salvare immagini"
         },
         "device-storage:music": {
-          "description": "Send and save audio",
-          "access": "readwrite"
+          "description": "Necessario per inviare e salvare audio"
         },
         "device-storage:videos": {
-          "description": "Send and save videos",
-          "access": "readwrite"
+          "description": "Necessario per inviare e salvare video"
         },
         "storage": {
-          "description": "Local database access"
+          "description": "Necessario per l'accesso al database locale"
         },
         "audio-channel-normal": {
-          "description": "Play UI sounds"
+          "description": "Necessario per i suoni dell'interfaccia grafica"
         },
         "audio-channel-content": {
-          "description": "Play music and video"
+          "description": "Necessario per avviare audio e video"
         },
         "audio-channel-notification": {
-          "description": "Play message and notification sounds"
+          "description": "Necessario per i suoni dei messaggi e delle notifiche"
         },
         "tcp-socket": {
-          "description": "Enable raw sockets to communicate with the server"
+          "description": "Necessario per attivare i raw socket per comunicare con il server"
         },
         "mobilenetwork": {
-          "description": "To detect mobile carrier and regional information."
+          "description": "Necessario per localizzare l'operatore telefonico e le informazioni sulla regione."
         },
         "systemXHR": {
-          "description": "Allow XHR requests without CORS restrictions"
+          "description": "Necessario per permettere le richieste XHR senza restrizioni CORS"
         }
       }
     },
