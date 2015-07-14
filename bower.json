@@ -1,6 +1,6 @@
 {
   "name": "Openwapp",
-  "version": "1.7.6",
+  "version": "1.8.1",
   "dependencies": {
     "requirejs": "~2.1.15",
     "underscore": "~1.7.0",
@@ -9,7 +9,7 @@
     "handlebars": "2.0.0",
     "PhoneNumber.js": "~0.5.0",
     "fxosRate": "~0.4.0",
-    "coseme": "~1.0.11"
+    "coseme": "~1.0.12"
   },
   "devDependencies": {}
 }
