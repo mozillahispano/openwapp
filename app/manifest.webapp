@@ -1,6 +1,6 @@
 {
   "name": "OpenWapp",
-  "description": "OpenWapp is an open, free and unofficial app for bringing WhatsApp's communication services to your Firefox OS device. We are a open source project relying on the community to support and improve this software.",
+  "description": "OpenWapp is an open, free and unofficial app for bringing WhatsApp's communication services to your Firefox OS device. We are an open source project relying on the community to support and improve this software.",
   "launch_path": "/index.html",
   "type": "privileged",
   "developer": {
@@ -12,27 +12,8 @@
     "60": "/icons/60/openwapp.png",
     "128": "/icons/128/openwapp.png"
   },
-  "locales": {
-    "en-US": {
-      "name": "OpenWapp",
-      "description": "OpenWapp is an open, free and unofficial app for bringing WhatsApp's communication services to your Firefox OS device. We are a open source project relying on the community to support and improve this software."
-
-    },
-    "es": {
-      "name": "OpenWapp",
-      "description": "OpenWapp es una aplicación gratuita, no oficial y abierta para llevar los servicios de comunicación de WhatsApp a tu dispositivo Firefox OS. Somos un proyecto de software libre que confía en la comunidad para mantener y mejorar el software."
-    },
-    "pt-br": {
-      "name": "OpenWapp",
-      "description": "OpenWapp é uma aplicação aberta, livre e não-oficial para levar os serviços de comunicação do WhatsApp para o seu dispositivo Firefox OS. Somos um projeto de código aberto baseando-se na comunidade para apoiar este programa e melhorar."
-    },
-    "de-DE": {
-      "name": "OpenWapp",
-      "description": "OpenWapp ist eine offene, freie und inoffizielle App, um WhatsApp's Kommunikationsdienste auf Dein Firefox OS Gerät zu bringen. Wir sind ein Open Source Projekt, das sich zur Unterstützung und Verbesserung dieser Software auf die Community stützt."
-    }
-  },
   "default_locale": "en-US",
-  "version": "1.7.6",
+  "version": "1.8.0",
   "messages": [
     { "alarm": "/index.html" }
   ],
@@ -86,6 +67,122 @@
     },
     "systemXHR": {
       "description": "Allow XHR requests without CORS restrictions"
+    }
+  },
+  "locales": {
+    "de-DE": {
+      "name": "OpenWapp",
+      "description": "OpenWapp ist eine offene, freie und inoffizielle App, um WhatsApp's Kommunikationsdienste auf Dein Firefox OS Gerät zu bringen. Wir sind ein Open Source Projekt, das sich zur Unterstützung und Verbesserung dieser Software auf die Community stützt."
+    },
+    "eo": {
+      "name": "OpenWapp",
+      "description": "OpenWapp estas libera, senkosta kaj neoficiala aplikaĵo por uzi tujmesaĝilon WhatsApp en via aparato kun Firefox OS. Nia estasmalfermitkoda projekto kaj ni baziĝas sur la komunumo por subteni kaj libonigi ĉi tiun aplikaĵon.",
+      "permissions": {
+        "alarms": {
+          "description": "Necesita por periode ricevi disponeblajn mesaĝojn"
+        },
+        "contacts": {
+          "description": "Necesita por sinkronigi viajn kontaktojn"
+        },
+        "desktop-notification": {
+          "description": "Necesita por montri atentigojn al uzanto"
+        },
+        "geolocation": {
+          "description": "Necesita por lokiĝi aparaton"
+        },
+        "device-storage:sdcard": {
+          "description": "Necesita por manteni specifajn informojn pri la aparato"
+        },
+        "device-storage:pictures": {
+          "description": "Necesita por sendi kaj konservi bildojn"
+        },
+        "device-storage:music": {
+          "description": "Necesita por sendi kaj konservi sonojn"
+        },
+        "device-storage:videos": {
+          "description": "Necesita por sendi kaj konservi filmetojn"
+        },
+        "storage": {
+          "description": "Necesita por akiri al loka datumbazo"
+        },
+        "audio-channel-normal": {
+          "description": "Necesita por ludi sonojn de la grafika uzantinterfaco"
+        },
+        "audio-channel-content": {
+          "description": "Necesita por ludi sonojn kaj videojn"
+        },
+        "audio-channel-notification": {
+          "description": "Necesita por ludi sonojn de mesaĝoj kaj atentigoj"
+        },
+        "tcp-socket": {
+          "description": "Necesita por enŝalti krudajn konektinterfacojn por komuniki kun la servilo"
+        },
+        "mobilenetwork": {
+          "description": "Necesita por rekoni la portanton kaj informojn pri regiono."
+        },
+        "systemXHR": {
+          "description": "Necesita por permesi XHR-petojn sen CORS-striktigoj"
+        }
+      }
+    },
+    "es": {
+      "name": "OpenWapp",
+      "description": "OpenWapp es una aplicación gratuita, no oficial y abierta para llevar los servicios de comunicación de WhatsApp a tu dispositivo Firefox OS. Somos un proyecto de software libre que confía en la comunidad para mantener y mejorar el software."
+    },
+    "it": {
+      "name": "OpenWapp",
+      "description": "OpenWapp è un'app aperta, gratuita e non ufficiale per portare il servizio messaggistica istantanea di WhatsApp sul tuo dispositivo con Firefox OS. Siamo un progetto open source che si basa sul supporto della comunità per migliorare la nostra app",
+      "permissions": {
+        "alarms": {
+          "description": "Necessario per ricevere periodicamente i messaggi disponibili"
+        },
+        "contacts": {
+          "description": "Necessario per  sincronizzare i tuoi contatti"
+        },
+        "desktop-notification": {
+          "description": "Necessario per mostrare le notifiche all'utente"
+        },
+        "geolocation": {
+          "description": "Necessario per la geolocalizzazione del dispositivo"
+        },
+        "device-storage:sdcard": {
+          "description": "Necessario per mantenere le informazioni specifiche del dispositivo"
+        },
+        "device-storage:pictures": {
+          "description": "Necessario per inviare e salvare immagini"
+        },
+        "device-storage:music": {
+          "description": "Necessario per inviare e salvare audio"
+        },
+        "device-storage:videos": {
+          "description": "Necessario per inviare e salvare video"
+        },
+        "storage": {
+          "description": "Necessario per l'accesso al database locale"
+        },
+        "audio-channel-normal": {
+          "description": "Necessario per i suoni dell'interfaccia grafica"
+        },
+        "audio-channel-content": {
+          "description": "Necessario per avviare audio e video"
+        },
+        "audio-channel-notification": {
+          "description": "Necessario per i suoni dei messaggi e delle notifiche"
+        },
+        "tcp-socket": {
+          "description": "Necessario per attivare i raw socket per comunicare con il server"
+        },
+        "mobilenetwork": {
+          "description": "Necessario per localizzare l'operatore telefonico e le informazioni sulla regione."
+        },
+        "systemXHR": {
+          "description": "Necessario per permettere le richieste XHR senza restrizioni CORS"
+        }
+      }
+    },
+    "pt-br": {
+      "name": "OpenWapp",
+      "description": "OpenWapp é uma aplicação aberta, livre e não-oficial para levar os serviços de comunicação do WhatsApp para o seu dispositivo Firefox OS. Somos um projeto de código aberto baseando-se na comunidade para apoiar este programa e melhorar."
     }
   }
 }
