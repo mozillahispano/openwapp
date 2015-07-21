@@ -9,7 +9,7 @@
     "handlebars": "2.0.0",
     "PhoneNumber.js": "~0.5.0",
     "fxosRate": "~0.4.0",
-    "coseme": "~1.0.12"
+    "coseme": "~1.0.13"
   },
   "devDependencies": {}
 }
