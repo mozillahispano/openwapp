@@ -59,8 +59,9 @@ define([
     checkNameInput: function (evt) {
       if (evt) { evt.preventDefault(); }
       var name = $('input[name=screen-name]').val();
+      name = name.trim();
       var button = $('button.done');
-      button.prop('disabled', name.length < 3);
+      button.prop('disabled', name.length === 0);
     },
 
     updateProfileDataFromServer: function () {

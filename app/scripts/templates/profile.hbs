@@ -29,14 +29,14 @@
         <p>
           <input type="text"
           name="screen-name" placeholder="{{translate 'screenNamePlaceHolder'}}"
-          maxlength="30" required value="{{screenName}}"
+          maxlength="25" required value="{{screenName}}"
           id="input-screen-name">
           </input>
         </p>
         <p>{{translate 'screenNameDescription'}}</p>
         <p>
           <input type="text"
-          name="status" placeholder="{{translate 'statusPlaceHolder'}}" required
+          name="status" placeholder="{{translate 'statusPlaceHolder'}}" maxlength="139" required
           value="{{status}}" id="input-status">
           </input>
         </p>
