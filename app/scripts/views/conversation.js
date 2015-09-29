@@ -51,7 +51,6 @@ define([
       this.messageViews = [];
 
       this.listenTo(this.model, 'message:added', this._onAddMessage);
-      this.listenTo(this.model, 'dirty:participants', this._updateParticipants);
       this.listenTo(this.model.get('messages'), 'remove',
         this._onRemoveMessage);
       this.listenTo(this.model.get('messages'), 'reset', this.render);
@@ -81,6 +80,7 @@ define([
       this.listenTo(this.contact, 'change:subject', function (contact) {
         this._updateTitle(contact.get('subject'));
       });
+      this.listenTo(this.contact, 'change:participants', this._updateParticipants);
       this.listenTo(this.contact, 'change:availability',
         this._updateConnectionStatus);
 
@@ -250,47 +250,42 @@ define([
     },
 
     _updateParticipants: function () {
-      var _this = this;
-      this.$el.find('.last-seen').addClass('hide');
-      this.$el.find('.is-online').addClass('hide');
-      global.client.getGroupParticipants(this.model.get('id'),
-        function _showPhones(err, list) {
-          var phoneList = list.map(
-            function (item) { return item.split('@')[0]; }
-          );
 
-          // Delete our own name, so it is not shown.
-          phoneList.splice(phoneList.indexOf(global.auth.get('msisdn')), 1);
-
-          var names = [];
-          phoneList.forEach(function (phone, index) {
-            global.contacts.findOrCreate(phone, undefined,
-              function (err, result) {
-                var contact = result.contact;
-                if (result.isNew) {
-                  //Make the sync in different times
-                  var wait = 300 * index + 200;
-                  setTimeout(function () {
-                    contact.syncAllAndSave();
-                    contact.once('synchronized:webcontacts', function () {
-                      names.push(contact.get('displayName'));
-                    });
-                  }, wait);
-                }
-                else {
-                  names.push(contact.get('displayName'));
-                }
-              }
-            );
-          });
-
-          // Let's fill with participants once we have some loaded
-          _this.participantsTimeout = setTimeout(function () {
-            _this.$el.find('.participants')
-              .text(names.join(', '));
-          }, 1500);
-        }
+      this.$el.find('.last-seen, .is-online').addClass('hide');
+      
+      var list = this.contact.get('participants');
+      if(!list) return; // Not loaded yet. An event listener will run this function once loaded
+    
+      var phoneList = list.map(
+        function (item) { return item.split('@')[0]; }
       );
+
+      // Delete our own name, so it is not shown.
+      phoneList.splice(phoneList.indexOf(global.auth.get('msisdn')), 1);
+
+      var names = [];
+      phoneList.forEach(function (phone, index) {
+        global.contacts.findOrCreate(phone, undefined,
+          function (err, result) {
+            var contact = result.contact;
+            if (result.isNew) {
+              //Make the sync in different times
+              var wait = 300 * index + 200;
+              setTimeout(function () {
+                contact.syncAllAndSave();
+                contact.once('synchronized:webcontacts', function () {
+                  names.push(contact.get('displayName'));
+                });
+              }, wait);
+            }
+            else {
+              names.push(contact.get('displayName'));
+            }
+          }
+        );
+      });
+
+      this.$el.find('.participants').text(names.join(', '));
     },
 
     _showIsOnline: function () {
