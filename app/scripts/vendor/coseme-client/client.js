@@ -306,10 +306,10 @@
         callback && callback(errorCode);
       }
 
-      function onGroupInfoReceived(jid, owner, subject) {
+      function onGroupInfoReceived(jid, owner, subject, subjectOwner, subjectT, creation, participants) {
         var callback = _groupInfoRequests[jid];
         delete _groupInfoRequests[jid];
-        callback && callback(subject);
+        callback && callback(subject, participants);
       }
 
       function onGroupParticipantsReceived(jid, list) {
@@ -832,13 +832,13 @@
           callback && callback(null);
         },
 
-        getGroupSubject: function(gid, callback) {
+        getGroupDetails: function(gid, callback) {
 
           var jid = this.getJID(gid);
           methods.call('group_getInfo', [jid]);
 
-          _groupInfoRequests[jid] = function _onInfo(subject) {
-            callback && callback(null, subject);
+          _groupInfoRequests[jid] = function _onInfo(subject, participants) {
+            callback && callback(null, subject, participants);
           };
         },
 
