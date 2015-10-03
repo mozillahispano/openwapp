@@ -250,7 +250,8 @@ define([
     },
 
     _updateParticipants: function () {
-
+      var _this = this;
+      
       this.$el.find('.last-seen, .is-online').addClass('hide');
       
       var list = this.contact.get('participants');
@@ -263,29 +264,33 @@ define([
       // Delete our own name, so it is not shown.
       phoneList.splice(phoneList.indexOf(global.auth.get('msisdn')), 1);
 
-      var names = [];
-      phoneList.forEach(function (phone, index) {
-        global.contacts.findOrCreate(phone, undefined,
-          function (err, result) {
-            var contact = result.contact;
-            if (result.isNew) {
-              //Make the sync in different times
-              var wait = 300 * index + 200;
-              setTimeout(function () {
-                contact.syncAllAndSave();
-                contact.once('synchronized:webcontacts', function () {
-                  names.push(contact.get('displayName'));
-                });
-              }, wait);
+      var names = [],
+        index = 0;
+      (function displayNames() {
+        if(index === phoneList.length) {
+          _this.$el.find('.participants').text(names.join(', '));
+        } else {
+          var phone = phoneList[index];
+          ++index;
+          global.contacts.findOrCreate(phone, undefined, 
+            function (err, result) {
+              var contact = result.contact;
+              if (result.isNew) {
+                setTimeout(function () {
+                  contact.syncAllAndSave();
+                  contact.once('synchronized:webcontacts', function () {
+                    names.push(contact.get('displayName'));
+                    displayNames();
+                  });
+                }, 300);
+              } else {
+                names.push(contact.get('displayName'));
+                displayNames();
+              }
             }
-            else {
-              names.push(contact.get('displayName'));
-            }
-          }
-        );
-      });
-
-      this.$el.find('.participants').text(names.join(', '));
+          );
+        }
+      })(0);
     },
 
     _showIsOnline: function () {
