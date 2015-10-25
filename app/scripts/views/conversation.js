@@ -80,7 +80,8 @@ define([
       this.listenTo(this.contact, 'change:subject', function (contact) {
         this._updateTitle(contact.get('subject'));
       });
-      this.listenTo(this.contact, 'change:participants', this._updateParticipants);
+      this.listenTo(this.contact, 'change:participants',
+        this._updateParticipants);
       this.listenTo(this.contact, 'change:availability',
         this._updateConnectionStatus);
 
@@ -251,14 +252,15 @@ define([
 
     _updateParticipants: function () {
       var _this = this;
-      
+
       this.$el.find('.last-seen, .is-online').addClass('hide');
-      
+
       var list = this.contact.get('participants');
-      if(!list) return; // Not loaded yet. An event listener will run this function once loaded
-    
+      // Not loaded yet. An event listener will run this function once loaded
+      if (!list) { return; }
+
       var phoneList = list.map(
-        function (item) { return item.split('@')[0]; }
+        function(item) { return item.split('@')[0]; }
       );
 
       // Delete our own name, so it is not shown.
@@ -267,12 +269,12 @@ define([
       var names = [],
         index = 0;
       (function displayNames() {
-        if(index === phoneList.length) {
+        if (index === phoneList.length) {
           _this.$el.find('.participants').text(names.join(', '));
         } else {
           var phone = phoneList[index];
           ++index;
-          global.contacts.findOrCreate(phone, undefined, 
+          global.contacts.findOrCreate(phone, undefined,
             function (err, result) {
               var contact = result.contact;
               if (result.isNew) {

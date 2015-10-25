@@ -131,12 +131,14 @@ define([
 
     updateGroupDetails: function (callback) {
       var _this = this;
-      global.client.getGroupDetails(this.get('id'), function (err, subject, participants) {
-        if (err) { return callback(err); }
-        _this.set('subject', subject);
-        _this.set('participants', participants);
-        callback(null, subject);
-      });
+      global.client.getGroupDetails(this.get('id'),
+        function (err, subject, participants) {
+          if (err) { return callback(err); }
+          _this.set('subject', subject);
+          _this.set('participants', participants);
+          callback(null, subject);
+        }
+      );
     },
 
     updateState: function (callback) {

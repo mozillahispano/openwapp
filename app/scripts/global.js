@@ -1,12 +1,18 @@
 define([
   'vendor/coseme-client/client',
   'fxosrate'
-], function (cosemeClient) {
+], function(cosemeClient) {
   'use strict';
 
   // Initialize FirefoxOS Rate library
   window.fxosRate = Object.create(window.fxosRate);
-  window.fxosRate.init('openwapp', '{{latestTag}}', 10, 5, 5, 0, 0, 7);
+  var fxosRateOpts = {
+    daysUntilPrompt: 10,
+    usesUntilPrompt: 5,
+    eventsUntilPrompt: 5,
+    remindPeriod: 7
+  };
+  window.fxosRate.init('openwapp', '{{latestTag}}', fxosRateOpts);
 
   var client = cosemeClient.init();
 
