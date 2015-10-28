@@ -6,11 +6,12 @@ define([
 
   // Initialize FirefoxOS Rate library
   window.fxosRate = Object.create(window.fxosRate);
+  // FIXME: when fxosRate works is correctly implemented, let's change this
   var fxosRateOpts = {
-    daysUntilPrompt: 10,
-    usesUntilPrompt: 5,
-    eventsUntilPrompt: 5,
-    remindPeriod: 7
+    daysUntilPrompt: 1000,
+    usesUntilPrompt: 5000,
+    eventsUntilPrompt: 5000,
+    remindPeriod: 7000
   };
   window.fxosRate.init('openwapp', '{{latestTag}}', fxosRateOpts);
 

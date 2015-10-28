@@ -1,6 +1,6 @@
 {
   "name": "Openwapp",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "dependencies": {
     "requirejs": "~2.1.20",
     "underscore": "~1.7.0",
