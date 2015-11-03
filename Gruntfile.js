@@ -408,10 +408,17 @@ module.exports = function (grunt) {
             '<%= openwappPaths.dist %>/scripts/templates/helpers.js'
         },
         options: {
-          replacements: [{
-            pattern: '{{currentCommit}}',
-            replacement: '<%= openwappVersion %>'
-          }]
+          replacements: [
+		{
+	            pattern: '{{currentCommit}}',
+	            replacement: '<%= openwappVersion %>'
+          	},
+		{
+	            pattern: '{{latestTag}}',
+	            replacement: '<%= openwappLatestTag %>'
+          	},
+
+	]
         }
       },
       writeLatestTag: {
@@ -490,8 +497,8 @@ module.exports = function (grunt) {
     // 'imagemin',
     'copy:build',
     'shell:getVersion',
-    'string-replace:writeVersion',
     'shell:getLatestTag',
+    'string-replace:writeVersion',
     'string-replace:writeLatestTag'
   ]);
 

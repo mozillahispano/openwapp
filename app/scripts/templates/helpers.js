@@ -89,6 +89,10 @@ define([
       return '{{currentCommit}}';
     },
 
+    _latestTag: function () {
+      return '{{latestTag}}';
+    },
+
     revealEmoji: function () {
       for (var i = 0, l = arguments.length; i < l; i++) {
         this._transformIntoEmoji(arguments[i]);
@@ -132,6 +136,7 @@ define([
       Handlebars.registerHelper('translate', this._translate);
       Handlebars.registerHelper('ifNotIsMine', this._ifNotIsMine);
       Handlebars.registerHelper('currentCommit', this._currentCommit);
+      Handlebars.registerHelper('latestTag', this._latestTag);
       Handlebars.registerHelper('expand', this._expand);
     }
   };
