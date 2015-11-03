@@ -424,7 +424,9 @@ module.exports = function (grunt) {
       writeLatestTag: {
         files: {
           '<%= openwappPaths.dist %>/scripts/global.js':
-            '<%= openwappPaths.dist %>/scripts/global.js'
+            '<%= openwappPaths.dist %>/scripts/global.js',
+          '<%= openwappPaths.dist %>/scripts/views/login.js':
+            '<%= openwappPaths.dist %>/scripts/views/login.js'
         },
         options: {
           replacements: [{

@@ -454,7 +454,8 @@ define([
       } else {
         stringId = 'registerErrorGenericAlert';
         message = navigator.mozL10n.get([stringId], {
-          'error' : JSON.stringify(data, null, ' ')
+          'error' : JSON.stringify(data, null, ' '),
+	  'version' : '{{latestTag}}'
         });
       }
 
