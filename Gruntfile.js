@@ -181,7 +181,7 @@ module.exports = function (grunt) {
             'scripts/**/*.js',
             'scripts/**/*.json',
             'locales/*.properties',
-	    'locales/*.ini',
+            'locales/*.ini',
             'emoji/*.js',
             'emoji/*.css',
             'emoji/*.png',
@@ -190,14 +190,14 @@ module.exports = function (grunt) {
             'manifest.webapp'
           ]
         }, 
-	 {
+        {
           expand: true,
-	  dot: true,
+          dot: true,
           cwd: '<%= openwappPaths.app %>/components/fxosRate/',
           dest: '<%= openwappPaths.dist %>',
-	  src: 'locales/*.properties'
-
-        },{
+          src: 'locales/*.properties'
+        },
+        {
           expand: true,
           cwd: '.tmp',
           dest: '<%= openwappPaths.dist %>',
