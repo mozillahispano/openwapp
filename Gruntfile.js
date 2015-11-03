@@ -175,7 +175,6 @@ module.exports = function (grunt) {
             'components/PhoneNumber.js/PhoneNumberMetaData.js',
             'components/coseme/dist/coseme.js',
             'components/fxosRate/fxosrate.js',
-            'components/fxosRate/locales/*', 
             /** END OF COMPONENTS **/
             'styles/main.css',
             'icons/**/*.{png,jpg}',
@@ -190,7 +189,15 @@ module.exports = function (grunt) {
             '*.html',
             'manifest.webapp'
           ]
-        }, {
+        }, 
+	 {
+          expand: true,
+	  dot: true,
+          cwd: '<%= openwappPaths.app %>/components/fxosRate/',
+          dest: '<%= openwappPaths.dist %>',
+	  src: 'locales/*.properties'
+
+        },{
           expand: true,
           cwd: '.tmp',
           dest: '<%= openwappPaths.dist %>',
