@@ -13,7 +13,7 @@
     "128": "/icons/128/openwapp.png"
   },
   "default_locale": "en-US",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "messages": [
     { "alarm": "/index.html" }
   ],
