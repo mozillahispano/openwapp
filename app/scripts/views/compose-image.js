@@ -174,8 +174,7 @@ define([
         if (this.$el.find('form > #image-caption').val()) {
           contents.caption = this.$el.find('form > #image-caption').val();
         } else {
-          contents.caption = global
-            .localisation[global.language].defaultImageCaption;
+          contents.caption = navigator.mozL10n.get('defaultImageCaption');
         }
 
         this.model.set('meta', {date: new Date()});
