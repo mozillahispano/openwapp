@@ -127,8 +127,7 @@ define([
     getParticipantName: function (phone) {
       if (!phone) {
         console.warn('Unknown participant.');
-        var unknownId = 'unknownParticipant';
-        return global.localisation[global.language][unknownId];
+        return navigator.mozL10n.get('unknownParticipant');
       }
 
       if (global.auth.isMe(phone)) {

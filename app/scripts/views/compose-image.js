@@ -61,8 +61,7 @@ define([
 
         var blob = activity.result.blob;
         if (blob.size > _this.MAX_FILE_SIZE) {
-          window.alert(global.localisation[global.language]
-            .fileTooLargeToBeSent);
+          window.alert(navigator.mozL10n.get('fileTooLargeToBeSent'));
           global.router.navigate('conversation/' + _this.conversation.get('id'),
           { trigger: true });
           return;

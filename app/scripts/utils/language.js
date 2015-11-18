@@ -1,12 +1,11 @@
-define([
-  'global'
-], function (global) {
+define([], function () {
   'use strict';
 
   return {
     getLanguage: function () {
-      if (window.navigator.language &&
-        global.localisation[window.navigator.language]) {
+      // TODO: we are comparing to 'en-US' until we find a way to get
+      // all available translations from l10n.js
+      if (window.navigator.language && 'en-US' === window.navigator.language) {
         return window.navigator.language;
       }
       else {

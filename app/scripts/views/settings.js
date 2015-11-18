@@ -57,9 +57,7 @@ define([
     unregister: function (evt) {
       evt.preventDefault();
 
-      // TODO: localise this string
-      if (window.confirm(global.localisation[global.language]
-        .logoutAlertText)) {
+      if (window.confirm(navigator.mozL10n.get('logoutAlertText'))) {
         this._unregisterDevice();
       }
     },

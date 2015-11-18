@@ -43,8 +43,7 @@ define([
 
     _formatMultiMediaMessageContent: function (content, type) {
       var res = _.extend({}, content);
-      res.caption = content.caption ||
-        global.localisation[global.language][type];
+      res.caption = content.caption || navigator.mozL10n.get(type);
       return res;
     },
 
@@ -90,7 +89,7 @@ define([
       console.log('address: ' + content.address);
 
       content.address = content.address ||
-        global.localisation[global.language].defaultImageCaption;
+        navigator.mozL10n.get('defaultImageCaption');
 
       var message = new MessageModel({
         type: 'location',

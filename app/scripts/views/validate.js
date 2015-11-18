@@ -84,7 +84,7 @@ define([
         function (err) {
           _this.hideSpinner('validate-page');
           if (err) {
-            window.alert(global.localisation[global.language].pinInvalidAlert);
+            window.alert(navigator.mozL10n.get('pinInvalidAlert'));
             return;
           }
           var destination = global.auth.get('screenName') ?
