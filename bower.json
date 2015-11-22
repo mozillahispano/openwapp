@@ -1,15 +1,15 @@
 {
   "name": "Openwapp",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "dependencies": {
-    "requirejs": "~2.1.20",
-    "underscore": "~1.7.0",
+    "requirejs": "~2.1.22",
+    "underscore": "~1.8.3",
     "zepto": "~1.1.6",
     "backbone": "~1.1.2",
     "handlebars": "2.0.0",
     "PhoneNumber.js": "~0.5.0",
     "fxosRate": "~0.5.0",
-    "coseme": "~1.1.2"
+    "coseme": "~1.1.3"
   },
   "devDependencies": {}
 }
