@@ -106,7 +106,7 @@ define([
 
       function onNetworkError() {
         console.log('network error while downloading content...');
-        window.alert(global.localisation[global.language].loadImageError);
+        window.alert(navigator.mozL10n.get('loadImageError'));
       }
     },
 

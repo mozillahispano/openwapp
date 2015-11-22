@@ -272,8 +272,7 @@ define([
             _this._addParticipant(contact);
           }
           else {
-            window.alert(global.localisation[global.language]
-              .errorAddingParticipant);
+            window.alert(navigator.mozL10n.get('errorAddingParticipant'));
           }
         }
       });

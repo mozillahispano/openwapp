@@ -44,9 +44,8 @@ require([
   'backbone',
   'global',
   'templates/helpers',
-  'localisations/translation',
   'lib/JSCovReporter/JSCovReporter.js'
-], function (Backbone, global, HandlebarsHelpers, Translation) {
+], function (Backbone, global, HandlebarsHelpers) {
   'use strict';
   // Create global objects so they can be easily stubbed in the tests
   global.router = new Backbone.Router({ show: function () {} });
@@ -89,7 +88,6 @@ require([
   global.historyFetcher = new Backbone.Model();
   global.historyFetcher.fetchMessages = function () {};
 
-  global.localisation = Translation;
   global.language = 'es';
 
   HandlebarsHelpers.register();

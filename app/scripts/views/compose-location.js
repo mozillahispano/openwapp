@@ -59,7 +59,7 @@ define([
       this.gettingLocation = false;
       this.$el.find('form section').addClass('error');
       this.$el.find('form button').html(
-        global.localisation[global.language].acceptButton);
+        navigator.mozL10n.get('acceptButton'));
     },
 
     showLocation: function () {
@@ -100,7 +100,7 @@ define([
             latitude: global.geoPosition.get('latitude'),
             longitude: global.geoPosition.get('longitude')
           },
-          address: global.localisation[global.language].currentLocation
+          address: navigator.mozL10n.get('currentLocation')
         },
         from: {msisdn: global.auth.get('msisdn')},
         meta: {date: new Date()}

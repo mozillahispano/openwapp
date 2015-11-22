@@ -61,8 +61,7 @@ define([
 
         var blob = activity.result.blob;
         if (blob.size > _this.MAX_FILE_SIZE) {
-          window.alert(global.localisation[global.language]
-            .fileTooLargeToBeSent);
+          window.alert(navigator.mozL10n.get('fileTooLargeToBeSent'));
           global.router.navigate('conversation/' + _this.conversation.get('id'),
           { trigger: true });
           return;
@@ -175,8 +174,7 @@ define([
         if (this.$el.find('form > #image-caption').val()) {
           contents.caption = this.$el.find('form > #image-caption').val();
         } else {
-          contents.caption = global
-            .localisation[global.language].defaultImageCaption;
+          contents.caption = navigator.mozL10n.get('defaultImageCaption');
         }
 
         this.model.set('meta', {date: new Date()});

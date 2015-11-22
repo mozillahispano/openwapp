@@ -402,7 +402,7 @@ define([
 
     _checkPhoneNumber: function (parts, country) {
       if (!country) {
-        window.alert(global.localisation[global.language].selectCountryAlert);
+        window.alert(navigator.mozL10n.get('selectCountryAlert'));
         return;
       }
 
