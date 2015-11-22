@@ -19,7 +19,7 @@ You can [compile](https://github.com/mozillahispano/openwapp/wiki/Compilation) O
 
 If you're a coder you can read [guidelines](https://github.com/mozillahispano/openwapp/wiki/Developing) about code structure and other useful information. [Here](https://github.com/mozillahispano/openwapp/wiki/Design) you can read information about app design.
 
-If you want to translate OpenWapp in your favorite language, please visit [Transifex](https://www.transifex.com/projects/p/openwapp/).
+If you want to [translate](https://github.com/mozillahispano/openwapp/wiki/How-to-localize-Openwapp) OpenWapp in your favorite language, please visit [Transifex](https://www.transifex.com/projects/p/openwapp/).
 
 If you just want to support our work, please [leave a rating](https://marketplace.firefox.com/app/openwapp/ratings/add) on Firefox Marketplace.
 
