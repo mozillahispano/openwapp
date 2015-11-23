@@ -70,7 +70,7 @@
     }
   },
   "locales": {
-    "de-DE": {
+    "de": {
       "name": "OpenWapp",
       "description": "OpenWapp ist eine offene, freie und inoffizielle App, um WhatsApp's Kommunikationsdienste auf Dein Firefox OS Gerät zu bringen. Wir sind ein Open Source Projekt, das sich zur Unterstützung und Verbesserung dieser Software auf die Community stützt.",
       "permissions": {
