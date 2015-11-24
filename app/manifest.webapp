@@ -70,9 +70,56 @@
     }
   },
   "locales": {
-    "de-DE": {
+    "de": {
       "name": "OpenWapp",
-      "description": "OpenWapp ist eine offene, freie und inoffizielle App, um WhatsApp's Kommunikationsdienste auf Dein Firefox OS Gerät zu bringen. Wir sind ein Open Source Projekt, das sich zur Unterstützung und Verbesserung dieser Software auf die Community stützt."
+      "description": "OpenWapp ist eine offene, freie und inoffizielle App, um WhatsApp's Kommunikationsdienste auf Dein Firefox OS Gerät zu bringen. Wir sind ein Open Source Projekt, das sich zur Unterstützung und Verbesserung dieser Software auf die Community stützt.",
+      "permissions": {
+        "alarms": {
+          "description": "Benötigt, um regelmäßig verfügbare Nachrichten abzurufen"
+        },
+        "contacts": {
+          "description": "Benötigt, um die Kontakte zu synchronisieren",
+        },
+        "desktop-notification": {
+          "description": "Benötigt, um dem Benutzer Nachrichten anzeigen"
+        },
+        "geolocation": {
+          "description": "Benötigt, zur Geräte-Ortung"
+        },
+        "device-storage:sdcard": {
+          "description": "Benötigt, um gerätespezifische Informationen zu speichern",
+        },
+        "device-storage:pictures": {
+          "description": "Benötigt, um Bilder zu senden und zu speichern",
+        },
+        "device-storage:music": {
+          "description": "Benötigt, um Audio zu senden und zu speichern",
+        },
+        "device-storage:videos": {
+          "description": "Benötigt, um Videos zu senden und zu speichern",
+        },
+        "storage": {
+          "description": "Benötigt, für lokalen Datenbankzugang"
+        },
+        "audio-channel-normal": {
+          "description": "Benötigt, um Audio abzuspielen"
+        },
+        "audio-channel-content": {
+          "description": "Benötigt, um Musik und Videos abzuspielen"
+        },
+        "audio-channel-notification": {
+          "description": "Benötigt, um Sprachnachrichten und Benachrichtigungstöne abzuspielen"
+        },
+        "tcp-socket": {
+          "description": "Benötigt, um rohe Sockets zur Kommunikation mit dem Server zu nutzen"
+        },
+        "mobilenetwork": {
+          "description": "Benötigt, um Mobilfunkbetreiber und regionale Informationen zu ermitteln."
+        },
+        "systemXHR": {
+          "description": "Benötigt, für XHR-Anfragen ohne CORS-Restriktionen"
+        }
+      }
     },
     "eo": {
       "name": "OpenWapp",
