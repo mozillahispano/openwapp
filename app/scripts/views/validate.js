@@ -43,8 +43,8 @@ define([
 
     callMe: function (evt) {
       evt.preventDefault();
-      // TODO: put right locale here
-      var locale = Language.getLanguage().replace(/\-.*$/, '');
+
+      var locale = Language.getLanguage();
       global.auth.register(this.phoneNumber, locale, function () {
         // TODO: Implement callback here
       });

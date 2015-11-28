@@ -2,17 +2,31 @@ define([], function () {
   'use strict';
 
   return {
-    getLanguage: function () {
-      // TODO: we are comparing to 'en-US' until we find a way to get
-      // all available translations from l10n.js
-      if (window.navigator.language && 'en-US' === window.navigator.language) {
-        return window.navigator.language;
-      }
-      else {
-        return 'en-US';
-      }
+    /**
+     * Get the user's locale.
+     * @return String representing the language version as defined
+     *         in BCP 47. Examples of valid language codes
+     *         include "en", "en-US", "fr", "es-ES", etc.
+     */
+    getLocale: function() {
+      // in Gecko versions > 32 we may use `navigator.languages` to get
+      // the preferred languages (see
+      // https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/languages)
+      return window.navigator.language;
     },
 
+    /**
+     * Get the user's language (the first part of the locale).
+     * @return String like "en", "fr", "de", etc. (always two characters)
+     */
+    getLanguage: function () {
+      return this.getLocale().substr(0, 2);
+    },
+
+    /**
+     * Get the user's locale if there is a translation for it.
+     * Otherwise it returns the default language.
+     */
     getLegalLocale: function () {
       var availableToSLocales = {
         es: 'es',
@@ -25,13 +39,9 @@ define([], function () {
         nl: 'nl'
       };
 
-      var lang = this.getLanguage();
-
-      var locale = availableToSLocales[lang] ||
-        availableToSLocales[lang.replace(/\-.+$/, '')] ||
-        'en';
-
-      return locale;
+      return availableToSLocales[this.getLocale()] ||
+        availableToSLocales[this.getLanguage()] ||
+        'en'; // not sure if 'en' is correct here, should it not be 'en-US'?
     }
   };
 });
