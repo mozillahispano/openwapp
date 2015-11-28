@@ -368,6 +368,7 @@ define([
       this.$el.find('section.intro > p').hide();
       this.toggleSpinner();
 
+      var locale = global.language.getLocale();
       var phoneParts = this._getPhoneParts('#confirm-phone-page');
       var countryCode = phoneParts.prefix;
       var phoneNumber = phoneParts.number;
@@ -376,7 +377,7 @@ define([
       localStorage.removeItem('isPinSent');
       phoneNumber = phoneNumber.replace(/[^\d]/g, '');
       global.auth
-      .register(countryCode, phoneNumber, 'es-ES', _this.mcc, _this.mnc,
+      .register(countryCode, phoneNumber, locale, _this.mcc, _this.mnc,
         function (err, details) {
           _this.toggleSpinner();
           if (err) {
