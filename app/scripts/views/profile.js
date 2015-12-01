@@ -44,6 +44,8 @@ define([
       awakePeriod = (awakePeriod / 60000).toFixed(0);
       var selected = 'option[value="' + awakePeriod  + '"]';
       this.el.querySelector(selected).setAttribute('selected', 'selected');
+      
+      this.el.querySelector('#send-by-enter').checked = !!localStorage.getItem('sendByEnter');
     },
 
     events: {
@@ -53,7 +55,8 @@ define([
       'click img':                           'selectPicture',
       'click legend':                        'showSelect',
       'change select':                       'setAwakePeriod',
-      'click #upgrade-now':                  'goToUpgradeNow'
+      'click #upgrade-now':                  'goToUpgradeNow',
+      'change #send-by-enter':               'setSendByEnter'
     },
 
     checkNameInput: function (evt) {
@@ -190,6 +193,14 @@ define([
 
     clear: function () {
       window.URL.revokeObjectURL(this.$el.find('img').attr('src'));
+    },
+    
+    setSendByEnter: function (evt) {
+      if(evt.target.checked) {
+        localStorage.setItem('sendByEnter', '1');
+      } else {
+        localStorage.removeItem('sendByEnter');
+      }
     }
   });
 
