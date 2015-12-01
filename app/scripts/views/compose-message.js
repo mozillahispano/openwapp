@@ -17,7 +17,8 @@ define([
     events: {
       'click #conversation-send-button' : '_createTextMessage',
       'click #insert-emoji': '_toggleEmojiList',
-      'click #message-text-input': '_hideEmojiList'
+      'click #message-text-input': '_hideEmojiList',
+      'keydown #message-text-input' : '_sendByEnter'
     },
 
     initialize: function () {
@@ -94,6 +95,13 @@ define([
         return d.textContent;
       });
       return lines.join('\n');
+    },
+    
+    _sendByEnter: function (e) {
+      if(e.key === 'Enter' && localStorage.getItem('sendByEnter')) {
+        this.el.querySelector('#conversation-send-button').click(); // Send the message
+        e.preventDefault(); // Don't write a newline in the message box
+      }
     }
   });
 });
