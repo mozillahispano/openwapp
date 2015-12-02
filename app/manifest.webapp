@@ -78,7 +78,7 @@
           "description": "Benötigt, um regelmäßig verfügbare Nachrichten abzurufen"
         },
         "contacts": {
-          "description": "Benötigt, um die Kontakte zu synchronisieren",
+          "description": "Benötigt, um die Kontakte zu synchronisieren"
         },
         "desktop-notification": {
           "description": "Benötigt, um dem Benutzer Nachrichten anzeigen"
@@ -87,16 +87,16 @@
           "description": "Benötigt, zur Geräte-Ortung"
         },
         "device-storage:sdcard": {
-          "description": "Benötigt, um gerätespezifische Informationen zu speichern",
+          "description": "Benötigt, um gerätespezifische Informationen zu speichern"
         },
         "device-storage:pictures": {
-          "description": "Benötigt, um Bilder zu senden und zu speichern",
+          "description": "Benötigt, um Bilder zu senden und zu speichern"
         },
         "device-storage:music": {
-          "description": "Benötigt, um Audio zu senden und zu speichern",
+          "description": "Benötigt, um Audio zu senden und zu speichern"
         },
         "device-storage:videos": {
-          "description": "Benötigt, um Videos zu senden und zu speichern",
+          "description": "Benötigt, um Videos zu senden und zu speichern"
         },
         "storage": {
           "description": "Benötigt, für lokalen Datenbankzugang"
