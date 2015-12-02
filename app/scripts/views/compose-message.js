@@ -17,8 +17,7 @@ define([
     events: {
       'click #conversation-send-button' : '_createTextMessage',
       'click #insert-emoji': '_toggleEmojiList',
-      'click #message-text-input': '_hideEmojiList',
-      'keydown #message-text-input' : '_sendByEnter'
+      'click #message-text-input': '_hideEmojiList'
     },
 
     initialize: function () {
@@ -50,6 +49,16 @@ define([
       });
       $('#conversation').after(this._emojiSelector.render().el);
       this._emojiSelector.changeTab('people');
+      
+      if(localStorage.getItem('sendByEnter')) {
+        var btn = this.el.querySelector('#conversation-send-button');
+        this.el.querySelector('#message-text-input').addEventListener('keydown', function (e) {
+          if(e.key === 'Enter') {
+            btn.click(); // Send the message
+            e.preventDefault(); // Don't write a newline in the message box
+          }
+        });
+      }
     },
 
     _createTextMessage: function (event) {
@@ -95,13 +104,6 @@ define([
         return d.textContent;
       });
       return lines.join('\n');
-    },
-    
-    _sendByEnter: function (e) {
-      if(e.key === 'Enter' && localStorage.getItem('sendByEnter')) {
-        this.el.querySelector('#conversation-send-button').click(); // Send the message
-        e.preventDefault(); // Don't write a newline in the message box
-      }
     }
   });
 });
