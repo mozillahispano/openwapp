@@ -66,7 +66,10 @@ define([
         type: 'text',
         contents: text,
         from: {msisdn: global.auth.get('msisdn')},
-        meta: {date: new Date()}
+        meta: {
+          date: new Date(),
+          sentDate: new Date()
+        }
       });
 
       this.$messageComposer.html('<br>');

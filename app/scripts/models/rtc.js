@@ -54,7 +54,7 @@
 //
 // **message** (from, meta, message): when receiving any type of message.
 // Format of from and meta params:
-//     { from: { msisdn, displayName }, meta: { type, date, commId} }
+//     { from: { msisdn, displayName }, meta: { type, date, sentDate, commId} }
 //
 // **message:text (from, meta, message)**: text message received.
 //
@@ -299,6 +299,7 @@ define([
     _getMessageMeta: function (message) {
       return {
         date: new Date(),
+        sentDate: message.sentDate,
         commId: message.messageId
       };
     },
