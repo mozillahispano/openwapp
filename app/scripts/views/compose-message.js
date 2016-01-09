@@ -49,6 +49,16 @@ define([
       });
       $('#conversation').after(this._emojiSelector.render().el);
       this._emojiSelector.changeTab('people');
+      
+      if(localStorage.getItem('sendByEnter')) {
+        var btn = this.el.querySelector('#conversation-send-button');
+        this.el.querySelector('#message-text-input').addEventListener('keydown', function (e) {
+          if(e.key === 'Enter') {
+            btn.click(); // Send the message
+            e.preventDefault(); // Don't write a newline in the message box
+          }
+        });
+      }
     },
 
     _createTextMessage: function (event) {
