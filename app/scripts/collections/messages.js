@@ -37,11 +37,12 @@ define([
      */
     comparator: function (message) {
       var meta = message.get('meta');
-      if (meta && meta.sentDate) {
-        return meta.sentDate;
+      var rv = -1;
+      if (meta) {
+        rv = meta.sentDate || meta.date;
       }
-      // fallback for legacy code
-      return meta && meta.date ? meta.date : -1;
+
+      return rv;
     },
 
     add: function (models, options) {
