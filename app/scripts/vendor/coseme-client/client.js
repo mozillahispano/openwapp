@@ -246,9 +246,9 @@
           messageId,
           senderJID,
           { subject: subject },
-          timestamp,
           displayName,
-          author
+          author,
+          timestamp
         ));
         methods.call('notification_ack', [senderJID, messageId]);
       }
@@ -260,6 +260,8 @@
           messageId,
           senderJID,
           { event: event, participant: jid.split('@')[0] },
+          null,
+          null,
           timestamp
         ));
         methods.call('notification_ack', [senderJID, messageId]);
@@ -272,15 +274,15 @@
           messageId,
           senderJID,
           { event: event, pictureId: pictureId },
-          timestamp,
           null,
-          author
+          author,
+          timestamp
         ));
         methods.call('notification_ack', [senderJID, messageId]);
       }
 
       function newNotification(type, messageId, senderJID, content,
-                               timestamp, displayName, author) {
+                               displayName, author, timestamp) {
         // we get a unix timestamp without milliseconds, so we have
         // to multiply with 1000
         var sentDate = new Date(timestamp * 1000);
@@ -387,9 +389,9 @@
           messageId,
           senderJID,
           content,
-          timestamp,
           senderName,
-          authorJID
+          authorJID,
+          timestamp
         ));
         methods.call('message_ack', [senderJID, messageId]);
         // TODO: The pub should be the client, we need to refactor this
@@ -501,7 +503,7 @@
       }
 
       function newTextMessage(messageId, senderJID, content,
-                              timestamp, senderName, authorJID) {
+                              senderName, authorJID, timestamp) {
         // we get a unix timestamp without milliseconds, so we have
         // to multiply with 1000
         var sentDate = new Date(timestamp * 1000);
