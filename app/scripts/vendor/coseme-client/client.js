@@ -241,33 +241,51 @@
 
       function onSubjectUpdated(senderJID, timestamp, messageId,
                                 subject, displayName, author) {
-        fire('notification', pub,
-          newNotification('group-subject', messageId, senderJID,
-                          { subject: subject }, displayName, author)
-        );
+        fire('notification', pub, newNotification(
+          'group-subject',
+          messageId,
+          senderJID,
+          { subject: subject },
+          displayName,
+          author,
+          timestamp
+        ));
         methods.call('notification_ack', [senderJID, messageId]);
       }
 
       function onGroupParticipantEvent(event, senderJID, jid, _,
                                        timestamp, messageId) {
-        fire('notification', pub,
-          newNotification('group-participant', messageId, senderJID,
-                          { event: event, participant: jid.split('@')[0] })
-        );
+        fire('notification', pub, newNotification(
+          'group-participant',
+          messageId,
+          senderJID,
+          { event: event, participant: jid.split('@')[0] },
+          null,
+          null,
+          timestamp
+        ));
         methods.call('notification_ack', [senderJID, messageId]);
       }
 
       function onGroupPictureEvent(event, senderJID, timestamp, messageId,
                                    pictureId, author) {
-        fire('notification', pub,
-          newNotification('group-picture', messageId, senderJID,
-                          { event: event, pictureId: pictureId }, null, author)
-        );
+        fire('notification', pub, newNotification(
+          'group-picture',
+          messageId,
+          senderJID,
+          { event: event, pictureId: pictureId },
+          null,
+          author,
+          timestamp
+        ));
         methods.call('notification_ack', [senderJID, messageId]);
       }
 
-      function newNotification(type, messageId, senderJID,
-                               content, displayName, author) {
+      function newNotification(type, messageId, senderJID, content,
+                               displayName, author, timestamp) {
+        // we get a unix timestamp without milliseconds, so we have
+        // to multiply with 1000
+        var sentDate = new Date(timestamp * 1000);
         return {
           messageId: messageId,
           sender: {
@@ -276,6 +294,7 @@
             authorMsisdn: !author ? undefined : author.split('@')[0]
           },
           content: content,
+          sentDate: sentDate,
           type: type
         };
       }
@@ -366,42 +385,56 @@
       function onMessageReceived(messageId, senderJID, content,
                                  timestamp, wantsReceipt, senderName,
                                  isBroadcast, authorJID) {
-        fire('message', pub,
-             newTextMessage(messageId, senderJID, content,
-                            senderName, authorJID));
+        fire('message', pub, newTextMessage(
+          messageId,
+          senderJID,
+          content,
+          senderName,
+          authorJID,
+          timestamp
+        ));
         methods.call('message_ack', [senderJID, messageId]);
         // TODO: The pub should be the client, we need to refactor this
         // module in order to provide the `singleton` module in a smarter way.
       }
 
       function onAudioReceived(messageId, senderJID, url, size,
-                               receiptRequested, isBroadcast) {
+                               receiptRequested, isBroadcast,
+                               pushName, timestamp) {
 
         onMultiMediaReceived('audio', messageId, senderJID, undefined, url,
-                             size, receiptRequested, isBroadcast);
+                             size, receiptRequested, isBroadcast,
+                             pushName, timestamp);
       }
 
       function onGroupAudioReceived(messageId, groupJID, authorJID, url, size,
-                                    receiptRequested) {
+                                    receiptRequested, pushName, timestamp) {
 
         onMultiMediaReceived('audio', messageId, groupJID, undefined, url,
-                             size, receiptRequested, false, authorJID);
+                             size, receiptRequested, false,
+                             authorJID, timestamp);
       }
 
       function onGroupMultiMediaReceived(type, messageId, groupJID, authorJID,
                                          preview, url, size, receiptRequested,
-                                         isBroadcast) {
+                                         pushName, timestamp) {
 
         onMultiMediaReceived(type, messageId, groupJID, preview, url, size,
-                             receiptRequested, false, authorJID);
+                             receiptRequested, false, authorJID, timestamp);
       }
 
       function onMultiMediaReceived(type, messageId, senderJID, preview, url,
                                     size, receiptRequested, isBroadcast,
-                                    authorJID) {
-        fire('message', pub,
-             newMultiMediaMessage(type, messageId, senderJID,
-                                  url, preview, authorJID));
+                                    pushName, timestamp) {
+        fire('message', pub, newMultiMediaMessage(
+          type,
+          messageId,
+          senderJID,
+          url,
+          preview,
+          pushName,
+          timestamp
+        ));
 
         methods.call('message_ack', [senderJID, messageId]);
         // TODO: The pub should be the client, we need to refactor this
@@ -410,7 +443,8 @@
 
       function onLocationReceived(messageId, senderJID, name, preview,
                                   latitude, longitude,
-                                  wantsReceipt, isBroadcast) {
+                                  wantsReceipt, isBroadcast, pushName,
+                                  timestamp) {
 
         fire('message', pub,
              newLocationMessage(messageId, senderJID,
@@ -421,7 +455,7 @@
 
       function onGroupLocationReceived(messageId, groupJID, authorJID, name,
                                        mediaPreview, mlatitude, mlongitude,
-                                       wantsReceipt) {
+                                       wantsReceipt, pushName, timestamp) {
         fire('message', pub,
              newLocationMessage(messageId, groupJID, name, mlatitude,
                                 mlongitude, authorJID));
@@ -468,8 +502,11 @@
         };
       }
 
-      function newTextMessage(messageId, senderJID, content, senderName,
-                              authorJID) {
+      function newTextMessage(messageId, senderJID, content,
+                              senderName, authorJID, timestamp) {
+        // we get a unix timestamp without milliseconds, so we have
+        // to multiply with 1000
+        var sentDate = new Date(timestamp * 1000);
         return {
           messageId: messageId,
           sender: {
@@ -478,12 +515,17 @@
             authorMsisdn: !authorJID ? undefined : authorJID.split('@')[0]
           },
           content: content,
+          sentDate: sentDate,
           type: 'text'
         };
       }
 
       function newMultiMediaMessage(type, messageId, senderJID,
-                                    url, binaryData, authorJID) {
+                                    url, binaryData, authorJID,
+                                    timestamp) {
+        // we get a unix timestamp without milliseconds, so we have
+        // to multiply with 1000
+        var sentDate = new Date(timestamp * 1000);
         return {
           messageId: messageId,
           sender: {
@@ -498,6 +540,7 @@
                       'data:image/jpeg;base64,' + binaryData :
                       getPlaceholder(type)
           },
+          sentDate: sentDate,
           type: type
         };
       }

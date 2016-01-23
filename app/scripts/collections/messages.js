@@ -31,13 +31,18 @@ define([
     },
 
     /**
-     * Order the coollection by date
+     * Order the collection by date
      * @param  two models to compare A B
      * @return -1 if A before B, 0 if equal, 1 if after.
      */
     comparator: function (message) {
       var meta = message.get('meta');
-      return meta && meta.date ? meta.date : -1;
+      var rv = -1;
+      if (meta) {
+        rv = meta.sentDate || meta.date;
+      }
+
+      return rv;
     },
 
     add: function (models, options) {

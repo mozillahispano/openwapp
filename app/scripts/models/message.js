@@ -11,7 +11,7 @@ define([
     defaults: function () {
       return {
         type: 'text',
-        meta: {},    // date, commId
+        meta: {},    // date, sentDate, commId
         contents: '',
         from: {},  // msisdn
         conversationId: null,
@@ -37,8 +37,9 @@ define([
       }
       obj.type = this.get('type');
       obj.metaType = this.get('meta').type;
-      obj.date = this.get('meta') ? this.get('meta').date : new Date();
-      obj.date = obj.date ? obj.date : new Date();
+      obj.date = this.get('meta').date ? this.get('meta').date : new Date();
+      obj.sentDate = this.get('meta').sentDate ?
+        this.get('meta').sentDate : new Date();
       obj.commId = this.get('meta') ? this.get('meta').commId : undefined;
       obj.contents = this.get('contents');
       if (this.get('from') && this.get('from').authorMsisdn) {
@@ -110,8 +111,13 @@ define([
     newFromStorage: function (readJson) {
       var obj = {};
       obj.type = readJson.type;
-      obj.meta = { date : readJson.date, commId : readJson.commId,
-                   type: readJson.metaType };
+      obj.meta = {
+        date: readJson.date,
+        // fallback to date to support old versions
+        sentDate: readJson.sentDate || readJson.date,
+        commId: readJson.commId,
+        type: readJson.metaType
+      };
       obj.from = { msisdn : readJson.msisdn,
                    displayName : readJson.displayName,
                    authorMsisdn: readJson.authorMsisdn || undefined };
