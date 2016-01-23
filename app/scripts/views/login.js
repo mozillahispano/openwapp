@@ -19,9 +19,11 @@ define([
   'zeptojs',
   'global',
   'templates',
+  'utils/language',
   'utils/phonenumber',
   'collections/countries'
-], function (Backbone, $, global, templates, PhoneNumber, CountriesCollection) {
+], function (Backbone, $, global, templates, Language, PhoneNumber,
+             CountriesCollection) {
   'use strict';
 
   var localStorage = window.localStorage;
@@ -368,6 +370,7 @@ define([
       this.$el.find('section.intro > p').hide();
       this.toggleSpinner();
 
+      var locale = Language.getLocale();
       var phoneParts = this._getPhoneParts('#confirm-phone-page');
       var countryCode = phoneParts.prefix;
       var phoneNumber = phoneParts.number;
@@ -376,7 +379,7 @@ define([
       localStorage.removeItem('isPinSent');
       phoneNumber = phoneNumber.replace(/[^\d]/g, '');
       global.auth
-      .register(countryCode, phoneNumber, 'es-ES', _this.mcc, _this.mnc,
+      .register(countryCode, phoneNumber, locale, _this.mcc, _this.mnc,
         function (err, details) {
           _this.toggleSpinner();
           if (err) {

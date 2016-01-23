@@ -39,7 +39,7 @@ define([
       else {
         jsonModel.author = jsonModel.from.displayName;
       }
-      jsonModel.meta.timestamp = jsonModel.meta.date.getTime();
+      jsonModel.meta.timestamp = jsonModel.meta.sentDate.getTime();
       var newElement = this.template(jsonModel);
       this.setElement(newElement);
     },

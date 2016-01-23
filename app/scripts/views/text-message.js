@@ -29,7 +29,7 @@ define([
 
     render: function () {
       var jsonModel = this.model.toJSON();
-      jsonModel.meta.timestamp = jsonModel.meta.date.getTime();
+      jsonModel.meta.timestamp = jsonModel.meta.sentDate.getTime();
       if (jsonModel.from.authorMsisdn) {
         jsonModel.author =
           global.contacts.getParticipantName(jsonModel.from.authorMsisdn);
