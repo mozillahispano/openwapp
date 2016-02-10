@@ -32,7 +32,6 @@ define([
 
     initialize: function () {
       this.listenTo(this.get('messages'), 'reset', this.updateLastMessage);
-      this.listenTo(this.get('messages'), 'add', this.updateLastMessage);
       this.listenTo(this.get('messages'), 'add', this._onAddMessage);
       this.on('change:contact', function (model, newContact) {
         var previousContact = this.previous('contact');
@@ -70,9 +69,20 @@ define([
       var messages = this.get('messages');
       if (messages && messages.size()) {
         var last = messages.at(messages.size() - 1);
+        var date = last.get('meta').sentDate || last.get('meta').date;
+
+        this.set('date', new Date(date.getTime()));
         this.set('lastMessage', last.getSummary());
         this.set('lastMessageType', last.get('type'));
       }
+    },
+
+    isLastMessage: function (message) {
+      // TODO: we should be able to pass 'true', as optional parameter to
+      // indexOf, since the messages array is supposed to be sorted!
+      // It doesn't work, however
+      var messages = this.get('messages');
+      return messages.length && messages.at(messages.length - 1) === message;
     },
 
     loadMessagesFromStorage: function (callback) {
@@ -101,32 +111,21 @@ define([
     },
 
     _onAddMessage: function (message) {
-      var isLastMessage = function (messages, message) {
-        // TODO: we should be able to pass 'true', as optional parameter to
-        // indexOf, since the messages array is supposed to be sorted!
-        // It doesn't work, however
-        return messages.length && messages.at(messages.length - 1) === message;
-      };
+      message.set('conversationId', this.get('id'));
 
-      message.set({
-        conversationId: this.get('id')
-      });
+      if (message.get('_id')) {
+        // message was loaded from storage
+        this.trigger('message:added', message);
 
-      var _this = this;
-      message.saveToStorage(function () {
-        var updates = {};
-        // update last msg & date if this is the last message chronologically
-        if (isLastMessage(_this.get('messages'), message)) {
-          updates.lastMessage = message.getSummary();
-          updates.date = message.get('meta') ?
-            new Date(message.get('meta').date.getTime()) : new Date();
-          updates.lastMessageType = message.get('type');
-        }
-        _this.set(updates);
-        _this.saveToStorage();
-        _this.trigger('message:added', message);
-      });
-
+      } else {
+        // message is new (has not been saved, yet)
+        var _this = this;
+        message.saveToStorage(function () {
+          _this.updateLastMessage();
+          _this.saveToStorage();
+          _this.trigger('message:added', message);
+        });
+      }
     },
 
     getAndUpdateLastMessageDate: function () {
