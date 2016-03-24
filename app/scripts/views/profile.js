@@ -44,8 +44,9 @@ define([
       awakePeriod = (awakePeriod / 60000).toFixed(0);
       var selected = 'option[value="' + awakePeriod  + '"]';
       this.el.querySelector(selected).setAttribute('selected', 'selected');
-      
-      this.el.querySelector('#send-by-enter').checked = !!localStorage.getItem('sendByEnter');
+
+      var sendByEnter = !!localStorage.getItem('sendByEnter');
+      this.el.querySelector('#send-by-enter').checked = sendByEnter;
     },
 
     events: {
