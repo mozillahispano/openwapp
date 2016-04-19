@@ -24,7 +24,7 @@ define([
         newCountry = new Country({
           carriers: country.carriers,
           code: country.code,
-          name: country.full,
+          name: navigator.mozL10n.get('country.code'),
           prefix: country.prefix
         }),
         addNetworkToMap = function(network) {
