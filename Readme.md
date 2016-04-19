@@ -1,5 +1,24 @@
 # OpenWapp
 
+=======
+OpenWapp has been discontinued due to lack of time and developers.
+
+Thanks a lot for using this app during this time. Such an amazing trip
+
+If you need an app to access WhatsApp, please, search for LoquiIM on the Marketplace.
+
+Regards, the OpenWapp developers.
+=======
+
+Openwapp ha sido descontinuado por falta de tiempo y de desarrolladores.
+
+Gracias por usar esta aplicación durante mucho tiempo.
+
+Si necesitas un sustituto, prueba LoquiIM, disponible en el Marketplace.
+
+Un saludo, los desarrolladores de OpenWapp.
+======
+
 Use WhatsApp in your Firefox OS device. Install it from [Firefox Marketplace](https://marketplace.firefox.com/app/openwapp)!
 
 With OpenWapp you can communicate with all your friends and family already using WhatsApp in Firefox OS or any other phone.
